@@ -1,0 +1,55 @@
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+@mixin btn-style($border-color, $bg-color, $font-color) {
+  @if (map_get($colors, $border-color)) {
+
+    border-color: map_get($colors, $border-color) !important;
+    background: map_get($colors, $bg-color);
+
+  } @else {
+
+    border-color: $border-color !important;
+    background: $bg-color;
+
+  }
+  color: $font-color;
+}
+
+@mixin form-control-validation($color) {
+  // Color the label and help text
+  .form-control-feedback,
+  .form-control-label,
+  .form-check-label,
+  .form-check-inline,
+  .custom-control {
+    color: $color;
+  }
+  // Set the border and box shadow on specific inputs to match
+  .form-control {
+    border-color: $color;
+    // @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075)); // Redeclare so transitions work
+
+    &:focus {
+      // border-color: darken($border-color, 10%);
+      // $shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten($border-color, 20%);
+      // @include box-shadow($shadow);
+    }
+  }
+
+  // Set validation states also for addons
+  .input-group-addon {
+    color: $color;
+    border-color: $color;
+    background-color: lighten($color, 40%);
+  }
+  // Optional feedback icon
+  .form-control-feedback {
+    color: $color;
+  }
+}

@@ -1,0 +1,25 @@
+.ui {
+  &-tags {
+    display: inline-flex;
+    align-items: center;
+
+    &__info {
+      margin-left: 10px;
+
+      h5,
+      p {
+        font-weight: 400;
+      }
+
+      & > h5 {
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      & > p {
+        font-size: 13px;
+        margin: 0;
+      }
+    }
+  }
+}

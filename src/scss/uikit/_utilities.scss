@@ -1,0 +1,683 @@
+.inner-addon {
+  position: relative;
+}
+
+/* style icon */
+.inner-addon .ico {
+  display: flex;
+  position: absolute;
+  padding: 10px;
+  margin: 3px 5px;
+  pointer-events: none;
+  font-size: 15px;
+  color: #36a374;
+}
+
+/* align icon */
+.left-addon .ico  { left:  0px;}
+.right-addon .ico { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  40px; }
+.right-addon input { padding-right: 40px; }
+
+.accompany {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.vertical-line {
+  &-left {
+    border-left: 1px solid #bdbdbd;
+  }
+  &-right {
+    border-right: 1px solid #bdbdbd;
+  }
+}
+
+.nav {
+  display: table;
+  margin: 20px 0;
+  table-layout: fixed;
+  width: 100%;
+
+  ul {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      display: table-cell;
+      text-align: center;
+      //height: 58px;
+      margin: 0 43px 0 0;
+      //padding: 38px 0 0;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      & > a {
+        color: #000;
+
+        &:hover {
+          color: $link-color;
+        }
+      }
+
+      &.active {
+        & > a {
+          color: $link-color;
+
+          &:hover {
+            color: $link-hover-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.head {
+  display: inline-flex;
+  font-size: 14px;
+
+  &:after {
+    content: '';
+    border-bottom: 1px solid #000000;
+    width: 100%;
+  }
+  &:before {
+    content: 'up';
+  }
+}
+
+/* This is the core CSS of Tooltipster */
+
+/* GENERAL STRUCTURE RULES (do not edit this section) */
+
+.tooltipster-base {
+  /* this ensures that a constrained height set by functionPosition,
+  if greater that the natural height of the tooltip, will be enforced
+  in browsers that support display:flex */
+  display: flex;
+  pointer-events: none;
+  /* this may be overriden in JS for fixed position origins */
+  position: absolute;
+}
+
+.tooltipster-box {
+  /* see .tooltipster-base. flex-shrink 1 is only necessary for IE10-
+  and flex-basis auto for IE11- (at least) */
+  flex: 1 1 auto;
+}
+
+.tooltipster-content {
+  /* prevents an overflow if the user adds padding to the div */
+  box-sizing: border-box;
+  /* these make sure we'll be able to detect any overflow */
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.tooltipster-ruler {
+  /* these let us test the size of the tooltip without overflowing the window */
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+}
+
+/* ANIMATIONS */
+
+/* Open/close animations */
+
+/* fade */
+
+.tooltipster-fade {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+}
+.tooltipster-fade.tooltipster-show {
+  opacity: 1;
+}
+
+/* grow */
+
+.tooltipster-grow {
+  -webkit-transform: scale(0,0);
+  -moz-transform: scale(0,0);
+  -o-transform: scale(0,0);
+  -ms-transform: scale(0,0);
+  transform: scale(0,0);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+  -webkit-backface-visibility: hidden;
+}
+.tooltipster-grow.tooltipster-show {
+  -webkit-transform: scale(1,1);
+  -moz-transform: scale(1,1);
+  -o-transform: scale(1,1);
+  -ms-transform: scale(1,1);
+  transform: scale(1,1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+
+/* swing */
+
+.tooltipster-swing {
+  opacity: 0;
+  -webkit-transform: rotateZ(4deg);
+  -moz-transform: rotateZ(4deg);
+  -o-transform: rotateZ(4deg);
+  -ms-transform: rotateZ(4deg);
+  transform: rotateZ(4deg);
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+}
+.tooltipster-swing.tooltipster-show {
+  opacity: 1;
+  -webkit-transform: rotateZ(0deg);
+  -moz-transform: rotateZ(0deg);
+  -o-transform: rotateZ(0deg);
+  -ms-transform: rotateZ(0deg);
+  transform: rotateZ(0deg);
+  -webkit-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);
+  -moz-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);
+  -ms-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);
+  -o-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);
+  transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);
+}
+
+/* fall */
+
+.tooltipster-fall {
+  -webkit-transition-property: top;
+  -moz-transition-property: top;
+  -o-transition-property: top;
+  -ms-transition-property: top;
+  transition-property: top;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+.tooltipster-fall.tooltipster-initial {
+  top: 0 !important;
+}
+.tooltipster-fall.tooltipster-show {
+}
+.tooltipster-fall.tooltipster-dying {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  top: 0 !important;
+  opacity: 0;
+}
+
+/* slide */
+
+.tooltipster-slide {
+  -webkit-transition-property: left;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  -ms-transition-property: left;
+  transition-property: left;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);
+}
+.tooltipster-slide.tooltipster-initial {
+  left: -40px !important;
+}
+.tooltipster-slide.tooltipster-show {
+}
+.tooltipster-slide.tooltipster-dying {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  left: 0 !important;
+  opacity: 0;
+}
+
+/* Update animations */
+
+/* We use animations rather than transitions here because
+ transition durations may be specified in the style tag due to
+ animationDuration, and we try to avoid collisions and the use
+ of !important */
+
+/* fade */
+
+@keyframes tooltipster-fading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.tooltipster-update-fade {
+  animation: tooltipster-fading 400ms;
+}
+
+/* rotate */
+
+@keyframes tooltipster-rotating {
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.tooltipster-update-rotate {
+  animation: tooltipster-rotating 600ms;
+}
+
+/* scale */
+
+@keyframes tooltipster-scaling {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tooltipster-update-scale {
+  animation: tooltipster-scaling 600ms;
+}
+
+/**
+ * DEFAULT STYLE OF THE SIDETIP PLUGIN
+ *
+ * All styles are "namespaced" with .tooltipster-sidetip to prevent
+ * conflicts between plugins.
+ */
+
+/* .tooltipster-box */
+
+.tooltipster-sidetip .tooltipster-box {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  color: #000;
+  border-radius: 3px;
+  padding: 25px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-box {
+  margin-top: 8px;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-box {
+  margin-right: 8px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-box {
+  margin-left: 8px;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-box {
+  margin-bottom: 8px;
+}
+
+/* .tooltipster-content */
+
+.tooltipster-sidetip .tooltipster-content {
+  color: #000000;
+  line-height: 18px;
+  padding: 6px 14px;
+}
+
+/* .tooltipster-arrow : will keep only the zone of .tooltipster-arrow-uncropped that
+corresponds to the arrow we want to display */
+
+.tooltipster-sidetip .tooltipster-arrow {
+  overflow: hidden;
+  position: absolute;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow {
+  height: 10px;
+  /* half the width, for centering */
+  margin-left: -10px;
+  top: 0;
+  width: 20px;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow {
+  height: 20px;
+  margin-top: -10px;
+  right: 0;
+  /* top 0 to keep the arrow from overflowing .tooltipster-base when it has not
+  been positioned yet */
+  top: 0;
+  width: 10px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow {
+  height: 20px;
+  margin-top: -10px;
+  left: 0;
+  /* same as .tooltipster-left .tooltipster-arrow */
+  top: 0;
+  width: 10px;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow {
+  bottom: 0;
+  height: 10px;
+  margin-left: -10px;
+  width: 20px;
+}
+
+/* common rules between .tooltipster-arrow-background and .tooltipster-arrow-border */
+
+.tooltipster-sidetip .tooltipster-arrow-background, .tooltipster-sidetip .tooltipster-arrow-border {
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+/* .tooltipster-arrow-background */
+
+.tooltipster-sidetip .tooltipster-arrow-background {
+  border: 9px solid transparent;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background {
+  border-bottom-color: #fff;
+  left: 0px;
+  top: 3px;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-background {
+  border-left-color: #fff;
+  left: -3px;
+  top: 0px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background {
+  border-right-color: #fff;
+  left: 3px;
+  top: 0px;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background {
+  border-top-color: #fff;
+  left: 0px;
+  top: -3px;
+}
+
+/* .tooltipster-arrow-border */
+
+.tooltipster-sidetip .tooltipster-arrow-border {
+  border: 9px solid transparent;
+  left: 0;
+  top: 0;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-border {
+  border-bottom-color: #dedede;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-border {
+  border-left-color: #dedede;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-border {
+  border-right-color: #dedede;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-border {
+  border-top-color: #dedede;
+}
+
+/* tooltipster-arrow-uncropped */
+
+.tooltipster-sidetip .tooltipster-arrow-uncropped {
+  position: relative;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-uncropped {
+  top: -10px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-uncropped {
+  left: -10px;
+}
+
+
+.vue-slider-wrap {
+  position: relative;
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.vue-slider-wrap.vue-slider-disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+.vue-slider-wrap.vue-slider-disabled .vue-slider-dot {
+  cursor: not-allowed;
+}
+.vue-slider-wrap .vue-slider {
+  position: relative;
+  display: block;
+  border-radius: 15px;
+  background-color: #ccc;
+}
+.vue-slider-process {
+  position: absolute;
+  border-radius: 15px;
+  background-color: #2d9f6e;
+  transition: all 0s;
+  z-index: 1;
+}
+.vue-slider-horizontal .vue-slider-process {
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.vue-slider-vertical .vue-slider-process {
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+}
+.vue-slider-horizontal-reverse .vue-slider-process {
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+.vue-slider-vertical-reverse .vue-slider-process {
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+}
+.vue-slider-dot {
+  position: absolute;
+  border-radius: 20px;
+  width: 10px !important;
+  height: 20px !important;
+  background-color: #1bbf7a;
+  box-shadow: 0 0px 5px 0px rgba(45,159,110,.6);
+  transition: all 0s;
+  cursor: pointer;
+  z-index: 3;
+}
+.vue-slider-horizontal .vue-slider-dot {
+  left: 0;
+}
+.vue-slider-vertical .vue-slider-dot {
+  bottom: 0;
+}
+.vue-slider-horizontal-reverse .vue-slider-dot {
+  right: 0;
+}
+.vue-slider-vertical-reverse .vue-slider-dot {
+  top: 0;
+}
+.vue-slider-dot::after {
+  content: attr(data-rangevalue);
+  display: none;
+  font-size: 12px;
+  white-space: nowrap;
+  position: absolute;
+  padding: 2px 5px;
+  color: #000;
+  z-index: 9;
+}
+.vue-slider-dot.vue-slider-tooltip-top::after  {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, calc(-100% - 10px));
+}
+.vue-slider-dot.vue-slider-tooltip-bottom::after  {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 10px);
+}
+.vue-slider-dot.vue-slider-tooltip-left::after  {
+  top: 50%;
+  left: 0;
+  transform: translate(calc(-100% - 10px), -50%);
+}
+.vue-slider-dot.vue-slider-tooltip-right::after  {
+  top: 50%;
+  left: 100%;
+  transform: translate(10px, -50%);
+}
+.vue-slider-dot.vue-slider-tooltip-from::before {
+  content: 'от' !important;
+  transform: translate(50%, calc(100% - 10px)) !important;
+  font-size: 11px;
+  top: 35px !important;
+  color: #989898;
+  left: inherit !important;
+}
+.vue-slider-dot.vue-slider-tooltip-to::before {
+  content: 'до' !important;
+  transform: translate(50%, calc(100% - 10px)) !important;
+  font-size: 11px;
+  top: 35px !important;
+  color: #989898;
+  left: inherit !important;
+}
+.vue-slider-dot.vue-slider-tooltip-top::before {
+  content: '';
+  display: none;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+}
+.vue-slider-dot.vue-slider-tooltip-bottom::before {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: #3498db;
+  transform: translateX(-50%);
+}
+.vue-slider-dot.vue-slider-tooltip-left::before  {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-left-color: #3498db;
+  transform: translateY(-50%);
+}
+.vue-slider-dot.vue-slider-tooltip-right::before  {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 0;
+  height: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-right-color: #3498db;
+  transform: translateY(-50%);
+}
+.vue-slider-dot.vue-slider-hover:hover::before, .vue-slider-dot.vue-slider-hover:hover::after {
+  display: block;
+}
+.vue-slider-dot.vue-slider-always::before, .vue-slider-dot.vue-slider-always::after {
+  display: block!important;
+}
+.vue-slider-piecewise {
+  list-style: none;
+}
+.vue-slider-piecewise li {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.16);
+  border-radius: 50%;
+  z-index: 2;
+}
+.vue-slider-horizontal .vue-slider-piecewise li {
+  top: 0;
+}
+.vue-slider-vertical .vue-slider-piecewise li {
+  left: 0;
+}

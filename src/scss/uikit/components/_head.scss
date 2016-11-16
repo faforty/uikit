@@ -1,0 +1,25 @@
+.ui {
+  &-head {
+    &--spacing {
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+
+    &--big {
+      font-family: Akrobat, sans-serif;
+      font-weight: bold;
+      font-size: 90px;
+      text-transform: uppercase;
+      margin: 20px 0;
+      color: map_get($colors, mediumSeaGreen);
+    }
+
+    &--sub {
+      font-family: PT, serif;
+      font-style: italic;
+      font-size: 40px;
+      color: #2c2c2c;
+    }
+  }
+}

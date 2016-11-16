@@ -1,0 +1,141 @@
+.ui {
+  &-tabs {
+    position: relative;
+
+
+    &__indicator {
+      background: #1abf7a;
+      position: absolute;
+      bottom: 0;
+      height: 1px;
+    }
+
+    &__b {
+      margin-top: -1px;
+      border-bottom: 1px solid #e2e2e2;
+    }
+
+    &__bar {
+      position: relative;
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+      background-color: transparent;
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      //&:after {
+      //  display: block;
+      //  content: '';
+      //  border-top: 1px solid #e2e2e2;
+      //  margin-top: -1px;
+      //}
+
+      &__tab {
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-right: 24px;
+
+        & > a {
+          display: block;
+          white-space: nowrap;
+          font-weight: 300;
+          font-size: 16px;
+          color: #2d9e6e;
+          height: 48px;
+          line-height: 48px;
+          //padding-left: 24px;
+          //padding-right: 24px;
+          user-select: none;
+        }
+
+        &--active {
+          border-bottom: 6px solid #1abf7a;
+
+          & > a {
+            color: #000;
+          }
+        }
+
+        &--disabled {
+          & > a {
+            cursor: default;
+            color: #b4b4b4;
+          }
+        }
+      }
+    }
+
+    &__pane {
+      display: none;
+      margin: 45px 0;
+
+      &--active {
+        display: block;
+      }
+    }
+
+    &-material {
+      position: relative;
+
+      &-revers {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
+      &__ink-bar {
+        position: absolute;
+        height: 6px;
+        left: 0px;
+        right: 933px;
+        background: #1abf7a;
+        transition: all .2s ease 0s;
+      }
+
+      &__bar {
+        padding: 15px 0 0 0;
+        list-style: none;
+        margin-bottom: 0;
+        background-color: transparent;
+        white-space: nowrap;
+        overflow-x: auto;
+
+        &__tab {
+          display: inline-block;
+          padding-bottom: 10px;
+
+          & > a {
+            display: block;
+            white-space: nowrap;
+            font-weight: 300;
+            font-size: 16px;
+            color: #2d9e6e;
+            height: 48px;
+            line-height: 48px;
+            padding-left: 24px;
+            padding-right: 24px;
+            user-select: none;
+
+            &:first-child {
+              padding-left: 0;
+            }
+          }
+
+          &--active {
+            & > a {
+              color: #000;
+            }
+          }
+
+          &--disabled {
+            & > a {
+              cursor: default;
+              color: #b4b4b4;
+            }
+          }
+        }
+      }
+    }
+  }
+}

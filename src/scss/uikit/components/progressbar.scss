@@ -1,0 +1,10 @@
+.ui {
+  &-progressbar {
+    position: relative;
+
+    &--circle {
+      height: 60px;
+      width: 60px;
+    }
+  }
+}

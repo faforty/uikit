@@ -1,0 +1,15 @@
+.ui-select__multi + .ui-select__options .option:after {
+  float: right;
+  display: block;
+  content: '';
+  background: transparent;
+  border: 1px solid #1abf7a;
+  border-radius: 30px;
+  height: 15px;
+  width: 15px;
+}
+
+.ui-select__multi + .ui-select__options .option[checked]:after,
+.ui-select__multi + .ui-select__options .option.checked:after {
+  background: #1abf7a;
+}

@@ -1,0 +1,111 @@
+@mixin btn-styling ($bgColor, $textColor) {
+  background: $bgColor;
+  border: 1px solid $bgColor;
+  color: $textColor !important;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: $input-btn-border-width solid transparent;
+  font-size: $font-size-base;
+  transition: all 0.2s ease 0s;
+
+  @include border-radius(4px);
+
+  &--normal {
+    line-height: 40px;
+    border: 1px solid #c3c3c3;
+    height: 40px;
+    width: 178px;
+
+    &:hover:not(.btn--green):not([disabled]) {
+      border-color: #1ac079;
+    }
+  }
+
+  &--green {
+    @include btn-styling(#2d9f6e, #ffffff);
+
+    &:hover {
+      @extend .btn--shadow--green--light !optional;
+      @include btn-styling(#1abf7a, #ffffff);
+    }
+  }
+
+  // Sizes
+  &--lg {
+    height: 55px;
+    line-height: 50px;
+
+    &.btn--green {
+      @extend .btn--shadow--green !optional;
+      @include btn-styling(#1abf7a, #ffffff);
+
+      &:hover {
+        @extend .btn--shadow--green--light !optional;
+        @include btn-styling(#1cd987, #ffffff);
+      }
+    }
+  }
+
+  // Shadows
+  &--shadow--green {
+    box-shadow: 0 13px 45px -10px rgba(45,159,110,.6);
+  }
+  &--shadow--green--light {
+    box-shadow: 0 13px 45px -10px #1ac079;
+  }
+
+  &[disabled] {
+    color: #a3a3a3 !important;
+    cursor: default;
+
+    &.btn--circle {
+      @include btn-styling(#e7e7e7, #ffffff);
+      box-shadow: none !important;
+    }
+  }
+
+  // Circles
+  &--circle {
+      border-radius: 100%;
+      width: 45px;
+      height: 45px;
+
+      &.btn--lg {
+        width: 55px;
+        height: 55px;
+      }
+
+
+      &.btn--big {
+        height: 80px;
+        width: 80px;
+      }
+  }
+
+  &--curtain {
+    color: #a3a3a3;
+
+    &:hover > span {
+      color: #a3a3a3;
+    }
+
+    & > .btn:nth-child(1) {
+      margin-right: 20px;
+    }
+
+    & > .btn:nth-child(2) {
+      margin-left: 20px;
+    }
+  }
+}
+

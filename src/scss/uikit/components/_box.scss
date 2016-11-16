@@ -1,0 +1,142 @@
+.ui {
+  &-box {
+    padding: 20px;
+
+    &--yellow {
+      background: #fef7dd;
+
+      .ui-badge:after {
+        background: #ffffff !important;
+      }
+    }
+
+    &--green {
+      background: #f3f4f6;
+    }
+
+    .ui-btn {
+      border-color: transparent;
+    }
+
+
+
+    /*
+    *
+    * UI Box Filters
+    *
+    */
+
+    &-filter {
+      position: absolute;
+      margin-top: 15px;
+      background: #ffffff;
+      border-radius: 3px;
+      box-shadow: 0px 0px 70px -10px rgba(0, 0, 0, .2);
+      min-width: 300px;
+      z-index: 999;
+
+      &.top:after {
+        top: 100%;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+        border-top: 8px solid #ffffff;
+        border-bottom: none;
+      }
+
+      &.left:after {
+        left: 10%;
+      }
+
+      &.right:after {
+        left: 90%;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -8px;
+        width: 0; height: 0;
+        border-bottom: 8px solid #fff;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+      }
+
+      .inner-addon i {
+        margin: 10px;
+      }
+
+      .loader-spinner {
+        top: 5px;
+        right: 5px;
+      }
+
+      &__head {
+        @extend .text-color--limeGreen !optional;
+
+        display: block;
+        margin-left: 20px;
+        font-weight: bold;
+      }
+
+      &__search-input {
+        padding: 20px;
+        border: none;
+        border-bottom: 1px solid #e6e6e6;
+        border-radius: 0;
+
+        &:focus {
+          box-shadow: 0 10px 15px -13px #cdcdcd;
+        }
+      }
+
+      &__please-input {
+        @extend .text-color--gray !optional;
+
+        text-align: center;
+        margin: 50px 0;
+      }
+
+      &__selected__ul {
+        padding: 0;
+
+        & > li {
+          display: flex;
+          padding: 10px 20px;
+          justify-content: space-between;
+          align-items: center;
+          color: #dedede;
+
+          &:hover {
+            background: rgba(230, 230, 230, 0.32);
+            cursor: pointer;
+
+            .ui-action--close {
+              display: block;
+            }
+          }
+
+          & > span {
+            color: #7d7d7d;
+          }
+
+          & > .ui-action--close {
+            display: none;
+            line-height: 0;
+            padding: 5px 0;
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+      &__results {
+        margin-top: 1em;
+
+        .drop-out__result {
+          color: #7d7d7d;
+        }
+      }
+    }
+  }
+}

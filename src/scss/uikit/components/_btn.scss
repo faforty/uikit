@@ -1,0 +1,145 @@
+.ui {
+  &-btn {
+    @extend .ui-control !optional;
+
+    font-weight: $btn-font-weight;
+    font-size: 14px;
+    line-height: $btn-line-height;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    padding: 14px 28px;
+    border-radius: 4px;
+    outline: none !important;
+    background: #ffffff;
+    color: $link-color;
+    transition: all 0.2s ease 0s;
+
+    &[disabled] {
+      color: map_get($colors, gray);
+      cursor: default;
+      background: #fff !important;
+      border-color: map_get($colors, 'grayLight') !important;
+      box-shadow: none !important;
+
+      &:hover {
+        border-color: map_get($colors, grayLight);
+        background: #ffffff !important;
+        box-shadow: none !important;
+        color: map_get($colors, gray);
+        border-color: map_get($colors, 'grayLight') !important;
+      }
+    }
+
+    &:hover {
+      border-color: map_get($colors, mediumSeaGreen);
+    }
+
+
+    &--green {
+      @include btn-style(limeGreen, limeGreen, #ffffff);
+      box-shadow: 0 13px 45px -10px rgba(45, 159, 110, .6);
+
+      &:hover {
+        @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
+        //box-shadow: 0px 9px 18px 0px rgba(38, 185, 122, 0.3);
+        box-shadow: 0 13px 45px -10px #1ac079;
+      }
+    }
+
+    &--circle {
+      border-radius: 100%;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      overflow: hidden;
+
+      &[disabled] {
+        @include btn-style(grayMedium, grayMedium, map_get($colors, gray));
+
+        box-shadow: none !important;
+
+        &:hover {
+          border-color: map_get($colors, grayMedium);
+          box-shadow: none !important;
+        }
+      }
+    }
+
+    &--lg {
+      padding: 23px 25px;
+
+      &.ui-btn--green {
+        @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
+
+        &:hover {
+          @include btn-style(#1cd988, #1cd988, #ffffff);
+        }
+      }
+
+      &--green {
+        @include btn-style(limeGreen, limeGreen, #ffffff);
+        box-shadow: 0 13px 45px -10px rgba(45, 159, 110, .6);
+
+        &:hover {
+          @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
+          //box-shadow: 0px 9px 18px 0px rgba(38, 185, 122, 0.3);
+          box-shadow: 0 13px 45px -10px #1ac079;
+        }
+      }
+
+      &.ui-btn--circle {
+        height: 80px;
+        width: 80px;
+        padding: 0;
+      }
+    }
+
+    &--sm {
+      padding: 10px 28px;
+
+      &.ui-btn--circle {
+        height: 40px;
+        width: 40px;
+        padding: 0;
+      }
+    }
+
+    &--xs {
+      font-size: 11px;
+      padding: 7px 18px;
+
+      &.ui-btn--circle {
+        height: 24px;
+        width: 24px;
+        padding: 0;
+      }
+    }
+
+    &--checkmark {
+      font-size: 25px;
+    }
+    &--plus {
+      font-size: 25px;
+    }
+    &--edit {
+      font-size: 18px;
+    }
+
+    &--no-shadow {
+      box-shadow: none;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+}

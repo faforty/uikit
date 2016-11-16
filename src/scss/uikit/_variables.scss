@@ -1,0 +1,68 @@
+//$colors: base forestGreen green limeGreen mediumSeaGreen paleGreen;
+
+$colors: (
+  base: #000,
+  forestGreen: #2f9d6e,
+  green: #1ac079,
+  limeGreen: #2d9e6e,
+  mediumSeaGreen: #1ac079,
+  mediumGreen: #26b97a,
+  paleGreen: #1cd988,
+  gray: #989898,
+  grayLight: #e6e6e6,
+  grayMedium: #e7e7e7,
+);
+
+$brand-primary:             #0275d8 !default;
+$brand-success:             #5cb85c !default;
+$brand-info:                #5bc0de !default;
+$brand-warning:             #f0ad4e !default;
+$brand-danger:              #d9534f !default;
+
+$form-icon-success: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%235cb85c' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3E%3C/svg%3E") !default;
+$form-icon-warning: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23f0ad4e' d='M4.4 5.324h-.8v-2.46h.8zm0 1.42h-.8V5.89h.8zM3.76.63L.04 7.075c-.115.2.016.425.26.426h7.397c.242 0 .372-.226.258-.426C6.726 4.924 5.47 2.79 4.253.63c-.113-.174-.39-.174-.494 0z'/%3E%3C/svg%3E") !default;
+$form-icon-danger: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23d9534f' viewBox='-2 -2 7 7'%3E%3Cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3E%3Ccircle r='.5'/%3E%3Ccircle cx='3' r='.5'/%3E%3Ccircle cy='3' r='.5'/%3E%3Ccircle cx='3' cy='3' r='.5'/%3E%3C/svg%3E") !default;
+
+$link-color:            map-deep-get($colors, 'limeGreen');
+$link-decoration:       none !default;
+$link-weight:           400 !default;
+$link-hover-color:      map-deep-get($colors, 'mediumSeaGreen');
+$link-hover-decoration: none !default;
+
+$font-family-base: Roboto, sans-serif;
+
+$font-size-root: 14px !default;
+
+$font-size-base: 14px !default;
+$font-size-lg:   1.25rem !default;
+$font-size-sm:   .875rem !default;
+$font-size-xs:   .75rem !default;
+
+$spacer:   1rem !default;
+
+$line-height-base: normal !default;
+
+$font-size-h1: 48px !default;
+$font-size-h2: 28px !default;
+$font-size-h3: 24px !default;
+$font-size-h4: 18px !default;
+$font-size-h5: 1.25rem !default;
+$font-size-h6: 1rem !default;
+
+$headings-margin-bottom: ($spacer / 2) !default;
+$headings-font-family:   inherit !default;
+$headings-font-weight:   300 !default;
+$headings-line-height:   1.1 !default;
+
+$btn-background: (
+        'default': #565656,
+        'success': #468847,
+        'danger':  #b94a48,
+        'warning': #c09853,
+        'info':    #3a87ad
+) !default;
+
+$btn-padding-x:   1rem !default;
+$btn-padding-y:   .5rem !default;
+$btn-line-height: 1.25 !default;
+$btn-font-weight: 300 !default;

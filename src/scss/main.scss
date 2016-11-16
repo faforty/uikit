@@ -1,0 +1,20 @@
+@import "uikit/mixins";
+@import "uikit/variables";
+
+// Reset and dependencies
+//@import "../../bower_components/bootstrap/scss/normalize";
+
+//@import "uikit/reboot";
+@import "uikit/grid";
+@import "uikit/type";
+@import "uikit/forms";
+@import "uikit/components";
+@import "uikit/ui";
+
+@import "uikit/alert";
+@import "uikit/utilities";
+@import "uikit/colors";
+@import "uikit/icons";
+
+// Icons font
+@import "uikit/font/style";

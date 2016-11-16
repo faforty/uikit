@@ -1,0 +1,129 @@
+.form-inline {
+  display: flex;
+  justify-content: space-between;
+
+  & > .form-group {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: space-between;
+
+    & > label:first-child {
+      margin-left: 0;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+  }
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 15px;
+
+  label {
+    font-size: 13px;
+    margin-left: .90rem;
+  }
+}
+
+.form-control {
+  font-size: .9rem;
+  line-height: 1.25;
+  display: block;
+  width: 100%;
+  padding: 12px;
+  transition: all .2s ease 0s;
+  color: rgba(0, 0, 0, .87);
+  border: 1px solid map_get($colors, 'grayLight');
+  border-radius: 2px;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  outline: none;
+
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0px 15px -3px #cdcdcd;
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: rgba(231, 231, 231, 0.53);
+    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+    opacity: 1;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.has-danger {
+  @include form-control-validation($brand-danger);
+
+  .form-control-danger {
+    background-image: $form-icon-danger;
+  }
+}
+
+.form-text {
+  display: block;
+  margin: .55rem .9rem 0;
+}
+
+.ui {
+  &-input-group {
+    @extend .ui-control !optional;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border-collapse: separate;
+    border-radius: 3px;
+
+    & > .form-control {
+      display: table-cell;
+      float: left;
+      width: 100%;
+      border: none;
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      //&:focus .ui-input-group {
+      //  @extend .form-control:focus;
+      //}
+    }
+
+
+
+    &__btn {
+      white-space: nowrap;
+      vertical-align: middle;
+      display: table-cell;
+      padding: 3px 15px;
+    }
+    &__btn--left {
+      border-right: 1px solid #e6e6e6;
+    }
+    &__btn--right {
+      border-left: 1px solid #e6e6e6;
+    }
+
+    &__btn__hight {
+      font-size: 12px;
+      margin-top: -3px;
+    }
+  }
+
+  &-input-updown {
+    text-align: center;
+  }
+}
