@@ -6,7 +6,7 @@
 .inner-addon .ico {
   display: flex;
   position: absolute;
-  padding: 10px;
+  padding: 20px;
   margin: 3px 5px;
   pointer-events: none;
   font-size: 15px;
@@ -18,8 +18,8 @@
 .right-addon .ico { right: 0px;}
 
 /* add padding  */
-.left-addon input  { padding-left:  40px; }
-.right-addon input { padding-right: 40px; }
+.left-addon input  { padding-left:  60px; }
+.right-addon input { padding-right: 60px; }
 
 .accompany {
   font-size: 16px;
@@ -680,4 +680,60 @@ corresponds to the arrow we want to display */
 }
 .vue-slider-vertical .vue-slider-piecewise li {
   left: 0;
+}
+
+
+
+
+
+
+
+
+
+
+.ui-spinner {
+  position: relative;
+}
+.ui-spinner--fixed > .ui-spinner__wrapper {
+  position: fixed;
+}
+.ui-spinner__wrapper {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9998;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.ui-spinner__wrapper__text {
+  position: relative;
+  text-align: center;
+  margin-top: 0.5em;
+  z-index: 2;
+  width: 100%;
+  font-size: 95%;
+  color: #2d9f6e;
+}
+.ui-spinner--sm {
+  width: 20px;
+  height: 20px;
+}
+.ui-spinner--md {
+  width: 40px;
+  height: 40px;
+}
+.ui-spinner--lg {
+  width: 80px;
+  height: 80px;
+}
+.ui-spinner--xl {
+  width: 120px;
+  height: 120px;
 }

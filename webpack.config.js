@@ -66,7 +66,7 @@ resolve: {
         warnings: false
       }
     }),
-    new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.DedupePlugin(),
     new progressBarPlugin()
   ]
 }

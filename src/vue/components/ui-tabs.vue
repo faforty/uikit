@@ -3,7 +3,7 @@
         <div class="ui-tabs-revers-1">
             <ul class="ui-tabs__bar">
                 <slot></slot>
-                <div ref="indicator" class="ui-tabs__indicator" :style="{ 'height': indicatorHeight + 'px' }"></div>
+                <div ref="indicator" class="ui-tabs__indicator" :style="{ 'height': indicatorHeight + 'px', [align]: 0 }"></div>
             </ul>
         </div>
         <div class="ui-tabs__b" v-show="indicatorBorder"></div>
@@ -32,6 +32,10 @@
             indicatorBorder: {
                 type: Boolean,
                 'default': true
+            },
+            align: {
+                type: String,
+                'default': 'bottom'
             }
         },
         events: {

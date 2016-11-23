@@ -1,6 +1,6 @@
 <template>
-    <div :class="['ui-spinner', {'ui-spinner--fixed':fixed}]" v-show="active">
-        <div class="ui-spinner__wrapper">
+    <div :class="['ui-spinner', {'ui-spinner--fixed':fixed}]">
+        <div class="ui-spinner__wrapper" v-show="active">
             <div :class="['loader-spinner', spinnerSize]"></div>
             <div class="ui-spinner__wrapper__text">{{text}}</div>
         </div>
@@ -8,6 +8,8 @@
     </div>
 </template>
 <script>
+    const MIN_WAIT = 500
+
     export default {
         props: {
             size: {

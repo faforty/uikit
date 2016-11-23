@@ -19,6 +19,7 @@
                 type: String,
                 default: 'text'
             },
+            keyup: Boolean,
             color: String,
             name: String,
             placeholder: String,
@@ -33,8 +34,11 @@
         },
         methods: {
             updateValue (value) {
-                 this.$emit('input', value.trim())
-            }
+                value = value.trim()
+
+                this.$emit('input', value)
+                this.$emit('change', value)
+            },
         },
         computed: {
             prompt () {

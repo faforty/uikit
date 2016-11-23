@@ -20,20 +20,21 @@
 
 .form-group {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 
   label {
-    font-size: 13px;
-    margin-left: .90rem;
+    font-size: 15px;
+    margin-left: 20px;
+    font-weight: 400;
   }
 }
 
 .form-control {
-  font-size: .9rem;
+  font-size: 16px;
   line-height: 1.25;
   display: block;
   width: 100%;
-  padding: 12px;
+  padding: 18px 20px;
   transition: all .2s ease 0s;
   color: rgba(0, 0, 0, .87);
   border: 1px solid map_get($colors, 'grayLight');
@@ -108,7 +109,7 @@
       white-space: nowrap;
       vertical-align: middle;
       display: table-cell;
-      padding: 3px 15px;
+      padding: 12px 15px;
     }
     &__btn--left {
       border-right: 1px solid #e6e6e6;
@@ -125,5 +126,6 @@
 
   &-input-updown {
     text-align: center;
+    padding: 20px 5px;
   }
 }

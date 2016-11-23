@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ukit</title>
+
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&subset=cyrillic" rel="stylesheet">
+
+    <link rel="stylesheet" href="/dist/css/uiKit.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.min.js" type="text/javascript"></script>
+    <script src="/dist/js/uiKit.2.0.1.js" type="text/javascript"></script>
+</head>
+<body>
+    <style>
+        *, :after, :before {
+            box-sizing: border-box;
+        }
+        body {
+            margin-top: 20px;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        }
+
+        .head-kit {
+            text-align: center;
+            margin: 100px 0;
+        }
+    </style>
+
+    <div id="app">
+        <div class="head-kit">
+            <h1><span class="ui-badge ui-badge--rectangle" data-badge="v 2.0.1">UI Kit</span></h1>
+            <h4 class="text-color--gray">Скорость загрузки увеличена в 2 раза</h4>
+            <small id="readiness" class="text-color--gray">Готово 30 элементов</small>
+            <nav class="nav">
+                <ul>
+                    <li class="active"><a href="http://ping2.dev/uikit/all">Dashboard</a></li>
+                    <li><a href="http://ping2.dev/uikit/docs">Документация</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="container">
+            <h1 style="color: #989898"><span style="color: #000000">01</span> Инпуты</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <ui-input placeholder="Пример">Заголовок</ui-input>
+                    </div>
+                    <div class="form-group">
+                        <ui-input value="Введеный текст">Заголовок</ui-input>
+                    </div>
+                    <div class="form-group">
+                        <ui-input-ajax ajax-url="http://t-platform.dev/api/company/" value="Введеный текст">Заголовок</ui-input-ajax>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <ui-input placeholder="Плейсхолдер" icon="uikit-search" icon-align="left">Заголовок</ui-input>
+                    </div>
+                    <div class="form-group">
+                        <ui-input value="Введеный текст" icon="uikit-search">Заголовок</ui-input>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Заголовок</label>
+                        <ui-select v-model="dd" options="{day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'}" name="sdfs">Заголовок</ui-select>
+                    </div>
+                    <div class="form-group">
+                        <ui-input value="Введеный текст" icon="uikit-search">Заголовок</ui-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: () => ({
+                dd: []
+            })
+        })
+    </script>
+</body>
+</html>

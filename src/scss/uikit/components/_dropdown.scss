@@ -1,0 +1,42 @@
+.ui {
+  &-dropdown {
+    position: relative;
+
+    &--open {
+      .ui-dropdown__overlay {
+        display: block;
+
+        & > div {
+          display: block !important;
+        }
+      }
+    }
+
+    &__content {
+      position: relative;
+      z-index: 1;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+    }
+    &__overlay {
+      display: none;
+      background: #fff;
+      position: absolute;
+      color: #000;
+      top: 0;
+      left: 0;
+      right: 0;
+      //width: 100%;
+      bottom: 0;
+      margin: -10px;
+      padding: 10px;
+      border-radius: 5px;
+
+      &--list {
+        top: auto;
+        bottom: auto;
+        margin: 0 -10px;
+      }
+    }
+  }
+}

@@ -5,8 +5,10 @@ import uiInputAjax  from './components/ui-input-ajax'
 import uiInputSpin  from './components/ui-input-spinner'
 import uiTabs       from './components/ui-tabs'
 import uiTab        from './components/ui-tab'
+import uiDropdown   from './components/ui-dropdown'
 import uiSpinner    from './components/ui-spinner'
 import uiBoxFilter  from './components/ui-box-filter'
+import uiProgressBar from './components/ui-progress-bar'
 
 export const components = {
     'ui-select': uiSelect,
@@ -17,7 +19,9 @@ export const components = {
     'ui-tabs': uiTabs,
     'ui-tab': uiTab,
     'ui-spinner': uiSpinner,
-    'ui-box-filter': uiBoxFilter
+    'ui-box-filter': uiBoxFilter,
+    'ui-dropdown': uiDropdown,
+    'ui-progress-bar': uiProgressBar
 }
 
 export const directives = {

@@ -2,13 +2,13 @@
     <div class="ui-input-group">
         <span class="ui-input-group__btn ui-input-group__btn--left">
             <a @click="down" v-on:mousedown="downLong('down')" v-on:mouseup="upLong()">
-                <i class="uikit-minus"></i>
+                <i class="uikit-minus" style="font-weight: bold;font-size: 12px;"></i>
             </a>
         </span>
         <input class="form-control ui-input-updown" v-model="number">
         <span class="ui-input-group__btn ui-input-group__btn--right">
             <a @click="up" v-on:mousedown="downLong('up')" v-on:mouseup="upLong()">
-                <i class="uikit-plus"></i>
+                <i class="uikit-plus" style="font-weight: bold;font-size: 12px;"></i>
             </a>
         </span>
     </div>
