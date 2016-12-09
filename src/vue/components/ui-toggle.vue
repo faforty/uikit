@@ -1,6 +1,6 @@
 <template>
     <div class="ui-toggleBox">
-        <input :id="id" class="ui-toggleBox__field" :name="name" type="checkbox" @change="update" :disabled="disabled">
+        <input :id="id" class="ui-toggleBox__field" :name="name" type="checkbox" v-model="isChecked" @change="update" :disabled="disabled">
         <label :for="id" :class="['ui-toggleBox__label', colorObject.cls, {'ui-toggleBox__label--disabled': disabled}]" :style="{color: !colorObject.cls ? colorObject.color : false}">
             <slot></slot>
         </label>
@@ -15,6 +15,7 @@
 
     export default{
         props: {
+            value: Boolean,
             name: {
                 type: String
             },
@@ -34,6 +35,7 @@
         methods: {
             update (e) {
                 this.$emit('input', e.target.checked)
+                this.$emit('change', e.target.checked)
             }
         },
         computed: {
@@ -43,6 +45,9 @@
                     cls: isColor ? false : this.color,
                     color: this.color
                 }
+            },
+            isChecked () {
+                return this.value
             }
         },
         mounted () {

@@ -37,6 +37,13 @@
       border-color: map_get($colors, mediumSeaGreen);
     }
 
+    &--gray {
+      @include btn-style(grayMedium, grayMedium, #ffffff);
+
+      &:hover {
+        @include btn-style(grayMedium, grayMedium, #ffffff);
+      }
+    }
 
     &--green {
       @include btn-style(limeGreen, limeGreen, #ffffff);

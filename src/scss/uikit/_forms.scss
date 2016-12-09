@@ -22,6 +22,31 @@
   position: relative;
   margin-bottom: 30px;
 
+  &--align {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    //margin-top: 31px;
+    //padding-top: 30px;
+
+    & > label {
+      margin: 0 20px 0 0 !important;
+    }
+
+    &--right {
+      flex-direction: row-reverse;
+
+      & > label {
+        margin: 0 0 0 20px !important;
+      }
+    }
+
+    .ui-toggleBox__label {
+      margin: 19px 0;
+    }
+  }
+
   label {
     font-size: 15px;
     margin-left: 20px;
@@ -43,6 +68,15 @@
   background-image: none;
   background-clip: padding-box;
   outline: none;
+
+  &[type='number'] {
+    -moz-appearance:textfield;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 
   &::-ms-expand {
     background-color: transparent;
@@ -67,19 +101,59 @@
 }
 
 .has-danger {
+  .form-text,
+  .inner-addon > .ico {
+    color: $brand-danger;
+  }
+
   @include form-control-validation($brand-danger);
 
   .form-control-danger {
     background-image: $form-icon-danger;
   }
 }
+.has-success {
+  .form-text,
+  .inner-addon > .ico {
+    color: $brand-success;
+  }
+
+  @include form-control-validation($brand-success);
+
+  .form-control-danger {
+    background-image: $form-icon-success;
+  }
+}
 
 .form-text {
+  position: absolute;
+  height: 0;
   display: block;
   margin: .55rem .9rem 0;
 }
 
 .ui {
+  &-input {
+
+    &-pos {
+      display: flex;
+      align-items: center;
+    }
+
+    &__help {
+      margin: 0 16px;
+
+      &__action {
+        border-color: #2d9e6e !important;
+        color: #000000 !important;
+
+        &:hover {
+          background: #2d9e6e;
+          color: #ffffff !important;
+        }
+      }
+    }
+  }
   &-input-group {
     @extend .ui-control !optional;
     position: relative;

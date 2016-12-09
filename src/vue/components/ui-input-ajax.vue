@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="drop-out">
-            <ui-input ref="input" :icon="stateIcon" :placeholder="placeholder" icon-align="right" v-model="searchValue">
+            <ui-input ref="input" :icon="stateIcon" :placeholder="placeholder" :color="color" icon-align="right" v-model="searchValue">
                 <slot></slot>
             </ui-input>
             <div ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="opened">
@@ -27,6 +27,7 @@
                 type: String,
                 'default': 'name'
             },
+            value: String,
             maxHeight: {
                 type: Number,
                 'default': 400
@@ -40,9 +41,11 @@
                 'default': true
             },
             placeholder: String,
+            color: String,
             emitInput: {
                 'default': 'id'
-            }
+            },
+            inputValue: String
         },
         data: () => ({
             opened: false,
@@ -126,6 +129,10 @@
         },
 
         watch: {
+            inputValue (v) {
+                console.log(v)
+                this.searchValue = v
+            },
             searchValue (value) {
                 if (this.lock == true) {
                     this.lock = false

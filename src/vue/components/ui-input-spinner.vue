@@ -5,7 +5,7 @@
                 <i class="uikit-minus" style="font-weight: bold;font-size: 12px;"></i>
             </a>
         </span>
-        <input class="form-control ui-input-updown" v-model="number">
+        <input type="number" class="form-control ui-input-updown" v-model="number">
         <span class="ui-input-group__btn ui-input-group__btn--right">
             <a @click="up" v-on:mousedown="downLong('up')" v-on:mouseup="upLong()">
                 <i class="uikit-plus" style="font-weight: bold;font-size: 12px;"></i>

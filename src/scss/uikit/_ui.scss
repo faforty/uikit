@@ -53,6 +53,10 @@
       justify-content: space-between;
     }
 
+    &--hide {
+      opacity: 0;
+    }
+
     & > li {
       list-style: none;
     }
@@ -61,6 +65,10 @@
     &__prev {
       font-size: 14px;
       color: map_get($colors, gray);
+
+      & > a {
+        font-size: 18px;
+      }
     }
 
     &__next {
@@ -78,7 +86,7 @@
       }
     }
   }
-
+/*
   &-popup {
     margin-top: 45px;
     position: absolute;
@@ -126,7 +134,7 @@
       top: -15px;
       right: -15px;
     }
-  }
+  }*/
 
   &-badge {
     position: relative;
@@ -229,7 +237,7 @@
 
     &__label {
       position: relative;
-      padding-left: 50px;
+      padding-left: 60px;
       cursor: pointer;
       font-family: "Roboto", "Helvetica", "Arial", sans-serif;
       color: #000;

@@ -69,23 +69,26 @@
                 let target = tab.$el,
                     parent = target.parentElement
 
-                let indicator       = this.$refs.indicator,
-                    indicatorLeft   = parseInt(indicator.style.left, 10) || this.indicator.left,
-                    indicatorRight  = parseInt(indicator.style.right, 10) || this.indicator.right
+                console.log(this.$refs.indicator)
 
-                this.moveIndicator(
-                    indicatorLeft, target.offsetLeft,
-                    indicatorRight, parent.offsetWidth - target.offsetLeft - target.offsetWidth
-                    )
+                //setTimeout(() => {
+                    let indicator       = this.$refs.indicator,
+                                    indicatorLeft   = parseInt(indicator.style.left, 10) || this.indicator.left,
+                                    indicatorRight  = parseInt(indicator.style.right, 10) || this.indicator.right
 
-                let minWidth        = 200,
-                    tabWidth        = target.offsetWidth,
-                    tabsWidth       = this.$el.getElementsByClassName('ui-tabs__bar')[0].offsetWidth,
-                    tabsScrollWidth = this.$el.getElementsByClassName('ui-tabs__bar')[0].scrollWidth;
+                    this.moveIndicator(
+                                    indicatorLeft, target.offsetLeft,
+                                    indicatorRight, parent.offsetWidth - target.offsetLeft - target.offsetWidth
+                                    )
 
-                this.$emit('change', true)
+                    let minWidth        = 200,
+                        tabWidth        = target.offsetWidth,
+                        tabsWidth       = this.$el.getElementsByClassName('ui-tabs__bar')[0].offsetWidth,
+                        tabsScrollWidth = this.$el.getElementsByClassName('ui-tabs__bar')[0].scrollWidth;
 
-                this.choiceContent(tab.name || tab.index)
+                    this.$emit('change', true)
+                    this.choiceContent(tab.name || tab.index)
+                //}, 5)
             },
             resizeIndicator() {
                 if (!this.activeTab) {

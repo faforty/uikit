@@ -1,12 +1,13 @@
 .inner-addon {
   position: relative;
+  width: 100%;
 }
 
 /* style icon */
 .inner-addon .ico {
   display: flex;
   position: absolute;
-  padding: 20px;
+  padding: 18px;
   margin: 3px 5px;
   pointer-events: none;
   font-size: 15px;

@@ -25,6 +25,12 @@
       overflow-x: auto;
       overflow-y: hidden;
 
+      &::-webkit-scrollbar {
+        display: none;
+        width: 0px;  /* remove scrollbar space */
+        background: transparent;  /* optional: just make scrollbar invisible */
+      }
+
       //&:after {
       //  display: block;
       //  content: '';

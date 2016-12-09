@@ -1,13 +1,20 @@
 .ui {
+  &-datepicker {
+    &__year {
+      padding: 10px 0;
+      background: #eef4f2;
+    }
+  }
+}
+
+.ui {
   &-calendar {
     $bg-color: #f8f8f8;
 
     display: table;
     background: #ffffff;
     border-radius: 3px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .2);
     overflow: hidden;
-    min-width: 300px;
 
     &__choice-date__item {
       display: flex;
