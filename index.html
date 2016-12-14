@@ -11,6 +11,24 @@
 </head>
 <body>
     <style>
+        .header__navbar__profile {
+            white-space: nowrap;
+        }
+        .b-mini-profile {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(0,0,0,0.6);
+        }
+        .b-mini-profile__photo {
+            margin-left: 10px;
+            border-radius: 100%;
+            height: 40px;
+            width: 40px;
+        }
+    </style>
+    <style>
         *, :after, :before {
             box-sizing: border-box;
         }
@@ -22,6 +40,23 @@
         .head-kit {
             text-align: center;
             margin: 100px 0;
+        }
+        pre {
+            background-color: #333333;
+            font-size: 13px;
+            line-height: 19px;
+            overflow: auto;
+            padding: 6px 10px;
+            border-radius: 3px;
+        }
+        code {
+            margin: 0;
+            padding: 0;
+            white-space: pre;
+            border: none;
+            color: #f2f2f2;
+            background: transparent;
+            text-shadow: none;
         }
     </style>
 
@@ -72,101 +107,193 @@
                         <ui-select v-model="dd" options="{day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'}" name="sdfs">Заголовок</ui-select>
                     </div>
                     <div class="form-group">
-                        <ui-input value="Введеный текст" icon="uikit-search">Заголовок</ui-input>
+                        <ui-input value="Введеный текст" icon="uikit-search" disabled="true">Заголовок</ui-input>
+                    </div>
+                    <div class="form-group">
+                        <ui-input-spinner></ui-input-spinner>
                     </div>
                 </div>
             </div>
+            <h1 style="color: #989898"><span style="color: #000000">02</span> UI</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <ui-button href="/" class="ui-btn--green ui-btn--xs">Text</ui-button>
+                        <ui-button class="ui-btn--xs ">Text</ui-button>
+                        <ui-button class="ui-btn--xs " disabled="">Text</ui-button>
+                    </div>
+                    <div class="form-group">
+                        <ui-button href="/" class="ui-btn--green ui-btn--sm">Text</ui-button>
+                        <ui-button class="ui-btn--sm ">Text</ui-button>
+                        <ui-button class="ui-btn--sm " disabled="">Text</ui-button>
+                    </div>
+                    <div class="form-group">
+                        <ui-button href="/" class="ui-btn--green">Text</ui-button>
+                        <ui-button>Text</ui-button>
+                        <ui-button disabled="">Text</ui-button>
+                    </div>
+                    <div class="form-group">
+                        <ui-button class="ui-btn--green ui-btn--circle ui-btn--edit">
+                            <i class="uikit-edit"></i>
+                        </ui-button>
+                        <ui-button class="ui-btn--circle ui-btn--checkmark">
+                            <i class="uikit-check"></i>
+                        </ui-button>
+                        <ui-button class="ui-btn--circle ui-btn--plus" disabled="">
+                            <i class="uikit-plus"></i>
+                        </ui-button>
+                    </div>
+                    <div class="form-group">
+                        <ui-pagination prev-link="/" prev-name="Назад" next-link="/" next-name="Вперед" step="1" step-all="3"></ui-pagination>
+                    </div>
+                    <div class="form-group">
+                        <ui-button class="ui-btn--green ui-btn--center">
+                            Text <div class="loader-spinner loader-spinner--white loader-spinner--right"></div>
+                        </ui-button>
+                        <ui-button class="ui-btn--green ui-btn--center">
+                            <div class="loader-spinner loader-spinner--white loader-spinner--left"></div> Text
+                        </ui-button>
+                        <ui-button class="ui-btn--green ui-btn--center">
+                            <div class="loader-spinner loader-spinner--white"></div>
+                        </ui-button>
+                    </div>
+                    <div class="form-group">
+                        <ui-button class="ui-btn--green ui-btn--circle">
+                            <div class="loader-spinner loader-spinner--white"></div>
+                        </ui-button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 2</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                    </div>
+                    <div class="form-group">
+                        <ui-chip class="ui-chip--v2" removable>Chip</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 2</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
+                    </div>
+                    <div class="form-group">
+                        <ui-chip class="ui-chip--v2">Chip</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 2</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                    </div>
+                    <div class="form-group">
+                        <ui-group v-model="chips">
+                            <ui-chip id="c-1" removable>Chip</ui-chip>
+                            <ui-chip id="c-2" removable>Chip 2</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                        </ui-group>
+
+                        <br>
+                        <b>v-model:</b>{{ chips }}
+                    </div>
+                    <div class="form-group">
+                        <ui-chip>Chip</ui-chip>
+                        <ui-chip>Chip 2</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ui-collapsible>
+                        <ui-collapsible-item>
+                            <div slot="header">Name</div>
+                            <div slot="body">Content</div>
+                        </ui-collapsible-item>
+                        <ui-collapsible-item>
+                            <div slot="header">Name 2</div>
+                            <div slot="body">Content</div>
+                        </ui-collapsible-item>
+                    </ui-collapsible>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <ui-range :min="40" :max="50" :val="[44, 48]"></ui-range>
+                </div>
+                <div class="col-md-4">
+                    <div class="header__navbar__profile">
+                        <ui-dropdown>
+                            <div class="b-mini-profile">
+                                Александра Грей
+                                <img src="https://pp.vk.me/c543105/v543105307/1854f/_OHjKsd-q30.jpg" class="b-mini-profile__photo">
+                            </div>
+                            <div style="display: none" slot="list">
+                                <a href="/">Выход</a>
+                            </div>
+                        </ui-dropdown>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <ui-tabs active="tab-1">
+                        <ui-tab name="tab-1">
+                            <a>Tab 1</a>
+                        </ui-tab>
+                        <ui-tab name="tab-2">
+                            <a>Tab 2</a>
+                        </ui-tab>
+                        <ui-tab name="tab-3">
+                            <a>Tab 3</a>
+                        </ui-tab>
+
+                        <div slot="contents">
+                            <div tab-name="tab-1">Content 1</div>
+                            <div tab-name="tab-2">Content 2</div>
+                            <div tab-name="tab-3">Content 3</div>
+                        </div>
+                    </ui-tabs>
+                </div>
+                <div class="col-md-4">
+                    <ui-tabs active="tab-1" align="top" :percent="50" :indicator-height="5" :indicator-border="false" @change="changeTabs">
+                        <ui-tab name="tab-1">
+                            <a>Tab 1</a>
+                        </ui-tab>
+                        <ui-tab name="tab-2">
+                            <a>Tab 2</a>
+                        </ui-tab>
+                        <ui-tab name="tab-3">
+                            <a>Tab 3</a>
+                        </ui-tab>
+
+                        <div slot="contents">
+                            <div tab-name="tab-1">Content 1</div>
+                            <div tab-name="tab-2">Content 2</div>
+                            <div tab-name="tab-3">Content 3</div>
+                        </div>
+                    </ui-tabs>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <ui-spinner ref="spinner" text="Показ лоэдера поверх контента, есть возможность fixed">
+                        <h1>Text Text Text Text Text</h1>
+                        <h4>Description Description Description Description Description</h4>
+                        <p>text text text text text text</p>
+                    </ui-spinner>
+                </div>
+                <div class="col-md-6">
+                    <a href="" class="ui-social ui-social--vk uikit-vk"></a>
+                    <a href="" class="ui-social ui-social--twitter uikit-twitter"></a>
+                    <a href="" class="ui-social ui-social--instagram uikit-instagram"></a>
+                    <a href="" class="ui-social ui-social--youtube uikit-youtube-play"></a>
+                    <a href="" class="ui-social ui-social--ok uikit-odnoklassniki"></a>
+                    <a href="" class="ui-social ui-social--facebook uikit-facebook-official"></a>
+                </div>
+            </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
     </div>
 
 
@@ -175,8 +302,17 @@
             el: '#app',
             data: () => ({
                 dd: [],
-                isHideField: false
-            })
+                isHideField: false,
+                chips: []
+            }),
+            methods: {
+                changeTabs (tab) {
+                    console.log(tab.id)
+                }
+            },
+            mounted () {
+                this.$refs.spinner.show()
+            }
         })
     </script>
 </body>

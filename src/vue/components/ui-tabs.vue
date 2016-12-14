@@ -69,9 +69,7 @@
                 let target = tab.$el,
                     parent = target.parentElement
 
-                console.log(this.$refs.indicator)
-
-                //setTimeout(() => {
+                setTimeout(() => {
                     let indicator       = this.$refs.indicator,
                                     indicatorLeft   = parseInt(indicator.style.left, 10) || this.indicator.left,
                                     indicatorRight  = parseInt(indicator.style.right, 10) || this.indicator.right
@@ -86,9 +84,9 @@
                         tabsWidth       = this.$el.getElementsByClassName('ui-tabs__bar')[0].offsetWidth,
                         tabsScrollWidth = this.$el.getElementsByClassName('ui-tabs__bar')[0].scrollWidth;
 
-                    this.$emit('change', true)
+                    this.$emit('change', this.activeTab)
                     this.choiceContent(tab.name || tab.index)
-                //}, 5)
+                }, 5)
             },
             resizeIndicator() {
                 if (!this.activeTab) {
@@ -154,6 +152,7 @@
 
                     [].forEach.call(slotContent.children, el => {
                         if (el.hasAttribute('tab-name')) {
+
                             if (el.getAttribute('tab-name') == tabId) {
                                 el.style = 'display: block'
                             } else {
@@ -175,7 +174,7 @@
             }
         },
         mounted () {
-            window.addEventListener("resize", this.resizeIndicator)
+            //window.addEventListener("resize", this.resizeIndicator)
 
             if (this.active) {
                 this.tabSelect(this.active);

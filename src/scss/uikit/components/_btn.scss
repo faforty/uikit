@@ -2,6 +2,7 @@
   &-btn {
     @extend .ui-control !optional;
 
+    position: relative;
     font-weight: $btn-font-weight;
     font-size: 14px;
     line-height: $btn-line-height;
@@ -16,6 +17,8 @@
     background: #ffffff;
     color: $link-color;
     transition: all 0.2s ease 0s;
+    overflow: hidden;
+    z-index: 1;
 
     &[disabled] {
       color: map_get($colors, gray);
@@ -67,7 +70,6 @@
       width: 60px;
       height: 60px;
       padding: 0;
-      overflow: hidden;
 
       &[disabled] {
         @include btn-style(grayMedium, grayMedium, map_get($colors, gray));
@@ -147,6 +149,11 @@
       &:hover {
         box-shadow: none;
       }
+    }
+    &--center {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

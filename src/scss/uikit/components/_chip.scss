@@ -1,0 +1,41 @@
+.ui-chip {
+  display: inline-flex;
+  padding: 10px 15px;
+  background: #fff7dd;
+  border-radius: 5px;
+  align-items: center;
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &__image {
+    float: left;
+    margin: -5px 10px -5px -15px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+  }
+  &__close {
+    font-size: 25px;
+    line-height: 0;
+    margin-right: -10px;
+  }
+
+  &--v2 {
+    padding: 5px 15px;
+    background: #f1f1f1;
+    border-radius: 50px;
+    height: 32px;
+    color: #868686;
+
+    .ui-chip__close {
+      color: #868686 !important;
+
+      &:hover {
+        color: #616161 !important;
+      }
+    }
+  }
+}

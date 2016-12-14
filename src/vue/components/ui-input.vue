@@ -6,7 +6,7 @@
         <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
             <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
                 <i :class="['ico', icon]" v-show="icon"></i>
-                <input class="form-control" ref="input" :type="type" :name="name" :placeholder="placeholder" v-model="value" v-on:input="updateValue($event.target.value)" @blur="blurred">
+                <input class="form-control" ref="input" :type="type" :name="name" :placeholder="placeholder" :disabled="disabled" v-model="value" v-on:input="updateValue($event.target.value)" @blur="blurred">
                 <div :class="['ui-input-group__btn', { 'ui-input-group__btn--right': groupAlign == 'right', 'ui-input-group__btn--left': groupAlign == 'left' }]" v-show="group"><div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div></div>
                 <div v-if="prompt">
                     <small class="form-text text-color--gray" v-html="prompt"></small>
@@ -62,7 +62,8 @@
                 type: String,
             },
             inputWidth: String,
-            flexShrink: Number
+            flexShrink: Number,
+            disabled: Boolean
         },
         watch: {
             value () {
