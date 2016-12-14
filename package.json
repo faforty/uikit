@@ -2,7 +2,7 @@
   "name": "uikit-agro24",
   "description": "",
   "author": "faforty <faforty@ya.ru>",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "scripts": {
     "dev": "webpack-dev-server --inline --content-base ./ --hot --port 4040",
     "build": "cross-env NODE_ENV=production webpack --progress --watch --hide-modules"
@@ -39,7 +39,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "vue-loader": "^9.2.2",
-    "webpack": "^2.1.0-beta.20",
-    "webpack-dev-server": "^2.1.0-beta.0"
+    "webpack": "2.1.0-beta.20",
+    "webpack-dev-server": "2.1.0-beta.0"
   }
 }
