@@ -52,7 +52,6 @@ export default {
             console.log(data);
 
             let validation = new Validator(data, rules, this.validationMessages);
-            validation.setAttributeNames({ value: 'ui-input' });
 
             this.setValidity(validation.passes(), validation.errors.first('value'));
         },
