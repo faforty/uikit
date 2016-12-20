@@ -49,8 +49,6 @@ export default {
                 value: this.validationRules
             };
 
-            console.log(data);
-
             let validation = new Validator(data, rules, this.validationMessages);
             validation.setAttributeNames({ value: '' });
 
@@ -61,11 +59,7 @@ export default {
             this.valid = valid;
             this.validationError = '';
 
-            console.log(!valid, error, error.length)
-            console.log(!valid && error && error.length)
-
             if (!valid && error && error.length) {
-                console.log(43344)
                 this.validationError = error;
             }
         }
