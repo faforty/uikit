@@ -52,6 +52,7 @@ export default {
             console.log(data);
 
             let validation = new Validator(data, rules, this.validationMessages);
+            validation.setAttributeNames({ value: '' });
 
             this.setValidity(validation.passes(), validation.errors.first('value'));
         },
