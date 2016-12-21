@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ 'form-group': formGroup, 'has-danger': error || state == 'error', 'has-success': state == 'success',  'form-group--align': labelAlign, 'form-group--align--right': labelAlign == 'right', 'form-adaptive': adaptive }">
+    <div :class="{ 'form-group': formGroup, 'has-danger': hasDanger || state == 'error', 'has-success': state == 'success',  'form-group--align': labelAlign, 'form-group--align--right': labelAlign == 'right', 'form-adaptive': adaptive }">
         <label :class="[colorObject.cls ]" :style="{color: !colorObject.cls ? colorObject.color : false}" v-if="label">
             <slot></slot>
         </label>
@@ -67,9 +67,9 @@
         },
         watch: {
             value () {
-                if (!this.dirty) {
-                    this.dirty = true;
-                }
+                // if (!this.dirty) {
+                //     this.dirty = true;
+                // }
 
                 //if (!this.validateOnBlur) {
                     this.validate();
@@ -78,6 +78,9 @@
         },
         methods: {
             updateValue (value) {
+                if (!this.dirty) {
+                    this.dirty = true;
+                }
                 value = value.trim()
 
                 this.$emit('input', value)
@@ -93,7 +96,6 @@
 
                 this.$on('blurred');
                 this.validate();
-
                 this.error = this.validationError
             },
         },
@@ -101,10 +103,16 @@
             mValue: ''
         }),
         computed: {
+            hasDanger() {
+                return this.error || this.validationError;
+            },
             prompt () {
                 let hint = this.hint
 
-                if (typeof this.error == 'string') {
+                if (this.validationError) {
+                    hint = this.validationError;
+                }
+                else if (typeof this.error == 'string') {
                    hint = this.error
                 }
 
