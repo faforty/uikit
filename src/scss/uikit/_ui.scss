@@ -418,7 +418,14 @@
     position: relative;
     width: 100%;
 
-    & > select[disabled] + &__selected {
+    .ui-input-pos {
+      margin: -18px -20px;
+    }
+    .form-control .form-control {
+      border: 0;
+    }
+
+    &__disabled {
       i, span {
         color: #dedede;
       }

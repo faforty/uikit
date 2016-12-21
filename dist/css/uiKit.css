@@ -1173,6 +1173,8 @@ h6, .h6 {
   transition: all 0.2s ease 0s;
   overflow: hidden;
   z-index: 1; }
+  .ui-btn::-moz-focus-inner, .ui-action::-moz-focus-inner, .social::-moz-focus-inner {
+    border: 0; }
   .ui-btn[disabled], [disabled].ui-action, [disabled].social {
     color: #989898;
     cursor: default;
@@ -2692,7 +2694,11 @@ yx-axis
     display: inline-block;
     position: relative;
     width: 100%; }
-    .ui-select > select[disabled] + .ui-select__selected i, .ui-select > select[disabled] + .ui-select__selected span {
+    .ui-select .ui-input-pos {
+      margin: -18px -20px; }
+    .ui-select .form-control .form-control {
+      border: 0; }
+    .ui-select__disabled i, .ui-select__disabled span {
       color: #dedede; }
     .ui-select > select, .ui-select__options {
       display: none; }

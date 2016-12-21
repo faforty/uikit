@@ -11,8 +11,6 @@
     </div>
 </template>
 <script>
-    import throttle from '../until/throttle.js'
-
     var Velocity = require('velocity-animate')
 
     export default {
@@ -38,11 +36,6 @@
                 'default': 'bottom'
             }
         },
-        events: {
-            'tabs::on-select' (tab) {
-                this.select(tab)
-            }
-        },
         watch: {
             active (value) {
                 this.tabSelect(value);
@@ -60,16 +53,17 @@
                 return this.activeTab === tab
             },
             select (tab) {
-                if (event) {
-                    event.preventDefault()
-                }
+                //if (event) {
+                 //   event.preventDefault()
+               // }
+
 
                 this.activeTab = tab
 
                 let target = tab.$el,
                     parent = target.parentElement
 
-                setTimeout(() => {
+                Vue.nextTick(() => {
                     let indicator       = this.$refs.indicator,
                                     indicatorLeft   = parseInt(indicator.style.left, 10) || this.indicator.left,
                                     indicatorRight  = parseInt(indicator.style.right, 10) || this.indicator.right
@@ -86,7 +80,7 @@
 
                     this.$emit('change', this.activeTab)
                     this.choiceContent(tab.name || tab.index)
-                }, 5)
+                })
             },
             resizeIndicator() {
                 if (!this.activeTab) {
@@ -174,10 +168,11 @@
             }
         },
         mounted () {
-            //window.addEventListener("resize", this.resizeIndicator)
-
             if (this.active) {
-                this.tabSelect(this.active);
+
+                this.$children.forEach(tab => {
+                    tab.select(this.active)
+                })
             }
         }
     }

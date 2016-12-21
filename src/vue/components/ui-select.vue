@@ -1,18 +1,20 @@
 <template id="ui-select">
     <div class="ui-select">
-        <!--<select class="no-uikit" v-model="selectId" multiple>-->
-        <!--<option v-for="(option, key) in options" :value="key">@{{ option }}</option>-->
-        <!--</select>-->
-        <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple }" @click="toggleDropdown">
-		<span>
+        <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown">
+		    <template v-if="(search && !show) || !search">
+            <span>
                 {{ selectedItems }}
 			<span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
             </span>
             <span class="ui-select__selected__icon">
                 <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
             </span>
+            </template>
+            <div v-show="search && show" style="width: 100%">
+                <ui-input ref="uiSelectSearch" :form-group="false" :label="false" icon="uikit-search" style="width: 100%;" v-model="searchText"></ui-input>
+            </div>
         </div>
-        <div class="ui-select__options drop-out__results" style="display: block" v-show="show" @blur="toggleDropdown">
+        <div class="ui-select__options drop-out__results" style="display: block;max-height: 400px;overflow-y: auto;" v-show="show" @blur="toggleDropdown">
             <a class="drop-out__result" v-for="(option, key) in options" @mousedown.prevent="select(key)">
                 <div class="drop-out__result__content">
                     <div class="drop-out__result__content__title">
@@ -28,6 +30,8 @@
     export default {
         props: {
 			options: {},
+			optionsRules: Object,
+			search: Boolean,
 			value: {
 				type: Array,
 				default: []
@@ -56,7 +60,8 @@
 		data: function () {
 			return {
 				show: false,
-				selectId: []
+				selectId: [],
+				searchText: ''
 			};
 		},
 
@@ -90,6 +95,10 @@
 			},
 			toggleDropdown: function () {
 				this.show = !this.show;
+
+				if (this.search && this.show) {
+				    //this.$refs.uiSelectSearch.$el.querySelector('input').focus()
+				}
 			}
 		},
 		computed: {
@@ -105,13 +114,27 @@
 			},
 			showPlaceholder: function () {
 			    this.selectId = this.value
+			    this.searchText = this.selectedItems
 
 				return this.selectId.length === 0;
 			}
 		},
+		//beforeCreate () {
+		//    if (this.optionsRules) {
+        //        let options = {};
+        //        [].forEach.call(this.options, item => {
+        //            options[item[this.optionsRules.id]] = item[this.optionsRules.value]
+        //        })
+        //        this.options = options;
+        //    }
+		//},
 		mounted: function () {
 			this.selectId = this.value
+			this.searchText = this.selectedItems
 
+            this.$refs.uiSelectSearch.$el.addEventListener('click', function () {
+				event.stopPropagation()
+			})
 			this.$el.addEventListener('click', function () {
 				event.stopPropagation()
 			})
