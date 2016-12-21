@@ -23,8 +23,6 @@
                     }
                 }
 
-                console.log(index, this.data)
-
                 this.$emit('input', this.data)
             },
         },

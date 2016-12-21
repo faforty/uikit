@@ -11,8 +11,6 @@
     </div>
 </template>
 <script>
-    import throttle from '../until/throttle.js'
-
     var Velocity = require('velocity-animate')
 
     export default {
@@ -38,11 +36,6 @@
                 'default': 'bottom'
             }
         },
-        events: {
-            'tabs::on-select' (tab) {
-                this.select(tab)
-            }
-        },
         watch: {
             active (value) {
                 this.tabSelect(value);
@@ -60,36 +53,34 @@
                 return this.activeTab === tab
             },
             select (tab) {
-                if (event) {
-                    event.preventDefault()
-                }
+                //if (event) {
+                 //   event.preventDefault()
+               // }
+
 
                 this.activeTab = tab
 
                 let target = tab.$el,
                     parent = target.parentElement
 
-                setTimeout(() => {
-                    try {
-                        let indicator      = this.$refs.indicator,
-                            style          = indicator ? indicator.style : {},
-                            indicatorLeft  = parseInt(indicator.style.left, 10) || this.indicator.left,
-                            indicatorRight = parseInt(indicator.style.right, 10) || this.indicator.right
+                Vue.nextTick(() => {
+                    let indicator       = this.$refs.indicator,
+                                    indicatorLeft   = parseInt(indicator.style.left, 10) || this.indicator.left,
+                                    indicatorRight  = parseInt(indicator.style.right, 10) || this.indicator.right
 
-                        this.moveIndicator(
-                            indicatorLeft, target.offsetLeft,
-                            indicatorRight, parent.offsetWidth - target.offsetLeft - target.offsetWidth
-                        )
+                    this.moveIndicator(
+                                    indicatorLeft, target.offsetLeft,
+                                    indicatorRight, parent.offsetWidth - target.offsetLeft - target.offsetWidth
+                                    )
 
-                        let minWidth        = 200,
-                            tabWidth        = target.offsetWidth,
-                            tabsWidth       = this.$el.getElementsByClassName('ui-tabs__bar')[0].offsetWidth,
-                            tabsScrollWidth = this.$el.getElementsByClassName('ui-tabs__bar')[0].scrollWidth;
+                    let minWidth        = 200,
+                        tabWidth        = target.offsetWidth,
+                        tabsWidth       = this.$el.getElementsByClassName('ui-tabs__bar')[0].offsetWidth,
+                        tabsScrollWidth = this.$el.getElementsByClassName('ui-tabs__bar')[0].scrollWidth;
 
-                        this.$emit('change', this.activeTab)
-                        this.choiceContent(tab.name || tab.index)
-                    } catch (e) {}
-                }, 5)
+                    this.$emit('change', this.activeTab)
+                    this.choiceContent(tab.name || tab.index)
+                })
             },
             resizeIndicator() {
                 if (!this.activeTab) {
@@ -177,10 +168,11 @@
             }
         },
         mounted () {
-            //window.addEventListener("resize", this.resizeIndicator)
-
             if (this.active) {
-                this.tabSelect(this.active);
+
+                this.$children.forEach(tab => {
+                    tab.select(this.active)
+                })
             }
         }
     }

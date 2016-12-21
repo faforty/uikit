@@ -1,9 +1,11 @@
 <template>
-    <li class="ui-tabs__bar__tab" @click="setAsSelected" :class="{[classes]: true, 'ui-tabs-material__bar__tab--active': selected}">
+    <li ref="ui-tab" class="ui-tabs__bar__tab" @click="setAsSelected" :class="{[classes]: true, 'ui-tabs-material__bar__tab--active': selected}">
         <slot></slot>
     </li>
 </template>
 <script>
+    import getClosestVueParent from '../until/getClosestVueParent';
+
     export default {
         props: {
             disabled: {
@@ -17,11 +19,6 @@
                 'default': null
             }
         },
-        events: {
-            'tab::select': function (id) {
-                this.select(id);
-            }
-        },
         methods: {
             select (id) {
                 if (this.id == id) {
@@ -29,8 +26,8 @@
                 }
             },
             setAsSelected() {
-                if (!this.disabled) {
-                    this.$events.$emit('tabs::on-select', this)
+                if (!this.disabled && this.parentTabs) {
+                    this.parentTabs.select(this)
                 }
             }
         },
@@ -51,6 +48,15 @@
             classes () {
                 return this.disabled ? 'ui-tabs-material__bar__tab--disabled' : ''
             }
+        },
+        mounted () {
+            this.parentTabs = getClosestVueParent(this.$parent, 'ui-tabs')
+
+            if (!this.parentTabs) {
+                throw new Error('You must wrap the md-tab in a ui-tabs');
+            }
+
+            this.parentTabs.select(this)
         }
     }
 </script>

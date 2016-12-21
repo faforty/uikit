@@ -83,17 +83,13 @@ let getClosestParent = (element) => {
 let createRipple = (element, currentRipple) => {
     let holder = getClosestParent(element);
 
-    console.log(holder)
     if (holder) {
         let ripple = holder.querySelector(':scope > .' + rippleParentClass + '> .' + rippleClass);
-
-        console.log(ripple)
 
         if (!ripple) {
             let elementSize = Math.round(Math.max(holder.offsetWidth, holder.offsetHeight)) + 'px';
             let rippleParent = currentRipple || createElement(ripple, rippleParentClass);
             let rippleElement = createElement(ripple, rippleClass, elementSize);
-            console.log(rippleParent, rippleElement)
 
             rippleParent.appendChild(rippleElement);
             holder.appendChild(rippleParent);

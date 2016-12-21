@@ -31,7 +31,16 @@ export default {
             options.attrs.href = this.href;
             delete options.attrs.type;
         }
-        return createElement(tag, options, [...this.$slots.default, ripple]);
+
+        var opt = [
+            ripple
+        ];
+
+        if (this.$slots.default) {
+            opt = opt.concat(this.$slots.default);
+        }
+
+        return createElement(tag, options, opt);
     }
 };
 </script>

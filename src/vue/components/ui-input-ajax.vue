@@ -23,9 +23,14 @@
     export default {
         props: {
             ajaxUrl: String,
+            ajaxData: Object,
             ajaxQuery: {
                 type: String,
                 'default': 'name'
+            },
+            ajaxDataRule: {
+                type: String,
+                'default': 'item'
             },
             value: String,
             maxHeight: {
@@ -125,12 +130,24 @@
                         }
                     })
                 }
+            },
+            ajaxLocal (value) {
+                this.items = []
+
+                if (this.ajaxData[this.ajaxDataRule].length) {
+                    [].forEach.call(this.ajaxData[this.ajaxDataRule], item => {
+                        if (item[this.ajaxQuery].toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                            this.items.push(item)
+                        }
+                    })
+                }
+
+                this.reset()
             }
         },
 
         watch: {
             inputValue (v) {
-                console.log(v)
                 this.searchValue = v
             },
             searchValue (value) {
@@ -147,7 +164,13 @@
                     this.iconStyle.style = 'padding: 10px;margin: 18px 20px !important;'
                     this.stateIcon = 'loader-spinner'
 
-                    this.ajax(value)
+                    if (this.ajaxUrl) {
+                        this.ajax(value)
+                    }
+
+                    if (this.ajaxData) {
+                        this.ajaxLocal(value)
+                    }
 
                     return ;
                 }
@@ -169,9 +192,6 @@
 
 
                 if (window.pageYOffset < $dropResults.getBoundingClientRect().bottom - window.pageYOffset) {
-
-                    console.log($dropResults.getBoundingClientRect().bottom - window.pageYOffset)
-
                     let height = this._maxHeight - ($dropResults.getBoundingClientRect().top - this._maxHeight) + 50
 
                     if (this.minHeight < height) {

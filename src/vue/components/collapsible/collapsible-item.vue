@@ -15,7 +15,6 @@
     export default {
         events: {
             'collapsible-item::open': function (id, expendable) {
-                console.log(id, 434)
                 this.open(id, expendable)
             },
             'collapsible-item::close': function (id) {

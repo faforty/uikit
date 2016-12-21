@@ -22,7 +22,7 @@
             }
         },
         mounted () {
-            this.$el.addEventListener('click', function () {
+            this.$el.addEventListener('click', function (event) {
 				event.stopPropagation()
 			})
 			document.body.addEventListener('click', function () {

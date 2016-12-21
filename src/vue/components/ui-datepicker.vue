@@ -417,16 +417,4 @@ export default {
      this.showYear()
   }
 }
-
-/**
-    export default {
-        data () {
-            return {}
-        },
-        mounted () {
-            let d = this.$refs.years;
-
-            console.log(d.scrollLeft = d.querySelector('#fff').offsetLeft)
-        }
-    }*/
 </script>

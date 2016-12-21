@@ -19,6 +19,7 @@ import uiCollapsible from './components/collapsible/collapsible'
 import uiCollapsibleItem from './components/collapsible/collapsible-item'
 import uiRange       from './components/ui-range'
 import uiPagination  from './components/ui-pagination'
+import uiCheckbox  from './components/ui-checkbox'
 
 import directiveInkBar from './components/ui-ink-ripple/directive'
 
@@ -45,7 +46,8 @@ export const components = {
     'ui-collapsible': uiCollapsible,
     'ui-collapsible-item': uiCollapsibleItem,
     'ui-range': uiRange,
-    'ui-pagination': uiPagination
+    'ui-pagination': uiPagination,
+    'ui-checkbox': uiCheckbox
 }
 
 function helpers () {
@@ -69,7 +71,6 @@ export default {
         helpers()
 
         Object.keys(components).forEach((name) => {
-            console.log(name)
             Vue.component(name, components[name])
         })
         Object.keys(directives).forEach((name) => {
