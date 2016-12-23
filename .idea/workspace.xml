@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50ea4697-c0ee-4584-a88e-d0a3f730e228" name="Default" comment="init">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/uiKit.2.0.1.js" afterPath="$PROJECT_DIR$/dist/js/uiKit.2.0.1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue" afterPath="$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/components/ui-input.vue" afterPath="$PROJECT_DIR$/src/vue/components/ui-input.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/components/ui-label.vue" afterPath="$PROJECT_DIR$/src/vue/components/ui-label.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <list id="823a0509-6f36-4918-bdfc-4be67af9d7b7" name="New changelist" comment="" />
     <ignored path="uikit.iws" />
@@ -48,7 +45,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ui-input.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ui-input.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vue/components/ui-input.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="141">
@@ -88,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            <state relative-caret-position="72">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -191,10 +188,10 @@
         <option value="$PROJECT_DIR$/src/vue/components/ui-select.vue" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-tabs.vue" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-tab.vue" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-label.vue" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-input.vue" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -553,7 +550,7 @@
       <workItem from="1482181438338" duration="7117000" />
       <workItem from="1482189663024" duration="19246000" />
       <workItem from="1482324906640" duration="16629000" />
-      <workItem from="1482490742195" duration="11332000" />
+      <workItem from="1482490742195" duration="11378000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1479295464086</created>
@@ -573,7 +570,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="307585000" />
+    <option name="totallyTimeSpent" value="307631000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="0" />
@@ -960,14 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3384">
@@ -988,6 +977,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="118" column="25" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
           <folding />
         </state>
       </provider>
