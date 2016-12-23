@@ -1,29 +1,38 @@
 <template id="ui-select">
-    <div class="ui-select">
-        <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown">
-		    <template v-if="(search && !show) || !search">
+    <ui-label :filled="filled" :label="label">
+        <div class="ui-select">
+            <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown">
+                <template v-if="(search && !show) || !search">
             <span>
                 {{ selectedItems }}
 			<span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
             </span>
-            <span class="ui-select__selected__icon">
+                    <span class="ui-select__selected__icon">
                 <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
             </span>
-            </template>
-            <div v-show="search && show" style="width: 100%">
-                <ui-input ref="uiSelectSearch" :form-group="false" :label="false" icon="uikit-search" style="width: 100%;" v-model="searchText"></ui-input>
+                </template>
+                <div v-show="search && show" style="width: 100%">
+                    <ui-input ref="uiSelectSearch" :autofocus="true" :form-group="false" :label="false" icon="uikit-search" style="width: 100%;" v-model="searchText"></ui-input>
+                </div>
+            </div>
+            <div class="ui-select__options drop-out__results" style="display: block;max-height: 400px;overflow-y: auto;" v-show="show" @blur="toggleDropdown">
+                <a v-if="Object.keys(results).length == 0" class="drop-out__result" v-for="(option, key) in options" @mousedown.prevent="select(key)">
+                    <div class="drop-out__result__content">
+                        <div class="drop-out__result__content__title">
+                            <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
+                        </div>
+                    </div>
+                </a>
+                <a v-if="Object.keys(results).length" class="drop-out__result" v-for="(option, key) in results" @mousedown.prevent="select(key)">
+                    <div class="drop-out__result__content">
+                        <div class="drop-out__result__content__title">
+                            <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="ui-select__options drop-out__results" style="display: block;max-height: 400px;overflow-y: auto;" v-show="show" @blur="toggleDropdown">
-            <a class="drop-out__result" v-for="(option, key) in options" @mousedown.prevent="select(key)">
-                <div class="drop-out__result__content">
-                    <div class="drop-out__result__content__title">
-                        <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
+    </ui-label>
 </template>
 
 <script>
@@ -61,10 +70,25 @@
 			return {
 				show: false,
 				selectId: [],
-				searchText: ''
+				searchText: '',
+				results: {},
+				label: '',
+				filled: false
 			};
 		},
+        watch: {
+            searchText (value) {
+                if (value && this.search) {
+                    this.results = {};
 
+                    for (var item in this.options) {
+                        if (this.options[item].toString().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                            this.results[item] = this.options[item]
+                        }
+                    }
+                }
+            }
+        },
 		methods: {
 			isSelected: function (v) {
 				return this.selectId.indexOf(v) > -1;
@@ -75,10 +99,15 @@
 						var m = this.value;
 						m.push(v);
 						this.$emit('input', m);
+						this.$emit('change', m)
+
+						this.filled = true
 
 						this.selectId = m;
 					} else {
 						this.$emit('input', [v]);
+						this.$emit('change', [v])
+						this.filled = true
 
 						this.selectId = [v];
 					}
@@ -107,8 +136,13 @@
 
 				if (this.selectId.length) {
 					for (var item in this.selectId) {
-						foundItems.push(this.options[this.selectId[item]]);
+					    if (this.selectId.hasOwnProperty(item)) {
+					        foundItems.push(this.options[this.selectId[item]]);
+					    }
 					}
+
+					this.filled = true
+
 					return foundItems.join(', ');
 				}
 			},
@@ -132,15 +166,19 @@
 			this.selectId = this.value
 			this.searchText = this.selectedItems
 
-            this.$refs.uiSelectSearch.$el.addEventListener('click', function () {
+            this.$refs.uiSelectSearch.$el.addEventListener('click', function (event) {
 				event.stopPropagation()
 			})
-			this.$el.addEventListener('click', function () {
+			this.$el.addEventListener('click', function (event) {
 				event.stopPropagation()
 			})
 			document.body.addEventListener('click', function () {
 				this.show = false
 			}.bind(this))
+
+            if (this.$slots.default[0].text) {
+                this.label = this.$slots.default[0].text
+            }
 		}
     }
 </script>

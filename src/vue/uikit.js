@@ -20,6 +20,7 @@ import uiCollapsibleItem from './components/collapsible/collapsible-item'
 import uiRange       from './components/ui-range'
 import uiPagination  from './components/ui-pagination'
 import uiCheckbox  from './components/ui-checkbox'
+import uiLabel     from './components/ui-label'
 
 import directiveInkBar from './components/ui-ink-ripple/directive'
 
@@ -47,7 +48,8 @@ export const components = {
     'ui-collapsible-item': uiCollapsibleItem,
     'ui-range': uiRange,
     'ui-pagination': uiPagination,
-    'ui-checkbox': uiCheckbox
+    'ui-checkbox': uiCheckbox,
+    'ui-label': uiLabel
 }
 
 function helpers () {

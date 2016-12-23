@@ -19,10 +19,19 @@
                 'default': null
             }
         },
+        data: () => ({
+            selected2: false
+        }),
         methods: {
             select (id) {
                 if (this.id == id) {
+                    this.selected2 = true
+
+                    console.log(id)
+
                     this.setAsSelected()
+                } else {
+                    this.selected2 = false
                 }
             },
             setAsSelected() {

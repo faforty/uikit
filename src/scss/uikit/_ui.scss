@@ -249,6 +249,7 @@
       line-height: 20px !important;
       margin-left: 0 !important;
       display: block;
+      font-size: 15px;
       user-select: none;
 
       &::before {
@@ -423,6 +424,7 @@
     }
     .form-control .form-control {
       border: 0;
+      line-height: 21px;
     }
 
     &__disabled {

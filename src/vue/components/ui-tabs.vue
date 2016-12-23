@@ -20,7 +20,6 @@
                 'default': 100
             },
             active: {
-                required: false,
                 'default': null
             },
             indicatorHeight: {
@@ -53,11 +52,6 @@
                 return this.activeTab === tab
             },
             select (tab) {
-                //if (event) {
-                 //   event.preventDefault()
-               // }
-
-
                 this.activeTab = tab
 
                 let target = tab.$el,
@@ -87,23 +81,17 @@
                     return;
                 }
 
+                let target = this.activeTab.$el,
+                    parent = target.parentElement
 
-                let indicator   = this.$refs.indicator,
-                    index       = this.activeTab.index,
-                    tab         = this.activeTab.$el,
-                    tabs        = tab.parentElement,
-                    tabs_width  = tabs.offsetWidth,
-                    tab_width   = Math.max(tabs_width, tabs.scrollWidth) / this.tabsCount;
+                    let indicator       = this.$refs.indicator,
+                        indicatorLeft   = parseInt(indicator.style.left, 10) || this.indicator.left,
+                        indicatorRight  = parseInt(indicator.style.right, 10) || this.indicator.right
 
-                let width = this.$el.offsetWidth - parseInt(indicator.style.right) - parseInt(indicator.style.left),
-                    pWidth = width * (100 - this.percent) / 100;
-
-
-
-                if (tab_width !== 0 && tabs_width !== 0) {
-                    indicator.style.right = (tabs_width - ((index + 1) * tab_width)) + pWidth + "px";
-                    //indicator.style.left = (index * tab_width) + "px";
-                }
+                    this.moveIndicator(
+                                    indicatorLeft, target.offsetLeft,
+                                    indicatorRight, parent.offsetWidth - target.offsetLeft - target.offsetWidth
+                                    )
             },
             moveIndicator (left, newLeft, right, newRight) {
                 var indicator = this.$refs.indicator
@@ -138,7 +126,9 @@
                 }
             },
             tabSelect(value) {
-                this.$events.$emit('tab::select', value);
+                this.$children.forEach(tab => {
+                    if (tab.select) tab.select(this.active)
+                })
             },
             choiceContent (tabId) {
                 if (this.$slots.contents[0] && this.$slots.contents[0].elm) {
@@ -168,12 +158,9 @@
             }
         },
         mounted () {
-            if (this.active) {
-
-                this.$children.forEach(tab => {
-                    tab.select(this.active)
-                })
-            }
+            window.addEventListener('resize', event => {
+                this.resizeIndicator()
+            });
         }
     }
 </script>

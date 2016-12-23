@@ -1023,7 +1023,6 @@ h6, .h6 {
 
 .form-control {
   font-size: 16px;
-  line-height: 1.25;
   display: block;
   width: 100%;
   padding: 18px 20px;
@@ -1148,7 +1147,7 @@ h6, .h6 {
   .ui-input-group__btn--right {
     border-left: 1px solid #e6e6e6; }
   .ui-input-group__btn__hight {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: -3px; }
 
 .ui-input-updown {
@@ -1323,7 +1322,8 @@ h6, .h6 {
           position: relative;
           margin: -1px -15px;
           padding: 10px 15px;
-          z-index: 2; }
+          z-index: 2;
+          font-size: 16px; }
       .drop-out__result__content small {
         display: block;
         margin-top: 3px;
@@ -2581,6 +2581,7 @@ yx-axis
       line-height: 20px !important;
       margin-left: 0 !important;
       display: block;
+      font-size: 15px;
       user-select: none; }
       .ui-toggleBox__label::before {
         content: "";
@@ -2697,7 +2698,8 @@ yx-axis
     .ui-select .ui-input-pos {
       margin: -18px -20px; }
     .ui-select .form-control .form-control {
-      border: 0; }
+      border: 0;
+      line-height: 21px; }
     .ui-select__disabled i, .ui-select__disabled span {
       color: #dedede; }
     .ui-select > select, .ui-select__options {

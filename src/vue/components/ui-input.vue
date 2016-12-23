@@ -1,8 +1,5 @@
 <template>
-    <div :class="{ 'form-group': formGroup, 'has-danger': error || state == 'error', 'has-success': state == 'success',  'form-group--align': labelAlign, 'form-group--align--right': labelAlign == 'right', 'form-adaptive': adaptive }">
-        <label :class="[colorObject.cls ]" :style="{color: !colorObject.cls ? colorObject.color : false}" v-if="label">
-            <slot></slot>
-        </label>
+    <ui-label :filled="filled" :form-group="formGroup" :label-show="label" :label="labelText" :label-align="labelAlign">
         <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
             <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
                 <i :class="['ico', icon]" v-show="icon"></i>
@@ -16,7 +13,7 @@
                 <a class="ui-action ui-input__help__action uikit-info"></a>
             </div>
         </div>
-    </div>
+    </ui-label>
 </template>
 <script>
     import ValidatesInput from './../mixins/ValidatesInput'
@@ -63,13 +60,16 @@
             },
             inputWidth: String,
             flexShrink: Number,
-            disabled: Boolean
+            disabled: Boolean,
+            autofocus: Boolean
         },
         watch: {
-            value () {
+            value (val) {
                 if (!this.dirty) {
                     this.dirty = true;
                 }
+
+                this.filling(val)
 
                 //if (!this.validateOnBlur) {
                     this.validate();
@@ -79,6 +79,8 @@
         methods: {
             updateValue (value) {
                 value = value.trim()
+
+                this.filling(value)
 
                 this.$emit('input', value)
                 this.$emit('change', value)
@@ -96,9 +98,18 @@
 
                 this.error = this.validationError
             },
+            filling (value) {
+                if (value != '') {
+                    this.filled = true
+                } else {
+                    this.filled = false
+                }
+            }
         },
         data: () => ({
-            mValue: ''
+            mValue: '',
+            labelText: '',
+            filled: false
         }),
         computed: {
             prompt () {
@@ -124,6 +135,20 @@
         mounted () {
             if (this.mValue != this.value) {
                 this.mValue = this.value
+            }
+
+            if (this.autofocus) {
+                Vue.nextTick(() => {
+                    this.$refs.input.focus()
+                })
+            }
+
+            if (this.value) {
+                this.filling(this.value)
+            }
+
+            if (this.$slots.default) {
+                this.labelText = this.$slots.default[0].text
             }
         },
         mixins: [
