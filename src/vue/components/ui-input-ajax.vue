@@ -89,7 +89,7 @@
                 }
             },
             reset () {
-                this.iconStyle.style = ''
+                //this.iconStyle.style = ''
 
                 this.stateIcon = this.state.icon
             },
@@ -165,7 +165,7 @@
                     this.opened = true
                     this.state.icon = (this.state.icon != this.stateIcon) ? this.state.icon : this.stateIcon
 
-                    this.iconStyle.style = 'padding: 10px;margin: 18px 20px !important;'
+                    //this.iconStyle.style = 'padding: 10px;margin: 18px 20px !important;'
                     this.stateIcon = 'loader-spinner'
 
                     if (this.ajaxUrl) {
@@ -187,7 +187,8 @@
             let $input = this.$refs.input.$el,
                 $dropResults = this.$refs.dropResults;
 
-            this.iconStyle = $input.querySelector('.ico')
+
+            //this.iconStyle = $input.querySelector('.ico')
             this._maxHeight = this.maxHeight
 
             window.onscroll = () => {

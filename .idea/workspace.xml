@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50ea4697-c0ee-4584-a88e-d0a3f730e228" name="Default" comment="init">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/uiKit.2.0.1.js" afterPath="$PROJECT_DIR$/dist/js/uiKit.2.0.1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue" afterPath="$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/components/ui-input.vue" afterPath="$PROJECT_DIR$/src/vue/components/ui-input.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vue/components/ui-label.vue" afterPath="$PROJECT_DIR$/src/vue/components/ui-label.vue" />
     </list>
     <list id="823a0509-6f36-4918-bdfc-4be67af9d7b7" name="New changelist" comment="" />
     <ignored path="uikit.iws" />
@@ -24,19 +28,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="307" column="24" selection-start-line="307" selection-start-column="24" selection-end-line="307" selection-end-column="24" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ui-select.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vue/components/ui-select.vue">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,18 +41,18 @@
       <file leaf-file-name="ui-label.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vue/components/ui-label.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state relative-caret-position="123">
+              <caret line="9" column="15" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ui-input.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ui-input.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vue/components/ui-input.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="145" column="29" selection-start-line="145" selection-start-column="12" selection-end-line="145" selection-end-column="29" />
+            <state relative-caret-position="141">
+              <caret line="118" column="25" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -77,6 +68,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ui-input-ajax.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3384">
+              <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ui-tab.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/vue/components/ui-tab.vue">
           <provider selected="true" editor-type-id="text-editor">
@@ -87,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="162">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -182,18 +183,18 @@
         <option value="$PROJECT_DIR$/src/vue/components/ui-ink-ripple/InkRipple.js" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-datepicker.vue" />
         <option value="$PROJECT_DIR$/src/vue/until/getClosestVueParent.js" />
-        <option value="$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue" />
         <option value="$PROJECT_DIR$/src/scss/uikit/_forms.scss" />
         <option value="$PROJECT_DIR$/src/vue/uikit.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/src/vue/components/ui-label.vue" />
         <option value="$PROJECT_DIR$/src/scss/uikit/_ui.scss" />
         <option value="$PROJECT_DIR$/src/scss/uikit/components/_drop-out.scss" />
-        <option value="$PROJECT_DIR$/src/vue/components/ui-input.vue" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-select.vue" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-tabs.vue" />
         <option value="$PROJECT_DIR$/src/vue/components/ui-tab.vue" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/vue/components/ui-label.vue" />
+        <option value="$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue" />
+        <option value="$PROJECT_DIR$/src/vue/components/ui-input.vue" />
       </list>
     </option>
   </component>
@@ -455,7 +456,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path" value="/usr/bin/node" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="tab&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tab.vue&#10;tabs&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tabs.vue&#10;ui-sele&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-select.vue&#10;aja&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input-ajax.vue&#10;ui-b&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-button.vue&#10;ui-in&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input.vue&#10;ui&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input-ajax.vue&#10;ajax&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input-ajax.vue&#10;гш-ыу&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-select.vue&#10;index&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/index.html&#10;butt&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-button.vue&#10;ta&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tabs.vue&#10;ui-&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input.vue&#10;but&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-button.vue&#10;sele&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-select.vue&#10;index.&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/index.html&#10;ran&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-range.vue&#10;ra&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-range.vue&#10;in&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input.vue&#10;uiki&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/uikit.js&#10;togg&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-toggle.vue&#10;ui-s&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-select.vue&#10;uikit&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/uikit.js&#10;tab.&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tab.vue&#10;еф&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tabs.vue&#10;cost&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/node_modules/node-sass/src/libsass/m4/m4-ax_cxx_compile_stdcxx_11.m4&#10;anima&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/scss/uikit/components/_animation.scss&#10;anim&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/scss/uikit/components/_animation.scss&#10;gri&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/scss/uikit/_grid.scss" />
+    <property name="SearchEverywhereHistoryKey" value="ui-lab&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-label.vue&#10;ui-inp&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input.vue&#10;tab&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tab.vue&#10;tabs&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tabs.vue&#10;ui-sele&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-select.vue&#10;aja&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input-ajax.vue&#10;ui-b&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-button.vue&#10;ui-in&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input.vue&#10;ui&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input-ajax.vue&#10;ajax&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input-ajax.vue&#10;гш-ыу&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-select.vue&#10;index&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/index.html&#10;butt&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-button.vue&#10;ta&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tabs.vue&#10;ui-&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input.vue&#10;but&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-button.vue&#10;sele&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-select.vue&#10;index.&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/index.html&#10;ran&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-range.vue&#10;ra&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-range.vue&#10;in&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-input.vue&#10;uiki&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/uikit.js&#10;togg&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-toggle.vue&#10;ui-s&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-select.vue&#10;uikit&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/uikit.js&#10;tab.&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tab.vue&#10;еф&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/vue/components/ui-tabs.vue&#10;cost&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/node_modules/node-sass/src/libsass/m4/m4-ax_cxx_compile_stdcxx_11.m4&#10;anima&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/scss/uikit/components/_animation.scss&#10;anim&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/scss/uikit/components/_animation.scss&#10;gri&#9;FILE&#9;file:///media/faforty/DEV/www/uikit2/uikit/src/scss/uikit/_grid.scss" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../pingdelivery/ping2.dev" />
   </component>
   <component name="RecentsManager">
@@ -552,7 +553,7 @@
       <workItem from="1482181438338" duration="7117000" />
       <workItem from="1482189663024" duration="19246000" />
       <workItem from="1482324906640" duration="16629000" />
-      <workItem from="1482490742195" duration="9842000" />
+      <workItem from="1482490742195" duration="11332000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1479295464086</created>
@@ -572,7 +573,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="306095000" />
+    <option name="totallyTimeSpent" value="307585000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="0" />
@@ -582,11 +583,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20356612" sideWeight="0.5060606" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901135" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20259319" sideWeight="0.4939394" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21555915" sideWeight="0.4939394" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25530303" sideWeight="0.5081301" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -594,7 +596,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901135" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -892,14 +893,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scss/uikit/_forms.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1062">
@@ -913,8 +906,8 @@
         <state relative-caret-position="148">
           <caret line="307" column="24" selection-start-line="307" selection-start-column="24" selection-end-line="307" selection-end-column="24" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -943,26 +936,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vue/components/ui-label.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vue/components/ui-select.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="143" column="38" selection-start-line="143" selection-start-column="38" selection-end-line="143" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vue/components/ui-input.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="145" column="29" selection-start-line="145" selection-start-column="12" selection-end-line="145" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -985,8 +962,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        <state relative-caret-position="162">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vue/components/ui-input-ajax.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3384">
+          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vue/components/ui-label.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vue/components/ui-input.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="118" column="25" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
           <folding />
         </state>
       </provider>

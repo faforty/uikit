@@ -1,5 +1,5 @@
 <template>
-    <ui-label :filled="filled" :form-group="formGroup" :label-show="label" :label="labelText" :label-align="labelAlign">
+    <ui-label :filled="filled" :has-danger="hasDanger" :form-group="formGroup" :label-show="label" :label="labelText" :label-align="labelAlign">
         <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
             <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
                 <i :class="['ico', icon]" v-show="icon"></i>
@@ -65,9 +65,9 @@
         },
         watch: {
             value (val) {
-                if (!this.dirty) {
-                    this.dirty = true;
-                }
+                //if (!this.dirty) {
+                //    this.dirty = true;
+                //}
 
                 this.filling(val)
 
@@ -78,6 +78,10 @@
         },
         methods: {
             updateValue (value) {
+                if (!this.dirty) {
+                    this.dirty = true;
+                }
+
                 value = value.trim()
 
                 this.filling(value)
@@ -112,10 +116,16 @@
             filled: false
         }),
         computed: {
+            hasDanger() {
+                return this.error || this.validationError;
+            },
             prompt () {
                 let hint = this.hint
 
-                if (typeof this.error == 'string') {
+                if (this.validationError) {
+                    hint = this.validationError;
+                }
+                else if (typeof this.error == 'string') {
                    hint = this.error
                 }
 
