@@ -2,14 +2,14 @@ import Validator from 'validatorjs';
 
 export default {
     props: {
-        valid: {
-            type: Boolean,
-            default: true
-        },
-        dirty: {
-            type: Boolean,
-            default: false
-        },
+        // valid: {
+        //     type: Boolean,
+        //     default: true
+        // },
+        // dirty: {
+        //     type: Boolean,
+        //     default: false
+        // },
         hideValidationErrors: {
             type: Boolean,
             default: false
@@ -20,7 +20,8 @@ export default {
 
     data() {
         return {
-            validationError: ''
+            validationError: '',
+            valid: true,
         };
     },
 
@@ -37,7 +38,7 @@ export default {
 
     methods: {
         validate() {
-            if (!this.validationRules || !this.dirty) {
+            if (!this.validationRules/* || !this.dirty*/) {
                 return;
             }
 
@@ -48,7 +49,6 @@ export default {
             let rules = {
                 value: this.validationRules
             };
-
             let validation = new Validator(data, rules, this.validationMessages);
             validation.setAttributeNames({ value: '' });
 
@@ -58,7 +58,7 @@ export default {
         setValidity(valid, error) {
             this.valid = valid;
             this.validationError = '';
-
+            console.log( valid, error );
             if (!valid && error && error.length) {
                 this.validationError = error;
             }

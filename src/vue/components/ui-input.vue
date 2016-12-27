@@ -3,7 +3,16 @@
         <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
             <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
                 <i :class="['ico', icon]" v-show="icon"></i>
-                <input class="form-control" ref="input" :type="type" :name="name" :placeholder="placeholder" :disabled="disabled" v-model="value" v-on:input="updateValue($event.target.value)" @blur="blurred">
+                <input class="form-control" ref="input" 
+                    :type="type" 
+                    :name="name" 
+                    :placeholder="placeholder" 
+                    :disabled="disabled" 
+                    :value="mValue" 
+                    @input="updateValue($event.target.value)" 
+                    @change="updateValue($event.target.value)" 
+                    @blur="blurred"
+                >
                 <div :class="['ui-input-group__btn', { 'ui-input-group__btn--right': groupAlign == 'right', 'ui-input-group__btn--left': groupAlign == 'left' }]" v-show="group"><div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div></div>
                 <div v-if="prompt">
                     <small class="form-text text-color--gray" v-html="prompt"></small>
@@ -63,44 +72,46 @@
             disabled: Boolean,
             autofocus: Boolean
         },
-        watch: {
-            value (val) {
-                //if (!this.dirty) {
-                //    this.dirty = true;
-                //}
+        // watch: {
+        //     value (val) {
+        //         // if (!this.dirty) {
+        //         //     this.dirty = true;
+        //         // }
 
-                this.filling(val)
-
-                //if (!this.validateOnBlur) {
-                    this.validate();
-                //}
-            }
-        },
+        //         this.filling(val)
+        //         console.log('watch.value');
+        //         //if (!this.validateOnBlur) {
+        //             this.validate();
+        //         //}
+        //     }
+        // },
         methods: {
             updateValue (value) {
-                if (!this.dirty) {
-                    this.dirty = true;
-                }
+                // if (!this.dirty) {
+                //     this.dirty = true;
+                // }
 
                 value = value.trim()
-
                 this.filling(value)
 
                 this.$emit('input', value)
                 this.$emit('change', value)
 
+
                 this.validationError = ''
                 this.mValue = value
+
+                // this.validate();
             },
             blurred() {
-                if (!this.dirty) {
-                    this.dirty = true;
-                }
+                // if (!this.dirty) {
+                //     this.dirty = true;
+                // }
 
                 this.$on('blurred');
                 this.validate();
 
-                this.error = this.validationError
+                // this.error = this.validationError
             },
             filling (value) {
                 if (value != '') {
@@ -113,19 +124,19 @@
         data: () => ({
             mValue: '',
             labelText: '',
-            filled: false
+            filled: false,
+            dirty: false,
         }),
         computed: {
             hasDanger() {
-                return this.error || this.validationError;
+                return !!(this.error || this.validationError);
             },
             prompt () {
                 let hint = this.hint
 
                 if (this.validationError) {
                     hint = this.validationError;
-                }
-                else if (typeof this.error == 'string') {
+                } else if (typeof this.error == 'string') {
                    hint = this.error
                 }
 

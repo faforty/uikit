@@ -4,7 +4,9 @@ var webpack = require('webpack'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const FgYellow = '\x1b[33m'
-console.log(FgYellow, 'Run build uiKit...')
+const uikitVersion = require("./package.json").version;
+
+console.log(FgYellow, 'Run build uiKit...', uikitVersion)
 
 var extractCSS = new ExtractTextPlugin('/css/uiKit.css');
 
@@ -16,7 +18,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: '/js/uiKit.2.0.1.js'
+    filename: '/js/uiKit.'+uikitVersion+'.js'
   },
 resolve: {
     extensions: ['', '.js', '.vue'],
@@ -40,7 +42,7 @@ resolve: {
         test: /\.(woff|woff2|eot|ttf)$/,
         loader: 'file',
         query: {
-          name: 'fonts/[name].[ext]?[hash]'
+          name: '../fonts/[name].[ext]?[hash]'
         }
       },
       {
@@ -61,11 +63,11 @@ resolve: {
       }
     }),
     extractCSS,
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
     // new webpack.optimize.DedupePlugin(),
     new progressBarPlugin()
   ]
