@@ -81,17 +81,19 @@
                     return;
                 }
 
-                let target = this.activeTab.$el,
-                    parent = target.parentElement
+                Vue.nextTick(() => {
+                    let target = this.activeTab.$el,
+                        parent = target.parentElement
 
-                    let indicator       = this.$refs.indicator,
-                        indicatorLeft   = parseInt(indicator.style.left, 10) || this.indicator.left,
-                        indicatorRight  = parseInt(indicator.style.right, 10) || this.indicator.right
+                        let indicator       = this.$refs.indicator,
+                            indicatorLeft   = parseInt(indicator.style.left, 10) || this.indicator.left,
+                            indicatorRight  = parseInt(indicator.style.right, 10) || this.indicator.right
 
-                    this.moveIndicator(
-                                    indicatorLeft, target.offsetLeft,
-                                    indicatorRight, parent.offsetWidth - target.offsetLeft - target.offsetWidth
-                                    )
+                        this.moveIndicator(
+                                        indicatorLeft, target.offsetLeft,
+                                        indicatorRight, parent.offsetWidth - target.offsetLeft - target.offsetWidth
+                                        )
+                });
             },
             moveIndicator (left, newLeft, right, newRight) {
                 var indicator = this.$refs.indicator
