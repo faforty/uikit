@@ -515,7 +515,8 @@ export default {
 		})
 	},
 	destroyed() {
-		this.unbindEvents()
+		this.unbindEvents();
+		window.removeEventListener('resize', this.refresh);
 	}
 }
 </script>
