@@ -17,7 +17,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/',
+    publicPath: '../',
     filename: '/js/uiKit.'+uikitVersion+'.js'
   },
 resolve: {
@@ -42,7 +42,7 @@ resolve: {
         test: /\.(woff|woff2|eot|ttf)$/,
         loader: 'file',
         query: {
-          name: '../fonts/[name].[ext]?[hash]'
+          name: 'fonts/[name].[ext]?[hash]'
         }
       },
       {
@@ -63,11 +63,12 @@ resolve: {
       }
     }),
     extractCSS,
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    }),
     // new webpack.optimize.DedupePlugin(),
     new progressBarPlugin()
   ]

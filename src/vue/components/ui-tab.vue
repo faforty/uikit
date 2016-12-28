@@ -27,7 +27,7 @@
                 if (this.id == id) {
                     this.selected2 = true
 
-                    console.log(id)
+                    // console.log(id)
 
                     this.setAsSelected()
                 } else {

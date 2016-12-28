@@ -286,7 +286,7 @@ export default {
      // this.showOne('year')
       //this.$nextTick(() => {
         let listDom = document.getElementById('yearList')
-        console.log(listDom.scrollWidth)
+        // console.log(listDom.scrollWidth)
         listDom.scrollLeft = (listDom.scrollWidth - 100)
        // this.addYear()
       //})
@@ -409,7 +409,7 @@ export default {
     updated () {
       // this.showCheck()
 
-      console.log( 3243);
+      // console.log( 3243);
     }
   },
   mounted () {
