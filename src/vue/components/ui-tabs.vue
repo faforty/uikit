@@ -158,6 +158,8 @@
             }
         },
         mounted () {
+            this.tabSelect(this.active);
+            
             window.addEventListener('resize', event => {
                 this.resizeIndicator()
             });
