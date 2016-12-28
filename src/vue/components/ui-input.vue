@@ -14,9 +14,11 @@
                     @blur="blurred"
                 >
                 <div :class="['ui-input-group__btn', { 'ui-input-group__btn--right': groupAlign == 'right', 'ui-input-group__btn--left': groupAlign == 'left' }]" v-show="group"><div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div></div>
-                <div v-if="prompt">
-                    <small class="form-text text-color--gray" v-html="prompt"></small>
-                </div>
+                <transition name="fade" mode="out-in">
+                    <div v-if="prompt">
+                        <small class="form-text text-color--gray" v-html="prompt"></small>
+                    </div>
+                </transition>
             </div>
             <div class="ui-input__help" v-show="info">
                 <a class="ui-action ui-input__help__action uikit-info"></a>
@@ -87,9 +89,9 @@
         // },
         methods: {
             updateValue (value) {
-                // if (!this.dirty) {
-                //     this.dirty = true;
-                // }
+                if (!this.dirty) {
+                    this.dirty = true;
+                }
 
                 value = value.trim()
                 this.filling(value)
@@ -109,7 +111,10 @@
                 // }
 
                 this.$on('blurred');
-                this.validate();
+
+                setTimeout(() => {
+                    this.validate();
+                }, 100);
 
                 // this.error = this.validationError
             },

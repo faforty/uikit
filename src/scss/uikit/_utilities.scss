@@ -738,3 +738,13 @@ corresponds to the arrow we want to display */
   width: 120px;
   height: 120px;
 }
+
+// fade animation
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .3s ease;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}

@@ -58,7 +58,7 @@ export default {
         setValidity(valid, error) {
             this.valid = valid;
             this.validationError = '';
-            console.log( valid, error );
+
             if (!valid && error && error.length) {
                 this.validationError = error;
             }
