@@ -5,7 +5,7 @@
                 <template v-if="(search && !show) || !search">
             <span>
                 {{ selectedItems }}
-			<span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
+            <span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
             </span>
                     <span class="ui-select__selected__icon">
                 <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
@@ -38,44 +38,44 @@
 <script>
     export default {
         props: {
-			options: {},
-			optionsRules: Object,
-			search: Boolean,
-			value: {
-				type: Array,
-				default: []
-			},
-			placeholder: {
-				type: String,
-				default: 'Nothing Selected'
-			},
-			multiple: {
-				type: Boolean,
-				default: false
-			},
-			closeonselect: { // only works when multiple==false
-				type: Boolean,
-				default: true
-			},
-			disabled: {
-				type: Boolean,
-				default: false
-			},
-			limit: {
-				type: Number,
-				default: 1024
-			}
-		},
-		data: function () {
-			return {
-				show: false,
-				selectId: [],
-				searchText: '',
-				results: {},
-				label: '',
-				filled: false
-			};
-		},
+            options: {},
+            optionsRules: Object,
+            search: Boolean,
+            value: {
+                type: Array,
+                default: []
+            },
+            placeholder: {
+                type: String,
+                default: 'Nothing Selected'
+            },
+            multiple: {
+                type: Boolean,
+                default: false
+            },
+            closeonselect: { // only works when multiple==false
+                type: Boolean,
+                default: true
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            limit: {
+                type: Number,
+                default: 1024
+            }
+        },
+        data: function () {
+            return {
+                show: false,
+                selectId: [],
+                searchText: '',
+                results: {},
+                label: '',
+                filled: false
+            };
+        },
         watch: {
             searchText (value) {
                 if (value && this.search) {
@@ -89,96 +89,102 @@
                 }
             }
         },
-		methods: {
-			isSelected: function (v) {
-				return this.selectId.indexOf(v) > -1;
-			},
-			select: function (v) {
-				if (this.selectId.indexOf(v) === -1) {
-					if (this.multiple) {
-						var m = this.value;
-						m.push(v);
-						this.$emit('input', m);
-						this.$emit('change', m)
+        methods: {
+            isSelected: function (v) {
+                return this.selectId.indexOf(v) > -1;
+            },
+            select: function (v) {
+                if (this.selectId.indexOf(v) === -1) {
+                    if (this.multiple) {
+                        var m = this.value;
+                        m.push(v);
+                        this.$emit('input', m);
+                        this.$emit('change', m)
 
-						this.filled = true
+                        this.filled = true
 
-						this.selectId = m;
-					} else {
-						this.$emit('input', [v]);
-						this.$emit('change', [v])
-						this.filled = true
+                        this.selectId = m;
+                    } else {
+                        this.$emit('input', [v]);
+                        this.$emit('change', [v])
+                        this.filled = true
 
-						this.selectId = [v];
-					}
-				} else {
-					if (this.multiple) {
-						var _m = this.value;
-						_m.splice(_m.indexOf(v), 1);
-					}
-				}
+                        this.selectId = [v];
+                    }
+                } else {
+                    if (this.multiple) {
+                        var _m = this.value;
+                        _m.splice(_m.indexOf(v), 1);
+                    }
+                }
 
-				if (this.closeonselect) {
-					this.toggleDropdown();
-				}
-			},
-			toggleDropdown: function () {
-				this.show = !this.show;
+                if (this.closeonselect) {
+                    this.toggleDropdown();
+                }
+            },
+            toggleDropdown: function () {
+                this.show = !this.show;
 
-				if (this.search && this.show) {
-				    //this.$refs.uiSelectSearch.$el.querySelector('input').focus()
-				}
-			}
-		},
-		computed: {
-			selectedItems: function () {
-				var foundItems = [];
+                if (this.search && this.show) {
+                    //this.$refs.uiSelectSearch.$el.querySelector('input').focus()
+                }
+            }
+        },
+        computed: {
+            selectedItems: function () {
+                if ( ! this.selectId.length) {
+                    return '';
+                }
 
-				if (this.selectId.length) {
-					for (var item in this.selectId) {
-					    if (this.selectId.hasOwnProperty(item)) {
-					        foundItems.push(this.options[this.selectId[item]]);
-					    }
-					}
+                var foundItems = [];
+                for (var i=0; i<this.selectId.length; i++) {
+                    var selectId = this.selectId[i];
+                    if (this.options[selectId]) {
+                        foundItems.push(this.options[selectId]);
+                    } else {
+                        console.warn('ui-select: element "' + selectId + '" not found in options');
+                    }
+                }
 
-					this.filled = true
+                if (foundItems.length) {
+                    this.filled = true
+                }
 
-					return foundItems.join(', ');
-				}
-			},
-			showPlaceholder: function () {
-			    this.selectId = this.value
-			    this.searchText = this.selectedItems
+                return foundItems.join(', ');
+            },
+            showPlaceholder: function () {
+                this.selectId   = this.value
+                this.searchText = this.selectedItems
 
-				return this.selectId.length === 0;
-			}
-		},
-		//beforeCreate () {
-		//    if (this.optionsRules) {
+                return this.selectId.length === 0;
+            }
+        },
+        //beforeCreate () {
+        //    if (this.optionsRules) {
         //        let options = {};
         //        [].forEach.call(this.options, item => {
         //            options[item[this.optionsRules.id]] = item[this.optionsRules.value]
         //        })
         //        this.options = options;
         //    }
-		//},
-		mounted: function () {
-			this.selectId = this.value
-			this.searchText = this.selectedItems
+        //},
+        mounted: function () {
+            this.selectId = this.value
+            this.searchText = this.selectedItems
 
             this.$refs.uiSelectSearch.$el.addEventListener('click', function (event) {
-				event.stopPropagation()
-			})
-			this.$el.addEventListener('click', function (event) {
-				event.stopPropagation()
-			})
-			document.body.addEventListener('click', function () {
-				this.show = false
-			}.bind(this))
+                event.stopPropagation()
+            })
+            this.$el.addEventListener('click', function (event) {
+                event.stopPropagation()
+            })
+            document.body.addEventListener('click', function () {
+                this.show = false
+            }.bind(this))
 
             if (this.$slots.default[0].text) {
                 this.label = this.$slots.default[0].text
             }
-		}
+        }
     }
 </script>

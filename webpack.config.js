@@ -3,9 +3,10 @@ var webpack = require('webpack'),
     progressBarPlugin = require('progress-bar-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const FgYellow = '\x1b[33m'
 const uikitVersion = require("./package.json").version;
+const devMode      = process.env.NODE_ENV !== 'production';
 
+const FgYellow = '\x1b[33m'
 console.log(FgYellow, 'Run build uiKit...', uikitVersion)
 
 var extractCSS = new ExtractTextPlugin('/css/uiKit.css');
@@ -16,13 +17,15 @@ module.exports = {
     './src/scss/main.scss'
   ],
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '../',
+    path: path.resolve(__dirname, './dist/'),
+    publicPath: devMode ? '/dist/' : '../',
     filename: '/js/uiKit.'+uikitVersion+'.js'
   },
 resolve: {
     extensions: ['', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
+
+    // root: path.resolve(__dirname),
 },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
@@ -52,28 +55,41 @@ resolve: {
           name: 'images/[name].[ext]?[hash]'
         }
       },
-      { test: /\.scss$/i, loader: extractCSS.extract(['css!sass?indentedSyntax=true&sourceMap=true']) }
+      {
+        test: /\.scss$/i,
+        loader: extractCSS.extract("css-loader?sourceMap!sass-loader?sourceMap&outputStyle=compressed")
+      }
     ]
   },
-  devtool: '#eval-source-map',
+  // devtool: '#eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
       }
     }),
+
+    // Pack only en & ru locales
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/),
+    new webpack.ContextReplacementPlugin(/validatorjs[\/\\]src[\/\\]lang$/, /en|ru/),
+
     extractCSS,
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    // new webpack.optimize.DedupePlugin(),
+
     new progressBarPlugin()
-  ]
+  ],
+  devServer: {
+    inline: true,
+    port:   4040,
+  }
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (!devMode) {
   module.exports.devtool = '#source-map'
+  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
+    compress: {
+      warnings: false
+    }
+  }));
+  module.exports.plugins.push(new webpack.optimize.DedupePlugin());
 }
