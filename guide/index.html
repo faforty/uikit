@@ -81,7 +81,25 @@
             </example>
 
             <example code="1-11*">
-                <ui-input value="Текст" validation-rules="required">Валидация (success)</ui-input>
+                <ui-input v-model="inputValue1_11" validation-rules="required">Валидация (success)</ui-input>
+            </example>
+            <example code="1-12*" class="--fix-label-space">
+                <h5>{{inputValue1_11}}</h5>
+            </example>
+        </div>
+    </section>
+
+    <!-- 01 Extra -->
+    <section>
+        <h2>Подсказки (ajax)</h2>
+        <div class="row">
+            <example code="2-12*">
+                <ui-input-ajax ajax-url="/guide/ajax-data.json" placeholder="Введеный текст">Ajax request</ui-input-ajax>
+            </example>
+
+
+            <example code="1-11*">
+                <ui-input-ajax ajax-data-rule="items" v-model="selectAjaxValue2_2" :ajax-data='ajaxData' icon="uikit-search" placeholder="Страна">Заголовок</ui-input-ajax>
             </example>
         </div>
     </section>
@@ -92,25 +110,16 @@
 
         <div class="row">
             <example code="2-1">
-            </example>
-        </div>
-    </section>
-
-    <!-- 02 Extra -->
-    <section>
-        <h2>Ajax</h2>
-        <div class="row">
-            <example code="1-12*">
-                <ui-input-ajax ajax-url="/guide/ajax-data.json" value="Введеный текст">Ajax url</ui-input-ajax>
+                <ui-select placeholder="Выберите значение" v-model="selectValue2_1" :options="{day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'}">Заголовок</ui-select>
             </example>
 
-            <example code="1-13*">
-                <ui-input-ajax ajax-data-rule="items" :ajax-data='ajaxData' value="Введеный текст">Local data</ui-input-ajax>
+            <example code="2-2">
+                <ui-select v-model="selectValue2_1" :search="true" :options-rules="{id: 'id', value: 'name'}" :options="options">Заголовок</ui-select>
             </example>
 
-            <!-- <example code="1-11*">
-                <ui-input value="Текст" validation-rules="required">Валидация (success)</ui-input>
-            </example> -->
+            <example code="2-3">
+                <ui-input-ajax ajax-data-rule="items" :ajax-data='ajaxData' icon="uikit-search" icon-align="left" placeholder="Страна">Заголовок</ui-input-ajax>
+            </example>
         </div>
     </section>
 
@@ -119,33 +128,19 @@
 
 
 
+<script src="./guide.js"></script>
 <script>
-var examples = document.getElementsByTagName('example');
-var exampleSources = {};
-for (var i=0; i<examples.length; i++) {
-    var code = examples[i].getAttribute('code');
-    exampleSources[code] = examples[i].innerHTML.replace(/^ {16}/gm, '');
-}
-
-Vue.component('example', {
-    template: '<div :class="getClassName()"><slot></slot><a @click.stop="showSource" class="example-badge">{{subCode}}</a></div>',
-    props: ['code', 'col'],
-    computed: {
-        subCode: function(){return this.code.split('-')[1]}
-    },
-    methods: {
-        getClassName: function() {return 'example col-lg-6 col-xl-' + (this.col ? this.col : '3')},
-        showSource: function() {app.showSource(this.code)}
-    },
-});
-
 Validator.useLang('ru');
 
 var app = new Vue({
     el: '#app',
     data: () => ({
-        exampleSource: '',
-        ajaxData: {success:true,items:[{id:0,name:"Абхазия"},{id:1,name:"Австралия"},{id:2,name:"Австрия"},{id:3,name:"Азербайджан"},{id:4,name:"Албания"},{id:5,name:"Алжир"},{id:6,name:"Ангола"},{id:7,name:"Андорра"},{id:8,name:"Антигуа и Барбуда"},{id:9,name:"Аргентина"},{id:10,name:"Армения"},{id:11,name:"Афганистан"},{id:12,name:"Багамы"},{id:13,name:"Бангладеш"},{id:14,name:"Барбадос"},{id:15,name:"Бахрейн"},{id:16,name:"Беларусь"},{id:17,name:"Белиз"},{id:18,name:"Бельгия"},{id:19,name:"Бенин"},{id:20,name:"Болгария"},{id:21,name:"Боливия"},{id:22,name:"Босния и Герцеговина"},{id:23,name:"Ботсвана"},{id:24,name:"Бразилия"},{id:25,name:"Бруней"},{id:26,name:"Буркина Фасо"},{id:27,name:"Бурунди"},{id:28,name:"Бутан"},{id:29,name:"Вануату"},{id:30,name:"Ватикан"},{id:31,name:"Великобритания"},{id:32,name:"Венгрия"},{id:33,name:"Венесуэла"},{id:34,name:"Восточный Тимор"},{id:35,name:"Вьетнам"},{id:36,name:"Габон"},{id:37,name:"Гаити"},{id:38,name:"Гайана"},{id:39,name:"Гамбия"},{id:40,name:"Гана"},{id:41,name:"Гватемала"},{id:42,name:"Гвинея"},{id:43,name:"Гвинея-Бисау"},{id:44,name:"Германия"},{id:45,name:"Гондурас"},{id:46,name:"Гренада"},{id:47,name:"Греция"},{id:48,name:"Грузия"},{id:49,name:"Дания"},{id:50,name:"Джибути"},{id:51,name:"Доминика"},{id:52,name:"Доминиканская Республика"},{id:53,name:"Египет"},{id:54,name:"Замбия"},{id:55,name:"Зимбабве"},{id:56,name:"Израиль"},{id:57,name:"Индия"},{id:58,name:"Индонезия"},{id:59,name:"Иордания"},{id:60,name:"Ирак"},{id:61,name:"Иран"},{id:62,name:"Ирландия"},{id:63,name:"Исландия"},{id:64,name:"Испания"},{id:65,name:"Италия"},{id:66,name:"Йемен"},{id:67,name:"Кабо-Верде"},{id:68,name:"Казахстан"},{id:69,name:"Камбоджа"},{id:70,name:"Камерун"},{id:71,name:"Канада"},{id:72,name:"Катар"},{id:73,name:"Кения"},{id:74,name:"Кипр"},{id:75,name:"Киргизия"},{id:76,name:"Кирибати"},{id:77,name:"Китай"},{id:78,name:"Колумбия"},{id:79,name:"Коморы"},{id:80,name:"Конго, демократическая республ"},{id:81,name:"Конго, республика"},{id:82,name:"Коста-Рика"},{id:83,name:"Кот-д’Ивуар"},{id:84,name:"Куба"},{id:85,name:"Кувейт"},{id:86,name:"Лаос"},{id:87,name:"Латвия"},{id:88,name:"Лесото"},{id:89,name:"Либерия"},{id:90,name:"Ливан"},{id:91,name:"Ливия"},{id:92,name:"Литва"},{id:93,name:"Лихтенштейн"},{id:94,name:"Люксембург"},{id:95,name:"Маврикий"},{id:96,name:"Мавритания"},{id:97,name:"Мадагаскар"},{id:98,name:"Македония"},{id:99,name:"Малави"},{id:100,name:"Малайзия"},{id:101,name:"Мали"},{id:102,name:"Мальдивы"},{id:103,name:"Мальта"},{id:104,name:"Марокко"},{id:105,name:"Маршалловы Острова"},{id:106,name:"Мексика"},{id:107,name:"Мозамбик"},{id:108,name:"Молдавия"},{id:109,name:"Монако"},{id:110,name:"Монголия"},{id:111,name:"Мьянма"},{id:112,name:"Намибия"},{id:113,name:"Науру"},{id:114,name:"Непал"},{id:115,name:"Нигер"},{id:116,name:"Нигерия"},{id:117,name:"Нидерланды"},{id:118,name:"Никарагуа"},{id:119,name:"Новая Зеландия"},{id:120,name:"Норвегия"},{id:121,name:"Объединенные Арабские Эмираты"},{id:122,name:"Оман"},{id:123,name:"Пакистан"},{id:124,name:"Палау"},{id:125,name:"Панама"},{id:126,name:"Папуа - Новая Гвинея"},{id:127,name:"Парагвай"},{id:128,name:"Перу"},{id:129,name:"Польша"},{id:130,name:"Португалия"},{id:131,name:"Россия"},{id:132,name:"Руанда"},{id:133,name:"Румыния"},{id:134,name:"Сальвадор"},{id:135,name:"Самоа"},{id:136,name:"Сан-Марино"},{id:137,name:"Сан-Томе и Принсипи"},{id:138,name:"Саудовская Аравия"},{id:139,name:"Свазиленд"},{id:140,name:"Северная Корея"},{id:141,name:"Сейшелы"},{id:142,name:"Сенегал"},{id:143,name:"Сент-Винсент и Гренадины"},{id:144,name:"Сент-Китс и Невис"},{id:145,name:"Сент-Люсия"},{id:146,name:"Сербия"},{id:147,name:"Сингапур"},{id:148,name:"Сирия"},{id:149,name:"Словакия"},{id:150,name:"Словения"},{id:151,name:"Соединенные Штаты Америки"},{id:152,name:"Соломоновы Острова"},{id:153,name:"Сомали"},{id:154,name:"Судан"},{id:155,name:"Суринам"},{id:156,name:"Сьерра-Леоне"},{id:157,name:"Таджикистан"},{id:158,name:"Таиланд"},{id:159,name:"Танзания"},{id:160,name:"Того"},{id:161,name:"Тонга"},{id:162,name:"Тринидад и Тобаго"},{id:163,name:"Тувалу"},{id:164,name:"Тунис"},{id:165,name:"Туркмения"},{id:166,name:"Турция"},{id:167,name:"Уганда"},{id:168,name:"Узбекистан"},{id:169,name:"Украина"},{id:170,name:"Уругвай"},{id:171,name:"Федеративные штаты Микронезии"},{id:172,name:"Фиджи"},{id:173,name:"Филиппины"},{id:174,name:"Финляндия"},{id:175,name:"Франция"},{id:176,name:"Хорватия"},{id:177,name:"Центрально-Африканская Республ"},{id:178,name:"Чад"},{id:179,name:"Черногория"},{id:180,name:"Чехия"},{id:181,name:"Чили"},{id:182,name:"Швейцария"},{id:183,name:"Швеция"},{id:184,name:"Шри-Ланка"},{id:185,name:"Эквадор"},{id:186,name:"Экваториальная Гвинея"},{id:187,name:"Эритрея"},{id:188,name:"Эстония"},{id:189,name:"Эфиопия"},{id:190,name:"Южная Корея"},{id:191,name:"Южно-Африканская Республика"},{id:192,name:"Ямайка"},{id:193,name:"Япония"}],"c":"country.","t":1440}
+        exampleSource:      '',
+        inputValue1_11:     'Текст',
+        selectValue2_1:     [],
+        selectAjaxValue2_2: '',
+        options:            window.options /* guide.js */,
+        ajaxData:           window.ajaxData /* guide.js */,
     }),
     methods: {
         showSource: function(code) {
