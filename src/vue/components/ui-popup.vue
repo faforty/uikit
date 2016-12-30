@@ -45,7 +45,7 @@
             }
         },
         mounted () {
-            this.$refs.box.addEventListener('click', function () {
+            this.$refs.box.addEventListener('click', function (event) {
 				event.stopPropagation()
 			})
 			document.body.addEventListener('click', function () {

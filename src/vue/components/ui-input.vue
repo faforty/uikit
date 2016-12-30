@@ -1,5 +1,5 @@
 <template>
-    <ui-label :filled="filled" :has-danger="hasDanger" :form-group="formGroup" :label-show="label" :label="labelText" :label-align="labelAlign">
+    <ui-label :filled="filled" :form-group="formGroup" :label-show="label" :label="labelText" :label-align="labelAlign" :state="fieldState">
         <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
             <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
                 <i :class="['ico', icon]" v-show="icon"></i>
@@ -103,8 +103,8 @@
             filled () {
                 return !!this.mValue
             },
-            hasDanger () {
-                return !!(this.error || this.validationError)
+            fieldState () {
+                return this.validationError ? 'error' : this.state;
             },
             prompt () {
                 let hint = this.hint
@@ -142,6 +142,10 @@
 
             if (this.$slots.default) {
                 this.labelText = this.$slots.default[0].text
+            }
+
+            if (this.mValue) {
+                this.validate();
             }
         },
         mixins: [
