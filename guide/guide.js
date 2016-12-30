@@ -12,7 +12,7 @@ Vue.component('example', {
     template: '<div :class="getClassName()"><slot></slot><a @click.stop="showSource" class="example-badge">{{subCode}}</a></div>',
     props: ['code', 'col'],
     computed: {
-        subCode: function(){return this.code.split('-')[1]}
+        subCode: function(){return this.code ? this.code.split('-')[1] : ''}
     },
     methods: {
         getClassName: function() {return 'example col-lg-6 col-xl-' + (this.col ? this.col : '3')},

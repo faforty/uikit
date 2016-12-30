@@ -3,16 +3,17 @@
         <div class="ui-select">
             <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown">
                 <template v-if="(search && !show) || !search">
-            <span>
-                {{ selectedItems }}
-            <span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
-            </span>
+                    <span>
+                        {{ selectedItems }}
+                        <span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
+                    </span>
+
                     <span class="ui-select__selected__icon">
-                <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
-            </span>
+                        <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
+                    </span>
                 </template>
                 <div v-show="search && show" style="width: 100%">
-                    <ui-input ref="uiSelectSearch" :autofocus="true" :form-group="false" :label="false" icon="uikit-search" style="width: 100%;" v-model="searchText"></ui-input>
+                    <ui-input ref="uiSelectSearch" :form-group="false" :label="false" icon="uikit-search" style="width: 100%;" v-model="searchText"></ui-input>
                 </div>
             </div>
             <div class="ui-select__options drop-out__results" style="display: block;max-height: 400px;overflow-y: auto;" v-show="show" @blur="toggleDropdown">
@@ -126,7 +127,7 @@
                 this.show = !this.show;
 
                 if (this.search && this.show) {
-                    //this.$refs.uiSelectSearch.$el.querySelector('input').focus()
+                    this.$refs.uiSelectSearch.focus()
                 }
             }
         },

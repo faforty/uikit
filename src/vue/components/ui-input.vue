@@ -90,6 +90,11 @@
                     this.validate()
                 }, 100)
             },
+            focus() {
+                this.$nextTick(() => {
+                    this.$refs.input.focus()
+                })
+            }
         },
 
         data: () => ({
@@ -124,14 +129,12 @@
             },
             shrink () {
                 return (typeof this.flexShrink === 'number') ? { 'flex-shrink': this.flexShrink } : ''
-            }
+            },
         },
 
         mounted () {
             if (this.autofocus) {
-                Vue.nextTick(() => {
-                    this.$refs.input.focus()
-                })
+                this.focus();
             }
 
             if (this.$slots.default) {
