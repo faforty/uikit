@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-    import throttle from '../until/throttle'
+    import debounce from 'lodash.debounce'
 
     export default {
         props: {
@@ -94,10 +94,7 @@
 
                 this.stateIcon = this.state.icon
             },
-            //ajax: throttle((value) => {
-            //
-            //}, 1500)
-            ajax (value) {
+            ajax: debounce(value => {
                 if (this.ajaxUrl) {
                     let params = {
                         [this.ajaxQuery]: value
@@ -135,7 +132,7 @@
                         }
                     })
                 }
-            },
+            }, 400),
             ajaxLocal (value) {
                 this.items = []
 
