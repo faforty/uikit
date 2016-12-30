@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="drop-out">
-            <ui-input ref="input" :icon="icon" :placeholder="placeholder" :color="color" icon-align="right" v-model="searchValue">
+            <ui-input ref="input" :icon="icon" :placeholder="placeholder" :color="color" :icon-align="iconAlign" v-model="searchValue">
                 <slot></slot>
             </ui-input>
             <div ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="opened">
@@ -54,7 +54,8 @@
             icon: {
                 type: String,
                 'default': 'stateIcon'
-            }
+            },
+            iconAlign: String,
         },
         data: () => ({
             opened: false,
@@ -80,10 +81,10 @@
                 this.searchValue = item.name
 
                 if (this.emitInput == 'id') {
-                    this.$emit('input', item.id)
+                    this.$emit('input', item.id + '')
                 } else {
                     this.$emit('input', {
-                        id: item.id,
+                        id:   item.id + '',
                         name: item.name,
                     })
                 }

@@ -8,7 +8,7 @@
                     :name="name"
                     :placeholder="placeholder"
                     :disabled="disabled"
-                    :value="mValue"
+                    :value="value"
                     @input="updateValue($event.target.value)"
                     @change="updateValue($event.target.value)"
                     @blur="blurred"
@@ -57,7 +57,7 @@
             placeholder: String,
             hint:        String,
             value:       {
-                'default': ''
+                default: ''
             },
             error: String,
             group: String,
@@ -65,10 +65,8 @@
                 type:      String,
                 'default': 'right'
             },
-            icon: String,
-            iconAlign: {
-                type: String,
-            },
+            icon:       String,
+            iconAlign:  String,
             inputWidth: String,
             flexShrink: Number,
             disabled:   Boolean,
@@ -95,13 +93,13 @@
         },
 
         data: () => ({
-            mValue:    '',
+            mValue:    this.value,
             labelText: '',
         }),
 
         computed: {
             filled () {
-                return !!this.mValue
+                return !!this.value
             },
             fieldState () {
                 return this.validationError ? 'error' : this.state;
@@ -130,10 +128,6 @@
         },
 
         mounted () {
-            if (this.mValue != this.value) {
-                this.mValue = this.value
-            }
-
             if (this.autofocus) {
                 Vue.nextTick(() => {
                     this.$refs.input.focus()
@@ -144,7 +138,7 @@
                 this.labelText = this.$slots.default[0].text
             }
 
-            if (this.mValue) {
+            if (this.value) {
                 this.validate();
             }
         },
