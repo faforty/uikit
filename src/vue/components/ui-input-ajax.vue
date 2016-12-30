@@ -93,7 +93,7 @@
 
                 this.stateIcon = this.state.icon
             },
-            ajax: debounce(value => {
+            ajax (value) {
                 if (this.ajaxUrl) {
                     let params = {
                         [this.ajaxQuery]: value
@@ -131,7 +131,7 @@
                         }
                     })
                 }
-            }, 400),
+            },
             ajaxLocal (value) {
                 this.items = []
 
@@ -179,6 +179,9 @@
                 this.opened = false
                 this.reset()
             }
+        },
+        beforeMount () {
+            this.ajax = debounce(this.ajax.bind(this), 400);
         },
         mounted () {
             let $input = this.$refs.input.$el,
