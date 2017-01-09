@@ -102,6 +102,12 @@
             labelText: '',
         }),
 
+        watch: {
+            value(val) {
+                this.mValue = val;
+            }
+        },
+
         computed: {
             filled () {
                 return !!this.mValue
