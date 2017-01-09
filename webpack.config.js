@@ -90,12 +90,23 @@ module.exports = {
 }
 
 if (!devMode) {
-  module.exports.devtool = '#source-map'
-  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    sourceMap: true,
-    compress: {
-      warnings: false
-    }
-  }));
-  module.exports.plugins.push(new webpack.optimize.DedupePlugin());
+  module.exports.devtool = '#source-map';
+
+  module.exports.plugins.push(
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        dead_code: true,
+        warnings: false,
+        drop_console: true,
+        unsafe: true,
+        booleans : true,
+        loops : true,
+        unused: true
+      },
+      comments: false,
+      beautify: false,
+    })
+  );
 }
