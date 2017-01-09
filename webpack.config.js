@@ -1,7 +1,8 @@
 var webpack = require('webpack'),
     path = require('path'),
     progressBarPlugin = require('progress-bar-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+    ExtractTextPlugin = require('extract-text-webpack-plugin')
+    WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 const uikitVersion = require("./package.json").version;
 const devMode      = process.env.NODE_ENV !== 'production';
@@ -22,12 +23,12 @@ module.exports = {
     publicPath: devMode ? '/dist/' : '../',
     filename: '/js/uiKit.'+uikitVersion+'.js'
   },
-resolve: {
-    extensions: ['', '.js', '.vue'],
-    fallback: [path.join(__dirname, '../node_modules')],
+  resolve: {
+      extensions: ['', '.js', '.vue'],
+      fallback: [path.join(__dirname, '../node_modules')],
 
-    // root: path.resolve(__dirname),
-},
+      // root: path.resolve(__dirname),
+  },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
   },
@@ -64,6 +65,10 @@ resolve: {
   },
   // devtool: '#eval-source-map',
   plugins: [
+    new WebpackBuildNotifierPlugin({
+      sound: false,
+      suppressSuccess: true
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: `'${nodeEnv}'`
