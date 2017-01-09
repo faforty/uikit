@@ -119,7 +119,7 @@
                     }
                 }
 
-                if (this.closeonselect) {
+                if (this.closeonselect && this.multiple === false) {
                     this.toggleDropdown();
                 }
             },
@@ -129,6 +129,9 @@
                 if (this.search && this.show) {
                     this.$refs.uiSelectSearch.focus()
                 }
+            },
+            hideDropdown: function() {
+                this.show = false;
             }
         },
         computed: {
@@ -179,8 +182,9 @@
             this.$el.addEventListener('click', function (event) {
                 event.stopPropagation()
             })
+
             document.body.addEventListener('click', function () {
-                this.show = false
+                this.hideDropdown();
             }.bind(this))
 
             if (this.$slots.default[0].text) {

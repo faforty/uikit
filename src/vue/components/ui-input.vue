@@ -102,9 +102,15 @@
             labelText: '',
         }),
 
+        watch: {
+            value(val) {
+                this.mValue = val;
+            }
+        },
+
         computed: {
             filled () {
-                return !!this.value
+                return !!this.mValue
             },
             fieldState () {
                 return this.validationError ? 'error' : this.state;
@@ -145,7 +151,7 @@
                 this.labelText = this.$slots.default[0].text
             }
 
-            if (this.value) {
+            if (this.mValue) {
                 this.validate();
             }
         },
