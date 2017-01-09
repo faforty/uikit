@@ -5,6 +5,7 @@ var webpack = require('webpack'),
 
 const uikitVersion = require("./package.json").version;
 const devMode      = process.env.NODE_ENV !== 'production';
+const nodeEnv      = process.env.NODE_ENV || 'development';
 
 const FgYellow = '\x1b[33m'
 console.log(FgYellow, 'Run build uiKit...', uikitVersion)
@@ -65,7 +66,7 @@ resolve: {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: `'${nodeEnv}'`
       }
     }),
 
