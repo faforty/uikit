@@ -8,7 +8,7 @@
                     :name="name"
                     :placeholder="placeholder"
                     :disabled="disabled"
-                    :value="value"
+                    :value="mValue"
                     @input="updateValue($event.target.value)"
                     @change="updateValue($event.target.value)"
                     @blur="blurred"
@@ -98,7 +98,7 @@
         },
 
         data: () => ({
-            mValue:    this.value,
+            mValue:    '',
             labelText: '',
         }),
 
@@ -133,6 +133,10 @@
         },
 
         mounted () {
+            if (this.value != this.mValue) {
+                this.mValue = this.value;
+            }
+
             if (this.autofocus) {
                 this.focus();
             }
