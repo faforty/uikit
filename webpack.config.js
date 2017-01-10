@@ -94,6 +94,10 @@ if (!devMode) {
 
   module.exports.plugins.push(
     new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+        minimize: true,
+        debug: false,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {

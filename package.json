@@ -17,7 +17,7 @@
     "progressbar.js": "^1.0.1",
     "validatorjs": "^3.9.0",
     "velocity-animate": "^1.3.1",
-    "vue": "^2.1.0",
+    "vue": "2.1.6",
     "vue-resource": "^1.0.3"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "vue-loader": "^10.0.0",
-    "vue-template-compiler": "^2.0.0",
+    "vue-template-compiler": "2.1.6",
     "webpack": "2.1.0-beta.20",
     "webpack-build-notifier": "^0.1.13",
     "webpack-dev-server": "2.1.0-beta.0"
