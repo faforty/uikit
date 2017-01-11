@@ -11,7 +11,7 @@ const nodeEnv      = process.env.NODE_ENV || 'development';
 const FgYellow = '\x1b[33m'
 console.log(FgYellow, 'Run build uiKit...', uikitVersion)
 
-var extractCSS = new ExtractTextPlugin('/css/uiKit.css');
+var extractCSS = new ExtractTextPlugin('/css/uikit.css');
 
 module.exports = {
   entry: [
@@ -21,7 +21,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist/'),
     publicPath: devMode ? '/dist/' : '../',
-    filename: '/js/uiKit.'+uikitVersion+'.js',
+    filename: '/js/uikit.js',
     library: 'uikit-agro24',
     libraryTarget: 'umd',
     umdNamedDefine: true
@@ -93,4 +93,28 @@ module.exports = {
   }
 }
 
+if (!devMode) {
+  module.exports.devtool = '#source-map';
 
+  module.exports.plugins.push(
+    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+        minimize: true,
+        debug: false,
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        dead_code: true,
+        warnings: false,
+        drop_console: true,
+        unsafe: true,
+        booleans : true,
+        loops : true,
+        unused: true
+      },
+      comments: false,
+      beautify: false,
+    })
+  );
+}
