@@ -30,8 +30,6 @@ module.exports = {
   resolve: {
       extensions: ['', '.js', '.vue'],
       fallback: [ path.join(__dirname, '../node_modules') ],
-
-      // root: path.resolve(__dirname),
   },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
