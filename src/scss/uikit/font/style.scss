@@ -2,52 +2,12 @@
 
 @font-face {
   font-family: 'ui-green';
-  src:  url('#{$icomoon-font-path}/ui-green.eot?lkyn3z');
-  src:  url('#{$icomoon-font-path}/ui-green.eot?lkyn3z#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/ui-green.ttf?lkyn3z') format('truetype'),
-    url('#{$icomoon-font-path}/ui-green.woff?lkyn3z') format('woff'),
-    url('#{$icomoon-font-path}/ui-green.svg?lkyn3z#ui-green') format('svg');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?bwywjc');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?bwywjc#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/ui-green.ttf?bwywjc') format('truetype'),
+    url('#{$icomoon-font-path}/ui-green.woff?bwywjc') format('woff'),
+    url('#{$icomoon-font-path}/ui-green.svg?bwywjc#ui-green') format('svg');
   font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Akrobat';
-  src: url('#{$icomoon-font-path}/Akrobat-Thin.eot');
-  src: url('#{$icomoon-font-path}/Akrobat-Thin.eot?#iefix') format('embedded-opentype'),
-  url('#{$icomoon-font-path}/Akrobat-Thin.woff') format('woff'),
-  url('#{$icomoon-font-path}/Akrobat-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Akrobat';
-  src: url('#{$icomoon-font-path}/Akrobat-Bold.eot');
-  src: url('#{$icomoon-font-path}/Akrobat-Bold.eot?#iefix') format('embedded-opentype'),
-  url('#{$icomoon-font-path}/Akrobat-Bold.woff') format('woff'),
-  url('#{$icomoon-font-path}/Akrobat-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Akrobat';
-  src: url('#{$icomoon-font-path}/Akrobat-Regular.eot');
-  src: url('#{$icomoon-font-path}/Akrobat-Regular.eot?#iefix') format('embedded-opentype'),
-  url('#{$icomoon-font-path}/Akrobat-Regular.woff') format('woff'),
-  url('#{$icomoon-font-path}/Akrobat-Regular.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Akrobat';
-  src: url('#{$icomoon-font-path}/Akrobat-Light.eot');
-  src: url('#{$icomoon-font-path}/Akrobat-Light.eot?#iefix') format('embedded-opentype'),
-  url('#{$icomoon-font-path}/Akrobat-Light.woff') format('woff'),
-  url('#{$icomoon-font-path}/Akrobat-Light.ttf') format('truetype');
-  font-weight: 300;
   font-style: normal;
 }
 
@@ -66,269 +26,168 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-.uikit-plus-round {
-  &:before {
-    content: $uikit-plus-round;
-  }
+.uikit-mouse:before {
+  content: "\e916";
 }
-.uikit-close-empty {
-  &:before {
-    content: $uikit-close-empty;
-  }
+.uikit-search:before {
+  content: "\e036";
 }
-.uikit-trash {
-  &:before {
-    content: $uikit-trash;
-  }
+.uikit-zoom-in:before {
+  content: "\e037";
 }
-.uikit-chevron-up {
-  &:before {
-    content: $uikit-chevron-up;
-  }
+.uikit-zoom-out:before {
+  content: "\e038";
 }
-.uikit-chevron-down {
-  &:before {
-    content: $uikit-chevron-down;
-  }
+.uikit-repeat:before {
+  content: "\e058";
 }
-.uikit-arrow-forward {
-  &:before {
-    content: $uikit-arrow-forward;
-  }
+.uikit-reload:before {
+  content: "\e080";
 }
-.uikit-arrow-back {
-  &:before {
-    content: $uikit-arrow-back;
-  }
+.uikit-share:before {
+  content: "\e081";
 }
-.uikit-edit {
-  &:before {
-    content: $uikit-edit;
-  }
+.uikit-arrow-left:before {
+  content: "\e094";
 }
-.uikit-bag-false {
-  &:before {
-    content: $uikit-bag-false;
-  }
+.uikit-arrow-right:before {
+  content: "\e095";
 }
-.uikit-bag-is {
-  &:before {
-    content: $uikit-bag-is;
-  }
+.uikit-arrow-up:before {
+  content: "\e096";
 }
-.uikit-location-false {
-  &:before {
-    content: $uikit-location-false;
-  }
+.uikit-arrow-down:before {
+  content: "\e097";
 }
-.uikit-location-is {
-  &:before {
-    content: $uikit-location-is;
-  }
+.uikit-plus:before {
+  content: "\e114";
 }
-.uikit-purse-is {
-  &:before {
-    content: $uikit-purse-is;
-  }
+.uikit-minus:before {
+  content: "\e115";
 }
-.uikit-barcode {
-  &:before {
-    content: $uikit-barcode;
-  }
+.uikit-check:before {
+  content: "\e116";
 }
-.uikit-phone {
-  &:before {
-    content: $uikit-phone;
-  }
+.uikit-cross:before {
+  content: "\e117";
 }
-.uikit-twitter {
-  &:before {
-    content: $uikit-twitter;
-  }
+.uikit-ellipsis:before {
+  content: "\e129";
 }
-.uikit-google-plus {
-  &:before {
-    content: $uikit-google-plus;
-  }
+.uikit-mail-ru:before {
+  content: "\e917";
 }
-.uikit-exclamation {
-  &:before {
-    content: $uikit-exclamation;
-  }
+.uikit-facebook-official:before {
+  content: "\e918";
 }
-.uikit-html5 {
-  &:before {
-    content: $uikit-html5;
-  }
+.uikit-plus-round:before {
+  content: "\e905";
 }
-.uikit-youtube-play {
-  &:before {
-    content: $uikit-youtube-play;
-  }
+.uikit-close-empty:before {
+  content: "\e906";
 }
-.uikit-instagram {
-  &:before {
-    content: $uikit-instagram;
-  }
+.uikit-trash:before {
+  content: "\e907";
 }
-.uikit-vk {
-  &:before {
-    content: $uikit-vk;
-  }
+.uikit-chevron-up:before {
+  content: "\e908";
 }
-.uikit-yahoo {
-  &:before {
-    content: $uikit-yahoo;
-  }
+.uikit-chevron-down:before {
+  content: "\e909";
 }
-.uikit-google {
-  &:before {
-    content: $uikit-google;
-  }
+.uikit-arrow-forward:before {
+  content: "\e90a";
 }
-.uikit-share-alt {
-  &:before {
-    content: $uikit-share-alt;
-  }
+.uikit-arrow-back:before {
+  content: "\e90b";
 }
-.uikit-facebook-official {
-  &:before {
-    content: $uikit-facebook-official;
-  }
+.uikit-edit:before {
+  content: "\e90c";
 }
-.uikit-whatsapp {
-  &:before {
-    content: $uikit-whatsapp;
-  }
+.uikit-bag-false:before {
+  content: "\e900";
 }
-.uikit-odnoklassniki {
-  &:before {
-    content: $uikit-odnoklassniki;
-  }
+.uikit-bag-is:before {
+  content: "\e901";
 }
-.uikit-alert {
-  font-size: 9px;
-  &:before {
-    content: $uikit-alert;
-  }
+.uikit-location-false:before {
+  content: "\e902";
 }
-.uikit-barcode2 {
-  &:before {
-    content: $uikit-barcode2;
-  }
+.uikit-location-is:before {
+  content: "\e903";
 }
-.uikit-brash {
-  font-size: 9px;
-
-  &:before {
-    content: $uikit-brash;
-  }
+.uikit-purse-is:before {
+  content: "\e904";
 }
-.uikit-human {
-  &:before {
-    content: $uikit-human;
-  }
+.uikit-barcode:before {
+  content: "\f02a";
 }
-.uikit-info {
-  font-size: 9px;
-  &:before {
-    content: $uikit-info;
-  }
+.uikit-phone:before {
+  content: "\f095";
 }
-.uikit-lines {
-  &:before {
-    content: $uikit-lines;
-  }
+.uikit-twitter:before {
+  content: "\f099";
 }
-.uikit-pencil {
-  &:before {
-    content: $uikit-pencil;
-  }
+.uikit-google-plus:before {
+  content: "\f0d5";
 }
-.uikit-people {
-  &:before {
-    content: $uikit-people;
-  }
+.uikit-exclamation:before {
+  content: "\f12a";
 }
-.uikit-photo {
-  &:before {
-    content: $uikit-photo;
-  }
+.uikit-html5:before {
+  content: "\f13b";
 }
-.uikit-search {
-  &:before {
-    content: $uikit-search;
-  }
+.uikit-youtube-play:before {
+  content: "\f16a";
 }
-.uikit-zoom-in {
-  &:before {
-    content: $uikit-zoom-in;
-  }
+.uikit-instagram:before {
+  content: "\f16d";
 }
-.uikit-zoom-out {
-  &:before {
-    content: $uikit-zoom-out;
-  }
+.uikit-vk:before {
+  content: "\f189";
 }
-.uikit-repeat {
-  &:before {
-    content: $uikit-repeat;
-  }
+.uikit-yahoo:before {
+  content: "\f19e";
 }
-.uikit-reload {
-  &:before {
-    content: $uikit-reload;
-  }
+.uikit-google:before {
+  content: "\f1a0";
 }
-.uikit-share {
-  &:before {
-    content: $uikit-share;
-  }
+.uikit-share-alt:before {
+  content: "\f1e0";
 }
-.uikit-arrow-left {
-  &:before {
-    content: $uikit-arrow-left;
-  }
+.uikit-whatsapp:before {
+  content: "\f232";
 }
-.uikit-arrow-right {
-  &:before {
-    content: $uikit-arrow-right;
-  }
+.uikit-odnoklassniki:before {
+  content: "\f263";
 }
-.uikit-arrow-up {
-  &:before {
-    content: $uikit-arrow-up;
-  }
+.uikit-alert:before {
+  content: "\e90d";
 }
-.uikit-arrow-down {
-  &:before {
-    content: $uikit-arrow-down;
-  }
+.uikit-barcode2:before {
+  content: "\e90e";
 }
-.uikit-plus {
-  &:before {
-    content: $uikit-plus;
-  }
+.uikit-brash:before {
+  content: "\e90f";
 }
-.uikit-minus {
-  &:before {
-    content: $uikit-minus;
-  }
+.uikit-human:before {
+  content: "\e910";
 }
-.uikit-check {
-  &:before {
-    content: $uikit-check;
-  }
+.uikit-info:before {
+  content: "\e911";
 }
-.uikit-cross {
-  &:before {
-    content: $uikit-cross;
-  }
+.uikit-lines:before {
+  content: "\e912";
 }
-.uikit-ellipsis {
-  &:before {
-    content: $uikit-ellipsis;
-  }
+.uikit-pencil:before {
+  content: "\e913";
 }
-
+.uikit-people:before {
+  content: "\e914";
+}
+.uikit-photo:before {
+  content: "\e915";
+}
+.uikit-file-text:before {
+  content: "\e926";
+}

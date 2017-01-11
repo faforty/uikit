@@ -183,11 +183,11 @@
                 event.stopPropagation()
             })
 
-            document.body.addEventListener('click', function () {
+            document.body.addEventListener('click', function(){
                 this.hideDropdown();
             }.bind(this))
 
-            if (this.$slots.default[0].text) {
+            if (this.$slots.default) {
                 this.label = this.$slots.default[0].text
             }
         }

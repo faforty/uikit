@@ -2,7 +2,7 @@
   "name": "uikit-agro24",
   "description": "",
   "author": "faforty <faforty@ya.ru>",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "scripts": {
     "dev": "webpack-dev-server --inline --content-base ./",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
