@@ -9,6 +9,7 @@
         </div>
     </div>
 </template>
+
 <script>
     var Velocity = require('velocity-animate')
 

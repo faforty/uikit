@@ -15,7 +15,7 @@ var extractCSS = new ExtractTextPlugin('/css/uikit.css');
 
 module.exports = {
   entry: [
-    './src/vue/uikit.js',
+    './src/vue/index.js',
     './src/scss/main.scss'
   ],
   output: {
@@ -29,7 +29,7 @@ module.exports = {
   },
   resolve: {
       extensions: ['', '.js', '.vue'],
-      fallback: [path.join(__dirname, '../node_modules')],
+      fallback: [ path.join(__dirname, '../node_modules') ],
 
       // root: path.resolve(__dirname),
   },

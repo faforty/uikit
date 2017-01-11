@@ -37,7 +37,14 @@
 </template>
 
 <script>
+    import uiLabel from './ui-label.vue';
+    import uiInput from './ui-input.vue';
+
     export default {
+        components: {
+            uiLabel,
+            uiInput
+        },
         props: {
             options: {},
             optionsRules: Object,

@@ -1,5 +1,10 @@
 <script>
+import uiInkRipple from './ui-ink-ripple/ui-Ink-ripple.vue';
+
 export default {
+    compoents: {
+        uiInkRipple
+    },
     props: {
         href: String,
         type: String,

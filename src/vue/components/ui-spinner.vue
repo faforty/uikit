@@ -7,6 +7,7 @@
         <slot></slot>
     </div>
 </template>
+
 <script>
     const MIN_WAIT = 500
 

@@ -6,6 +6,7 @@
         </label>
     </div>
 </template>
+
 <script>
     /**
     * name - attr name (String)

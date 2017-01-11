@@ -17,10 +17,15 @@
         </div>
     </div>
 </template>
+
 <script>
-    import debounce from 'lodash.debounce'
+    import debounce from 'lodash.debounce';
+    import uiInput from './ui-input.vue';
 
     export default {
+        components: {
+            uiInput
+        },
         props: {
             ajaxUrl: String,
             ajaxData: Object,
@@ -219,4 +224,3 @@
         }
     }
 </script>
-

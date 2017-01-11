@@ -6,6 +6,7 @@
         </div>
     </div>
 </template>
+
 <script>
     export default {
         props: {
@@ -46,11 +47,11 @@
         },
         mounted () {
             this.$refs.box.addEventListener('click', function (event) {
-				event.stopPropagation()
-			})
-			document.body.addEventListener('click', function () {
-				this.show = false
-			}.bind(this))
+                event.stopPropagation()
+            })
+            document.body.addEventListener('click', function () {
+                this.show = false
+            }.bind(this))
         }
     }
 </script>

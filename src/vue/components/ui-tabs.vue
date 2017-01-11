@@ -10,6 +10,7 @@
         <slot name="contents"></slot>
     </div>
 </template>
+
 <script>
     var Velocity = require('velocity-animate')
 
@@ -156,7 +157,7 @@
         },
         mounted () {
             this.tabSelect(this.active);
-            
+
             this._resizeEvent = event => {
                 this.resizeIndicator()
             };

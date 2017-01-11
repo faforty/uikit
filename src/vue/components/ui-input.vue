@@ -26,10 +26,15 @@
         </div>
     </ui-label>
 </template>
+
 <script>
-    import ValidatesInput from './../mixins/ValidatesInput'
+    import ValidatesInput from './../mixins/ValidatesInput';
+    import uiLabel from './ui-label.vue';
 
     export default {
+        components: {
+            uiLabel
+        },
         props: {
             type: {
                 type:    String,

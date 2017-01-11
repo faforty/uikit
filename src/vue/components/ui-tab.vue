@@ -3,6 +3,7 @@
         <slot></slot>
     </li>
 </template>
+
 <script>
     import getClosestVueParent from '../until/getClosestVueParent';
 

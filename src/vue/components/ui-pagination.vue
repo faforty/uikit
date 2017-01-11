@@ -17,8 +17,14 @@
         </li>
     </ul>
 </template>
+
 <script>
+    import uiButton from './ui-button.vue';
+
     export default {
+        components: {
+            uiButton
+        },
         props: ['prevLink', 'prevName', 'nextLink', 'nextName', 'step', 'stepAll']
     }
 </script>

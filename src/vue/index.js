@@ -9,7 +9,7 @@ if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(VueEvents)
     window.Vue.use(VueResource)
     window.Vue.use(uiKit)
-    
+
     window.uiKit = uiKit
     window.VueEvents = VueEvents
     window.Validator = Validator

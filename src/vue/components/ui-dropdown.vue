@@ -11,6 +11,7 @@
         <div :class="{ 'ui-dropdown__overlay': true, 'ui-animation-zoom enter': opened }"></div>
     </div>
 </template>
+
 <script>
     export default {
         data: () => ({
@@ -23,11 +24,11 @@
         },
         mounted () {
             this.$el.addEventListener('click', function (event) {
-				event.stopPropagation()
-			})
-			document.body.addEventListener('click', function () {
-				this.opened = false
-			}.bind(this))
+                event.stopPropagation()
+            })
+            document.body.addEventListener('click', function () {
+                this.opened = false
+            }.bind(this))
         }
     }
 

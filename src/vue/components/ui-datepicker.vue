@@ -12,9 +12,15 @@
         </div>
     </ui-popup>
 </template>
+
 <script>
-import moment from 'moment'
+import moment from 'moment';
+import uiPopup from './ui-popup.vue'
+
 export default {
+  components: {
+    uiPopup
+  },
   props: {
     required: false,
     show: {
