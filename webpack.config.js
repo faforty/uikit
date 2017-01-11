@@ -15,13 +15,17 @@ var extractCSS = new ExtractTextPlugin('/css/uiKit.css');
 
 module.exports = {
   entry: [
-    './src/vue/index.js',
+    './src/vue/uikit.js',
     './src/scss/main.scss'
   ],
   output: {
     path: path.resolve(__dirname, './dist/'),
     publicPath: devMode ? '/dist/' : '../',
-    filename: '/js/uiKit.'+uikitVersion+'.js'
+    filename: '/js/uiKit.'+uikitVersion+'.js',
+    library: 'uikit-agro24',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+
   },
   resolve: {
       extensions: ['', '.js', '.vue'],
@@ -89,28 +93,4 @@ module.exports = {
   }
 }
 
-if (!devMode) {
-  module.exports.devtool = '#source-map';
 
-  module.exports.plugins.push(
-    new webpack.optimize.DedupePlugin(),
-    new webpack.LoaderOptionsPlugin({
-        minimize: true,
-        debug: false,
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        dead_code: true,
-        warnings: false,
-        drop_console: true,
-        unsafe: true,
-        booleans : true,
-        loops : true,
-        unused: true
-      },
-      comments: false,
-      beautify: false,
-    })
-  );
-}

@@ -1,5 +1,9 @@
 {
   "presets": [
-    ["es2015", { "modules": false }]
+    ["es2015", { "modules": false }],
+  ],
+  "plugins": [
+    "add-module-exports",
+    "transform-es2015-modules-umd"
   ]
 }

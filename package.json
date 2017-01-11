@@ -5,7 +5,8 @@
   "version": "2.0.6",
   "scripts": {
     "dev": "webpack-dev-server --inline --content-base ./",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build_common": "cross-env NODE_ENV=production webpack --progress --config ./scripts/webpack.common.js --env production --display-error-details"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.13.2",
     "cross-env": "^1.0.6",
     "css-loader": "^0.23.1",
