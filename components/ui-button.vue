@@ -2,7 +2,7 @@
 import uiInkRipple from './ui-ink-ripple/ui-Ink-ripple.vue';
 
 export default {
-    compoents: {
+    components: {
         uiInkRipple
     },
     props: {
