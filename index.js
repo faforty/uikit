@@ -1,8 +1,5 @@
-import VueResource from 'vue-resource'
-
-import VueEvents from './vue-events'
 import components from './components';
-import untilDeclOfNum from './until/declOfNum';
+import plugins from './plugins';
 
 function helpers () {
     let untils = {
@@ -21,11 +18,13 @@ export * from './components';
 export default function plugin(Vue) {
     if (plugin.installed) return;
 
-    helpers();
-    Vue.use(VueResource);
-    Vue.use(VueEvents);
+    Vue.use(plugins);
 
     Object.keys(components).forEach(name => {
         Vue.component(name, components[name]);
     });
+}
+
+if (typeof window !== 'undefined' && window.Vue) {
+    window.Vue.use(plugin);
 }

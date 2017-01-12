@@ -15,8 +15,8 @@ var extractCSS = new ExtractTextPlugin('/css/uikit.css');
 
 module.exports = {
   entry: [
-    './src/vue/index.js',
-    './src/scss/main.scss'
+    './index.js',
+    './scss/main.scss'
   ],
   output: {
     path: path.resolve(__dirname, './dist/'),
