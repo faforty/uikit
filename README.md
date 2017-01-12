@@ -48,6 +48,7 @@ export default {
 };
 </script>
 ```
+> Don't forget styles
 ### Browser globals
 ```html
 <!-- In head. -->
