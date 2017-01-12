@@ -50,7 +50,7 @@ import uiButton from 'uikit-agro24/components/ui-button.vue';
 
 export default {
     components: {
-        uiBotton
+        uiButton
     }
 };
 </script>
