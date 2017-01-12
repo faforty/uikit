@@ -120,6 +120,8 @@ if (nodeEnv === 'package') {
     './index.js'
   ];
 
+  module.exports.target = 'node';
+
   module.exports.output = {
     path: path.resolve(__dirname, './lib/'),
     filename: './index.js',
