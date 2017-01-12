@@ -3,19 +3,25 @@
 > A Vue.js project
 
 ## Use it
+
 ### Npm package
+
 #### Install
+
 ```sh
 $ npm i -S uikit-agro24
 ```
 
 #### In your code
+
 ```js
 import uiKit from 'uikit-agro24';
 
 Vue.use(uiKit);
 ```
+
 or for reduce bundle size
+
 ```js
 // index.js
 import Vue from 'vue';
@@ -28,6 +34,7 @@ new Vue({
     render: h => h(App)
 });
 ```
+
 ```js
 // App.js
 <template>
@@ -48,8 +55,11 @@ export default {
 };
 </script>
 ```
+
 > Don't forget styles
+
 ### Browser globals
+
 ```html
 <!-- In head. -->
 <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&subset=cyrillic" rel="stylesheet">
