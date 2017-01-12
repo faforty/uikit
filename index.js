@@ -15,10 +15,10 @@ function helpers () {
 
 export * from './components';
 
-export default function plugin(Vue) {
+export default function plugin(Vue, options = { lang: 'ru' }) {
     if (plugin.installed) return;
 
-    Vue.use(plugins);
+    Vue.use(plugins, options);
 
     Object.keys(components).forEach(name => {
         Vue.component(name, components[name]);

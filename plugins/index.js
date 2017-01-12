@@ -1,4 +1,5 @@
 import VueResource from 'vue-resource';
+import Validator from 'validatorjs';
 
 import VueEvents from './vue-events';
 import untilDeclOfNum from '../until/declOfNum';
@@ -15,8 +16,11 @@ function helpers () {
     }
 }
 
-export default function plugin(Vue) {
+export default function plugin(Vue, { lang }) {
     helpers();
+
+    Validator.useLang(lang);
+
     Vue.use(VueResource);
     Vue.use(VueEvents);
 }
