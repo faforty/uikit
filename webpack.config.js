@@ -22,10 +22,6 @@ module.exports = {
     path: path.resolve(__dirname, './dist/'),
     publicPath: devMode ? '/dist/' : '../',
     filename: '/js/uikit.js',
-    library: 'uikit-agro24',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-
   },
   resolve: {
       extensions: ['', '.js', '.vue'],
@@ -91,7 +87,7 @@ module.exports = {
   }
 }
 
-if (!devMode) {
+if (nodeEnv === 'production') {
   module.exports.devtool = '#source-map';
 
   module.exports.plugins.push(
@@ -114,5 +110,30 @@ if (!devMode) {
       comments: false,
       beautify: false,
     })
+  );
+}
+
+if (nodeEnv === 'package') {
+  module.exports.devtool = false;
+
+  module.exports.entry = [
+    './index.js'
+  ];
+
+  module.exports.output = {
+    path: path.resolve(__dirname, './lib/'),
+    filename: './index.js',
+    library: 'uikit-agro24',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  };
+
+  module.exports.plugins.push(
+    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+        minimize: true,
+        debug: false,
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   );
 }
