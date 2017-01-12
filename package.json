@@ -2,11 +2,10 @@
   "name": "uikit-agro24",
   "description": "",
   "author": "faforty <faforty@ya.ru>",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "scripts": {
     "dev": "webpack-dev-server --inline --content-base ./",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "build_common": "cross-env NODE_ENV=production webpack --progress --config ./scripts/webpack.common.js --env production --display-error-details"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
