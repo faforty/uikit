@@ -11,6 +11,7 @@
 ```sh
 $ npm i -S uikit-agro24
 ```
+> **Important**: don't turn off vue-loader and babel on node_modules for this package. It used for compiling package for your version of vue.
 
 #### In your code
 
