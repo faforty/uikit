@@ -99,13 +99,14 @@ if (nodeEnv === 'production') {
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
+        sequences: true,
+        booleans : true,
+        loops : true,
+        unused: true
         dead_code: true,
         warnings: false,
         drop_console: true,
         unsafe: true,
-        booleans : true,
-        loops : true,
-        unused: true
       },
       comments: false,
       beautify: false,
