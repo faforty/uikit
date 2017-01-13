@@ -16,7 +16,7 @@ function helpers () {
     }
 }
 
-export default function plugin(Vue, { lang }) {
+export default function plugin(Vue, { lang = 'ru' } = {}) {
     helpers();
 
     Validator.useLang(lang);
