@@ -102,11 +102,11 @@ if (nodeEnv === 'production') {
         sequences: true,
         booleans : true,
         loops : true,
-        unused: true
+        unused: true,
         dead_code: true,
         warnings: false,
         drop_console: true,
-        unsafe: true,
+        unsafe: true
       },
       comments: false,
       beautify: false,
