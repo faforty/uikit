@@ -12,6 +12,22 @@
 $ npm i -S uikit-agro24
 ```
 > **Important**: don't turn off vue-loader and babel on node_modules for this package. It used for compiling package for your version of vue.
+> **Important**: include in your bundle only necessary languages
+
+```js
+// webpack.config.js
+
+module.exports = {
+    ...
+    plugins: [
+        ...
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/),
+        new webpack.ContextReplacementPlugin(/validatorjs[\/\\]src[\/\\]lang$/, /en|ru/),
+        ...
+    ]
+    ...
+}
+```
 
 #### In your code
 
