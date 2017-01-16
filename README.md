@@ -1,6 +1,6 @@
 # uiKit
 
-> A Vue.js project
+> A Vue.js super project created to inspire
 
 ## Use it
 
