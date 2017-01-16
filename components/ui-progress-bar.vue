@@ -1,6 +1,7 @@
 <template>
-    <div v-bind:id="randomId" v-bind:style="Object.assign({width: size, height: size}, style)">
-        <slot></slot>
+    <div class="form-group form-group--align" style="justify-content:flex-start">
+        <div class="ui-progressbar" ref="progressbar" :style="style"></div>
+        <label><slot></slot></label>
     </div>
 </template>
 
@@ -9,91 +10,75 @@
 
     export default {
          props: {
-            style: {
-                type: Object
+            value:    Number,
+            maxValue: {
+                type:    Number,
+                default: 1,
             },
             size: {
-                type: String,
-                default: '100px'
-            },
-             options: {
-                type: Object,
-                default () {
-                    return {
-                        color: '#000',
-                        trailColor: '#d6dad9',
+                type:    Number,
+                default: 40
+            }
+        },
 
-                        // This has to be the same size as the maximum width to
-                        // prevent clipping
-                        strokeWidth: 5,
-                        trailWidth: 5,
-                        easing: 'easeInOut',
-                        duration: 1400,
-                        text: {
-                            autoStyleContainer: false
-                        },
-                        from: { color: '#1ac17b', width: 5 },
-                        to: { color: '#1ac17b', width: 5 },
-                        step: function(state, circle) {
-                            circle.path.setAttribute('stroke', state.color);
-                            circle.path.setAttribute('stroke-width', state.width);
-                        }
-                    }
+        data: () => ({
+            progressbar: null,
+            options: {
+                color:       '#989898',
+                trailColor:  '#d6dad9',
+                strokeWidth: 5,
+                trailWidth:  5,
+
+                easing:   'easeInOut',
+                duration: 500,
+
+                // text: {
+                //     autoStyleContainer: false
+                // },
+
+                from: {color: '#1ac17b', width: 5},
+                to:   {color: '#1ac17b', width: 5},
+
+                step: function(state, circle) {
+                    circle.path.setAttribute('stroke',       state.color);
+                    circle.path.setAttribute('stroke-width', state.width);
                 }
             },
-            animate: {
-              type: Object,
-              default () {
-                   return {
-                        progress : 0 , //Number from 0.0 to 1.0
-                   }
-              }
-            },
-            type: {
-              type: String,
-              default: 'Line'
-            }
-        },
-        data () {
-            return {
-                 circle: null,
-            }
-        },
-        mounted () {
-            this.drawProgressbar()
-        },
-        methods: {
-            drawProgressbar () {
-
-                this.circle = new progressbar.Circle(document.getElementById(this.randomId), this.options);
-
-
-            }
-        },
-
-
-        beforeUpdate () {
-            this.circle.set(this.animate.progress)
-        },
-
-        destroyed () {
-            this.circle.destroy()
-        },
-        updated () {
-            if (!this.cicle) {
-              this.cicle = true
-
-              this.circle.animate(this.animate.progress)
-            }
-        },
+        }),
 
         computed: {
-            animateNumber () {
-                return this.animate
+            style() {
+                var size = this.size + 'px';
+                return {width: size, height: size};
             },
-            randomId () {
-                return 'progressbar-js_' + Math.floor((1 + Math.random()) * 0x10000)
+
+            progress() {
+                return this.maxValue ? this.value / this.maxValue : 0;
             }
-        }
+        },
+
+        watch: {
+            progress(progress) {
+                this.animate();
+            }
+        },
+
+        methods: {
+            drawProgressbar () {
+                this.progressbar = new progressbar.Circle(this.$refs.progressbar, this.options);
+            },
+            animate() {
+                this.progressbar.setText(this.value + '/' + this.maxValue);
+                this.progressbar.animate(this.progress);
+            }
+        },
+
+        mounted () {
+            this.drawProgressbar();
+            this.animate();
+        },
+        destroyed () {
+            this.progressbar.destroy()
+        },
     }
 </script>

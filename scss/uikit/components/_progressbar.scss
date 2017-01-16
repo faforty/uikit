@@ -1,0 +1,19 @@
+.ui {
+  &-progressbar {
+    position:     relative;
+    display:      inline-block;
+    margin-right: 20px;
+
+    &--circle {
+      height: 60px;
+      width: 60px;
+    }
+
+    .progressbar-text {
+      font-weight: 300;
+      font-size:   0.9em
+    }
+
+  }
+
+}

@@ -303,6 +303,13 @@
                     <a href="" class="ui-social ui-social--facebook uikit-facebook-official"></a>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <ui-progress-bar :value="progressValue" :max-value="progressMax">Label</ui-progress-bar>
+                    <ui-button class="ui-btn--xs" @click="nextStep">next</ui-button>
+                    <ui-button class="ui-btn--xs" @click="resetStep">reset</ui-button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -315,14 +322,26 @@
                 dd3: ['day', 'week'],
                 title_1: '',
                 isHideField: false,
-                chips: []
+                chips: [],
+                progressValue: 1,
+                progressMax: 5,
             }),
             methods: {
+                nextStep() {
+                    this.progressValue = Math.min(this.progressValue+1, this.progressMax);
+                },
+                nextMax() {
+                    this.progressMax ++;
+                },
+                resetStep() {
+                    this.progressValue = 0;
+                    this.progressMax   = 5;
+                },
                 changeTabs (tab) {
                     console.log(tab.id)
-                }
+                },
             },
-            mounted () {
+            mounted() {
                 this.$refs.spinner.show()
             }
         })
