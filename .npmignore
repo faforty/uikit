@@ -1,4 +1,6 @@
 .editorconfig
 .gitignore
 .idea
+.babelrc
 src/
+uikit.jpg
