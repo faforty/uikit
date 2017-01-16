@@ -85,3 +85,31 @@ export default {
 <!-- In bottom of body. After vue.js include. -->
 <script src="/uikit/<version>/uikit.js"></script>
 ```
+
+### Options
+
+Lang change. By default we use 'ru' lang.
+
+```js
+Vue.useLang('en');
+```
+
+We had proxy for Validatorjs on Vue object.
+
+```js
+Vue.validator.register('telephone', function(value, requirement, attribute) {
+    return value.match(/^\d{3}-\d{3}-\d{4}$/);
+}, 'The :attribute phone number is not in the format XXX-XXX-XXXX.');
+```
+
+Options than we could use in package version.
+
+```js
+Vue.use(uiKit, {
+    lang: 'ru'
+});
+
+// or for uiKitPlugins
+
+Vue.use(uiKitPlugins, options);
+```
