@@ -428,10 +428,11 @@
     }
 
     &__disabled {
-      background: #dedede;
+      background: rgba(231, 231, 231, .53);
+
       > i,
-      > span {
-        color: #808080 !important;
+      > span > span {
+        color: #9a9a9a !important;
       }
     }
 
