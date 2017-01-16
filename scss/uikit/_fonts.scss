@@ -1,0 +1,41 @@
+@import "./font/style"; // icomoon
+
+@font-face {
+  font-family: 'Akrobat';
+  src: url('#{$icomoon-font-path}/Akrobat-Thin.eot');
+  src: url('#{$icomoon-font-path}/Akrobat-Thin.eot?#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/Akrobat-Thin.woff') format('woff'),
+  url('#{$icomoon-font-path}/Akrobat-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src: url('#{$icomoon-font-path}/Akrobat-Bold.eot');
+  src: url('#{$icomoon-font-path}/Akrobat-Bold.eot?#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/Akrobat-Bold.woff') format('woff'),
+  url('#{$icomoon-font-path}/Akrobat-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src: url('#{$icomoon-font-path}/Akrobat-Regular.eot');
+  src: url('#{$icomoon-font-path}/Akrobat-Regular.eot?#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/Akrobat-Regular.woff') format('woff'),
+  url('#{$icomoon-font-path}/Akrobat-Regular.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src: url('#{$icomoon-font-path}/Akrobat-Light.eot');
+  src: url('#{$icomoon-font-path}/Akrobat-Light.eot?#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/Akrobat-Light.woff') format('woff'),
+  url('#{$icomoon-font-path}/Akrobat-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
