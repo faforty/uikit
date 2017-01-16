@@ -1,3 +1,5 @@
+<p align="center"><img src="https://github.com/faforty/uikit/raw/master/uikit.jpg" /></p>
+
 # uiKit
 
 > A Vue.js super project created to inspire
