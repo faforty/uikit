@@ -1,4 +1,5 @@
 .editorconfig
 .gitignore
 .idea
+.babelrc
 src/
