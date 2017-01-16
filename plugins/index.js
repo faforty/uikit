@@ -21,6 +21,8 @@ export default function plugin(Vue, { lang = 'ru' } = {}) {
 
     Validator.useLang(lang);
 
+    Vue.validator = Validator;
+
     Vue.use(VueResource);
     Vue.use(VueEvents);
 }
