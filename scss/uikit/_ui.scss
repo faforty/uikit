@@ -428,8 +428,10 @@
     }
 
     &__disabled {
-      i, span {
-        color: #dedede;
+      background: #dedede;
+      > i,
+      > span {
+        color: #808080 !important;
       }
     }
 

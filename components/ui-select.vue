@@ -131,7 +131,9 @@
                 }
             },
             toggleDropdown: function () {
-                this.show = !this.show;
+                var show = this.disabled ? false : !this.show;
+
+                this.show = show;
 
                 if (this.search && this.show) {
                     this.$refs.uiSelectSearch.focus()
