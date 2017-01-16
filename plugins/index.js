@@ -16,11 +16,16 @@ function helpers () {
     }
 }
 
+function useLang(lang = 'ru') {
+    Validator.useLang(lang);
+};
+
 export default function plugin(Vue, { lang = 'ru' } = {}) {
     helpers();
 
-    Validator.useLang(lang);
+    useLang('ru');
 
+    Vue.useLang = useLang;
     Vue.validator = Validator;
 
     Vue.use(VueResource);
