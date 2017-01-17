@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <ui-input v-model="title_1" placeholder="Пример">Заголовок</ui-input>
+                        <ui-input v-model="title_1" placeholder="Пример"> <small>Заголовок</small> </ui-input>
                     </div>
                     <div class="form-group">
                         <ui-input value="Введеный текст">Заголовок</ui-input>
@@ -307,7 +307,8 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <ui-progress-bar :value="progressValue" :max-value="progressMax">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</ui-progress-bar>
+                    <ui-progress-bar :size=50 :value="progressValue" :max-value="progressMax">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</ui-progress-bar>
+
                     <ui-button class="ui-btn--xs" @click="nextStep">next</ui-button>
                     <ui-button class="ui-btn--xs" @click="resetStep">reset</ui-button>
                 </div>

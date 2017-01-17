@@ -1,5 +1,8 @@
 <template id="ui-select">
-    <ui-label :filled="filled" :label="label">
+    <ui-label :filled="filled">
+
+        <template slot="label"><slot></slot></template>
+
         <div class="ui-select">
             <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown">
                 <template v-if="(search && !show) || !search">
@@ -80,7 +83,6 @@
                 selectId: [],
                 searchText: '',
                 results: {},
-                label: '',
                 filled: false
             };
         },
@@ -195,10 +197,6 @@
             document.body.addEventListener('click', function(){
                 this.hideDropdown();
             }.bind(this))
-
-            if (this.$slots.default) {
-                this.label = this.$slots.default[0].text
-            }
         }
     }
 </script>

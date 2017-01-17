@@ -1,5 +1,8 @@
 <template>
-    <ui-label :filled="filled" :form-group="formGroup" :label-show="label" :label="labelText" :label-align="labelAlign" :state="fieldState">
+    <ui-label :filled="filled" :form-group="formGroup" :label-show="label" :label-align="labelAlign" :state="fieldState">
+
+        <template slot="label"><slot></slot></template>
+
         <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
             <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
                 <i :class="['ico', icon]" v-show="icon"></i>
@@ -24,6 +27,7 @@
                 <a class="ui-action ui-input__help__action uikit-info"></a>
             </div>
         </div>
+
     </ui-label>
 </template>
 
@@ -150,10 +154,6 @@
 
             if (this.autofocus) {
                 this.focus();
-            }
-
-            if (this.$slots.default) {
-                this.labelText = this.$slots.default[0].text
             }
 
             if (this.mValue) {

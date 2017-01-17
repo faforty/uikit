@@ -1,6 +1,8 @@
 <template>
     <div :class="{ 'form-group': formGroup, 'has-danger': state == 'error', 'has-success': state == 'success',  'form-group--align': labelAlign, 'form-group--align--right': labelAlign == 'right', 'form-adaptive': adaptive }">
-        <label :class="[colorObject.cls ]" :style="{color: !colorObject.cls ? colorObject.color : false}" v-show="labelShow">{{ label }}</label>
+        <label :class="[colorObject.cls]" :style="{color: !colorObject.cls ? colorObject.color : false}" v-show="labelShow">
+            <slot name="label">{{ label }}</slot>
+        </label>
         <slot></slot>
     </div>
 </template>
