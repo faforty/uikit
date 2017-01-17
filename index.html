@@ -322,6 +322,21 @@
                     <span class="uikit-logo"></span>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <ui-radio name="radioA" v-model="radioValueA" @change="changeRadio">Radio One</ui-radio>
+                    <ui-radio name="radioA" v-model="radioValueA" @change="changeRadio">Radio Two</ui-radio>
+                    Selected: <b>{{ radioValueA }}</b>
+                </div>
+
+                <div class="col-md-3">
+                    <ui-radio value-data="One" v-model="radioValueB">Radio One</ui-radio>
+                    <ui-radio value-data="Two" v-model="radioValueB">Radio Two</ui-radio>
+                    <ui-radio value-data="Tree" v-model="radioValueB" disabled>Radio Tree</ui-radio>
+                    Selected: <b>{{ radioValueB }}</b>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -330,6 +345,8 @@
         new Vue({
             el: '#app',
             data: () => ({
+                radioValueA:   '',
+                radioValueB:   'One',
                 dd:            [],
                 dd3:           ['day', 'week'],
                 title_1:       '',
@@ -355,6 +372,9 @@
                 },
                 toggleSpinner() {
                     this.showSpinner = !this.showSpinner;
+                },
+                changeRadio(val) {
+                    console.log( val );
                 }
             },
             mounted() {
