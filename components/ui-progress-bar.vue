@@ -1,6 +1,8 @@
 <template>
     <div class="form-group form-group--align" style="justify-content:flex-start">
-        <div class="ui-progressbar" ref="progressbar" :style="style"></div>
+        <div class="ui-progressbar">
+            <div ref="progressbar" :style="style"></div>
+        </div>
         <label><slot></slot></label>
     </div>
 </template>
