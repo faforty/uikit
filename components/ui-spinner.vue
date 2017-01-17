@@ -13,30 +13,43 @@
 
     export default {
         props: {
+            value: {
+                type:    Boolean,
+                default: false
+            },
             size: {
-                type: String,
-                'default': 'md'
+                type:    String,
+                default: 'md'
             },
             text: {
-                type: String,
-                'default': ''
+                type:    String,
+                default: ''
             },
             fixed: {
-                type: Boolean,
-                'default': false
+                type:    Boolean,
+                default: false
             }
         },
-         events: {
-        },
+
         data: () => ({
             active: false
         }),
+
         computed: {
             spinnerSize () {
                 return this.size ? 'ui-spinner--' + this.size : 'ui-spinner--sm'
             }
         },
+
+        watch: {
+            value(value) {
+                value ? this.show() : this.hide();
+            }
+        },
+
         mounted () {
+            this.value ? this.show() : this.hide();
+
             this._body = document.querySelector('body')
             this._bodyOverflow = this._body.style.overflowY || ''
 
@@ -53,11 +66,13 @@
                 this.hide()
             })
         },
+
         methods: {
             getMinWait (delay) {
                 delay = delay || 0
                 return new Date().getTime() - this._started.getTime() < MIN_WAIT ? MIN_WAIT - parseInt(new Date().getTime() - this._started.getTime(), 10) + delay : 0 + delay
             },
+
             show (options) {
                 if (options && options.text) {
                     this.text = options.text
@@ -79,6 +94,7 @@
                 this.active = true
                 this.$root.$emit('shown::spinner')
             },
+
             hide () {
                 const delay = 0
 
@@ -89,6 +105,7 @@
                 }, this.getMinWait(delay))
             }
         },
+
         beforeDestroy () {
             clearTimeout(this._spinnerAnimation)
             this._body.style.overflowY = this._bodyOverflow

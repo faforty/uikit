@@ -287,11 +287,12 @@
             <br><br><br>
             <div class="row">
                 <div class="col-md-6">
-                    <ui-spinner ref="spinner" text="Показ лоэдера поверх контента, есть возможность fixed">
+                    <ui-spinner :value="showSpinner" text="Показ лоэдера поверх контента, есть возможность fixed">
                         <h1>Text Text Text Text Text</h1>
                         <h4>Description Description Description Description Description</h4>
                         <p>text text text text text text</p>
                     </ui-spinner>
+                    <ui-button class="ui-btn--xs" @click="toggleSpinner">toggleSpinner</ui-button>
                 </div>
                 <div class="col-md-6">
                     <a href="" class="ui-social ui-social--vk uikit-vk"></a>
@@ -305,6 +306,7 @@
                     <a href="" class="ui-social ui-social--facebook uikit-facebook-official"></a>
                 </div>
             </div>
+            <br><br>
             <div class="row">
                 <div class="col-md-3">
                     <ui-progress-bar size=50 :value="progressValue" :max-value="progressMax">
@@ -328,13 +330,14 @@
         new Vue({
             el: '#app',
             data: () => ({
-                dd: [],
-                dd3: ['day', 'week'],
-                title_1: '',
-                isHideField: false,
-                chips: [],
+                dd:            [],
+                dd3:           ['day', 'week'],
+                title_1:       '',
+                isHideField:   false,
+                chips:         [],
                 progressValue: 1,
-                progressMax: 5,
+                progressMax:   5,
+                showSpinner:   true,
             }),
             methods: {
                 nextStep() {
@@ -350,9 +353,12 @@
                 changeTabs (tab) {
                     console.log(tab.id)
                 },
+                toggleSpinner() {
+                    this.showSpinner = !this.showSpinner;
+                }
             },
             mounted() {
-                this.$refs.spinner.show()
+                // this.$refs.spinner.show()
             }
         })
     </script>
