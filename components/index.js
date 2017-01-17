@@ -19,6 +19,7 @@ import uiCollapsible from './collapsible/collapsible';
 import uiCollapsibleItem from './collapsible/collapsible-item';
 import uiRange       from './ui-range';
 import uiPagination  from './ui-pagination';
+import uiRouterPagination  from './ui-router-pagination';
 import uiCheckbox  from './ui-checkbox';
 import uiLabel     from './ui-label';
 
@@ -44,6 +45,7 @@ export default {
     'ui-collapsible-item': uiCollapsibleItem,
     'ui-range': uiRange,
     'ui-pagination': uiPagination,
+    'ui-router-pagination': uiRouterPagination,
     'ui-checkbox': uiCheckbox,
     'ui-label': uiLabel
 }

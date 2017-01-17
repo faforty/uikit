@@ -156,6 +156,9 @@
                         <ui-pagination prev-link="/" prev-name="Назад" next-link="/" next-name="Вперед" step="1" step-all="3"></ui-pagination>
                     </div>
                     <div class="form-group">
+                        <ui-router-pagination prev-link="/" @prev-click="prevRoutingClick" @next-click="nextRoutingClick" prev-name="Назад" next-link="/" next-name="Вперед" step="1" step-all="3"></ui-router-pagination>
+                    </div>
+                    <div class="form-group">
                         <ui-button class="ui-btn--green ui-btn--center">
                             Text <div class="loader-spinner loader-spinner--white loader-spinner--right"></div>
                         </ui-button>
@@ -340,6 +343,12 @@
                 showSpinner:   true,
             }),
             methods: {
+                nextRoutingClick() {
+                    alert('Next router link clicked');
+                },
+                prevRoutingClick(id) {
+                    alert('Back router link clicked');
+                },
                 nextStep() {
                     this.progressValue++;// = Math.min(this.progressValue+1, this.progressMax);
                 },
