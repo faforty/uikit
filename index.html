@@ -307,10 +307,14 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <ui-progress-bar :size=50 :value="progressValue" :max-value="progressMax">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</ui-progress-bar>
-
-                    <ui-button class="ui-btn--xs" @click="nextStep">next</ui-button>
-                    <ui-button class="ui-btn--xs" @click="resetStep">reset</ui-button>
+                    <ui-progress-bar size=50 :value="progressValue" :max-value="progressMax">
+                        Lorem ipsum dolor
+                        <ui-button class="ui-btn--xs" @click="nextStep">next</ui-button>
+                        <ui-button class="ui-btn--xs" @click="resetStep">reset</ui-button>
+                    </ui-progress-bar>
+                </div>
+                <div class="col-md-3">
+                    <ui-progress-bar size=50 :value="5" :max-value="5">Complete</ui-progress-bar>
                 </div>
             </div>
         </div>
@@ -331,7 +335,7 @@
             }),
             methods: {
                 nextStep() {
-                    this.progressValue = Math.min(this.progressValue+1, this.progressMax);
+                    this.progressValue++;// = Math.min(this.progressValue+1, this.progressMax);
                 },
                 nextMax() {
                     this.progressMax ++;

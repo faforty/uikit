@@ -1,8 +1,9 @@
 <template>
     <div class="form-group form-group--align" style="justify-content:flex-start">
-        <div class="ui-progressbar">
+        <div class="ui-progressbar" :class="{'ui-progressbar--complete': complete}">
             <div ref="progressbar" :style="style"></div>
         </div>
+
         <label><slot></slot></label>
     </div>
 </template>
@@ -12,13 +13,16 @@
 
     export default {
          props: {
-            value:    Number,
+            value: {
+                type:    Number,
+                default: 0,
+            },
             maxValue: {
                 type:    Number,
                 default: 1,
             },
             size: {
-                type:    Number,
+                type:    [Number, String],
                 default: 40
             }
         },
@@ -26,7 +30,7 @@
         data: () => ({
             progressbar: null,
             options: {
-                color:       '#989898',
+                color:       null,
                 trailColor:  '#d6dad9',
                 strokeWidth: 5,
                 trailWidth:  5,
@@ -34,9 +38,10 @@
                 easing:   'easeInOut',
                 duration: 500,
 
-                // text: {
-                //     autoStyleContainer: false
-                // },
+                text: {
+                    className: 'ui-progressbar-text',
+                    style:     {}
+                },
 
                 from: {color: '#1ac17b', width: 5},
                 to:   {color: '#1ac17b', width: 5},
@@ -50,12 +55,20 @@
 
         computed: {
             style() {
-                var size = this.size + 'px';
+                var size = parseInt(this.size) + 'px';
                 return {width: size, height: size};
             },
 
+            safeValue() {
+                return Math.min(this.value*1, this.maxValue*1);
+            },
+
+            complete() {
+                return  this.safeValue == this.maxValue;
+            },
+
             progress() {
-                return this.maxValue ? this.value / this.maxValue : 0;
+                return this.maxValue ? this.safeValue / (this.maxValue*1) : 0;
             }
         },
 
@@ -70,7 +83,7 @@
                 this.progressbar = new progressbar.Circle(this.$refs.progressbar, this.options);
             },
             animate() {
-                this.progressbar.setText(this.value + '/' + this.maxValue);
+                this.progressbar.setText(this.safeValue + '/' + this.maxValue);
                 this.progressbar.animate(this.progress);
             }
         },
@@ -79,6 +92,7 @@
             this.drawProgressbar();
             this.animate();
         },
+
         destroyed () {
             this.progressbar.destroy()
         },
