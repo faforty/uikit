@@ -11,11 +11,11 @@
     export default{
          props: {
             value: {
-                type:    String,
+                type:    [Number, String],
                 default: ''
             },
             valueData: {
-                type:     String,
+                type:     [Number, String],
                 required: true
             },
             name: {
