@@ -129,19 +129,15 @@
                 })
             },
             choiceContent (tabId) {
-                if (this.$slots.contents[0] && this.$slots.contents[0].elm) {
-                    let slotContent = this.$slots.contents[0].elm;
-
-                    [].forEach.call(slotContent.children, el => {
-                        if (el.hasAttribute('tab-name')) {
-
-                            if (el.getAttribute('tab-name') == tabId) {
-                                el.style = 'display: block'
-                            } else {
-                                el.style = 'display: none'
-                            }
+                var slotContent = this.$slots.contents[0];
+                if (slotContent && slotContent.elm) {
+                    var contentList = slotContent.elm.children;
+                    for (var i = 0; i < contentList.length; i++) {
+                        var tabName = contentList[i].getAttribute('tab-name');
+                        if (tabName) {
+                            contentList[i].style.display = tabName == tabId ? 'block' : 'none';
                         }
-                    })
+                    }
                 }
             }
         },
