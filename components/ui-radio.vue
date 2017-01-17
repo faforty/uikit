@@ -15,7 +15,8 @@
                 default: ''
             },
             valueData: {
-                type: String
+                type:     String,
+                required: true
             },
             name: {
                 type: String
