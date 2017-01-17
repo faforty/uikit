@@ -1,6 +1,6 @@
 <template>
     <div :class="['ui-spinner', {'ui-spinner--fixed':fixed}]">
-        <div class="ui-spinner__wrapper" v-show="active">
+        <div class="ui-spinner__wrapper" v-show="showSpinner">
             <div :class="['loader-spinner', spinnerSize]"></div>
             <div class="ui-spinner__wrapper__text">{{text}}</div>
         </div>
@@ -13,7 +13,7 @@
 
     export default {
         props: {
-            value: {
+            active: {
                 type:    Boolean,
                 default: false
             },
@@ -32,7 +32,7 @@
         },
 
         data: () => ({
-            active: false
+            showSpinner: false
         }),
 
         computed: {
@@ -42,13 +42,13 @@
         },
 
         watch: {
-            value(value) {
-                value ? this.show() : this.hide();
+            active(active) {
+                active ? this.show() : this.hide();
             }
         },
 
         mounted () {
-            this.value ? this.show() : this.hide();
+            this.active ? this.show() : this.hide();
 
             this._body = document.querySelector('body')
             this._bodyOverflow = this._body.style.overflowY || ''
@@ -90,8 +90,8 @@
                 }
 
                 // activate spinner
-                this._started = new Date()
-                this.active = true
+                this._started    = new Date()
+                this.showSpinner = true
                 this.$root.$emit('shown::spinner')
             },
 
@@ -99,7 +99,7 @@
                 const delay = 0
 
                 this._spinnerAnimation = setTimeout(() => {
-                    this.active = false
+                    this.showSpinner = false
                     this._body.style.overflowY = this._bodyOverflow
                     this.$root.$emit('hidden::spinner')
                 }, this.getMinWait(delay))
