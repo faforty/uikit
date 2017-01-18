@@ -64,7 +64,7 @@ export default {
             default: 0
         },
         stepAll: {
-            type: [String, Number],
+            type: [String, Number, Boolean],
             default: false
         }
     },
