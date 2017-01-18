@@ -119,7 +119,7 @@
                         <ui-input value="Введеный текст" icon="uikit-search" :disabled="true">Заголовок</ui-input>
                     </div>
                     <div class="form-group">
-                        <ui-input-spinner></ui-input-spinner>
+                        <ui-input-spinner min=0 max=100></ui-input-spinner>
                     </div>
                 </div>
             </div>
@@ -226,7 +226,9 @@
             <br>
             <div class="row">
                 <div class="col-md-4">
-                    <ui-range :min="40" :max="50" :val="[44, 48]"></ui-range>
+                    <ui-range v-show="showRange" :min="40" :max="50" :val="[44, 48]"></ui-range>
+                    <br>
+                    <ui-button @click="toggleRange">toggle</ui-button>
                 </div>
                 <div class="col-md-4" style="background: #eef4f2; height: 300px; display: flex; justify-content: center; align-items: center">
                     <div class="header__navbar__profile" style="display: table">
@@ -352,6 +354,7 @@
                 progressValue: 1,
                 progressMax:   5,
                 showSpinner:   true,
+                showRange:     true,
             }),
             methods: {
                 nextRoutingClick() {
@@ -375,6 +378,9 @@
                 },
                 toggleSpinner() {
                     this.showSpinner = !this.showSpinner;
+                },
+                toggleRange() {
+                    this.showRange = !this.showRange;
                 },
                 changeRadio(val) {
                     this.radioValueA = val;

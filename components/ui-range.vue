@@ -302,7 +302,10 @@ export default {
 	watch: {
 		val: function(val) {
 			this.flag || this.setValue(val)
-		}
+		},
+        size(size) {
+            this.setPosition();
+        }
 	},
 	methods: {
 		bindEvents() {
@@ -500,16 +503,22 @@ export default {
 			}
 		},
 		refresh() {
-			this.size = this.direction === 'vertical' ? this.$refs.elem.offsetHeight : this.$refs.elem.offsetWidth
+			this.updatedSize();
 			this.setPosition(0)
-		}
+		},
+        updatedSize() {
+            this.size = this.direction === 'vertical' ? this.$refs.elem.offsetHeight : this.$refs.elem.offsetWidth;
+        }
 	},
 	created() {
 		window.addEventListener('resize', this.refresh)
 	},
+    updated() {
+        this.updatedSize();
+    },
 	mounted() {
 		this.$nextTick(function () {
-			this.size = this.direction === 'vertical' ? this.$refs.elem.offsetHeight : this.$refs.elem.offsetWidth
+			// this.updatedSize();
 			this.setValue(this.val)
 			this.bindEvents()
 		})

@@ -5,7 +5,7 @@
                 <i class="uikit-minus" style="font-weight: bold;font-size: 12px;"></i>
             </a>
         </span>
-        <input type="number" class="form-control ui-input-updown" v-model="number">
+        <input type="number" class="form-control ui-input-updown" v-model="number" :style="inputStyle">
         <span class="ui-input-group__btn ui-input-group__btn--right">
             <a @click="up" v-on:mousedown="downLong('up')" v-on:mouseup="upLong()">
                 <i class="uikit-plus" style="font-weight: bold;font-size: 12px;"></i>
@@ -17,11 +17,28 @@
     export default {
         props: {
             value: {
-                'default': 0
+                default: 0
             },
+            min: {},
+            max: {},
+            size: {},
             speed: {
-                'default': 100
+                default: 100
             }
+        },
+        computed: {
+            inputStyle() {
+                var size = 4;
+                if (this.size) {
+                    size = this.size*1;
+                } else if (this.max) {
+                    size = (this.max+'').length + 1;
+                }
+
+                return {
+                    width: size > 10 ? '100%' : `${size}em`
+                }
+            },
         },
         data: () => ({
             number: 0,
@@ -29,23 +46,23 @@
         }),
         methods: {
             up () {
-                this.number++
+                if (this.max !== undefined && this.number < this.max) {
+                    this.number++
+                }
             },
             down () {
-                this.number--
+                if (this.min !== undefined && this.number > this.min) {
+                    this.number--
+                }
             },
             upLong () {
                 clearInterval(this.$interval)
             },
-            downLong (up) {
+            downLong (direction) {
                 this.upLong()
 
                 this.$interval = setInterval(() => {
-                    if (up == 'up') {
-                        this.number++
-                    } else {
-                        this.number--
-                    }
+                    this[direction]();
                 }, this.speed)
             }
         },
