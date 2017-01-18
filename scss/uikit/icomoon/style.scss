@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'ui-green';
-  src:  url('#{$icomoon-font-path}/ui-green.eot?mn3gpa');
-  src:  url('#{$icomoon-font-path}/ui-green.eot?mn3gpa#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/ui-green.ttf?mn3gpa') format('truetype'),
-    url('#{$icomoon-font-path}/ui-green.woff?mn3gpa') format('woff'),
-    url('#{$icomoon-font-path}/ui-green.svg?mn3gpa#ui-green') format('svg');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?uduc95');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?uduc95#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/ui-green.ttf?uduc95') format('truetype'),
+    url('#{$icomoon-font-path}/ui-green.woff?uduc95') format('woff'),
+    url('#{$icomoon-font-path}/ui-green.svg?uduc95#ui-green') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,84 +26,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.uikit-mouse {
+.uikit-clock-45 {
   &:before {
-    content: $uikit-mouse;
-  }
-}
-.uikit-search {
-  &:before {
-    content: $uikit-search;
-  }
-}
-.uikit-zoom-in {
-  &:before {
-    content: $uikit-zoom-in;
-  }
-}
-.uikit-zoom-out {
-  &:before {
-    content: $uikit-zoom-out;
-  }
-}
-.uikit-repeat {
-  &:before {
-    content: $uikit-repeat;
-  }
-}
-.uikit-reload {
-  &:before {
-    content: $uikit-reload;
-  }
-}
-.uikit-share {
-  &:before {
-    content: $uikit-share;
-  }
-}
-.uikit-arrow-left {
-  &:before {
-    content: $uikit-arrow-left;
-  }
-}
-.uikit-arrow-right {
-  &:before {
-    content: $uikit-arrow-right;
-  }
-}
-.uikit-arrow-up {
-  &:before {
-    content: $uikit-arrow-up;
-  }
-}
-.uikit-arrow-down {
-  &:before {
-    content: $uikit-arrow-down;
-  }
-}
-.uikit-plus {
-  &:before {
-    content: $uikit-plus;
-  }
-}
-.uikit-minus {
-  &:before {
-    content: $uikit-minus;
-  }
-}
-.uikit-check {
-  &:before {
-    content: $uikit-check;
-  }
-}
-.uikit-cross {
-  &:before {
-    content: $uikit-cross;
-  }
-}
-.uikit-ellipsis {
-  &:before {
-    content: $uikit-ellipsis;
+    content: $uikit-clock-45;
   }
 }
 .uikit-mail-ru {
@@ -301,9 +226,94 @@
     content: $uikit-photo;
   }
 }
+.uikit-mouse {
+  &:before {
+    content: $uikit-mouse;
+  }
+}
+.uikit-search {
+  &:before {
+    content: $uikit-search;
+  }
+}
+.uikit-zoom-in {
+  &:before {
+    content: $uikit-zoom-in;
+  }
+}
+.uikit-zoom-out {
+  &:before {
+    content: $uikit-zoom-out;
+  }
+}
+.uikit-repeat {
+  &:before {
+    content: $uikit-repeat;
+  }
+}
+.uikit-reload {
+  &:before {
+    content: $uikit-reload;
+  }
+}
+.uikit-share {
+  &:before {
+    content: $uikit-share;
+  }
+}
+.uikit-arrow-left {
+  &:before {
+    content: $uikit-arrow-left;
+  }
+}
+.uikit-arrow-right {
+  &:before {
+    content: $uikit-arrow-right;
+  }
+}
+.uikit-arrow-up {
+  &:before {
+    content: $uikit-arrow-up;
+  }
+}
+.uikit-arrow-down {
+  &:before {
+    content: $uikit-arrow-down;
+  }
+}
+.uikit-plus {
+  &:before {
+    content: $uikit-plus;
+  }
+}
+.uikit-minus {
+  &:before {
+    content: $uikit-minus;
+  }
+}
+.uikit-check {
+  &:before {
+    content: $uikit-check;
+  }
+}
+.uikit-cross {
+  &:before {
+    content: $uikit-cross;
+  }
+}
+.uikit-ellipsis {
+  &:before {
+    content: $uikit-ellipsis;
+  }
+}
 .uikit-file-text {
   &:before {
     content: $uikit-file-text;
+  }
+}
+.uikit-clock-25 {
+  &:before {
+    content: $uikit-clock-25;
   }
 }
 
