@@ -1,8 +1,8 @@
+![UiKit Logo](https://github.com/faforty/uikit/raw/master/uikit.jpg)
+
 # uiKit
 
 > A Vue.js super project created to inspire
-
-![UiKit Logo](https://github.com/faforty/uikit/raw/master/uikit.jpg)
 
 ## Use it
 
