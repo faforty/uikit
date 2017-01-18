@@ -48,7 +48,9 @@
         },
 
         mounted () {
-            this.active ? this.show() : this.hide();
+            if (this.active) {
+                this.show();
+            }
 
             this._body = document.querySelector('body')
             this._bodyOverflow = this._body.style.overflowY || ''
