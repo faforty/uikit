@@ -107,7 +107,7 @@
 
                     this.$http
                         .get(this.ajaxUrl, { params: params })
-                        .then(response => response.json().then(data => {
+                        .then(response => response.json()).then(data => {
                             let items = data.items.data ? data.items.data : data.items
 
                             this.reset()
@@ -130,7 +130,7 @@
                                 this.lastRequest = xhr
                             },
                         }
-                    )).catch(error => {
+                    ).catch(error => {
                         this.error = {
                             name: 'Ошибка соединения',
                             error: 'network'
@@ -158,6 +158,7 @@
                 this.searchValue = v
             },
             searchValue (value) {
+                this.error = false;
                 if (this.lock == true) {
                     this.lock = false
 
