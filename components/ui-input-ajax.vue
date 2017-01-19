@@ -62,6 +62,10 @@
                 'default': 'stateIcon'
             },
             iconAlign: String,
+            filterOutput: {
+                type: Function,
+                default: arr => arr
+            }
         },
         data: () => ({
             opened: false,
@@ -110,7 +114,7 @@
 
                             this.reset()
 
-                            this.items = items
+                            this.items = this.filterOutput(items);
 
                             this.error = false
 
@@ -146,6 +150,8 @@
                         }
                     })
                 }
+
+                this.items = this.filterOutput(this.items);
 
                 this.reset()
             }
