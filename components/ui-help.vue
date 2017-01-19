@@ -1,22 +1,27 @@
 <template>
-    <div class="ui-help" :class="{'ui-help--active':isActive}">
-        <ui-button @click="toggleHelp" class="ui-help-toggle ui-btn--green ui-btn--circle ui-btn--sm ui-btn--no-shadow">
-            <i class="uikit-info"></i>
-        </ui-button>
+    <div class="ui-help-container" :class="{'ui-help--active':isActive}">
 
-        <div v-if="label" class="ui-help-label">{{label}}</div>
+        <slot name="page-header"></slot>
 
-        <!-- <div :class="{help: true, hide: !showTips }"> -->
-            <!-- <div class="help-bg"></div> -->
+        <div class="ui-help">
+            <ui-button @click="toggleHelp" class="ui-help-toggle ui-btn--green ui-btn--circle ui-btn--sm ui-btn--no-shadow">
+                <i class="uikit-info"></i>
+            </ui-button>
+
+            <div v-if="label" class="ui-help-label">{{label}}</div>
+
+            <!-- <div :class="{help: true, hide: !showTips }"> -->
+                <!-- <div class="help-bg"></div> -->
 
 
 
-            <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
-                <div class="ui-help-text">
-                    <slot></slot>
-                </div>
-            </transition>
-        <!-- </div> -->
+                <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
+                    <div class="ui-help-text">
+                        <slot></slot>
+                    </div>
+                </transition>
+            <!-- </div> -->
+        </div>
     </div>
 </template>
 
@@ -56,9 +61,11 @@ export default {
 </script>
 
 <style lang="sass">
+.ui-help-container {
+    transition: all .4s;
+}
 .ui-help {
     background:   #fff7dd;
-    // position:  absolute;
     position:     fixed;
     bottom:       0;
     top:          0;
@@ -69,11 +76,12 @@ export default {
     transition:   all .4s;
     margin-right: -30%;
     right:        50px;
+    transition:   background 0;
 
-    &.ui-help--active {
+    .ui-help--active & {
         margin-right: 0;
         right:        0;
-        box-shadow:   0 0 50px rgba(0,0,0,.1);
+        // box-shadow:   0 0 50px rgba(0,0,0,.1);
 
         .ui-help-label {
             opacity:    0;
@@ -82,7 +90,7 @@ export default {
 
         .ui-help-text {
             opacity:    1;
-            transition: opacity 1s;
+            transition: opacity .4s;
         }
     }
 
@@ -90,7 +98,8 @@ export default {
         position:    absolute;
         left:        0;
         top:         60px;
-        margin-left: -20px
+        margin-left: -20px;
+        transition:  all .4s;
     }
 
     .ui-help-label {
@@ -114,7 +123,6 @@ export default {
         font-size:   18px;
         line-height: 28px;
         font-weight: 300;
-        // padding:     0 50px;
         color:       #333;
         transition:  all .4s;
         opacity:     0;
@@ -123,30 +131,43 @@ export default {
 }
 
 @media (max-width: 768px) {
-    .ui-help {
-        // position: relative;
-        position:    static;
-        padding:     0;
-        width:       100%;
-        margin:      0 0 30px;
-        background:  transparent;
-        max-height: 0;
-        overflow: hidden;
+    .ui-help-container {
+        position: relative;
+        > h1, > h2, > h3{
+            transition: all .4s;
+        }
 
         &.ui-help--active {
-            box-shadow: none;
-            max-height: 9999px;
+            background:    #fff7dd;
+            padding:       30px;
+            margin: -30px -30px 30px;
 
             .ui-help-toggle {
-                transition: all 0;
-            }
-            .ui-help-text {
-                background: #fff7dd;
+                right: 30px;
+                top: -20px;
             }
         }
 
+        > h1, > h2, > h3 {
+            padding-top: 0;
+        }
+    }
+    .ui-help {
+        position:   static;
+        padding:    0;
+        width:      100%;
+        margin:     0;
+        background: transparent;
+        height:     0;
+        overflow:   hidden;
+
+        .ui-help--active & {
+            box-shadow: none;
+            height:     auto;
+        }
+
         .ui-help-text {
-            padding: 30px;
+            // padding: 30px;
         }
 
         .ui-help-label {
@@ -158,12 +179,13 @@ export default {
             // top:      60px;
             // right:    30px;
             // left:     auto;
-            position:    absolute;
-            top:         auto;
-            left:        auto;
-            right:       25px;
-            margin-top: -60px;
 
+            position: absolute;
+            left:     auto;
+            top:      0;
+            // top:   0;
+            // left:  auto;
+            right: 0;
         }
     }
 }
