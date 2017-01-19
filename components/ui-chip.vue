@@ -2,7 +2,7 @@
     <div class="ui-chip" v-if="!hide">
         <img class="ui-chip__image" v-if="image" :src="image">
         <slot></slot>
-        <a class="ui-chip__close uikit-close-empty" v-if="removable" @click="remove"></a>
+        <a class="ui-chip__close uikit-close-empty" v-if="removable || removeByCallback" @click="remove"></a>
     </div>
 </template>
 <script>
@@ -28,6 +28,10 @@
             image: {
                 type: String,
                 default: ''
+            },
+            removeByCallback: {
+                type: Boolean,
+                default: false
             }
         },
         data: () => ({
@@ -35,6 +39,11 @@
         }),
         methods: {
             remove () {
+                if (this.removeByCallback) {
+                    this.$emit('delete');
+                    return;
+                }
+
                 this.hide = true
 
                 if (this.$parent.removeItem && this.id) {
