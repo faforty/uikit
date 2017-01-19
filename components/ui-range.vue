@@ -515,15 +515,12 @@ export default {
         },
         updatedSize() {
             this.size = this.direction === 'vertical' ? this.$refs.elem.offsetHeight : this.$refs.elem.offsetWidth;
-            console.log( this.size );
         }
     },
     created() {
         window.addEventListener('resize', this.refresh)
     },
-    // beforeUpdate() {console.log('beforeUpdate');},
     updated() {
-        console.log(this._uid, 'updated');
         this.updatedSize();
     },
     mounted() {
