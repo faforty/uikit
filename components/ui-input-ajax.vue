@@ -107,6 +107,8 @@
                         [this.ajaxQuery]: value
                     }
 
+                    this.items = [];
+
                     this.$http
                         .get(this.ajaxUrl, { params: params })
                         .then(response => response.json()).then(data => {
@@ -133,6 +135,8 @@
                             },
                         }
                     ).catch(error => {
+                        this.items = [];
+
                         this.error = {
                             name: 'Ошибка соединения',
                             error: 'network'
@@ -162,6 +166,7 @@
                 this.searchValue = v
             },
             searchValue (value) {
+                this.items = [];
                 this.error = false;
                 if (this.lock == true) {
                     this.lock = false
