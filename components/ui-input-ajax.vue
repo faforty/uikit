@@ -133,6 +133,8 @@
                             },
                         }
                     ).catch(error => {
+                        this.items = [];
+
                         this.error = {
                             name: 'Ошибка соединения',
                             error: 'network'
