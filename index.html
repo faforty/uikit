@@ -119,8 +119,14 @@
                         <ui-input value="Введеный текст" icon="uikit-search" :disabled="true">Заголовок</ui-input>
                     </div>
                     <div class="form-group">
-                        <ui-input-spinner min=0 max=100></ui-input-spinner>
+                        <ui-input-spinner size=10></ui-input-spinner>
                     </div>
+                    <div class="form-group">
+                        <ui-input-spinner min=0 max=10></ui-input-spinner>
+                    </div>
+
+                    <ui-toggle v-model="toggleBoolean">{{toggleBoolean}}</ui-toggle>
+                    <ui-toggle v-model="toggleInteger">{{toggleInteger}}</ui-toggle>
                 </div>
             </div>
             <h1 style="color: #989898"><span style="color: #000000">02</span> UI</h1>
@@ -226,9 +232,16 @@
             <br>
             <div class="row">
                 <div class="col-md-4">
-                    <ui-range v-show="showRange" :min="40" :max="50" :val="[44, 48]"></ui-range>
-                    <br>
-                    <ui-button @click="toggleRange">toggle</ui-button>
+                    <ui-range v-if="showRange" :min="40" :max="50" v-model="rangeValue"></ui-range>
+                    <br><br><br>
+                    <ui-range v-if="showRange" :min="40" :max="50" v-model="rangeValueArray"></ui-range>
+                    <br><br>
+                    <div class="ui-btn-group">
+                        <ui-button class='ui-btn--xs' @click="toggleRange">toggle</ui-button>
+                        <ui-button class='ui-btn--xs' @click="ranomRange">random</ui-button>
+                        <ui-button class='ui-btn--xs' disabled>{{rangeValue}}</ui-button>
+                        <ui-button class='ui-btn--xs' disabled>{{rangeValueArray}}</ui-button>
+                    </div>
                 </div>
                 <div class="col-md-4" style="background: #eef4f2; height: 300px; display: flex; justify-content: center; align-items: center">
                     <div class="header__navbar__profile" style="display: table">
@@ -344,17 +357,21 @@
         new Vue({
             el: '#app',
             data: () => ({
-                radioValueA:   '',
-                radioValueB:   'One',
-                dd:            [],
-                dd3:           ['day', 'week'],
-                title_1:       '',
-                isHideField:   false,
-                chips:         [],
-                progressValue: 1,
-                progressMax:   5,
-                showSpinner:   true,
-                showRange:     true,
+                radioValueA:     '',
+                radioValueB:     'One',
+                dd:              [],
+                dd3:             ['day', 'week'],
+                title_1:         '',
+                isHideField:     false,
+                chips:           [],
+                progressValue:   1,
+                progressMax:     5,
+                showSpinner:     true,
+                showRange:       true,
+                rangeValueArray: [44, 48],
+                rangeValue:      45,
+                toggleBoolean:   false,
+                toggleInteger:   0,
             }),
             methods: {
                 nextRoutingClick() {
@@ -381,6 +398,14 @@
                 },
                 toggleRange() {
                     this.showRange = !this.showRange;
+                },
+                ranomRange() {
+                    function randomInteger(min, max) {
+                        var rand = min + Math.random() * (max + 1 - min);
+                        return Math.floor(rand);
+                    }
+                    this.rangeValueArray = [randomInteger(40, 50), randomInteger(40, 50)];
+                    this.rangeValue      = randomInteger(40, 50);
                 },
                 changeRadio(val) {
                     this.radioValueA = val;

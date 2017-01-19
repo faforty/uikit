@@ -2,23 +2,23 @@
   &-btn {
     @extend .ui-control !optional;
 
-    position: relative;
-    font-weight: $btn-font-weight;
-    font-size: 14px;
-    line-height: $btn-line-height;
-    text-align: center;
-    white-space: nowrap;
+    position:       relative;
+    font-weight:    $btn-font-weight;
+    font-size:      14px;
+    line-height:    $btn-line-height;
+    text-align:     center;
+    white-space:    nowrap;
     vertical-align: middle;
-    cursor: pointer;
-    user-select: none;
-    padding: 14px 28px;
-    border-radius: 4px;
-    outline: none !important;
-    background: #ffffff;
-    color: $link-color;
-    transition: all 0.2s ease 0s;
-    overflow: hidden;
-    z-index: 1;
+    cursor:         pointer;
+    user-select:    none;
+    padding:        14px 28px;
+    border-radius:  4px;
+    outline:        none !important;
+    background:     #ffffff;
+    color:          $link-color;
+    transition:     all 0.2s ease 0s;
+    overflow:       hidden;
+    z-index:        1;
 
     &::-moz-focus-inner {
       border: 0;
@@ -41,7 +41,22 @@
     }
 
     &:hover {
+      z-index:      2;
       border-color: map_get($colors, mediumSeaGreen);
+    }
+
+    &-group > .ui-btn {
+      display:       block;
+      float:         left;
+      border-radius: 0;
+      margin-left:   -1px;
+
+      &:first-child {
+        border-radius: 4px 0 0 4px;
+      }
+      &:last-child {
+        border-radius: 0 4px 4px 0;
+      }
     }
 
     &--gray {

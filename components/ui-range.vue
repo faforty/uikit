@@ -4,11 +4,11 @@
 			<div ref="wrap" :class="['vue-slider-wrap', flowDirection, className, disabledClass]" v-show="show" :style="[( styles || {} ), wrapStyles]" @click="wrapClick">
 				<div ref="elem" class="vue-slider" :style="elemStyles">
 					<template v-if="isRange">
-						<div ref="dot0" :data-rangeValue="value[0]" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot']" :style="dotStyles" @touchstart="moveStart(0)"></div>
-						<div ref="dot1" :data-rangeValue="value[1]" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot']" :style="dotStyles" @touchstart="moveStart(1)"></div>
+						<div ref="dot0" :data-rangeValue="mValue[0]" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot']" :style="dotStyles" @touchstart="moveStart(0)"></div>
+						<div ref="dot1" :data-rangeValue="mValue[1]" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot']" :style="dotStyles" @touchstart="moveStart(1)"></div>
 					</template>
 					<template v-else>
-						<div ref="dot" :data-rangeValue="value" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot']" :style="dotStyles" @touchstart="moveStart"></div>
+						<div ref="dot" :data-rangeValue="mValue" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot']" :style="dotStyles" @touchstart="moveStart"></div>
 					</template>
 					<template v-if="piecewise">
 						<ul v-if="direction === 'vertical'" class="vue-slider-piecewise">
@@ -26,11 +26,11 @@
 			<div ref="wrap" :class="['vue-slider-wrap', flowDirection, className, disabledClass]" v-show="show" :style="[( styles || {} ), wrapStyles]" @click="wrapClick">
                 <div ref="elem" class="vue-slider" :style="elemStyles">
 					<template v-if="isRange">
-						<div ref="dot0" :data-rangeValue="value[0]" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot', 'vue-slider-tooltip-from']" :style="dotStyles" @mousedown="moveStart(0)"></div>
-						<div ref="dot1" :data-rangeValue="value[1]" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot', 'vue-slider-tooltip-to']" :style="dotStyles" @mousedown="moveStart(1)"></div>
+						<div ref="dot0" :data-rangeValue="mValue[0]" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot', 'vue-slider-tooltip-from']" :style="dotStyles" @mousedown="moveStart(0)"></div>
+						<div ref="dot1" :data-rangeValue="mValue[1]" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot', 'vue-slider-tooltip-to']" :style="dotStyles" @mousedown="moveStart(1)"></div>
 					</template>
 					<template v-else>
-						<div ref="dot" :data-rangeValue="value" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot']" :style="dotStyles" @mousedown="moveStart"></div>
+						<div ref="dot" :data-rangeValue="mValue" :class="[ tooltipStatus, `vue-slider-tooltip-${tooltipDirection}`, 'vue-slider-dot']" :style="dotStyles" @mousedown="moveStart"></div>
 					</template>
 					<template v-if="piecewise">
 						<ul v-if="direction === 'vertical'" class="vue-slider-piecewise">
@@ -58,6 +58,10 @@ export default {
 		}
 	},
 	props: {
+        value: {
+            type: [String, Number, Array],
+            default: 0
+        },
 		className: String,
 		styles: Object,
 		width: {
@@ -123,10 +127,6 @@ export default {
 			type: Number,
 			default: 0.5
 		},
-		val: {
-			type: [String, Number, Array],
-			default: 0
-		}
 	},
 	computed: {
 		flowDirection: function() {
@@ -157,7 +157,7 @@ export default {
 			return this.disabled ? 'vue-slider-disabled' : ''
 		},
 		isRange: function() {
-			return Array.isArray(this.val)
+			return Array.isArray(this.value)
 		},
 		slider: function() {
 			if (this.isRange) {
@@ -173,7 +173,7 @@ export default {
 			}
 			return this.min
 		},
-		value: {
+		mValue: {
 			get: function() {
 				if (this.data) {
 					if (this.isRange) {
@@ -200,6 +200,10 @@ export default {
 					}
 				}
 				else {
+                    // swap extremums
+                    if (this.isRange && val[0] > val[1]) {
+                        val = [val[1], val[0]];
+                    }
 					this.currentValue = val
 				}
 			}
@@ -300,8 +304,8 @@ export default {
 		}
 	},
 	watch: {
-		val: function(val) {
-			this.flag || this.setValue(val)
+		value: function(value) {
+			this.flag || this.setValue(value)
 		},
         size(size) {
             this.setPosition();
@@ -403,12 +407,14 @@ export default {
 			if (this.isRange) {
 				if (this.isDiff(this.currentValue[this.currentSlider], val)) {
 					this.currentValue.splice(this.currentSlider, 1, val)
-					this.$emit('callback', this.value)
+					this.$emit('callback', this.mValue)
+                    this.$emit('input', this.mValue)
 				}
 			}
 			else if (this.isDiff(this.currentValue, val)) {
 				this.currentValue = val
-				this.$emit('callback', this.value)
+				this.$emit('callback', this.mValue)
+                this.$emit('input', this.mValue)
 			}
 			bool || this.setPosition()
 		},
@@ -420,9 +426,10 @@ export default {
 			this.setCurrentValue(val)
 		},
 		setValue(val) {
-			if (this.isDiff(this.value, val)) {
-				this.value = val
-				this.$emit('callback', this.value)
+			if (this.isDiff(this.mValue, val)) {
+				this.mValue = val
+				this.$emit('callback', this.mValue)
+                this.$emit('input', this.mValue)
 			}
 			this.setPosition()
 		},
@@ -487,7 +494,7 @@ export default {
 			}
 		},
 		getValue() {
-			return this.value
+			return this.mValue
 		},
 		getIndex() {
 			if (Array.isArray(this.currentValue)) {
@@ -508,18 +515,22 @@ export default {
 		},
         updatedSize() {
             this.size = this.direction === 'vertical' ? this.$refs.elem.offsetHeight : this.$refs.elem.offsetWidth;
+            console.log( this.size );
         }
 	},
 	created() {
 		window.addEventListener('resize', this.refresh)
 	},
+    // beforeUpdate() {console.log('beforeUpdate');},
     updated() {
+        console.log(this._uid, 'updated');
         this.updatedSize();
     },
 	mounted() {
+        // console.log( this.val , Array.isArray(this.val) );
 		this.$nextTick(function () {
 			// this.updatedSize();
-			this.setValue(this.val)
+			this.setValue(this.value)
 			this.bindEvents()
 		})
 	},

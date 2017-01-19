@@ -46,12 +46,12 @@
         }),
         methods: {
             up () {
-                if (this.max !== undefined && this.number < this.max) {
+                if (this.max === undefined || this.number < this.max) {
                     this.number++
                 }
             },
             down () {
-                if (this.min !== undefined && this.number > this.min) {
+                if (this.min === undefined || this.number > this.min) {
                     this.number--
                 }
             },
