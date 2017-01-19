@@ -146,7 +146,8 @@
     }
 
     &__help {
-      margin: 0 16px;
+      position: absolute;
+      right:    -40px;
 
       &__action {
         border-color: #2d9e6e !important;

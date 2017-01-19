@@ -23,6 +23,7 @@ import uiRouterPagination from './ui-router-pagination';
 import uiCheckbox         from './ui-checkbox';
 import uiRadio            from './ui-radio';
 import uiLabel            from './ui-label';
+import uiHelp             from './ui-help';
 
 export default {
     'ui-select':            uiSelect,
@@ -49,5 +50,6 @@ export default {
     'ui-router-pagination': uiRouterPagination,
     'ui-checkbox':          uiCheckbox,
     'ui-radio':             uiRadio,
-    'ui-label':             uiLabel
+    'ui-label':             uiLabel,
+    'ui-help':              uiHelp
 }

@@ -74,7 +74,12 @@
         </div>
 
         <div class="container">
-            <h1 style="color: #989898"><span style="color: #000000">01</span> Инпуты</h1>
+
+            <ui-help>
+                <h1 style="color: #989898"><span style="color: #000000">01</span> Инпуты</h1>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio excepturi odio, eum blanditiis optio saepe voluptate. Voluptate quod blanditiis saepe iure obcaecati ipsum reprehenderit, quisquam, atque excepturi quos ducimus! Natus!
+            </ui-help>
+
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -125,7 +130,9 @@
                         <ui-input-spinner min=0 max=10></ui-input-spinner>
                     </div>
 
-                    <ui-toggle v-model="toggleBoolean">{{toggleBoolean}}</ui-toggle>
+                    <ui-toggle v-model="toggleBoolean">
+                        <div>{{toggleBoolean}}</div>
+                    </ui-toggle>
                     <ui-toggle v-model="toggleInteger">{{toggleInteger}}</ui-toggle>
                 </div>
             </div>
@@ -186,21 +193,54 @@
                         <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip</ui-chip>
                         <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 2</ui-chip>
                         <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" image="http://materializecss.com/images/yuna.jpg">Chip 3</ui-chip>
                     </div>
                     <div class="form-group">
                         <ui-chip class="ui-chip--v2" removable>Chip</ui-chip>
                         <ui-chip class="ui-chip--v2" removable>Chip 2</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
                         <ui-chip class="ui-chip--v2" removable>Chip 3</ui-chip>
                     </div>
                     <div class="form-group">
                         <ui-chip class="ui-chip--v2">Chip</ui-chip>
                         <ui-chip class="ui-chip--v2">Chip 2</ui-chip>
                         <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
+                        <ui-chip class="ui-chip--v2">Chip 3</ui-chip>
                     </div>
                     <div class="form-group">
                         <ui-group v-model="chips">
                             <ui-chip id="c-1" removable>Chip</ui-chip>
                             <ui-chip id="c-2" removable>Chip 2</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
+                            <ui-chip id="c-3" removable>Chip 3</ui-chip>
                             <ui-chip id="c-3" removable>Chip 3</ui-chip>
                         </ui-group>
 
@@ -210,6 +250,18 @@
                     <div class="form-group">
                         <ui-chip>Chip</ui-chip>
                         <ui-chip>Chip 2</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
+                        <ui-chip>Chip 3</ui-chip>
                         <ui-chip>Chip 3</ui-chip>
                     </div>
                 </div>
