@@ -2,7 +2,11 @@
   "name": "uikit-agro24",
   "description": "A Vue.js super project created to inspire",
   "author": "faforty <faforty@ya.ru>",
-  "version": "3.0.4",
+  "contributors": [
+    "zamarawka <somebody.told@mail.ru>",
+    "zb3k"
+  ],
+  "version": "3.0.5",
   "scripts": {
     "dev": "webpack-dev-server --inline --content-base ./",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
