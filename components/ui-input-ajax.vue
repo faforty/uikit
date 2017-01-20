@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="drop-out">
-            <ui-input ref="input" :icon="icon" :placeholder="placeholder" :color="color" :icon-align="iconAlign" v-model="searchValue" :disabled="disabled">
+            <ui-input ref="input" :hint="hint" :icon="icon" :placeholder="placeholder" :color="color" :icon-align="iconAlign" v-model="searchValue" :disabled="disabled">
                 <slot></slot>
             </ui-input>
             <div ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="opened">
@@ -65,7 +65,8 @@
             filterOutput: {
                 type: Function,
                 default: arr => arr
-            }
+            },
+            hint: String
         },
         data: () => ({
             opened: false,
