@@ -14,6 +14,12 @@
 var Velocity = require('velocity-animate')
 
 export default {
+    props: {
+        opened: {
+            type: Boolean,
+            default: false,
+        }
+    },
     data() {
         return {
             show: false
@@ -99,6 +105,10 @@ export default {
         this.$root.$on('collapsible-item::close', id => {
             return this.close(id)
         })
+
+        if (this.opened) {
+            this.openThis(false)
+        }
     }
 }
 </script>
