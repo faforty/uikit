@@ -4,6 +4,7 @@ import uiToggle           from './ui-toggle';
 import uiInput            from './ui-input';
 import uiInputAjax        from './ui-input-ajax';
 import uiInputSpin        from './ui-input-spinner';
+import uiTextarea         from './ui-textarea';
 import uiTabs             from './ui-tabs';
 import uiTab              from './ui-tab';
 import uiDropdown         from './ui-dropdown';
@@ -24,6 +25,7 @@ import uiCheckbox         from './ui-checkbox';
 import uiRadio            from './ui-radio';
 import uiLabel            from './ui-label';
 import uiHelp             from './ui-help';
+import uiDropfile         from './ui-dropfile';
 
 export default {
     'ui-select':            uiSelect,
@@ -32,6 +34,7 @@ export default {
     'ui-input':             uiInput,
     'ui-input-ajax':        uiInputAjax,
     'ui-input-spinner':     uiInputSpin,
+    'ui-textarea':          uiTextarea,
     'ui-tabs':              uiTabs,
     'ui-tab':               uiTab,
     'ui-spinner':           uiSpinner,
@@ -51,5 +54,6 @@ export default {
     'ui-checkbox':          uiCheckbox,
     'ui-radio':             uiRadio,
     'ui-label':             uiLabel,
-    'ui-help':              uiHelp
+    'ui-help':              uiHelp,
+    'ui-dropfile':          uiDropfile,
 }

@@ -403,6 +403,22 @@
                     <ui-radio value-data="Tree" v-model="radioValueB" disabled>Radio Tree</ui-radio>
                     Selected: <b>{{ radioValueB }}</b>
                 </div>
+
+                <div class="col-md-3">
+                    {{images}}
+
+                    <ui-dropfile v-model="images" url="http://docs.agro24.dev/upload" name="files" multiple>
+
+                        <div v-for="image in images"
+                            style="display:inline-block; overflow: hidden; margin: 10px; width:100px; height:100px; background:#EEE; text-align: center"
+                            @click="images=images.filter(img=>img!=image)">
+
+                            <img :src="image" style="max-width:100px; max-height: 100px">
+                        </div>
+
+                    </ui-dropfile>
+
+                </div>
             </div>
         </div>
     </div>
@@ -412,6 +428,8 @@
         new Vue({
             el: '#app',
             data: () => ({
+                // images: [],
+                images: ["http://docs.agro24.dev/test/3e48afdfc611b4d4d7120452d4e13051.png", "http://docs.agro24.dev/test/7e1c436d1ae65da8341161d54dfe8cdb.jpeg", "http://docs.agro24.dev/test/97dabc44257f5954a53e1833f7f636cd.png", "http://docs.agro24.dev/test/40ac3823ec706f446a5f0eff62aef349.png", "http://docs.agro24.dev/test/ee32431e9c4be82d8e4662fedcca177c.png", "http://docs.agro24.dev/test/8a52cb93e208a4738e3adb3bf3387321.png"],
                 radioValueA:     '',
                 radioValueB:     'One',
                 dd:              [],
@@ -427,7 +445,7 @@
                 rangeValue:      45,
                 toggleBoolean:   false,
                 toggleInteger:   0,
-                helpTexts: [
+                helpTexts:       [
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, quod facilis, qui quaerat nulla impedit ea pariatur, rerum molestias dolorum totam tempore sint repudiandae excepturi, aspernatur vero. Incidunt, cupiditate, labore.',
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro itaque nesciunt molestias obcaecati? Voluptate quisquam tempore enim esse unde dolorum ea in eligendi aspernatur molestiae qui vero, illum earum accusantium!',
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In illum natus, doloremque sapiente illo dolor, facilis maiores iusto quibusdam enim consequatur nemo eos facere, omnis eligendi vel voluptate cupiditate ea.',
@@ -435,6 +453,9 @@
                 helpTextIndex: 0,
             }),
             methods: {
+                // customRequest(data, success, ) {
+
+                // },
                 nextRoutingClick() {
                     alert('Next router link clicked');
                 },
