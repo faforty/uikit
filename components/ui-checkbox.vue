@@ -9,7 +9,7 @@
 <script>
     export default{
          props: {
-            value: Boolean,
+            value: [Boolean, Number, String],
             name: {
                 type: String
             },
@@ -28,8 +28,12 @@
         },
         methods: {
             update (e) {
-                this.$emit('input', e.target.checked)
-                this.$emit('change', e.target.checked)
+                var value = e.target.checked;
+                if (!this.isBoolean) {
+                    value = value ? 1 : 0;
+                }
+                this.$emit('input', value)
+                this.$emit('change', value)
             }
         },
         computed: {
@@ -39,6 +43,9 @@
                     cls: isColor ? false : this.color,
                     color: this.color
                 }
+            },
+            isBoolean () {
+                return typeof(this.value) === 'boolean';
             },
             isChecked () {
                 return this.value

@@ -75,10 +75,12 @@
 
         <div class="container">
 
-            <ui-help>
+            <ui-help :text="helpTexts[helpTextIndex]">
                 <h1 slot="page-header" style="color: #989898"><span style="color: #000000">01</span> Инпуты</h1>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio excepturi odio, eum blanditiis optio saepe voluptate. Voluptate quod blanditiis saepe iure obcaecati ipsum reprehenderit, quisquam, atque excepturi quos ducimus! Natus!
+
+                <br><ui-progress-bar :value="helpTextIndex" :max-value="helpTexts.length"></ui-progress-bar>
             </ui-help>
+
 
             <div class="row">
                 <div class="col-md-4">
@@ -130,10 +132,11 @@
                         <ui-input-spinner min=0 max=10></ui-input-spinner>
                     </div>
 
-                    <ui-toggle v-model="toggleBoolean">
-                        <div>{{toggleBoolean}}</div>
-                    </ui-toggle>
+                    <ui-toggle v-model="toggleBoolean">{{toggleBoolean}}</ui-toggle>
                     <ui-toggle v-model="toggleInteger">{{toggleInteger}}</ui-toggle>
+
+                    <ui-checkbox v-model="toggleBoolean">{{toggleBoolean}}</ui-checkbox>
+                    <ui-checkbox v-model="toggleInteger">{{toggleInteger}}</ui-checkbox>
                 </div>
             </div>
             <h1 style="color: #989898"><span style="color: #000000">02</span> UI</h1>
@@ -152,7 +155,7 @@
                     <div class="form-group">
                         <ui-button href="/" class="ui-btn--green">Text</ui-button>
                         <ui-button>Text</ui-button>
-                        <ui-button disabled="">Text</ui-button>
+                        <ui-button disabled=""><i class="uikit-buy"></i> Text</ui-button>
                     </div>
                     <div class="form-group">
                         <ui-button class="ui-btn--green ui-btn--circle ui-btn--edit">
@@ -424,6 +427,12 @@
                 rangeValue:      45,
                 toggleBoolean:   false,
                 toggleInteger:   0,
+                helpTexts: [
+                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, quod facilis, qui quaerat nulla impedit ea pariatur, rerum molestias dolorum totam tempore sint repudiandae excepturi, aspernatur vero. Incidunt, cupiditate, labore.',
+                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro itaque nesciunt molestias obcaecati? Voluptate quisquam tempore enim esse unde dolorum ea in eligendi aspernatur molestiae qui vero, illum earum accusantium!',
+                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In illum natus, doloremque sapiente illo dolor, facilis maiores iusto quibusdam enim consequatur nemo eos facere, omnis eligendi vel voluptate cupiditate ea.',
+                ],
+                helpTextIndex: 0,
             }),
             methods: {
                 nextRoutingClick() {
@@ -465,7 +474,9 @@
                 }
             },
             mounted() {
-                // this.$refs.spinner.show()
+                setInterval(() => {
+                    this.helpTextIndex = this.helpTextIndex == this.helpTexts.length-1 ? 0 : this.helpTextIndex+1;
+                }, 3000);
             }
         })
     </script>

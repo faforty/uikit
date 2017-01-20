@@ -10,17 +10,13 @@
 
             <div v-if="label" class="ui-help-label">{{label}}</div>
 
-            <!-- <div :class="{help: true, hide: !showTips }"> -->
-                <!-- <div class="help-bg"></div> -->
+                <div class="ui-help-text">
+                    <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
+                        <div :key="text" v-html="text"></div>
+                    </transition>
 
-
-
-                <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
-                    <div class="ui-help-text">
-                        <slot></slot>
-                    </div>
-                </transition>
-            <!-- </div> -->
+                    <slot></slot>
+                </div>
         </div>
     </div>
 </template>
@@ -29,16 +25,15 @@
 export default {
     props: {
         active: {
-            type: Boolean,
-            default: true
+            type:    Boolean,
+            default: false
+        },
+        text: {
+            type: [String, Array],
         },
         label: {
             default: 'Справка',
         }
-        // showTips: {
-        //     type: Boolean,
-        //     default: true
-        // }
     },
     data: () => ({
         isActive: false,
@@ -46,7 +41,7 @@ export default {
     watch: {
         active(active) {
             this.isActive = active;
-        }
+        },
     },
     methods: {
         toggleHelp() {
@@ -56,137 +51,6 @@ export default {
     },
     mounted() {
         this.isActive = this.active;
-    }
+    },
 };
 </script>
-
-<style lang="sass">
-.ui-help-container {
-    transition: all .4s;
-}
-.ui-help {
-    background:   #fff7dd;
-    position:     fixed;
-    bottom:       0;
-    top:          0;
-    width:        30%;
-    height:       100%;
-    padding:      130px 50px;
-    z-index:      1;
-    transition:   all .4s;
-    margin-right: -30%;
-    right:        50px;
-    transition:   background 0;
-
-    .ui-help--active & {
-        margin-right: 0;
-        right:        0;
-        // box-shadow:   0 0 50px rgba(0,0,0,.1);
-
-        .ui-help-label {
-            opacity:    0;
-            margin-top: 55px;
-        }
-
-        .ui-help-text {
-            opacity:    1;
-            transition: opacity .4s;
-        }
-    }
-
-    .ui-help-toggle {
-        position:    absolute;
-        left:        0;
-        top:         60px;
-        margin-left: -20px;
-        transition:  all .4s;
-    }
-
-    .ui-help-label {
-        position:         absolute;
-        right:            100%;
-        font-weight:      300;
-        color:            mix(#fff7dd, #000, 70);
-        text-transform:   uppercase;
-        transform:        rotate(-90deg);
-        transform-origin: top right;
-        white-space:      nowrap;
-        font-size:        18px;
-        letter-spacing:   1.6px;
-        transition:       all .4s;
-        margin:           5px -15px 0 0;
-        opacity:          1;
-    }
-
-    .ui-help-text {
-        opacity:     1;
-        font-size:   18px;
-        line-height: 28px;
-        font-weight: 300;
-        color:       #333;
-        transition:  all .4s;
-        opacity:     0;
-    }
-
-}
-
-@media (max-width: 768px) {
-    .ui-help-container {
-        position: relative;
-        > h1, > h2, > h3{
-            transition: all .4s;
-        }
-
-        &.ui-help--active {
-            background:    #fff7dd;
-            padding:       30px;
-            margin: -30px -30px 30px;
-
-            .ui-help-toggle {
-                right: 30px;
-                top: -20px;
-            }
-        }
-
-        > h1, > h2, > h3 {
-            padding-top: 0;
-        }
-    }
-    .ui-help {
-        position:   static;
-        padding:    0;
-        width:      100%;
-        margin:     0;
-        background: transparent;
-        height:     0;
-        overflow:   hidden;
-
-        .ui-help--active & {
-            box-shadow: none;
-            height:     auto;
-        }
-
-        .ui-help-text {
-            // padding: 30px;
-        }
-
-        .ui-help-label {
-            display: none;
-        }
-
-        .ui-help-toggle {
-            // position: fixed;
-            // top:      60px;
-            // right:    30px;
-            // left:     auto;
-
-            position: absolute;
-            left:     auto;
-            top:      0;
-            // top:   0;
-            // left:  auto;
-            right: 0;
-        }
-    }
-}
-</style>

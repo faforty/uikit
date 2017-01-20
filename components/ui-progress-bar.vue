@@ -31,7 +31,7 @@
             progressbar: null,
             options: {
                 color:       null,
-                trailColor:  '#d6dad9',
+                trailColor:  'rgba(0,0,0,.1)',
                 strokeWidth: 5,
                 trailWidth:  5,
 
