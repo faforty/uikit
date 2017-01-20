@@ -9,7 +9,8 @@
   "version": "3.0.5",
   "scripts": {
     "dev": "webpack-dev-server --inline --content-base ./",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build_common": "cross-env NODE_ENV=production webpack --progress --config ./scripts/webpack.common.js --env production --display-error-details"
   },
   "repository": {
     "type": "git",
