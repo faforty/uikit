@@ -10,6 +10,7 @@ import uiTab              from './ui-tab';
 import uiDropdown         from './ui-dropdown';
 import uiSpinner          from './ui-spinner';
 import uiPopup            from './ui-popup';
+import uiPopover          from './ui-popover';
 import uiBoxFilter        from './ui-box-filter';
 import uiDatepicker       from './ui-datepicker';
 import uiProgressBar      from './ui-progress-bar';
@@ -41,6 +42,7 @@ export default {
     'ui-spinner':           uiSpinner,
     'ui-box-filter':        uiBoxFilter,
     'ui-popup':             uiPopup,
+    'ui-popover':           uiPopover,
     'ui-dropdown':          uiDropdown,
     'ui-datepicker':        uiDatepicker,
     'ui-progress-bar':      uiProgressBar,

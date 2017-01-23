@@ -14,22 +14,22 @@
         padding: 5px;
 
         &:after {
-            display:         block;
-            content:         '';
-            width:           6px;
-            height:          6px;
-            background:      rgba(0,0,0,.53);
-            border-radius:   6px;
-            background-clip: padding-box;
-            transition:      all .3s;
+            display:          block;
+            content:          '';
+            width:            6px;
+            height:           6px;
+            background-color: rgba(0,0,0,.53);
+            border-radius:    6px;
+            background-clip:  padding-box;
+            transition:       all .3s;
         }
 
         &:hover:after {
-            background: #1ABF78;
+            background-color: #1ABF78;
         }
 
         &.active:after {
-            background: transparent;
+            background-color: transparent;
             box-shadow: 0 0 0 2px rgba(0,0,0,.53);
         }
     }

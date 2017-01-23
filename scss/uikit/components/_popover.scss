@@ -1,0 +1,78 @@
+.ui-popover-wrapper {
+  position: relative;
+  display:  inline-block;
+}
+.ui-popover {
+  background-color: #FFF7DD;
+  border-radius:    4px;
+  position:         absolute;
+  z-index:          999;
+  min-width:        300px;
+
+  .ui-popover--white & {
+    background-color: #FFF;
+    filter:           drop-shadow(0 0 1px rgba(0,0,0,.2));
+
+    &:after {
+      background-color: #FFF;
+    }
+  }
+
+  &:after {
+    content:          '';
+    position:         absolute;
+    width:            16px;
+    height:           16px;
+    background-color: #FFF7DD;
+    transform:        translate(-50%, -50%) rotate(45deg);
+  }
+
+  &--left:after {
+    top: 50%;
+  }
+  &--right:after {
+    top: 50%;
+  }
+  &--bottom:after {
+    left: 50%;
+    top:  100%;
+  }
+  &--top:after {
+    left: 50%;
+    top:  100%;
+  }
+
+  &--top {
+    transform:  translate(-50%, -100%);
+    margin-top: -20px;
+    top:        0;
+    left:       50%;
+  }
+  &--bottom {
+    transform:  translate(-50%, 0);
+    margin-top: 20px;
+    top:        100%;
+    left:       50%;
+  }
+  &--right {
+    transform:   translate(0, -50%);
+    margin-left: 20px;
+    top:         50%;
+    left:        100%;
+  }
+  &--left {
+    transform:    translate(0, -50%);
+    margin-right: 20px;
+    top:          50%;
+    right:        100%;
+  }
+}
+
+.ui-popover-content {
+  padding: 20px;
+}
+.ui-popover-title {
+  padding:       10px 20px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  margin-bottom: -10px;
+}
