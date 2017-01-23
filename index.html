@@ -338,6 +338,17 @@
                     </ui-tabs>
                 </div>
                 <div class="col-md-4">
+                    <ui-tabs active="dtab-2">
+                        <ui-tab v-for="(name, tab) in tabs" :name="tab"><a>{{name}}</a></ui-tab>
+
+                        <div slot="contents">
+                            <div tab-name="dtab-1">Content 1</div>
+                            <div tab-name="dtab-2">Content 2</div>
+                            <div tab-name="dtab-3">Content 3</div>
+                        </div>
+                    </ui-tabs>
+                </div>
+                <div class="col-md-4">
                     <ui-tabs active="tab-1" align="top" :percent="50" :indicator-height="5" :indicator-border="false" @change="changeTabs">
                         <ui-tab name="tab-1">
                             <a>Tab 1</a>
@@ -450,6 +461,7 @@
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In illum natus, doloremque sapiente illo dolor, facilis maiores iusto quibusdam enim consequatur nemo eos facere, omnis eligendi vel voluptate cupiditate ea.',
                 ],
                 helpTextIndex: 0,
+                tabs: {}
             }),
             methods: {
                 // customRequest(data, success, ) {
@@ -497,6 +509,14 @@
                 setInterval(() => {
                     this.helpTextIndex = this.helpTextIndex == this.helpTexts.length-1 ? 0 : this.helpTextIndex+1;
                 }, 3000);
+
+                setTimeout(() => {
+                    this.tabs = {
+                        'dtab-1': 'Dynamic tab 1',
+                        'dtab-2': 'Dynamic tab 2',
+                        'dtab-3': 'Dynamic tab 3',
+                    };
+                }, 1000);
             }
         })
     </script>

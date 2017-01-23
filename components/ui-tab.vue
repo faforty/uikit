@@ -66,7 +66,7 @@
                 throw new Error('You must wrap the md-tab in a ui-tabs');
             }
 
-            this.parentTabs.select(this)
+            this.parentTabs.tabSelect(this.parentTabs.active)
         }
     }
 </script>
