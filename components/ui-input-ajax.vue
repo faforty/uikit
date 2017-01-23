@@ -59,7 +59,7 @@
             inputValue: String,
             icon: {
                 type: String,
-                'default': 'stateIcon'
+                'default': ''
             },
             iconAlign: String,
             filterOutput: {
@@ -71,10 +71,10 @@
         data: () => ({
             opened: false,
             iconStyle: '',
-            stateIcon: 'uikit-search',
-            state: {
-                icon: 'uikit-search'
-            },
+            // stateIcon: 'uikit-search',
+            // state: {
+            //     icon: 'uikit-search'
+            // },
             searchValue: '',
             lock: false,
             items: [],
@@ -97,11 +97,11 @@
                     this.$emit('input', item)
                 }
             },
-            reset () {
-                //this.iconStyle.style = ''
+            // reset () {
+            //     //this.iconStyle.style = ''
 
-                this.stateIcon = this.state.icon
-            },
+            //     this.stateIcon = this.state.icon
+            // },
             ajax (value) {
                 if (this.ajaxUrl) {
                     let params = {
@@ -115,7 +115,7 @@
                         .then(response => response.json()).then(data => {
                             let items = data.items.data ? data.items.data : data.items
 
-                            this.reset()
+                            // this.reset()
 
                             this.items = this.filterOutput(items);
 
@@ -158,7 +158,7 @@
 
                 this.items = this.filterOutput(this.items);
 
-                this.reset()
+                // this.reset()
             }
         },
 
@@ -177,10 +177,12 @@
 
                 if (value) {
                     this.opened = true
-                    this.state.icon = (this.state.icon != this.stateIcon) ? this.state.icon : this.stateIcon
+
+                    // Не удалять этот код!!!
+                    // this.state.icon = (this.state.icon != this.stateIcon) ? this.state.icon : this.stateIcon
 
                     //this.iconStyle.style = 'padding: 10px;margin: 18px 20px !important;'
-                    this.stateIcon = 'loader-spinner'
+                    // this.stateIcon = 'loader-spinner'
 
                     if (this.ajaxUrl) {
                         this.ajax(value)
@@ -194,7 +196,7 @@
                 }
 
                 this.opened = false
-                this.reset()
+                // this.reset()
             }
         },
         beforeMount () {
