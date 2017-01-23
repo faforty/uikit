@@ -54,19 +54,23 @@
             placeholder: String,
             color: String,
             emitInput: {
-                'default': 'id'
+                default: 'id'
             },
             inputValue: String,
             icon: {
                 type: String,
-                'default': ''
+                default: ''
             },
             iconAlign: String,
             filterOutput: {
                 type: Function,
                 default: arr => arr
             },
-            hint: String
+            hint: String,
+            clearValue: {
+                type: Boolean,
+                default: false
+            }
         },
         data: () => ({
             opened: false,
@@ -89,7 +93,10 @@
 
                 this.lock = true
                 this.opened = false
-                this.searchValue = item.name
+                this.searchValue = item.name;
+
+                if (this.clearValue)
+                    this.searchValue = '';
 
                 if (this.emitInput == 'id') {
                     this.$emit('input', item.id + '')
