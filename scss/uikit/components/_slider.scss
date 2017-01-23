@@ -1,0 +1,36 @@
+.ui-slider {
+    position: relative;
+}
+
+.ui-slider-toggle {
+    position:   absolute;
+    right:      0;
+    top:        -30px;
+
+    > * {
+        display: block;
+        float:   left;
+        margin:  0 10px;
+        padding: 5px;
+
+        &:after {
+            display:         block;
+            content:         '';
+            width:           6px;
+            height:          6px;
+            background:      rgba(0,0,0,.53);
+            border-radius:   6px;
+            background-clip: padding-box;
+            transition:      all .3s;
+        }
+
+        &:hover:after {
+            background: #1ABF78;
+        }
+
+        &.active:after {
+            background: transparent;
+            box-shadow: 0 0 0 2px rgba(0,0,0,.53);
+        }
+    }
+}

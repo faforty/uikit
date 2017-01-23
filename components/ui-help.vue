@@ -11,9 +11,12 @@
             <div v-if="label" class="ui-help-label">{{label}}</div>
 
                 <div class="ui-help-text">
-                    <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
-                        <div :key="text" v-html="text"></div>
-                    </transition>
+                    <ui-slider v-if="useSlider" :content="content"></ui-slider>
+                    <template v-else>
+                        <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
+                            <div :key="content" v-html="content"></div>
+                        </transition>
+                    </template>
 
                     <slot></slot>
                 </div>
@@ -22,26 +25,43 @@
 </template>
 
 <script>
+import uiSlider from './ui-slider.vue';
+
 export default {
+    components: {
+        uiSlider
+    },
+
     props: {
         active: {
             type:    Boolean,
             default: false
         },
-        text: {
+        content: {
             type: [String, Array],
         },
         label: {
             default: 'Справка',
-        }
+        },
+
+        // Deprecated
+        text: {type: [String, Array],},
     },
     data: () => ({
         isActive: false,
     }),
     watch: {
+        text(text) {
+            this.content = text;
+        },
         active(active) {
             this.isActive = active;
         },
+    },
+    computed: {
+        useSlider() {
+            return Array.isArray(this.content);
+        }
     },
     methods: {
         toggleHelp() {

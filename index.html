@@ -75,10 +75,10 @@
 
         <div class="container">
 
-            <ui-help :text="helpTexts[helpTextIndex]">
+            <ui-help :text="helpTexts">
                 <h1 slot="page-header" style="color: #989898"><span style="color: #000000">01</span> Инпуты</h1>
 
-                <br><ui-progress-bar :value="helpTextIndex" :max-value="helpTexts.length"></ui-progress-bar>
+                <ui-slider :content="helpTexts"></ui-slider>
             </ui-help>
 
 
@@ -416,7 +416,6 @@
                 </div>
 
                 <div class="col-md-4">
-
                     <ui-dropfile v-model="images" url="http://docs.agro24.dev/upload" name="files" multiple>
 
                         <div v-if="images.length" class="ui-box" style="border:1px solid #EEE">
@@ -428,7 +427,10 @@
                         </div>
 
                     </ui-dropfile>
+                </div>
 
+                <div class="col-md-4">
+                    <ui-slider :content="helpTexts"></ui-slider>
                 </div>
             </div>
         </div>
@@ -456,7 +458,7 @@
                 toggleBoolean:   false,
                 toggleInteger:   0,
                 helpTexts:       [
-                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, quod facilis, qui quaerat nulla impedit ea pariatur, rerum molestias dolorum totam tempore sint repudiandae excepturi, aspernatur vero. Incidunt, cupiditate, labore.',
+                    '<b>Lorem ipsum</b> dolor sit amet, consectetur adipisicing elit. Dolore, quod facilis, qui quaerat nulla impedit ea pariatur, rerum molestias dolorum totam tempore sint repudiandae excepturi, aspernatur vero. Incidunt, cupiditate, labore.',
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro itaque nesciunt molestias obcaecati? Voluptate quisquam tempore enim esse unde dolorum ea in eligendi aspernatur molestiae qui vero, illum earum accusantium!',
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In illum natus, doloremque sapiente illo dolor, facilis maiores iusto quibusdam enim consequatur nemo eos facere, omnis eligendi vel voluptate cupiditate ea.',
                 ],

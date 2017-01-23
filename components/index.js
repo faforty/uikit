@@ -26,6 +26,7 @@ import uiRadio            from './ui-radio';
 import uiLabel            from './ui-label';
 import uiHelp             from './ui-help';
 import uiDropfile         from './ui-dropfile';
+import uiSlider           from './ui-slider';
 
 export default {
     'ui-select':            uiSelect,
@@ -56,4 +57,5 @@ export default {
     'ui-label':             uiLabel,
     'ui-help':              uiHelp,
     'ui-dropfile':          uiDropfile,
+    'ui-slider':            uiSlider,
 }
