@@ -1,29 +1,34 @@
 <template>
-    <div class="ui-dropfile">
-        <div ref="dropzone" class="ui-dropfile-dropzone" :class="{'ui--over':dropzoneOver}">
-            <div class="ui-dropfile-overtext"
-                @dragover.stop.prevent="dragOver"
+
+    <div class="ui-dropfile" :class="{'ui-dropfile--over':dropzoneOver, 'ui-dropfile--body-over':bodyOver, 'ui-dropfile--empty':isEmpty}">
+
+        <div ref="dropzone" class="ui-dropfile-dropzone">
+            <div
+                @dragover.stop.prevent="dragOver($event, true)"
                 @dragleave.stop.prevent="dragLeave"
                 @drop.stop.prevent="fileSelect"
             >
-                <slot name="on-drop">Перетяните изображение сюда</slot>
+                <slot name="on-drop">
+                    <div class="ui-dropfile-overtext">Перетяните изображение сюда</div>
+                </slot>
             </div>
 
             <slot>
                 <img v-for="file in files" :src="file" width="50" height="50">
+                <!-- <div class="ui-dropfile-overtext" style="display:flex">Перетяните изображение сюда</div> -->
             </slot>
         </div>
 
         <label :for="inputId" class="ui-btn ui-btn--sm">
             {{buttonLabel}}
         </label>
+
         <input class="ui-dropfile-input" :id="inputId" @change="fileSelect" ref="fileInput" type="file" :multiple="multiple" />
+
     </div>
 </template>
 
 <script>
-import throttle from 'lodash.throttle';
-
 export default {
     props: {
         value: {},
@@ -60,6 +65,7 @@ export default {
 
     data: () => ({
         dropzoneOver: false,
+        bodyOver:     false,
         data:         null,
     }),
 
@@ -75,32 +81,42 @@ export default {
         },
         inputId() {
             return 'dropfile' + this._uid;
+        },
+        isEmpty() {
+            // return true;
+            return Array.isArray(this.value) ? this.value.length === 0 : !this.value;
         }
     },
 
     methods: {
-        dragOver(e) {
-            console.log('asd');
-            // e.stopPropagation();
-            // e.preventDefault();
-            throttle(function(){
-                this.dropzoneOver = true;
-            }.bind(this), 10)();
+        dragOver(e, isDropzone = false) {
+            if (this._leaveTimeout) {
+                clearTimeout(this._leaveTimeout);
+            }
 
-            if (this._timeout) {
-                clearTimeout(this._timeout);
+            this.bodyOver = true;
+
+            if (isDropzone) {
+                this.dropzoneOver = true;
             }
         },
+
         dragLeave(e) {
-            if (this._timeout) {
-                clearTimeout(this._timeout);
+            if (this._leaveTimeout) {
+                clearTimeout(this._leaveTimeout);
             }
-            this._timeout = setTimeout(() => {
-                this.dropzoneOver = false;
+
+            this._leaveTimeout = setTimeout(() => {
+                this.bodyOver = false;
             }, 50);
-        },
-        fileSelect(e) {
+
             this.dropzoneOver = false;
+        },
+
+        fileSelect(e) {
+            this.bodyOver     = false;
+            this.dropzoneOver = false;
+
             var files = e.target.files || e.dataTransfer.files;
 
             var formData = new FormData();
@@ -141,53 +157,16 @@ export default {
         },
     },
 
-    mounted () {
+    mounted() {
         this.data = this.value;
-        // if (window.File && window.FileList && window.FileReader) {
-        //     this.init();
-        // }
-        document.body.addEventListener('dragover', this.dragOver.bind(this));
+        document.body.addEventListener('dragover',  this.dragOver.bind(this));
         document.body.addEventListener('dragleave', this.dragLeave.bind(this));
+    },
+
+    beforeDestroy() {
+        document.body.removeEventListener('dragover',  this.dragOver);
+        document.body.removeEventListener('dragleave', this.dragLeave);
     }
+
 }
 </script>
-
-<style lang="sass">
-.ui-dropfile-dropzone {
-    width:      100%;
-    min-height: 100px;
-    position: relative;
-    z-index: 1;
-    // background: #F9F9F9;
-
-    .ui-dropfile-overtext {
-        display:         none;
-        position:        absolute;
-        top:             0;
-        bottom:          0;
-        right:           0;
-        left:            0;
-        background:      rgba(255,255,255,.7);
-        border:          2px dashed rgba(0,0,0,.1);
-        flex-direction:  row;
-        justify-content: center;
-        align-items:     center;
-        color:           #999;
-    }
-
-    &.ui--over {
-        .ui-dropfile-overtext {
-            display: flex;
-            &:hover {
-                box-shadow: 0 0 50px #F00;
-            }
-        }
-    }
-}
-.ui-dropfile-input {
-    display:    none;
-    visibility: hidden;
-    position:   absolute;
-    left:       -9999px;
-}
-</style>
