@@ -447,6 +447,7 @@
       background: rgba(231, 231, 231, .53);
 
       > i,
+      > .ui-select__selected__icon > i,
       > span > span {
         color: #9a9a9a !important;
       }
