@@ -187,9 +187,13 @@
 
     &__btn {
       white-space: nowrap;
-      vertical-align: middle;
-      display: table-cell;
-      padding: 12px 15px;
+      // vertical-align: middle;
+      // display: table-cell;
+      padding: 19px 20px;
+
+      .ui--disabled & {
+        background-color: rgba(231,231,231,0.53);
+      }
     }
     &__btn--left {
       border-right: 1px solid #e6e6e6;

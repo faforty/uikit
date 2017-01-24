@@ -1,5 +1,5 @@
 <template>
-    <ui-label :filled="filled" :form-group="formGroup" :label-show="label" :label-align="labelAlign" :state="fieldState">
+    <ui-label :filled="filled" :form-group="formGroup" :label-show="label" :label-align="labelAlign" :state="fieldState" :class="{'ui--disabled':disabled}">
 
         <template slot="label"><slot></slot></template>
 
