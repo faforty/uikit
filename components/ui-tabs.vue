@@ -1,7 +1,7 @@
 <template>
     <div class="ui-tabs">
-        <div class="ui-tabs-revers-1">
-            <ul class="ui-tabs__bar">
+        <div class="ui-tabs-wrapper ui-tabs-revers-1" :class="{'ui-tabs--scroll-min': !isScrollMin, 'ui-tabs--scroll-max': !isScrollMax}">
+            <ul class="ui-tabs__bar" ref="tabs" @scroll="onScroll">
                 <slot></slot>
                 <div ref="indicator" class="ui-tabs__indicator" :style="{ 'height': indicatorHeight + 'px', [align]: 0 }"></div>
             </ul>
@@ -17,7 +17,7 @@
     export default {
         props: {
             percent: {
-                type: Number,
+                type:      Number,
                 'default': 100
             },
             active: {
@@ -38,22 +38,32 @@
         },
         watch: {
             active (value) {
+                this.scrollOnce = true;
                 this.tabSelect(value);
             }
         },
         data: () => ({
-            activeTab: false,
-            indicator: {
+            activeTab:   false,
+            scrollOnce:  true,
+            isScrollMin: true,
+            isScrollMax: true,
+            maxScroll:   0,
+            indicator:   {
                 left:  '0',
                 right: '0'
             }
         }),
         methods: {
+            onScroll (e) {
+                var scrollLeft = e.target.scrollLeft;
+                this.isScrollMin = scrollLeft === 0;
+                this.isScrollMax = scrollLeft >= this.maxScroll - 1;
+            },
             isSelected (tab) {
                 return this.activeTab === tab
             },
             select (tab) {
-                this.$nextTick(() => {
+                // this.$nextTick(() => {
                     this.activeTab = tab
 
                     let target = tab.$el,
@@ -72,9 +82,22 @@
                         tabsWidth       = this.$el.getElementsByClassName('ui-tabs__bar')[0].offsetWidth,
                         tabsScrollWidth = this.$el.getElementsByClassName('ui-tabs__bar')[0].scrollWidth;
 
+                    this.maxScroll = tabsScrollWidth - tabsWidth;
+
+                    if (this.scrollOnce) {
+                        this.scrollOnce = false;
+                        Velocity(tab.$el, "scroll", {
+                            offset:    -(tabsWidth-tabWidth)/2, // center tab
+                            container: this.$refs.tabs,
+                            duration:  300,
+                            easing:    'easeOutQuad',
+                            axis:      'x'
+                        });
+                    }
+
                     this.$emit('change', this.activeTab)
                     this.choiceContent(tab.name || tab.index)
-                })
+                // })
             },
             resizeIndicator() {
                 if (!this.activeTab) {

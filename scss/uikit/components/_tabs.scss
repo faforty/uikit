@@ -1,13 +1,45 @@
+$tabs-fade-border: 30px;
 .ui {
   &-tabs {
     position: relative;
 
+    .ui-tabs-wrapper {
+      position:     relative;
+      // margin-left:  -($tabs-fade-border);
+      // margin-right: -($tabs-fade-border);
+
+      &:before,
+      &:after {
+        content:    '';
+        position:   absolute;
+        top:        0;
+        bottom:     0;
+        width:      $tabs-fade-border;
+        z-index:    1;
+        // opacity:    0;
+        transition: left .3s, right .3s;
+      }
+      &:before {
+        left: -$tabs-fade-border;
+        background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
+      }
+      &:after {
+        right: -$tabs-fade-border;
+        background: linear-gradient(-90deg, rgba(255,255,255,1), rgba(255,255,255,0));
+      }
+      &.ui-tabs--scroll-min:before {
+        left:       0;
+      }
+      &.ui-tabs--scroll-max:after {
+        right:      0;
+      }
+    }
 
     &__indicator {
       background: #1abf7a;
-      position: absolute;
-      bottom: 0;
-      height: 1px;
+      position:   absolute;
+      bottom:     0;
+      height:     1px;
     }
 
     &__b {
@@ -16,14 +48,16 @@
     }
 
     &__bar {
-      position: relative;
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 0;
+      position:         relative;
+      list-style:       none;
+      padding-left:     0;
+      margin-bottom:    0;
       background-color: transparent;
-      white-space: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
+      white-space:      nowrap;
+      overflow-x:       auto;
+      overflow-y:       hidden;
+      // padding-left:     $tabs-fade-border;
+      // padding-right:    $tabs-fade-border;
 
       &::-webkit-scrollbar {
         display: none;
