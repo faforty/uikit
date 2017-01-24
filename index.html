@@ -134,9 +134,12 @@
 
                     <ui-toggle v-model="toggleBoolean">{{toggleBoolean}}</ui-toggle>
                     <ui-toggle v-model="toggleInteger">{{toggleInteger}}</ui-toggle>
+                    <ui-toggle v-model="toggleBoolean" disabled>{{toggleBoolean}}</ui-toggle>
 
                     <ui-checkbox v-model="toggleBoolean">{{toggleBoolean}}</ui-checkbox>
                     <ui-checkbox v-model="toggleInteger">{{toggleInteger}}</ui-checkbox>
+                    <ui-checkbox v-model="toggleBoolean" disabled>{{toggleBoolean}}</ui-checkbox>
+
                 </div>
             </div>
             <h1 style="color: #989898"><span style="color: #000000">02</span> UI</h1>
@@ -411,7 +414,7 @@
                 <div class="col-md-3">
                     <ui-radio value-data="One" v-model="radioValueB">Radio One</ui-radio>
                     <ui-radio value-data="Two" v-model="radioValueB">Radio Two</ui-radio>
-                    <ui-radio value-data="Tree" v-model="radioValueB" disabled>Radio Tree</ui-radio>
+                    <ui-radio value-data="One" v-model="radioValueB" disabled>Radio One Disabled</ui-radio>
                     Selected: <b>{{ radioValueB }}</b>
                 </div>
 
@@ -475,8 +478,8 @@
                 showRange:        true,
                 rangeValueArray:  [44, 48],
                 rangeValue:       45,
-                toggleBoolean:    false,
-                toggleInteger:    0,
+                toggleBoolean:    true,
+                toggleInteger:    1,
                 helpTexts:        [
                     '<b>Lorem ipsum</b> dolor sit amet, consectetur adipisicing elit. Dolore, quod facilis, qui quaerat nulla impedit ea pariatur, rerum molestias dolorum totam tempore sint repudiandae excepturi, aspernatur vero. Incidunt, cupiditate, labore.',
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro itaque nesciunt molestias obcaecati? Voluptate quisquam tempore enim esse unde dolorum ea in eligendi aspernatur molestiae qui vero, illum earum accusantium!',
