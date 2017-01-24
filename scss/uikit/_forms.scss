@@ -172,9 +172,10 @@
 
     & > .form-control {
       display: table-cell;
-      float: left;
-      width: 100%;
-      border: none;
+      float:   left;
+      width:   100%;
+      border:  none;
+      margin:  0;
 
       &:focus {
         box-shadow: none;
@@ -189,9 +190,10 @@
 
     &__btn {
       white-space: nowrap;
-      // vertical-align: middle;
-      // display: table-cell;
-      padding: 19px 20px;
+      vertical-align: top;
+      display: table-cell;
+      padding: 18px 20px;
+      line-height: 18px;
 
       .ui--disabled & {
         background-color: rgba(231,231,231,0.53);
@@ -205,8 +207,9 @@
     }
 
     &__btn__hight {
-      font-size: 16px;
-      margin-top: -3px;
+      font-size:     16px;
+      display:       inline-block;
+      // margin-top: -3px;
     }
   }
 
