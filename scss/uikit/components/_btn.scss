@@ -24,6 +24,12 @@
       border: 0;
     }
 
+    [class^="uikit-"] {
+      font-size:      1.4em;
+      margin:         -1px 0;
+      vertical-align: middle;
+    }
+
     &[disabled] {
       color: map_get($colors, gray);
       cursor: default;
@@ -90,6 +96,10 @@
       height: 60px;
       padding: 0;
 
+      [class^="uikit-"] {
+        font-size: 1.8em;
+      }
+
       &[disabled] {
         @include btn-style(grayMedium, grayMedium, map_get($colors, gray));
 
@@ -108,14 +118,19 @@
     }
 
     &--lg {
-      padding: 23px 25px;
+      padding:   20px 25px;
+      font-size: 1.2em;
 
-      &.ui-btn--green {
-        @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
+      // &.ui-btn--green {
+      //   @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
 
-        &:hover {
-          @include btn-style(#1cd988, #1cd988, #ffffff);
-        }
+      //   &:hover {
+      //     @include btn-style(#1cd988, #1cd988, #ffffff);
+      //   }
+      // }
+
+      [class^="uikit-"] {
+        margin: -2px 0 -1px;
       }
 
       &--green {
@@ -130,9 +145,14 @@
       }
 
       &.ui-btn--circle {
-        height: 80px;
-        width: 80px;
+        height:  80px;
+        width:   80px;
         padding: 0;
+
+        [class^="uikit-"] {
+          font-size: 2em;
+          // margin: -2px 0 -1px;
+        }
       }
     }
 
@@ -143,6 +163,10 @@
         height: 40px;
         width: 40px;
         padding: 0;
+
+        [class^="uikit-"] {
+          font-size: 1.2em;
+        }
       }
     }
 
@@ -154,18 +178,22 @@
         height: 24px;
         width: 24px;
         padding: 0;
+
+        [class^="uikit-"] {
+          font-size: 1.1em;
+        }
       }
     }
 
-    &--checkmark {
-      font-size: 25px;
-    }
-    &--plus {
-      font-size: 25px;
-    }
-    &--edit {
-      font-size: 18px;
-    }
+    // &--checkmark {
+    //   font-size: 20px;
+    // }
+    // &--plus {
+    //   font-size: 20px;
+    // }
+    // &--edit {
+    //   font-size: 16px;
+    // }
 
     &--no-shadow {
       box-shadow: none;

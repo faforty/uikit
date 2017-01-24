@@ -291,6 +291,7 @@
       }
       &--disabled::after {
         background-color: #989898 !important;
+        box-shadow: none !important;
       }
     }
     &__field {
@@ -301,7 +302,9 @@
         left:             22px;
         top:              4px;
         border-radius:    50%;
-        background-color: #2d9e6e;
+        // background-color: #2d9e6e;
+        background-color: map-get($colors, 'limeGreen');
+        box-shadow: 0 2px 3px -1px rgba(45, 159, 110, .6);
       }
     }
   }
