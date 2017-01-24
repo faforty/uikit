@@ -1,54 +1,65 @@
 .ui-dropfile {
-    text-align: center
+  text-align: center
 }
 
 .ui-dropfile-dropzone {
-    width:         100%;
-    min-height:    100px;
-    position:      relative;
-    z-index:       1;
-    margin-bottom: 20px;
-    // background: #F9F9F9;
+  width:         100%;
+  min-height:    160px;
+  position:      relative;
+  z-index:       1;
+  margin-bottom: 20px;
+  // background: #F9F9F9;
 }
 .ui-dropfile-overtext {
-    display:         none;
-    position:        absolute;
-    top:             0;
-    bottom:          0;
-    right:           0;
-    left:            0;
-    background:      rgba(255,255,255,.7);
-    border:          2px dashed rgba(0,0,0,.1);
-    flex-direction:  row;
-    justify-content: center;
-    align-items:     center;
-    color:           #999;
-    transition:      all .2s;
+  display:     none;
+  position:    absolute;
+  top:         0;
+  left:        0;
+  background:  rgba(255,255,255,.8);
+  border:      2px dashed rgba(0,0,0,.1);
+  color:       #999;
+  transition:  all .2s;
+  height:      100%;
+  width:       100%;
+
+  flex-direction:  column;
+  justify-content: center;
+  align-items:     center;
+
+  .ui-dropfile-icon > i {
+    font-size: 100px;
+    color: #1ac17b;
+  }
 }
 .ui-dropfile--empty,
 .ui-dropfile--body-over {
-    .ui-dropfile-overtext {
-        display: flex;
-    }
+  .ui-dropfile-overtext {
+    display: flex;
+  }
 }
 .ui-dropfile--body-over {
-    .ui-dropfile-overtext {
-        border-color: #1ac17b;
-    }
+  .ui-dropfile-overtext {
+    border-color: #1ac17b;
+    text-shadow: 0 1px 5px #FFF;
+  }
 }
 .ui-dropfile--over {
-    .ui-dropfile-overtext {
-        z-index:      999;
-        box-shadow:   0 13px 45px -10px rgba(45, 159, 110, .6);
-        border-style: solid;
-        border-color: #1ac17b;
-        background-color: #1ac17b;
-        color:        #FFF;
+  .ui-dropfile-overtext {
+    z-index:          999;
+    box-shadow:       0 13px 45px -10px rgba(45, 159, 110, .6);
+    border-style:     solid;
+    border-color:     #1ac17b;
+    background-color: #1ac17b;
+    text-shadow:      none;
+
+    &, .ui-dropfile-icon > i {
+      color: #FFF;
     }
+  }
 }
 .ui-dropfile-input {
-    display:    none;
-    visibility: hidden;
-    position:   absolute;
-    left:       -9999px;
+  display:    none;
+  visibility: hidden;
+  position:   absolute;
+  left:       -9999px;
 }

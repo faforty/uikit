@@ -9,7 +9,10 @@
                 @drop.stop.prevent="fileSelect"
             >
                 <slot name="on-drop">
-                    <div class="ui-dropfile-overtext">Перетяните изображение сюда</div>
+                    <div class="ui-dropfile-overtext">
+                        <div class="ui-dropfile-icon"><i class="uikit-cloud-send"></i></div>
+                        Перетяните изображение сюда
+                    </div>
                 </slot>
             </div>
 
