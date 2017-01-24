@@ -23,8 +23,12 @@
                     </div>
                 </transition>
             </div>
+
             <div class="ui-input__help" v-show="info">
-                <a class="ui-action ui-input__help__action uikit-info"></a>
+                <ui-popover placement="right">
+                    <a class="ui-action ui-input__help__action uikit-info"></a>
+                    <div slot="content">{{info}}</div>
+                </ui-popover>
             </div>
         </div>
 
@@ -34,10 +38,12 @@
 <script>
     import ValidatesInput from './../mixins/ValidatesInput';
     import uiLabel from './ui-label.vue';
+    import uiPopover from './ui-popover.vue';
 
     export default {
         components: {
-            uiLabel
+            uiLabel,
+            uiPopover
         },
         props: {
             type: {
