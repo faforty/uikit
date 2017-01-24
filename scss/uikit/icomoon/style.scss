@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'ui-green';
-  src:  url('#{$icomoon-font-path}/ui-green.eot?9orfn1');
-  src:  url('#{$icomoon-font-path}/ui-green.eot?9orfn1#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/ui-green.ttf?9orfn1') format('truetype'),
-    url('#{$icomoon-font-path}/ui-green.woff?9orfn1') format('woff'),
-    url('#{$icomoon-font-path}/ui-green.svg?9orfn1#ui-green') format('svg');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?27n3e');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?27n3e#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/ui-green.ttf?27n3e') format('truetype'),
+    url('#{$icomoon-font-path}/ui-green.woff?27n3e') format('woff'),
+    url('#{$icomoon-font-path}/ui-green.svg?27n3e#ui-green') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,6 +26,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.uikit-cloud-send {
+  &:before {
+    content: $uikit-cloud-send;
+  }
+}
 .uikit-calendar {
   &:before {
     content: $uikit-calendar;
