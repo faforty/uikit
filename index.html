@@ -438,10 +438,18 @@
                 <div class="col-md-4">
                     <!-- <ui-box-filter></ui-box-filter> -->
 
-                    <ui-popover :active="true" title="Popover title" Xclass="ui-popover--white">
+                    <ui-popover :active="false" :placement="popoverPlacement" title="" class="-ui-popover--white">
                         <span class="ui-action ui-input__help__action uikit-info"></span>
                         <div slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut corporis mollitia sequi numquam recusandae similique hic debitis, perferendis rem qui veniam inventore fuga expedita ea, molestias asperiores cumque dicta!</div>
                     </ui-popover>
+                    <br><br>
+                    <div class="ui-btn-group">
+                        <ui-button class='ui-btn--xs' @click.stop="popoverPlacement='top'">top</ui-button>
+                        <ui-button class='ui-btn--xs' @click.stop="popoverPlacement='right'">right</ui-button>
+                        <ui-button class='ui-btn--xs' @click.stop="popoverPlacement='bottom'">bottom</ui-button>
+                        <ui-button class='ui-btn--xs' @click.stop="popoverPlacement='left'">left</ui-button>
+                        <ui-button class='ui-btn--xs' disabled>{{popoverPlacement}}</ui-button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -452,23 +460,24 @@
         new Vue({
             el: '#app',
             data: () => ({
-                images:          [],
-                radioValueA:     '',
-                radioValueB:     'One',
-                dd:              [],
-                dd3:             ['day', 'week'],
-                title_1:         '',
-                isHideField:     false,
-                chips:           [],
-                progressValue:   1,
-                progressMax:     5,
-                showSpinner:     true,
-                showRange:       true,
-                rangeValueArray: [44, 48],
-                rangeValue:      45,
-                toggleBoolean:   false,
-                toggleInteger:   0,
-                helpTexts:       [
+                popoverPlacement: 'top',
+                images:           [],
+                radioValueA:      '',
+                radioValueB:      'One',
+                dd:               [],
+                dd3:              ['day', 'week'],
+                title_1:          '',
+                isHideField:      false,
+                chips:            [],
+                progressValue:    1,
+                progressMax:      5,
+                showSpinner:      true,
+                showRange:        true,
+                rangeValueArray:  [44, 48],
+                rangeValue:       45,
+                toggleBoolean:    false,
+                toggleInteger:    0,
+                helpTexts:        [
                     '<b>Lorem ipsum</b> dolor sit amet, consectetur adipisicing elit. Dolore, quod facilis, qui quaerat nulla impedit ea pariatur, rerum molestias dolorum totam tempore sint repudiandae excepturi, aspernatur vero. Incidunt, cupiditate, labore.',
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro itaque nesciunt molestias obcaecati? Voluptate quisquam tempore enim esse unde dolorum ea in eligendi aspernatur molestiae qui vero, illum earum accusantium!',
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In illum natus, doloremque sapiente illo dolor, facilis maiores iusto quibusdam enim consequatur nemo eos facere, omnis eligendi vel voluptate cupiditate ea.',

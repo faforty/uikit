@@ -3,10 +3,11 @@
         <span @click.stop="togglePopover" ref="target" style="display:inline-block">
             <slot></slot>
         </span>
+        <transition name="fade-enter-active" leave-active-class="fade-leave-active" mode="out-in">
         <div ref="popover" v-if="show" class="ui-popover" :class="'ui-popover--' + placement" :style="style" @click.stop>
             <div class="ui-popover-triangle"></div>
 
-            <div class="ui-popover-title">
+            <div v-if="title" class="ui-popover-title">
                 {{title}}
             </div>
 
@@ -16,6 +17,7 @@
 
             <slot name="custom-content"></slot>
         </div>
+        </transition>
     </div>
 </template>
 
