@@ -132,9 +132,9 @@
                         <ui-input-spinner min=0 max=10></ui-input-spinner>
                     </div>
 
-                    <ui-toggle v-model="toggleBoolean">{{toggleBoolean}}</ui-toggle>
+                    <ui-toggle v-model="toggleBoolean" hint="Toggle width hint">{{toggleBoolean}}</ui-toggle>
                     <ui-toggle v-model="toggleInteger">{{toggleInteger}}</ui-toggle>
-                    <ui-toggle v-model="toggleBoolean" disabled>{{toggleBoolean}}</ui-toggle>
+                    <ui-toggle v-model="toggleBoolean" disabled  hint="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam natus vitae ipsum impedit fuga! Fugiat ea quisquam voluptate cumque vero, debitis praesentium voluptatem aut beatae velit exercitationem rem quam ducimus.">{{toggleBoolean}}</ui-toggle>
 
                     <ui-checkbox v-model="toggleBoolean">{{toggleBoolean}}</ui-checkbox>
                     <ui-checkbox v-model="toggleInteger">{{toggleInteger}}</ui-checkbox>
@@ -479,6 +479,7 @@
                     <ui-button class="ui-btn--xs"><i class="uikit-cross"></i> Label</ui-button>
                     <ui-button class="ui-btn--xs"><i class="uikit-edit"></i></ui-button>
 
+
                     <br><br>
                     <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green ui-btn--plus">Text</ui-button>
                     <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green ui-btn--plus"><i class="uikit-plus"></i></ui-button>
@@ -489,6 +490,8 @@
                     <ui-button class="ui-btn--circle ui-btn--green"><i class="uikit-plus"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--green"><i class="uikit-cross"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--green"><i class="uikit-edit"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--green ui-btn--edit"><i class="uikit-arrow-back"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--green ui-btn--edit"><i class="uikit-arrow-forward"></i></ui-button>
                     <br><br>
                     <ui-button class="ui-btn--circle ui-btn--sm ui-btn--green">Text</ui-button>
                     <ui-button class="ui-btn--circle ui-btn--sm ui-btn--green"><i class="uikit-plus"></i></ui-button>

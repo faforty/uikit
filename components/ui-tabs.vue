@@ -63,7 +63,7 @@
                 return this.activeTab === tab
             },
             select (tab) {
-                // this.$nextTick(() => {
+                this.$nextTick(() => {
                     this.activeTab = tab
 
                     let target = tab.$el,
@@ -97,7 +97,7 @@
 
                     this.$emit('change', this.activeTab)
                     this.choiceContent(tab.name || tab.index)
-                // })
+                })
             },
             resizeIndicator() {
                 if (!this.activeTab) {

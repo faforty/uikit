@@ -26,7 +26,7 @@
 
     [class^="uikit-"] {
       font-size:      1.4em;
-      margin:         -1px 0;
+      margin:         -1px auto;
       vertical-align: middle;
     }
 
@@ -86,16 +86,17 @@
     }
 
     &--circle {
-      border-radius: 100%;
+      border-radius:   100%;
       justify-content: center;
-      align-content: center;
-      align-items: center;
-      text-align: center;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 60px;
-      height: 60px;
-      padding: 0;
+      align-content:   center;
+      align-items:     center;
+      text-align:      center;
+      text-overflow:   ellipsis;
+      white-space:     nowrap;
+      width:           60px;
+      height:          60px;
+      padding:         0;
+      // background-clip: padding-box;
 
       [class^="uikit-"] {
         font-size: 1.8em;
@@ -108,7 +109,7 @@
 
         &:hover {
           border-color: map_get($colors, grayMedium);
-          box-shadow: none !important;
+          box-shadow:   none !important;
         }
       }
 
@@ -131,15 +132,15 @@
       // }
 
       [class^="uikit-"] {
-        margin: -2px 0 -1px;
+        margin: -2px auto -1px;
       }
 
       &--green {
-        @include btn-style(limeGreen, limeGreen, #ffffff);
+        // @include btn-style(limeGreen, limeGreen, #ffffff);
         box-shadow: 0 13px 45px -10px rgba(45, 159, 110, .6);
 
         &:hover {
-          @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
+          // @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
           //box-shadow: 0px 9px 18px 0px rgba(38, 185, 122, 0.3);
           box-shadow: 0 13px 45px -10px #1ac079;
         }
@@ -166,7 +167,7 @@
         padding: 0;
 
         [class^="uikit-"] {
-          font-size: 1.2em;
+          font-size: 1.15em;
         }
       }
     }
@@ -176,12 +177,12 @@
       padding: 7px 18px;
 
       &.ui-btn--circle {
-        height: 24px;
-        width: 24px;
+        height:  24px;
+        width:   24px;
         padding: 0;
 
         [class^="uikit-"] {
-          font-size: 1.1em;
+          font-size: 1.05em;
         }
       }
     }

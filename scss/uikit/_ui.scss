@@ -1,4 +1,9 @@
 .ui {
+  &-hint {
+    font-size: smaller;
+    color:     #989898;
+  }
+
   &-control {
     display: inline-flex;
     border: 1px solid map_get($colors, 'grayLight');
@@ -66,6 +71,7 @@
       font-size: 14px;
       color: map_get($colors, gray);
 
+      [class^="uikit-"],
       & > &__link {
         font-size: 18px;
       }

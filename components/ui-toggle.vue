@@ -2,7 +2,10 @@
     <div class="ui-toggleBox">
         <input :id="id" class="ui-toggleBox__field" :name="name" type="checkbox" v-model="isChecked" @change="update" :disabled="disabled">
         <label :for="id" :class="['ui-toggleBox__label', colorObject.cls, {'ui-toggleBox__label--disabled': disabled}]" :style="{color: !colorObject.cls ? colorObject.color : false}">
-            <slot></slot>
+            <div><slot></slot></div>
+            <transition name="fade" mode="out-in">
+                <div v-if="hint" class="ui-hint" v-html="hint"></div>
+            </transition>
         </label>
     </div>
 </template>
@@ -26,6 +29,7 @@
             disabled: {
                 type: Boolean
             },
+            hint: String,
         },
         data () {
             return {
