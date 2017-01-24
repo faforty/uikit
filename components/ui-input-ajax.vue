@@ -214,6 +214,10 @@
                 $dropResults = this.$refs.dropResults;
 
 
+            if (this.inputValue) {
+              this.searchValue = this.inputValue
+            }
+
             //this.iconStyle = $input.querySelector('.ico')
             this._maxHeight = this.maxHeight
 
