@@ -29,7 +29,8 @@ $form-icon-danger: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www
 $link-color:            #2d9e6e;
 $link-decoration:       none !default;
 $link-weight:           400 !default;
-$link-hover-color:      map-deep-get($colors, 'mediumSeaGreen');
+// $link-hover-color:      map-deep-get($colors, 'mediumSeaGreen');
+$link-hover-color:      darken(map_get($colors, mediumSeaGreen), 5);
 $link-hover-decoration: none !default;
 
 $font-family-base: Roboto, sans-serif;

@@ -49,6 +49,7 @@
     &:hover {
       z-index:      2;
       border-color: map_get($colors, mediumSeaGreen);
+      color:        $link-hover-color;
     }
 
     &-group > .ui-btn {

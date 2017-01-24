@@ -123,7 +123,7 @@
     color: $brand-success;
   }
 
-  @include form-control-validation($brand-success);
+  @include form-control-validation( map_get($colors, mediumSeaGreen) );
 
   .form-control-danger {
     background-image: $form-icon-success;
@@ -149,13 +149,15 @@
       position: absolute;
       right:    -40px;
 
-      &__action {
-        border-color: #2d9e6e !important;
-        color: #000000 !important;
+      &__action, &__action.ui-action {
+        // border-color: #2d9e6e !important;
+        border-color: map_get($colors, limeGreen);
+        color: #000000;
 
         &:hover {
-          background: #2d9e6e;
-          color: #ffffff !important;
+          background:   map_get($colors, mediumSeaGreen);
+          border-color: map_get($colors, mediumSeaGreen);
+          color:        #ffffff !important;
         }
       }
     }
