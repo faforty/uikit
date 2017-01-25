@@ -436,7 +436,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <ui-slider :content="helpTexts"></ui-slider>
+                    <ui-slider :content="helpTexts" speed="2000"></ui-slider>
                 </div>
             </div>
 
@@ -584,6 +584,18 @@
                 setInterval(() => {
                     this.helpTextIndex = this.helpTextIndex == this.helpTexts.length-1 ? 0 : this.helpTextIndex+1;
                 }, 3000);
+
+                var helpTexts = this.helpTexts;
+                setInterval(() => {
+                    if (this.helpTexts.length !== helpTexts.length) {
+                        this.helpTexts = helpTexts;
+                    } else {
+                        this.helpTexts = [
+                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est necessitatibus doloremque dolor, eaque sequi amet enim, fugit voluptas tenetur totam veniam unde labore aperiam odio, esse quibusdam neque laborum perferendis.',
+                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam necessitatibus, aliquid. Est, eaque praesentium ducimus dolore voluptatibus vero, architecto, voluptate ut ex quidem, officia odit autem pariatur eos distinctio minima?',
+                            ];
+                    }
+                }, 5000);
 
                 setTimeout(() => {
                     this.tabs = {
