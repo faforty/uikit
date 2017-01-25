@@ -1,12 +1,12 @@
 <template>
     <div class="ui-slider">
-        <div class="ui-slider-toggle">
+        <div v-if="content.length > 1" class="ui-slider-toggle">
             <a v-for="(item, index) in content" :class="{'active': index == currentSlide}" @click="selectSlide(index)"></a>
         </div>
 
         <template >
             <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
-                <div :key="currentSlide" v-html="content[currentSlide]"></div>
+                <div :key="slideKey" v-html="content[currentSlide]"></div>
             </transition>
         </template>
 
@@ -29,25 +29,42 @@ export default {
             default: 0,
         },
         content: {
-            type: [Array],
+            type:    [Array],
+            default: [],
         },
     },
 
     data: () => ({
-        currentSlide: 0,
-        playSlide:    null,
+        currentSlide:   0,
+        playSlide:      null,
+        slideKeyOffset: 0,
     }),
+
+    computed: {
+        slideKey() {
+            return this.slideKeyOffset + this.currentSlide;
+        }
+    },
 
     watch: {
         active(active) {
             this.currentSlide = active*1;
-        }
+        },
+        content(content, oldContent) {
+            this.slideKeyOffset += oldContent.length;
+
+            this.currentSlide = 0;
+            this.start();
+        },
     },
 
     methods: {
         start() {
-            if (this.speed >= 1000) {
-                setTimeout(function(){
+            if (this.playSlide && this.content.length > 1 && this.speed >= 1000) {
+                if (this._sliderTimeout) {
+                    clearTimeout(this._sliderTimeout);
+                }
+                this._sliderTimeout = setTimeout(function(){
                     if (this.playSlide) {
                         this.nextSlide();
                         this.start();
@@ -58,6 +75,9 @@ export default {
 
         stop() {
             this.playSlide = false;
+            if (this._sliderTimeout) {
+                clearTimeout(this._sliderTimeout);
+            }
         },
 
         nextSlide() {
@@ -86,9 +106,7 @@ export default {
         this.currentSlide = this.active;
         this.playSlide    = this.play;
 
-        if (this.playSlide) {
-            this.start();
-        }
+        this.start();
     }
 }
 </script>
