@@ -172,6 +172,7 @@
         watch: {
             inputValue (v) {
                 this.searchValue = v
+                this.lock = true
             },
             searchValue (value) {
                 this.items = [];
