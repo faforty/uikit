@@ -4,7 +4,7 @@
 
     position:       relative;
     font-weight:    $btn-font-weight;
-    font-size:      14px;
+    font-size:      $btn-font-size;
     line-height:    $btn-line-height;
     text-align:     center;
     white-space:    nowrap;
@@ -20,13 +20,18 @@
     overflow:       hidden;
     z-index:        1;
 
+    &.ui-btn--block {
+      display: inline-block;
+      width:   100%;
+    }
+
     &::-moz-focus-inner {
       border: 0;
     }
 
     [class^="uikit-"] {
       font-size:      1.4em;
-      margin:         -1px auto;
+      line-height:    ($btn-line-height * $btn-font-size + 1);
       vertical-align: middle;
     }
 
@@ -56,7 +61,7 @@
       display:       block;
       float:         left;
       border-radius: 0;
-      margin-left:   -1px;
+      margin:        0 0 0 -1px;
 
       &:first-child {
         border-radius: 4px 0 0 4px;
@@ -80,7 +85,6 @@
 
       &:hover {
         @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
-        //box-shadow: 0px 9px 18px 0px rgba(38, 185, 122, 0.3);
         box-shadow: 0 13px 45px -10px #1ac079;
       }
     }
@@ -96,7 +100,6 @@
       width:           60px;
       height:          60px;
       padding:         0;
-      // background-clip: padding-box;
 
       [class^="uikit-"] {
         font-size: 1.8em;
@@ -123,25 +126,14 @@
       padding:   20px 25px;
       font-size: 1.2em;
 
-      // &.ui-btn--green {
-      //   @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
-
-      //   &:hover {
-      //     @include btn-style(#1cd988, #1cd988, #ffffff);
-      //   }
-      // }
-
       [class^="uikit-"] {
-        margin: -2px auto -1px;
+        line-height: ($btn-line-height * $btn-font-size * 1.2 + 1);
       }
 
       &--green {
-        // @include btn-style(limeGreen, limeGreen, #ffffff);
         box-shadow: 0 13px 45px -10px rgba(45, 159, 110, .6);
 
         &:hover {
-          // @include btn-style(mediumSeaGreen, mediumSeaGreen, #ffffff);
-          //box-shadow: 0px 9px 18px 0px rgba(38, 185, 122, 0.3);
           box-shadow: 0 13px 45px -10px #1ac079;
         }
       }
@@ -153,7 +145,6 @@
 
         [class^="uikit-"] {
           font-size: 2em;
-          // margin: -2px 0 -1px;
         }
       }
     }
@@ -162,8 +153,8 @@
       padding: 10px 28px;
 
       &.ui-btn--circle {
-        height: 40px;
-        width: 40px;
+        height:  40px;
+        width:   40px;
         padding: 0;
 
         [class^="uikit-"] {
@@ -176,26 +167,20 @@
       font-size: 11px;
       padding: 7px 18px;
 
+      [class^="uikit-"] {
+        line-height: ($btn-line-height * 11px + 1);
+      }
+
       &.ui-btn--circle {
         height:  24px;
         width:   24px;
         padding: 0;
 
         [class^="uikit-"] {
-          font-size: 1.05em;
+          font-size:   1.1em;
         }
       }
     }
-
-    // &--checkmark {
-    //   font-size: 20px;
-    // }
-    // &--plus {
-    //   font-size: 20px;
-    // }
-    // &--edit {
-    //   font-size: 16px;
-    // }
 
     &--no-shadow {
       box-shadow: none;

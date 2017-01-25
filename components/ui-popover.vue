@@ -4,19 +4,19 @@
             <slot></slot>
         </span>
         <transition name="fade-enter-active" leave-active-class="fade-leave-active" mode="out-in">
-        <div ref="popover" v-if="show" class="ui-popover" :class="'ui-popover--' + placement" :style="style" @click.stop>
-            <div class="ui-popover-triangle"></div>
+            <div ref="popover" v-show="show" class="ui-popover" :class="'ui-popover--' + placement" :style="style" @click.stop>
+                <div class="ui-popover-triangle"></div>
 
-            <div v-if="title" class="ui-popover-title">
-                {{title}}
+                <div v-if="title" class="ui-popover-title">
+                    {{title}}
+                </div>
+
+                <div class="ui-popover-scroll">
+                    <div :class="custom ? 'ui-popover-custom' : 'ui-popover-content'">
+                        <slot name="content"></slot>
+                    </div>
+                </div>
             </div>
-
-            <div class="ui-popover-content">
-                <slot name="content"></slot>
-            </div>
-
-            <slot name="custom-content"></slot>
-        </div>
         </transition>
     </div>
 </template>
@@ -25,6 +25,10 @@
 export default {
     props: {
         active: {
+            type:    Boolean,
+            default: false,
+        },
+        custom: {
             type:    Boolean,
             default: false,
         },

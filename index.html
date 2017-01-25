@@ -75,10 +75,8 @@
 
         <div class="container">
 
-            <ui-help :text="helpTexts">
+            <ui-help :content="helpTexts">
                 <h1 slot="page-header" style="color: #989898"><span style="color: #000000">01</span> Инпуты</h1>
-
-                <ui-slider :content="helpTexts"></ui-slider>
             </ui-help>
 
 
@@ -446,7 +444,7 @@
 
                     <ui-popover :active="false" :placement="popoverPlacement" title="" class="-ui-popover--white">
                         <span class="ui-action ui-input__help__action uikit-info"></span>
-                        <div slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut corporis mollitia sequi numquam recusandae similique hic debitis, perferendis rem qui veniam inventore fuga expedita ea, molestias asperiores cumque dicta!</div>
+                        <div slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut corporis mollitia sequi numquam recusandae similique hic debitis, perferendis rem qui veniam inventore fuga expedita ea, molestias asperiores cumque dicta! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut corporis mollitia sequi numquam recusandae similique hic debitis, perferendis rem qui veniam inventore fuga expedita ea, molestias asperiores cumque dicta! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut corporis mollitia sequi numquam recusandae similique recusandae similique hic debitis, perferendis rem qui veniam inventore fuga expedita ea, molestias asperiores cumque dicta!</div>
                     </ui-popover>
                     <br><br>
                     <div class="ui-btn-group">
@@ -502,6 +500,10 @@
                     <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-plus"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-cross"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-edit"></i></ui-button>
+                </div>
+
+                <div class="col-md-3">
+                    <ui-button class="ui-btn--lg ui-btn--block ui-btn--green"><i class="uikit-cloud-send"></i> Label</ui-button>
                 </div>
             </div>
         </div>
@@ -592,10 +594,9 @@
                     } else {
                         this.helpTexts = [
                             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est necessitatibus doloremque dolor, eaque sequi amet enim, fugit voluptas tenetur totam veniam unde labore aperiam odio, esse quibusdam neque laborum perferendis.',
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam necessitatibus, aliquid. Est, eaque praesentium ducimus dolore voluptatibus vero, architecto, voluptate ut ex quidem, officia odit autem pariatur eos distinctio minima?',
                             ];
                     }
-                }, 5000);
+                }, 6000);
 
                 setTimeout(() => {
                     this.tabs = {
