@@ -1,22 +1,22 @@
 .slide-appear-enter {
     transform-origin: 0 0;
-    transform: translateX(20%);
+    transform: translateX(15%);
     opacity: 0;
 }
 .slide-appear-enter-active {
-    animation: .35s linear slideAppearAdd;
+    animation: .35s ease slideAppearAdd;
     opacity: 1;
 }
 .slide-appear-leave-active {
-    animation: .35s linear slideAppearRemove;
+    animation: .35s ease slideAppearRemove;
     opacity: 1;
 }
 
 @keyframes slideAppearAdd {
     0% {
         transform-origin: 0 0;
-        opacity: .3;
-        transform: translateX(20%);
+        opacity: 0;
+        transform: translateX(15%);
     }
 
     100% {
@@ -35,8 +35,8 @@
 
     100% {
         transform-origin: 0 0;
-        opacity: .3;
-        transform: translateX(-20%);
+        opacity: 0;
+        transform: translateX(-15%);
     }
 }
 

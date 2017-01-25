@@ -162,8 +162,8 @@ export default {
 
     mounted() {
         this.data = this.value;
-        document.body.addEventListener('dragover',  this.dragOver.bind(this));
-        document.body.addEventListener('dragleave', this.dragLeave.bind(this));
+        document.body.addEventListener('dragover',  this.dragOver);
+        document.body.addEventListener('dragleave', this.dragLeave);
     },
 
     beforeDestroy() {

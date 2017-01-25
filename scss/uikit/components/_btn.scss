@@ -31,7 +31,7 @@
 
     [class^="uikit-"] {
       font-size:      1.4em;
-      line-height:    ($btn-line-height * $btn-font-size + 1);
+      line-height:    ($btn-line-height * $btn-font-size);
       vertical-align: middle;
 
     }
@@ -111,7 +111,8 @@
       padding:         0;
 
       [class^="uikit-"] {
-        font-size: 1.8em;
+        font-size:  1.8em;
+        margin-top: 1px;
       }
 
       &[disabled] {
@@ -136,7 +137,7 @@
       font-size: 1.2em;
 
       [class^="uikit-"] {
-        line-height: ($btn-line-height * $btn-font-size * 1.2 + 1);
+        line-height: ($btn-line-height * $btn-font-size * 1.2 - 1);
       }
 
       &--green {
@@ -177,7 +178,7 @@
       padding: 7px 18px;
 
       [class^="uikit-"] {
-        line-height: ($btn-line-height * 11px + 1);
+        line-height: ($btn-line-height * 11px);
       }
 
       &.ui-btn--circle {
@@ -186,7 +187,7 @@
         padding: 0;
 
         [class^="uikit-"] {
-          font-size:   1.1em;
+          font-size:  1.1em;
         }
       }
     }

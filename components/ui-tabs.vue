@@ -179,15 +179,10 @@
         mounted () {
             this.tabSelect(this.active);
 
-            this._resizeEvent = event => {
-                this.resizeIndicator()
-            };
-            window.addEventListener('resize', this._resizeEvent);
+            window.addEventListener('resize', this.resizeIndicator);
         },
         destroyed () {
-            if (this._resizeEvent) {
-                window.removeEventListener('resize', this._resizeEvent);
-            }
+            window.removeEventListener('resize', this.resizeIndicator);
         }
     }
 </script>

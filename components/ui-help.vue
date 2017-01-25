@@ -41,7 +41,7 @@ export default {
             type: [String, Array],
         },
         label: {
-            default: 'Справка',
+            default: '',
         },
 
         // Deprecated

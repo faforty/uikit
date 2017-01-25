@@ -75,7 +75,7 @@
 
         <div class="container">
 
-            <ui-help :content="helpTexts">
+            <ui-help :content="helpTexts" label="Справка">
                 <h1 slot="page-header" style="color: #989898"><span style="color: #000000">01</span> Инпуты</h1>
             </ui-help>
 
@@ -320,7 +320,7 @@
             <br>
             <div class="row">
                 <div class="col-md-4">
-                    <ui-tabs active="tab-2">
+                    <ui-tabs v-if="toggleBoolean" active="tab-2">
                         <ui-tab name="tab-1">
                             <a>Tab 1</a>
                         </ui-tab>
@@ -337,6 +337,7 @@
                             <div tab-name="tab-3">Content 3</div>
                         </div>
                     </ui-tabs>
+                    <ui-button class='ui-btn--xs' @click.stop="toggleBoolean=!toggleBoolean">toggle</ui-button>
                 </div>
                 <div class="col-md-4">
                     <ui-tabs :active="activeTab">
@@ -439,11 +440,12 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <!-- <ui-box-filter></ui-box-filter> -->
 
-                    <ui-popover :active="false" :placement="popoverPlacement" title="" class="-ui-popover--white">
+                    <ui-popover v-if="toggleBoolean" :active="false" :placement="popoverPlacement" title="" class="-ui-popover--white">
                         <span class="ui-action ui-input__help__action uikit-info"></span>
+                        {{popoverPlacement}}
                         <div slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut corporis mollitia sequi numquam recusandae similique hic debitis, perferendis rem qui veniam inventore fuga expedita ea, molestias asperiores cumque dicta! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut corporis mollitia sequi numquam recusandae similique hic debitis, perferendis rem qui veniam inventore fuga expedita ea, molestias asperiores cumque dicta! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut corporis mollitia sequi numquam recusandae similique recusandae similique hic debitis, perferendis rem qui veniam inventore fuga expedita ea, molestias asperiores cumque dicta!</div>
                     </ui-popover>
                     <br><br>
@@ -452,11 +454,10 @@
                         <ui-button class='ui-btn--xs' @click.stop="popoverPlacement='right'">right</ui-button>
                         <ui-button class='ui-btn--xs' @click.stop="popoverPlacement='bottom'">bottom</ui-button>
                         <ui-button class='ui-btn--xs' @click.stop="popoverPlacement='left'">left</ui-button>
-                        <ui-button class='ui-btn--xs' disabled>{{popoverPlacement}}</ui-button>
                     </div>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <ui-button class="ui-btn--lg">Text btn</ui-button>
                     <ui-button class="ui-btn--lg"><i class="uikit-plus-round"></i> Label</ui-button>
                     <ui-button class="ui-btn--lg"><i class="uikit-cross"></i> Label</ui-button>
@@ -479,27 +480,38 @@
 
 
                     <br><br>
-                    <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green ui-btn--plus">Text</ui-button>
-                    <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green ui-btn--plus"><i class="uikit-plus"></i></ui-button>
-                    <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green ui-btn--cross"><i class="uikit-cross"></i></ui-button>
-                    <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green ui-btn--edit"><i class="uikit-edit"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green">Text</ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green"><i class="uikit-plus"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green"><i class="uikit-cross"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--lg ui-btn--green"><i class="uikit-edit"></i></ui-button>
                     <br><br>
                     <ui-button class="ui-btn--circle ui-btn--green">Text</ui-button>
                     <ui-button class="ui-btn--circle ui-btn--green"><i class="uikit-plus"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--green"><i class="uikit-cross"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--green"><i class="uikit-edit"></i></ui-button>
-                    <ui-button class="ui-btn--circle ui-btn--green ui-btn--edit"><i class="uikit-arrow-back"></i></ui-button>
-                    <ui-button class="ui-btn--circle ui-btn--green ui-btn--edit"><i class="uikit-arrow-forward"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--green"><i class="uikit-arrow-back"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--green"><i class="uikit-arrow-forward"></i></ui-button>
                     <br><br>
                     <ui-button class="ui-btn--circle ui-btn--sm ui-btn--green">Text</ui-button>
                     <ui-button class="ui-btn--circle ui-btn--sm ui-btn--green"><i class="uikit-plus"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--sm ui-btn--green"><i class="uikit-cross"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--sm ui-btn--green"><i class="uikit-edit"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--sm ui-btn--green"><i class="uikit-arrow-back"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--sm ui-btn--green"><i class="uikit-arrow-forward"></i></ui-button>
                     <br><br>
                     <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green">Text</ui-button>
                     <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-plus"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-plus-round"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-cross"></i></ui-button>
                     <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-edit"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-pencil"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-arrow-back"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-arrow-forward"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-brash"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-trash"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-exclamation"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-alert"></i></ui-button>
+                    <ui-button class="ui-btn--circle ui-btn--xs ui-btn--green"><i class="uikit-info"></i></ui-button>
                 </div>
 
                 <div class="col-md-3">
@@ -587,16 +599,16 @@
                     this.helpTextIndex = this.helpTextIndex == this.helpTexts.length-1 ? 0 : this.helpTextIndex+1;
                 }, 3000);
 
-                var helpTexts = this.helpTexts;
-                setInterval(() => {
-                    if (this.helpTexts.length !== helpTexts.length) {
-                        this.helpTexts = helpTexts;
-                    } else {
-                        this.helpTexts = [
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est necessitatibus doloremque dolor, eaque sequi amet enim, fugit voluptas tenetur totam veniam unde labore aperiam odio, esse quibusdam neque laborum perferendis.',
-                            ];
-                    }
-                }, 6000);
+                // var helpTexts = this.helpTexts;
+                // setInterval(() => {
+                //     if (this.helpTexts.length !== helpTexts.length) {
+                //         this.helpTexts = helpTexts;
+                //     } else {
+                //         this.helpTexts = [
+                //             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est necessitatibus doloremque dolor, eaque sequi amet enim, fugit voluptas tenetur totam veniam unde labore aperiam odio, esse quibusdam neque laborum perferendis.',
+                //             ];
+                //     }
+                // }, 6000);
 
                 setTimeout(() => {
                     this.tabs = {

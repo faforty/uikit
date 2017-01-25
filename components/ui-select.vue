@@ -4,7 +4,7 @@
         <template slot="label"><slot></slot></template>
 
         <div class="ui-select">
-            <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown">
+            <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown($event, true)">
                 <template v-if="(search && !show) || !search">
                     <span>
                         {{ selectedItems }}
@@ -16,10 +16,18 @@
                     </span>
                 </template>
                 <div v-show="search && show" style="width: 100%">
-                    <ui-input ref="uiSelectSearch" :form-group="false" :label="false" icon="uikit-search" style="width: 100%;" v-model="searchText"></ui-input>
+                    <ui-input
+                        ref="uiSelectSearch"
+                        icon="uikit-search"
+                        style="width:100%"
+                        v-model="searchText"
+                        :form-group="false"
+                        :label="false"
+                        @click.native.stop
+                        @blur="hideDropdown"></ui-input>
                 </div>
             </div>
-            <div class="ui-select__options drop-out__results" style="display: block;max-height: 400px;overflow-y: auto;" v-show="show" @blur="toggleDropdown">
+            <div class="ui-select__options drop-out__results" style="display: block;max-height: 400px;overflow-y: auto;" v-show="show">
                 <a v-if="Object.keys(results).length == 0" class="drop-out__result" v-for="(option, key) in options" @mousedown.prevent="select(key)">
                     <div class="drop-out__result__content">
                         <div class="drop-out__result__content__title">
@@ -132,8 +140,12 @@
                     this.toggleDropdown();
                 }
             },
-            toggleDropdown: function () {
+            toggleDropdown: function(e, lock = false) {
                 var show = this.disabled ? false : !this.show;
+
+                if (show) {
+                    this._lock = lock;
+                }
 
                 this.show = show;
 
@@ -142,7 +154,11 @@
                 }
             },
             hideDropdown: function() {
-                this.show = false;
+                if (this._lock) {
+                    this._lock = false;
+                } else {
+                    this.show = false;
+                }
             }
         },
         computed: {
@@ -187,12 +203,12 @@
             this.selectId = this.value
             this.searchText = this.selectedItems
 
-            this.$refs.uiSelectSearch.$el.addEventListener('click', function (event) {
-                event.stopPropagation()
-            })
-            this.$el.addEventListener('click', function (event) {
-                event.stopPropagation()
-            })
+            // this.$refs.uiSelectSearch.$el.addEventListener('click', function (event) {
+            //     event.stopPropagation()
+            // })
+            // this.$el.addEventListener('click', function (event) {
+            //     event.stopPropagation()
+            // })
 
             document.body.addEventListener('click', function(){
                 this.hideDropdown();

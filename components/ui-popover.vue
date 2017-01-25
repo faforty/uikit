@@ -1,9 +1,9 @@
 <template>
     <div class="ui-popover-wrapper">
-        <span @click.stop="togglePopover" ref="target" style="display:inline-block">
+        <span @click="togglePopover" ref="target" style="display:inline-block">
             <slot></slot>
         </span>
-        <transition name="fade-enter-active" leave-active-class="fade-leave-active" mode="out-in">
+        <transition leave-active-class="fade-leave-active">
             <div ref="popover" v-show="show" class="ui-popover" :class="'ui-popover--' + placement" :style="style" @click.stop>
                 <div class="ui-popover-triangle"></div>
 
@@ -47,22 +47,28 @@ export default {
     watch: {
         active(active) {
             this.show = active;
-        }
+        },
     },
 
     methods: {
         togglePopover() {
             this.show = !this.show;
+            if (this.show) {
+                this._lock = true;
+            }
         },
         hidePopover() {
-            this.show = false;
+            if (this._lock) {
+                this._lock = false;
+            } else {
+                this.show = false;
+            }
         }
     },
 
     mounted() {
         this.show = this.active;
-
-        document.body.addEventListener('click', this.hidePopover.bind(this));
+        document.body.addEventListener('click', this.hidePopover);
     },
 
     beforeDestroy() {

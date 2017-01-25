@@ -6,7 +6,7 @@
   background-color: #FFF7DD;
   border-radius:    4px;
   position:         absolute;
-  z-index:          9999;
+  z-index:          999;
   min-width:        250px;
 
   // top:     default
@@ -14,6 +14,10 @@
   margin-top: -20px;
   top:        0;
   left:       50%;
+
+  transition:         all .3s ease;
+  animation-name:     ui-popover-animation-top;
+  animation-duration: .3s;
 
   &:after {
     content:    '';
@@ -61,26 +65,29 @@
     top:  0;
   }
 
+  &--left {
+    animation-name: ui-popover-animation-left;
+    transform:      translate(0, -50%);
+    margin-top:     0;
+    margin-right:   20px;
+    top:            50%;
+    right:          100%;
+    left:           auto;
+  }
   &--bottom {
+    animation-name: ui-popover-animation-bottom;
     transform:  translate(-50%, 0);
     margin-top: 20px;
     top:        100%;
     left:       50%;
   }
   &--right {
+    animation-name: ui-popover-animation-right;
     transform:   translate(0, -50%);
     margin-top:  0;
     margin-left: 20px;
     top:         50%;
     left:        100%;
-  }
-  &--left {
-    transform:    translate(0, -50%);
-    margin-top:   0;
-    margin-right: 20px;
-    top:          50%;
-    right:        100%;
-    left:         auto;
   }
 }
 .ui-popover-scroll {
@@ -93,13 +100,27 @@
   font-size:   .95em;
   line-height: 1.6em;
   position: relative;
-  // &:before {
-  //   content:'';
-  //   top:
-  // }
 }
 .ui-popover-title {
   padding:       10px 20px;
   border-bottom: 1px solid rgba(0,0,0,.1);
   margin-bottom: -10px;
+}
+
+
+@keyframes ui-popover-animation-top {
+  from {opacity: 0; margin-top: 0;}
+  to   {opacity: 1; margin-top: -20px;}
+}
+@keyframes ui-popover-animation-bottom {
+  from {opacity: 0; margin-top: 0;}
+  to   {opacity: 1; margin-top: 20px;}
+}
+@keyframes ui-popover-animation-left {
+  from {opacity: 0; margin-right: 0;}
+  to   {opacity: 1; margin-right: 20px;}
+}
+@keyframes ui-popover-animation-right {
+  from {opacity: 0; margin-left: 0;}
+  to   {opacity: 1; margin-left: 20px;}
 }

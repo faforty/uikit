@@ -24,7 +24,7 @@
                 </transition>
             </div>
 
-            <div class="ui-input__help" v-show="info">
+            <div class="ui-input__help" v-if="info">
                 <ui-popover placement="right">
                     <a class="ui-action ui-input__help__action uikit-info"></a>
                     <div slot="content">{{info}}</div>
@@ -99,7 +99,9 @@
                 this.mValue          = value
             },
             blurred() {
-                this.$on('blurred')
+                this.$emit('blur');
+                this.$on('blurred');
+
 
                 setTimeout(() => {
                     this.validate()
