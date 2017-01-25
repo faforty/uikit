@@ -1,14 +1,14 @@
 <template>
     <div class="ui-slider">
-        <div v-if="content.length > 1" class="ui-slider-toggle">
+        <div v-if="content.length > 1" class="ui-slider-nav" :class="navClass">
             <a v-for="(item, index) in content" :class="{'active': index == currentSlide}" @click="selectSlide(index)"></a>
         </div>
 
-        <template >
+        <div class='ui-slider-content'>
             <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
                 <div :key="slideKey" v-html="content[currentSlide]"></div>
             </transition>
-        </template>
+        </div>
 
         <!-- <slot name="slide"></slot> -->
     </div>
@@ -32,6 +32,14 @@ export default {
             type:    [Array],
             default: [],
         },
+        navAbsolute: {
+            type:    Boolean,
+            default: false
+        },
+        navPosition: {
+            type: String,
+            default: 'right' // left, center, right
+        }
     },
 
     data: () => ({
@@ -43,6 +51,9 @@ export default {
     computed: {
         slideKey() {
             return this.slideKeyOffset + this.currentSlide;
+        },
+        navClass() {
+            return ('ui-slider-nav--' + this.navPosition) + (this.navAbsolute ? ' ui-slider-nav--absolute' : '')
         }
     },
 

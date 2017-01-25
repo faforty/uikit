@@ -75,7 +75,7 @@
 
         <div class="container">
 
-            <ui-help :content="helpTexts" label="Справка">
+            <ui-help :content="helpTexts" label="Справка" shadow>
                 <h1 slot="page-header" style="color: #989898"><span style="color: #000000">01</span> Инпуты</h1>
             </ui-help>
 
@@ -435,7 +435,9 @@
                 </div>
 
                 <div class="col-md-4">
-                    <ui-slider :content="helpTexts" speed="2000"></ui-slider>
+                    <div class="ui-box" style="background:#F9F9F9">
+                        <ui-slider :content="helpTexts" speed="2000" nav-position="center" nav-absolute></ui-slider>
+                    </div>
                 </div>
             </div>
 

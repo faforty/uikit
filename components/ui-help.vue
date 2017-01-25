@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-help-container" :class="{'ui-help--active':isActive}">
+    <div class="ui-help-container" :class="{'ui-help--active':isActive, 'ui-help--shadow':shadow}">
 
         <slot name="page-header"></slot>
 
@@ -11,7 +11,7 @@
             <div v-if="label" class="ui-help-label">{{label}}</div>
 
                 <div class="ui-help-text">
-                    <ui-slider v-if="useSlider" :content="content"></ui-slider>
+                    <ui-slider v-if="useSlider" :content="content" nav-absolute></ui-slider>
                     <template v-else>
                         <transition name="slide-appear" appear leave-active-class="fade-leave-active" mode="out-in">
                             <div :key="content" v-html="content"></div>
@@ -42,6 +42,10 @@ export default {
         },
         label: {
             default: '',
+        },
+        shadow: {
+            type:    Boolean,
+            default: false,
         },
 
         // Deprecated

@@ -14,10 +14,13 @@
     margin-right: -30%;
     right:        50px;
 
+    .ui-help--shadow.ui-help--active & {
+      box-shadow: 0 0 50px rgba(0,0,0,0.1);
+    }
+
     .ui-help--active & {
         margin-right:  0;
         right:         0;
-        box-shadow: 0 0 50px rgba(0,0,0,0.1);
 
         .ui-help-label {
             opacity:    0;
@@ -67,50 +70,53 @@
 }
 
 @media (max-width: 768px) {
-    .ui-help-container {
-        position: relative;
-        > h1, > h2, > h3{
-            transition: all .4s;
-        }
-
-        &.ui-help--active {
-            background: #fff7dd;
-            padding:    30px;
-            margin:     -30px -30px 30px;
-
-            .ui-help-toggle {
-                right: 30px;
-                top:   -20px;
-            }
-        }
-
-        > h1, > h2, > h3 {
-            padding-top: 0;
-        }
+  .ui-help-container {
+    position: relative;
+    > h1, > h2, > h3{
+      transition: all .4s;
     }
-    .ui-help {
-        position:   static;
-        padding:    0;
-        width:      100%;
-        margin:     0;
-        background: transparent;
-        height:     0;
-        // overflow:   hidden;
 
-        .ui-help--active & {
-            box-shadow: none;
-            height:     auto;
-        }
+    &.ui-help--active {
+      background: #fff7dd;
+      padding:    30px;
+      margin:     -30px -30px 30px;
 
-        .ui-help-label {
-            display: none;
-        }
-
-        .ui-help-toggle {
-            position: absolute;
-            left:     auto;
-            top:      0;
-            right:    0;
-        }
+      .ui-help-toggle {
+          right: 30px;
+          top:   -20px;
+      }
     }
+
+    > h1, > h2, > h3 {
+      padding-top: 0;
+    }
+  }
+  .ui-help {
+    position:   static;
+    padding:    0;
+    width:      100%;
+    margin:     0;
+    background: transparent;
+    height:     0;
+
+    .ui-help--shadow.ui-help--active & {
+      box-shadow: none;
+    }
+
+    .ui-help--active & {
+      box-shadow: none;
+      height:     auto;
+    }
+
+    .ui-help-label {
+      display: none;
+    }
+
+    .ui-help-toggle {
+      position: absolute;
+      left:     auto;
+      top:      0;
+      right:    0;
+    }
+  }
 }

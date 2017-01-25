@@ -4,9 +4,8 @@ $tabs-fade-border: 30px;
     position: relative;
 
     .ui-tabs-wrapper {
-      position:     relative;
-      // margin-left:  -($tabs-fade-border);
-      // margin-right: -($tabs-fade-border);
+      position: relative;
+      overflow: hidden;
 
       &:before,
       &:after {
