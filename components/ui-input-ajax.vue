@@ -38,7 +38,7 @@
                 type: String,
                 'default': 'item'
             },
-            value: String,
+            value: [String, Number],
             maxHeight: {
                 type: Number,
                 'default': 400
