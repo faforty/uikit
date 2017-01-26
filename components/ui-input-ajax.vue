@@ -70,6 +70,10 @@
             clearValue: {
                 type: Boolean,
                 default: false
+            },
+            keepFocus: {
+                type: Boolean,
+                default: false
             }
         },
         data: () => ({
@@ -97,6 +101,9 @@
 
                 if (this.clearValue)
                     this.searchValue = '';
+
+                if (this.keepFocus)
+                    this.$refs.input.focus();
 
                 if (this.emitInput == 'id') {
                     this.$emit('input', item.id + '')
