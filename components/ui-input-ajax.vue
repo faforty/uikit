@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="drop-out">
-            <ui-input ref="input" :hint="hint" :icon="icon" :placeholder="placeholder" :color="color" :icon-align="iconAlign" v-model="searchValue" :disabled="disabled">
+            <ui-input ref="input" :hint="hint" :icon="icon" :placeholder="placeholder" :color="color" :icon-align="iconAlign" v-model="searchValue" :autofocus="autofocus" :disabled="disabled">
                 <slot></slot>
             </ui-input>
             <div ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="opened">
@@ -72,6 +72,10 @@
                 default: false
             },
             keepFocus: {
+                type: Boolean,
+                default: false
+            },
+            autofocus: {
                 type: Boolean,
                 default: false
             }
