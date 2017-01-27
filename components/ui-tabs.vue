@@ -55,7 +55,7 @@
         }),
         methods: {
             onScroll (e) {
-                var scrollLeft = e.target.scrollLeft;
+                var scrollLeft   = e ? e.target.scrollLeft : 0;
                 this.isScrollMin = scrollLeft === 0;
                 this.isScrollMax = scrollLeft >= this.maxScroll - 1;
             },
@@ -77,18 +77,17 @@
                         indicatorRight, parent.offsetWidth - target.offsetLeft - target.offsetWidth
                     )
 
-                    let minWidth        = 200,
-                        tabWidth        = target.offsetWidth,
-                        tabsWidth       = this.$el.getElementsByClassName('ui-tabs__bar')[0].offsetWidth,
-                        tabsScrollWidth = this.$el.getElementsByClassName('ui-tabs__bar')[0].scrollWidth;
+                    let $tabs     = this.$refs.tabs;
+                    let tabWidth  = target.offsetWidth;
+                    let tabsWidth = $tabs.offsetWidth;
 
-                    this.maxScroll = tabsScrollWidth - tabsWidth;
+                    this.updateMaxScroll();
 
                     if (this.scrollOnce) {
                         this.scrollOnce = false;
                         Velocity(tab.$el, "scroll", {
                             offset:    -(tabsWidth-tabWidth)/2, // center tab
-                            container: this.$refs.tabs,
+                            container: $tabs,
                             duration:  300,
                             easing:    'easeOutQuad',
                             axis:      'x'
@@ -98,6 +97,11 @@
                     this.$emit('change', this.activeTab)
                     this.choiceContent(tab.name || tab.index)
                 })
+            },
+            updateMaxScroll() {
+                var tabsWidth       = this.$refs.tabs.offsetWidth,
+                    tabsScrollWidth = this.$refs.tabs.scrollWidth;
+                this.maxScroll = tabsScrollWidth - tabsWidth;
             },
             resizeIndicator() {
                 if (!this.activeTab) {
@@ -149,6 +153,9 @@
                 }
             },
             tabSelect(value) {
+                this.updateMaxScroll();
+                this.onScroll();
+
                 this.$children.forEach(tab => {
                     if (tab.select) tab.select(this.active)
                 })

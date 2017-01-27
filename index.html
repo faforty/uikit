@@ -340,7 +340,7 @@
                     <ui-button class='ui-btn--xs' @click.stop="toggleBoolean=!toggleBoolean">toggle</ui-button>
                 </div>
                 <div class="col-md-4">
-                    <ui-tabs :active="activeTab">
+                    <ui-tabs xactive="activeTab">
                         <ui-tab v-for="(name, tab) in tabs" :name="tab"><a>{{name}}</a></ui-tab>
 
                         <div slot="contents">

@@ -72,18 +72,20 @@
 @media (max-width: 768px) {
   .ui-help-container {
     position: relative;
+
     > h1, > h2, > h3{
       transition: all .4s;
     }
 
     &.ui-help--active {
       background: #fff7dd;
-      padding:    30px;
-      margin:     -30px -30px 30px;
+      padding:    25px;
+      margin:     -25px -25px 25px;
 
       .ui-help-toggle {
-          right: 30px;
+          right: 25px;
           top:   -20px;
+          // top:   20px;
       }
     }
 
@@ -115,7 +117,7 @@
     .ui-help-toggle {
       position: absolute;
       left:     auto;
-      top:      0;
+      top:      -5px;
       right:    0;
     }
   }
