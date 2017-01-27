@@ -12,17 +12,17 @@
 </head>
 <body class="ui-normalize">
 
-<div id="app" class="container" style="width:1390px">
+<div id="app" class="container">
     <h1>05 <span class="text-color--gray">Стили, цвета, офорtмление, шрифты</span></h1>
 
     <div class="row">
-
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="ui-head--big">ОГРОМНЫЙ ЗАГОЛОВОК</div>
             <div class="ui-head--sub">подпись к заголовку</div>
         </div>
-
-        <div class="col-md-4">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
             <h1>Мега-заголовок</h1>
             <h2>Подзаголовок</h2>
             <p>Я текст по умолчанию, не поддаюсь отчаянью,<br>облей меня сметаной и назови Светланой. <br>Отличные вставные зубы вгрызаются в гранит<br> науки, осиливший абзацы ниже возможно не умрет<br> от скуки.</p>
@@ -37,7 +37,7 @@
             <p class='ui-text--lg'>Озаглавь мной блок, не робей, люби гусей</p>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-6">
             <h3>Заголовок раздела</h3>
             <h4 class="ui-text--gray">Заголовок-скромняга</h4>
             <p class='ui-text--lg'>Большой читаемый текст, он так прекрасен, что хочется писать и писать его, не делая перерывов на сон, секс и еду. Даже мыться не хочется.</p>
@@ -59,7 +59,7 @@
     <h1 class="ui-page-header">07 <span class="text-color--gray">Дистанции, отступы и правила типовых страниц</span></h1>
 
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
 
             <hr class="ui-hr">
 
@@ -99,9 +99,9 @@
             <ui-input value="1000">раз и ты без глаз</ui-input>
 
             <div class="row">
-                <div class="col-md-4"><ui-radio>Вру как Иисус</ui-radio></div>
-                <div class="col-md-4"><ui-radio :value="true">Отлично, работаем дальше</ui-radio></div>
-                <div class="col-md-4"><ui-radio>Сыр до дыр</ui-radio></div>
+                <div class="col-md-4"><ui-radio value-data=1 v-model="radioValue">Вру как Иисус</ui-radio></div>
+                <div class="col-md-4"><ui-radio value-data=2 v-model="radioValue">Отлично, работаем дальше</ui-radio></div>
+                <div class="col-md-4"><ui-radio value-data=3 v-model="radioValue">Сыр до дыр</ui-radio></div>
             </div>
 
             <!-- <div class="row"> -->
@@ -118,7 +118,9 @@
 <script>
 new Vue({
     el: '#app',
-    data: () => ({}),
+    data: () => ({
+        radioValue: 2
+    }),
     methods: {},
 })
 </script>

@@ -1,9 +1,9 @@
 .ui {
   &-hint {
-    font-size:      .93rem;
+    font-size:      $text-size-sm;
     color:          #989898;
     line-height:    1.25rem;
-    letter-spacing: 0.04rem;
+    // letter-spacing: 0.04rem;
   }
 
   &-hr {
@@ -256,7 +256,9 @@
     }
 
     &__label {
-      @extend .ui-text--lg;
+      @extend        .ui-text--lg;
+      color:          rgba(0,0,0,0.85);
+      font-weight:   400;
       line-height:   18px !important;
       position:      relative;
       padding-left:  69px;
@@ -265,7 +267,10 @@
       margin-left:   0 !important;
       display:       block;
       user-select:   none;
-      margin-bottom: 40px;
+
+      body.ui-normalize & {
+        margin-bottom: 40px;
+      }
 
       .ui-hint {
         margin-top:    10px;
@@ -352,13 +357,16 @@
     }
 
     & + label {
+      @extend .ui-text--lg;
+      font-weight:    400;
+      color:          rgba(0,0,0,0.85);
       position:       relative;
       display:        block;
-      padding-left:   35px;
+      padding-left:   50px;
       cursor:         pointer;
       vertical-align: middle;
       margin:         0 !important;
-      line-height:    20px;
+      line-height:    20px !important;
 
       &:hover:before {
         border-color: #1ac079;
@@ -376,14 +384,15 @@
       }
 
       &:after {
-        position: absolute;
-        display: none;
-        content: '';
+        position:   absolute;
+        opacity:    0;
+        content:    '';
+        transition: all .2s ease;
       }
     }
 
     &:checked + label:after {
-      display: block;
+      opacity: 1;
     }
   }
 
@@ -391,7 +400,7 @@
 
     & + label {
       padding-left: 28px;
-      line-height: 17px;
+      line-height:  17px;
     }
 
     & + label:before {
@@ -427,18 +436,19 @@
 
   &-radio {
     & + label:before {
-      width: 23px;
-      height: 23px;
+      width:         24px;
+      height:        24px;
       border-radius: 50%;
     }
 
     & + label:after {
-      top: 8px;
-      left: 8px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #1abf7a;
+      top:              8px;
+      left:             8px;
+      width:            8px;
+      height:           8px;
+      border-radius:    50%;
+      background-color: map-get($colors, 'limeGreen');
+      box-shadow:       0 2px 3px -1px rgba(45, 159, 110, .6);
     }
 
     &:checked[disabled] + label:before {
@@ -458,7 +468,7 @@
     width: 100%;
 
     .ui-input-pos {
-      margin: -18px -20px;
+      margin: -18px -22px;
     }
     .form-control .form-control {
       border: 0;
@@ -521,7 +531,7 @@
         & > i {
           font-size: 13px;
           position: relative;
-          top: 2px;
+          top: 4px;
           display: block;
           speak: none;
           color: #1abf7a;

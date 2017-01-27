@@ -1,7 +1,7 @@
 .ui {
   &-btn {
     @extend .ui-control !optional;
-
+    font-family:    $font-family-base;
     position:       relative;
     font-weight:    $btn-font-weight;
     font-size:      $btn-font-size;
@@ -133,8 +133,8 @@
     }
 
     &--lg {
-      padding:   20px 25px;
-      font-size: 1.2em;
+      padding:     20px 25px;
+      font-size:   1.2em;
 
       [class^="uikit-"] {
         line-height: ($btn-line-height * $btn-font-size * 1.2 - 1);

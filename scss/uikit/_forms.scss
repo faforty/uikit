@@ -20,15 +20,15 @@
 
 .form-group {
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 
   &--align {
-    display: flex;
-    align-items: center;
+    display:         flex;
+    align-items:     center;
     justify-content: space-between;
-    flex-direction: row;
-    //margin-top: 31px;
-    //padding-top: 30px;
+    flex-direction:  row;
+    //margin-top:    31px;
+    //padding-top:   30px;
 
     & > label {
       margin: 0 20px 0 0 !important;
@@ -54,27 +54,31 @@
   label {
     font-size:      15px;
     margin-left:    23px;
-    font-weight:    300;
+    // font-weight:    300;
     margin-bottom:  8px;
-    letter-spacing: 0.05rem;
+    letter-spacing: 0.03rem;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
 .form-control {
-  font-family: $font-family-base;
-  font-size: 16px;
-  //line-height: 1.25;
-  display: block;
-  width: 100%;
-  padding: 18px 20px;
-  transition: all .2s ease 0s;
-  color: rgba(0, 0, 0, .87);
-  border: 1px solid map_get($colors, 'grayLight');
-  border-radius: 2px;
-  background-color: #fff;
-  background-image: none;
-  background-clip: padding-box;
-  outline: none;
+  -webkit-font-smoothing: antialiased;
+  font-family:            $font-family-base;
+  font-style:             normal;
+  font-size:              18px;
+  display:                block;
+  font-weight:            400;
+  width:                  100%;
+  padding:                18px 22px;
+  line-height:            22px;
+  transition:             all .2s ease 0s;
+  color:                  rgba(0,0,0,0.87);
+  border:                 1px solid map_get($colors, 'grayLight');
+  border-radius:          2px;
+  background-color:       #fff;
+  background-image:       none;
+  background-clip:        padding-box;
+  outline:                none;
 
   &[type='number'] {
     -moz-appearance:textfield;
@@ -196,7 +200,7 @@
       vertical-align: top;
       display: table-cell;
       padding: 18px 20px;
-      line-height: 18px;
+      line-height: 22px;
 
       .ui--disabled & {
         background-color: rgba(231,231,231,0.53);

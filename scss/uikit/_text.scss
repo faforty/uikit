@@ -6,23 +6,27 @@ body.ui-normalize .ui-text {
   &--xs, &--xs p {
     font-size:      $text-size-xs;
     line-height:    $text-line-height-xs;
-    letter-spacing: .033rem;
+    letter-spacing: 0.033rem;
   }
   &--sm, &--sm p {
     font-size:      $text-size-sm;
     line-height:    $text-line-height-sm;
-    letter-spacing: 0.045rem;
-    font-weight:    300;
+    letter-spacing: 0.03rem;
+    // font-weight:    300;
   }
   &--lg, &--lg p {
     font-size:      $text-size-lg;
     line-height:    $text-line-height-lg;
     letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    // font-weight:    300;
   }
   &--xl, &--xl p {
+    -webkit-font-smoothing: antialiased;
     font-size:      $text-size-xl;
     line-height:    $text-line-height-xl;
     letter-spacing: 0;
+    // font-weight:    300;
   }
 
   // Transform
