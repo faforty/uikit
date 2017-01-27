@@ -228,6 +228,7 @@
 
             if (this.inputValue) {
               this.searchValue = this.inputValue
+              this.lock = true
             }
 
             //this.iconStyle = $input.querySelector('.ico')
