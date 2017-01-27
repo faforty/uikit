@@ -1,25 +1,28 @@
 .ui {
   &-head {
     &--spacing {
-      font-weight: 500;
-      font-size: 18px;
+      font-weight:    500;
+      font-size:      18px;
       letter-spacing: 4px;
     }
 
     &--big {
-      font-family: Akrobat, sans-serif;
-      font-weight: bold;
-      font-size: 90px;
+      font-family:    Akrobat, sans-serif;
+      font-weight:    bold;
+      font-size:      90px;
+      line-height:    80px;
       text-transform: uppercase;
-      margin: 20px 0;
-      color: map_get($colors, mediumSeaGreen);
+      margin:         0 0 40px;
+      color:          map_get($colors, limeGreen);
+
     }
 
     &--sub {
       font-family: "PT serif", serif;
-      font-style: italic;
-      font-size: 40px;
-      color: #2c2c2c;
+      font-style:  italic;
+      font-size:   40px;
+      color:       #2c2c2c;
+      margin:      0 0 20px;
     }
   }
 }

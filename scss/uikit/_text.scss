@@ -1,0 +1,72 @@
+body.ui-normalize .ui-text {
+
+  // Sizes
+  //------------------------------------------------------------------------
+
+  &--xs, &--xs p {
+    font-size:      $text-size-xs;
+    line-height:    $text-line-height-xs;
+    letter-spacing: .033rem;
+  }
+  &--sm, &--sm p {
+    font-size:      $text-size-sm;
+    line-height:    $text-line-height-sm;
+    letter-spacing: 0.045rem;
+    font-weight:    300;
+  }
+  &--lg, &--lg p {
+    font-size:      $text-size-lg;
+    line-height:    $text-line-height-lg;
+    letter-spacing: 0;
+  }
+  &--xl, &--xl p {
+    font-size:      $text-size-xl;
+    line-height:    $text-line-height-xl;
+    letter-spacing: 0;
+  }
+
+  // Transform
+  //------------------------------------------------------------------------
+  &--uppercase {
+    text-transform: uppercase;
+  }
+  &--lowercase {
+    text-transform: lowercase;
+  }
+  &--normalcase {
+    text-transform: none;
+  }
+
+  // Spacing
+  //------------------------------------------------------------------------
+  &--spacing {
+    letter-spacing: .255rem;
+  }
+
+  // Align
+  //------------------------------------------------------------------------
+  &--center {
+    text-align: center;
+  }
+  &--right {
+    text-align: right;
+  }
+  &--left {
+    text-align: left;
+  }
+
+  // Colors
+  //------------------------------------------------------------------------
+  &--gray {
+    color: map-get($colors, gray)
+  }
+
+  // Font weight
+  //------------------------------------------------------------------------
+  &--bold {
+    font-weight: bold
+  }
+  &--lighter {
+    font-weight: lighter
+  }
+}

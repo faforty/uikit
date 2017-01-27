@@ -47,14 +47,16 @@
     }
 
     .ui-toggleBox__label {
-      margin: 19px 0;
+      margin: 19px 0 39px;
     }
   }
 
   label {
-    font-size: 15px;
-    margin-left: 20px;
-    font-weight: 400;
+    font-size:      15px;
+    margin-left:    23px;
+    font-weight:    300;
+    margin-bottom:  8px;
+    letter-spacing: 0.05rem;
   }
 }
 
