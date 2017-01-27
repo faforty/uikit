@@ -1,5 +1,5 @@
 <template>
-    <li ref="ui-tab" class="ui-tabs__bar__tab" @click="setAsSelected" :class="{[classes]: true, 'ui-tabs-material__bar__tab--active': selected}">
+    <li ref="ui-tab" class="ui-tabs__bar__tab" @click="handleTabClick" :class="{[classes]: true, 'ui-tabs-material__bar__tab--active': selected}">
         <slot></slot>
     </li>
 </template>
@@ -36,9 +36,13 @@
                 }
             },
             setAsSelected() {
-                if (!this.disabled && this.parentTabs) {
+                if (this.parentTabs) {
                     this.parentTabs.select(this)
                 }
+            },
+            handleTabClick() {
+                if (this.disabled)
+                    this.setAsSelected();
             }
         },
         computed: {
