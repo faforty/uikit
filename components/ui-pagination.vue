@@ -2,7 +2,11 @@
     <ul :class="[ 'ui-pagination', 'b-platform-pagination', 'ui-pagination--between' ]">
         <li :class="[ 'ui-pagination__prev', { 'ui-pagination--hide': !prevLink }]">
             <span class="ui-pagination__prev__link">
-                <ui-button :href="prevLink" class="ui-btn--circle ui-pagination__prev__link">
+                <ui-button
+                    @click="event => $emit('prev-click', event)"
+                    :href="prevLink"
+                    class="ui-btn--circle ui-pagination__prev__link"
+                >
                     <i class="uikit-arrow-back"></i>
                 </ui-button>
             </span>
@@ -14,7 +18,11 @@
         <li class="ui-pagination__next">
             <span class="b-platform-pagination__name">{{ nextName }}</span>
             <span class="ui-pagination__next__link">
-                <ui-button :href="nextLink" :class="['ui-btn--circle', { 'ui-btn--green': nextLink, 'ui-btn--gray': !nextLink } ]">
+                <ui-button
+                    @click="event => $emit('next-click', event)"
+                    :href="nextLink"
+                    :class="['ui-btn--circle', { 'ui-btn--green': nextLink, 'ui-btn--gray': !nextLink } ]"
+                >
                     <i class="uikit-arrow-forward"></i>
                 </ui-button>
             </span>
