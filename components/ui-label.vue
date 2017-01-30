@@ -1,8 +1,9 @@
 <template>
-    <div :class="{ 'form-group': formGroup, 'has-danger': state == 'error', 'has-success': state == 'success',  'form-group--align': labelAlign, 'form-group--align--right': labelAlign == 'right', 'form-adaptive': adaptive }">
-        <label :class="[colorObject.cls]" :style="{color: !colorObject.cls ? colorObject.color : false}" v-show="labelShow">
+    <div :class="componentClass">
+        <label class='ui-label' :class="labelClass" v-show="labelShow">
             <slot name="label">{{ label }}</slot>
         </label>
+
         <slot></slot>
     </div>
 </template>
@@ -10,52 +11,40 @@
 <script>
     export default {
         props: {
-            hasDanger: Boolean,
             filled: {
-                type: Boolean,
-                'default': false
+                type:    Boolean,
+                default: false
             },
             formGroup: {
-                type: Boolean,
-                'default': true
+                type:    Boolean,
+                default: true
             },
             labelShow: {
-                type: Boolean,
-                'default': true
+                type:    Boolean,
+                default: true
             },
-            adaptive: Boolean,
-            label: String,
-            color: String,
-            error: String,
-            state: String,
+            adaptive:   Boolean,
+            label:      String,
+            color:      String,
+            error:      String,
+            state:      String,
             labelAlign: String,
         },
-        watch: {
-            filled () {
-                this.filling()
-            }
-        },
-        methods: {
-            filling () {
-                if (this.filled) {
-                    this.colorObject.cls = false
-                    this.colorObject.color = '#989898'
-                } else {
-                    this.colorObject.color = '#000'
-                }
-            }
-        },
+
         computed: {
-            colorObject () {
-                var isColor  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this.color)
+            componentClass() {
                 return {
-                    cls: isColor ? false : this.color,
-                    color: this.color
-                }
+                    'form-group':               this.formGroup,
+                    'has-danger':               this.state == 'error',
+                    'has-success':              this.state == 'success',
+                    'form-group--align':        this.labelAlign,
+                    'form-group--align--right': this.labelAlign == 'right',
+                    'form-adaptive':            this.adaptive
+                };
+            },
+            labelClass () {
+                return {'ui-text--gray': this.filled};
             }
         },
-        mounted () {
-            this.filling()
-        }
     }
 </script>

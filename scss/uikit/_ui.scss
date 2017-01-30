@@ -1,16 +1,17 @@
 .ui {
   &-hint {
-    font-size:      $text-size-sm;
-    color:          #989898;
-    line-height:    1.25rem;
-    // letter-spacing: 0.04rem;
+    font-size:              $text-size-sm;
+    color:                  #989898;
+    line-height:            1.25rem;
+    -webkit-font-smoothing: antialiased;
+    // letter-spacing:      0.04rem;
   }
 
   &-hr {
-    height:        1px;
-    border:        none;
-    background:    linear-gradient(90deg, rgba(#C9C9C9,0), #C9C9C9 15%, #C9C9C9 85%, rgba(#C9C9C9,0));
-    margin: 10px -20px 50px;
+    height:     1px;
+    border:     none;
+    background: linear-gradient(90deg, rgba(#C9C9C9,0), #C9C9C9 15%, #C9C9C9 85%, rgba(#C9C9C9,0));
+    margin:     10px -15px 50px;
   }
 
   &-control {

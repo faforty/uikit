@@ -22,16 +22,28 @@
   position: relative;
   margin-bottom: 32px;
 
+  body.ui-normalize & {
+    margin-bottom: 40px
+  }
+
   &--align {
     display:         flex;
-    align-items:     center;
+    align-items:     top;
     justify-content: space-between;
     flex-direction:  row;
+
     //margin-top:    31px;
     //padding-top:   30px;
 
     & > label {
       margin: 0 20px 0 0 !important;
+      // color: rgb(152, 152, 152);
+      display: flex;
+      align-items: center;
+      height: 60px;
+      body.ui-normalize & {
+        transform: translateY(0) !important;
+      }
     }
 
     &--left {
@@ -54,10 +66,20 @@
   label {
     font-size:      15px;
     margin-left:    23px;
-    // font-weight:    300;
     margin-bottom:  8px;
-    letter-spacing: 0.03rem;
-    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0;
+    // font-weight: 300;
+
+    body.ui-normalize &.ui-label {
+      -webkit-font-smoothing: antialiased;
+      margin-bottom: 0;
+      position: relative;
+      transform: translateY(-8px);
+    }
+  }
+  .ui-hint {
+    margin-left: 23px;
+    margin-top:  12px;
   }
 }
 
@@ -113,7 +135,7 @@
 }
 
 .has-danger {
-  .form-text,
+  .ui-hint,
   .inner-addon > .ico {
     color: $brand-danger;
   }
@@ -125,7 +147,7 @@
   }
 }
 .has-success {
-  .form-text,
+  .ui-hint,
   .inner-addon > .ico {
     color: $brand-success;
   }
@@ -137,24 +159,34 @@
   }
 }
 
-.form-text {
-  position: absolute;
-  // height: 0;
-  display: block;
-  margin: .55rem .9rem 0;
-}
+// .form-text {
+//   position: absolute;
+//   // height: 0;
+//   display: block;
+//   margin: .55rem .9rem 0;
+// }
 
 .ui {
   &-input {
 
     &-pos {
-      display: flex;
-      align-items: center;
+      // display:     flex;
+      // align-items: center;
+      position:       relative;
+
+      body.ui-normalize & {
+        padding-right: 50px;
+      }
     }
 
     &__help {
       position: absolute;
       right:    -40px;
+      top:      18px;
+
+      body.ui-normalize & {
+        right: 10px;
+      }
 
       &__action, &__action.ui-action {
         // border-color: #2d9e6e !important;

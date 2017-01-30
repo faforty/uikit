@@ -57,7 +57,7 @@ module.exports = {
       },
       {
         test: /\.scss$/i,
-        loader: extractCSS.extract("css-loader?sourceMap!sass-loader?sourceMap&outputStyle=compressed")
+        loader: extractCSS.extract("css-loader?sourceMap!sass-loader?sourceMap")
       }
     ]
   },

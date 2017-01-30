@@ -1,4 +1,8 @@
-@import "uikit/mixins";
+@import "uikit/mixins/uikit";
+@import "uikit/mixins/grid-framework";
+@import "uikit/mixins/grid";
+@import "uikit/mixins/breakpoints";
+
 @import "uikit/variables";
 
 // Reset and dependencies

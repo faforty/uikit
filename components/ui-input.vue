@@ -17,10 +17,9 @@
                     @blur="blurred"
                 >
                 <div :class="['ui-input-group__btn', { 'ui-input-group__btn--right': groupAlign == 'right', 'ui-input-group__btn--left': groupAlign == 'left' }]" v-show="group"><div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div></div>
-                <transition name="fade" mode="out-in">
-                    <div v-if="prompt">
-                        <small class="form-text text-color--gray" v-html="prompt"></small>
-                    </div>
+
+                <transition name="slide" mode="out-in">
+                    <div v-if="prompt" class="ui-hint" v-html="prompt"></div>
                 </transition>
             </div>
 

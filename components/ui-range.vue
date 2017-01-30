@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <div class='ui-range'>
         <template v-if="isMoblie">
             <div ref="wrap" :class="['vue-slider-wrap', flowDirection, className, disabledClass]" v-show="show" :style="[( styles || {} ), wrapStyles]" @click="wrapClick">
                 <div ref="elem" class="vue-slider" :style="elemStyles">
@@ -44,7 +44,7 @@
                 </div>
             </div>
         </template>
-    </span>
+    </div>
 </template>
 
 <script>

@@ -1,5 +1,8 @@
 $icomoon-font-path: "../fonts";
 
+// Options
+$enable-grid-classes: true !default;
+
 //$colors: base forestGreen green limeGreen mediumSeaGreen paleGreen;
 
 $colors: (
@@ -85,3 +88,99 @@ $text-line-height-lg: 30px; //2.2rem;
 
 $text-size-xl:        24px; //1.7rem;
 $text-line-height-xl: 2.8rem;
+
+
+// @mixin _assert-ascending($map, $map-name) {
+//   $prev-key: null;
+//   $prev-num: null;
+//   @each $key, $num in $map {
+//     @if $prev-num == null {
+//       // Do nothing
+//     } @else if not comparable($prev-num, $num) {
+//       @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+//     } @else if $prev-num >= $num {
+//       @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+//     }
+//     $prev-key: $key;
+//     $prev-num: $num;
+//   }
+// }
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+// @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+// @include _assert-starts-at-zero($grid-breakpoints);
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+) !default;
+// @include _assert-ascending($container-max-widths, "$container-max-widths");
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:               12 !default;
+$grid-gutter-width-base:     30px !default;
+$grid-gutter-widths: (
+  xs: $grid-gutter-width-base,
+  sm: $grid-gutter-width-base,
+  md: $grid-gutter-width-base,
+  lg: $grid-gutter-width-base,
+  xl: $grid-gutter-width-base
+) !default;
+
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer-x: 20px !default;
+$spacer-y: 20px !default;
+$spacers: (
+  0: (
+    x: 0,
+    y: 0
+  ),
+  1: (
+    x: ($spacer-x * .5),
+    y: ($spacer-y * .5)
+  ),
+  2: (
+    x: $spacer-x,
+    y: $spacer-y
+  ),
+  3: (
+    x: ($spacer-x * 1.5),
+    y: ($spacer-y * 1.5)
+  ),
+  4: (
+    x: ($spacer-x * 2),
+    y: ($spacer-y * 2)
+  ),
+  5: (
+    x: ($spacer-x * 3),
+    y: ($spacer-y * 3)
+  )
+) !default;
