@@ -41,8 +41,10 @@
                 }
             },
             handleTabClick() {
-                if (this.disabled)
+                if (!this.disabled) {
                     this.setAsSelected();
+                    this.$emit('click');
+                }
             }
         },
         computed: {

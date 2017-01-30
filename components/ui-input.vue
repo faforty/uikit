@@ -84,11 +84,15 @@
             inputWidth: String,
             flexShrink: Number,
             disabled:   Boolean,
-            autofocus:  Boolean
+            autofocus:  Boolean,
+            formatValue: {
+                type: Function,
+                default: value => value.trim()
+            }
         },
         methods: {
             updateValue (value) {
-                value = value.trim()
+                value = this.formatValue(value);
 
                 this.$emit('input', value)
                 this.$emit('change', value)
