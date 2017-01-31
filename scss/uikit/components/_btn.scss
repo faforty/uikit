@@ -21,8 +21,10 @@
     z-index:        1;
 
     &.ui-btn--block {
-      display: inline-block;
-      width:   100%;
+      display:       inline-block;
+      width:         100%;
+      padding-left:  0;
+      padding-right: 0;
     }
 
     &::-moz-focus-inner {
@@ -86,6 +88,10 @@
       &:hover {
         @include btn-style(grayMedium, grayMedium, #ffffff);
       }
+    }
+
+    &--hover-green:hover {
+      @include btn-style(limeGreen, limeGreen, #ffffff);
     }
 
     &--green {
