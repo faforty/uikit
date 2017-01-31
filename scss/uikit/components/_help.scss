@@ -7,12 +7,17 @@
     bottom:       0;
     top:          0;
     height:       100%;
-    padding:      130px 50px;
     z-index:      999;
     transition:   all .4s;
     width:        30%;
     margin-right: -30%;
     right:        50px;
+
+    .ui-help-wrapper {
+      position: relative;
+      top:      80px;
+      padding:  50px;
+    }
 
     .ui-help--shadow.ui-help--active & {
       box-shadow: 0 0 50px rgba(0,0,0,0.1);
@@ -36,7 +41,7 @@
     .ui-help-toggle {
         position:    absolute;
         left:        0;
-        top:         60px;
+        top:         0;
         margin-left: -20px;
         transition:  all .4s;
     }
@@ -106,6 +111,12 @@
     margin:     0;
     background: transparent;
     height:     0;
+
+    .ui-help-wrapper {
+      top:     0;
+      padding: 0;
+      position: static;
+    }
 
     .ui-help--shadow.ui-help--active & {
       box-shadow: none;

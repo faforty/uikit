@@ -1,14 +1,15 @@
 <template>
-    <div class="ui-help-container" :class="{'ui-help--active':isActive, 'ui-help--shadow':shadow}">
+    <div ref="container" class="ui-help-container" :class="{'ui-help--active':isActive, 'ui-help--shadow':shadow}">
 
         <slot name="page-header"></slot>
 
         <div class="ui-help">
-            <ui-button @click="toggleHelp" class="ui-help-toggle ui-btn--green ui-btn--circle ui-btn--sm ui-btn--no-shadow">
-                <i class="uikit-info"></i>
-            </ui-button>
+            <div class="ui-help-wrapper" :style="wrapperStyle">
+                <ui-button @click="toggleHelp" class="ui-help-toggle ui-btn--green ui-btn--circle ui-btn--sm ui-btn--no-shadow">
+                    <i class="uikit-info"></i>
+                </ui-button>
 
-            <div v-if="label" class="ui-help-label">{{label}}</div>
+                <div v-if="label" class="ui-help-label">{{label}}</div>
 
                 <div class="ui-help-text">
                     <ui-slider v-if="useSlider" :content="content" nav-absolute></ui-slider>
@@ -20,6 +21,7 @@
 
                     <slot></slot>
                 </div>
+            </div>
         </div>
     </div>
 </template>
@@ -47,12 +49,13 @@ export default {
             type:    Boolean,
             default: false,
         },
-
+        contentOffset: [Number, String],
         // Deprecated
-        text: {type: [String, Array],},
+        text: {type: [String, Array]},
     },
     data: () => ({
-        isActive: false,
+        isActive:          false,
+        autoContentOffset: 0,
     }),
     watch: {
         text(text) {
@@ -65,6 +68,10 @@ export default {
     computed: {
         useSlider() {
             return Array.isArray(this.content);
+        },
+        wrapperStyle() {
+            var top = this.contentOffset ? this.contentOffset : this.autoContentOffset;
+            return top ? {top: top+'px'} : {};
         }
     },
     methods: {
@@ -75,6 +82,14 @@ export default {
     },
     mounted() {
         this.isActive = this.active;
+
+        var elem = this.$refs.container;
+        var offset = elem.offsetTop;
+        do {
+            offset += elem.offsetParent.offsetTop;
+        } while (elem = elem.parent);
+
+        this.autoContentOffset = offset < window.screen.height / 2 ? offset : 0;
     },
 };
 </script>
