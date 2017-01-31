@@ -44,7 +44,8 @@ import uiButton from './ui-button.vue';
 export default {
     props: {
         nextLink: {
-            type: String,
+            type: [String, Boolean],
+            default: false,
             required: true
         },
         nextName: {
@@ -52,7 +53,8 @@ export default {
             required: true
         },
         prevLink: {
-            type: String,
+            type: [String, Boolean],
+            default: false,
             required: true
         },
         prevName: {
