@@ -1,5 +1,5 @@
 <template id="ui-select">
-    <ui-label :filled="filled">
+    <ui-label :filled="filled" :label-show="label">
 
         <template slot="label"><slot></slot></template>
 
@@ -63,6 +63,10 @@
             value: {
                 type: Array,
                 default: []
+            },
+            label: {
+                type:      Boolean,
+                'default': true
             },
             placeholder: {
                 type: String,
