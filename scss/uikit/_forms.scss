@@ -28,7 +28,7 @@
 
   &--align {
     display:         flex;
-    align-items:     top;
+    align-items:     flex-start;
     justify-content: space-between;
     flex-direction:  row;
 
@@ -170,23 +170,32 @@
   &-input {
 
     &-pos {
-      // display:     flex;
-      // align-items: center;
+      display:     flex;
+      align-items:     flex-start;
       position:       relative;
 
-      body.ui-normalize & {
+      .ui-input--info-spacing & {
         padding-right: 50px;
       }
     }
 
     &__help {
-      position: absolute;
-      right:    -40px;
-      top:      18px;
+      margin: 16px 10px 16px 16px;
 
-      body.ui-normalize & {
+      .ui-input--info-spacing &,
+      .ui-input--info-absolute & {
+        position:         absolute;
+        margin:           0;
+        top:              18px;
+        right:            -40px;
+      }
+      .ui-input--info-spacing & {
         right: 10px;
       }
+
+      // body.ui-normalize & {
+      //   right: 10px;
+      // }
 
       &__action, &__action.ui-action {
         // border-color: #2d9e6e !important;

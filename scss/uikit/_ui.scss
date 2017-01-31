@@ -251,7 +251,7 @@
     @media (min-width: 768px) {
       &:hover {
         .ui-toggleBox__label::before {
-          border-color: rgba(34, 36, 38, 0.35);
+          border-color: map-get($colors, 'limeGreen');
         }
       }
     }
@@ -464,10 +464,13 @@
   }
 
   &-select {
-    display: inline-block;
+    display:  inline-block;
     position: relative;
-    width: 100%;
+    width:    100%;
 
+    .ui-input--info-spacing & {
+      padding-right: 50px;
+    }
     .ui-input-pos {
       margin: -18px -22px;
     }
