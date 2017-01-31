@@ -69,6 +69,12 @@
 
 }
 
+@media (max-width: 992px) {
+  .ui-help {
+    width:        40%;
+    margin-right: -40%;
+  }
+}
 @media (max-width: 768px) {
   .ui-help-container {
     position: relative;
