@@ -33,14 +33,12 @@
 
         computed: {
             componentClass() {
-                return {
-                    'form-group':               this.formGroup,
-                    'has-danger':               this.state == 'error',
-                    'has-success':              this.state == 'success',
-                    'form-group--align':        this.labelAlign,
-                    'form-group--align--right': this.labelAlign == 'right',
-                    'form-adaptive':            this.adaptive
-                };
+                return [
+                    this.formGroup        ? 'form-group' : null,
+                    this.state == 'error' ? 'has-danger' : (this.state == 'success' ? 'has-success' : null),
+                    this.labelAlign       ? 'form-group--align form-group--align--' + this.labelAlign : '',
+                    this.adaptive         ? 'form-adaptive' : ''
+                ];
             },
             labelClass () {
                 return {'ui-text--gray': this.filled};

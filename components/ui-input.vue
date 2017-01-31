@@ -12,6 +12,7 @@
                     :placeholder="placeholder"
                     :disabled="disabled"
                     :value="mValue"
+                    :size="size"
                     @input="updateValue($event.target.value)"
                     @change="updateValue($event.target.value)"
                     @blur="blurred"
@@ -88,6 +89,9 @@
             formatValue: {
                 type: Function,
                 default: value => value.trim()
+            },
+            size: {
+                type: [Number, String]
             }
         },
         methods: {
