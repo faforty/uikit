@@ -108,6 +108,12 @@
             _maxHeight: 0
         }),
         methods: {
+            focus () {
+                this.$refs.input.focus();
+            },
+            setValue (value = '') {
+                this.searchValue = value;
+            },
             choiceItem (index) {
                 let item = this.items[index]
 
@@ -115,17 +121,17 @@
                 this.opened = false
                 this.searchValue = item.name;
 
+                 if (this.emitInput == 'id') {
+                    this.$emit('input', item.id + '')
+                } else {
+                    this.$emit('input', item)
+                }
+
                 if (this.clearValue)
                     this.searchValue = '';
 
                 if (this.keepFocus)
                     this.$refs.input.focus();
-
-                if (this.emitInput == 'id') {
-                    this.$emit('input', item.id + '')
-                } else {
-                    this.$emit('input', item)
-                }
             },
             // reset () {
             //     //this.iconStyle.style = ''
@@ -198,6 +204,8 @@
                 this.lock = true
             },
             searchValue (value) {
+                this.$emit('input-search-value', value);
+
                 this.items = [];
                 this.error = false;
                 if (this.lock == true) {
