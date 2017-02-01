@@ -5,6 +5,7 @@
                 ref="input"
                 :hint="hint"
                 :icon="icon"
+                :state="state"
                 :placeholder="placeholder"
                 :color="color"
                 :icon-align="iconAlign"
@@ -90,7 +91,8 @@
             autofocus: {
                 type: Boolean,
                 default: false
-            }
+            },
+            state: String
         },
         data: () => ({
             opened: false,
