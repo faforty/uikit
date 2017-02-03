@@ -74,7 +74,6 @@ $tabs-fade-border: 30px;
 
       &__tab {
         display: inline-block;
-        padding-bottom: 10px;
         margin-right: 24px;
 
         & > a {
@@ -83,10 +82,8 @@ $tabs-fade-border: 30px;
           font-weight: 300;
           font-size: 16px;
           color: #2d9e6e;
-          height: 48px;
-          line-height: 48px;
-          //padding-left: 24px;
-          //padding-right: 24px;
+          padding-top: 30px;
+          padding-bottom: 20px;
           user-select: none;
         }
 
