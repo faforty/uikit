@@ -159,7 +159,7 @@
 
                             this.error = false
 
-                            if (!items.length) {
+                            if (!this.items.length) {
                                 this.error = {
                                     name: 'Не найдено',
                                     error: 'notFound'
