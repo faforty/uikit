@@ -1,14 +1,14 @@
-let rippleParentClass = 'ui-ink-ripple';
-let rippleClass = 'ui-ripple';
-let rippleActiveClass = 'ui-active';
-let registeredMouseFunction;
-let referenceElement;
+var rippleParentClass = 'ui-ink-ripple';
+var rippleClass = 'ui-ripple';
+var rippleActiveClass = 'ui-active';
+var registeredMouseFunction;
+var referenceElement;
 
-let unregisterMouseEvent = (el = referenceElement) => {
+var unregisterMouseEvent = (el = referenceElement) => {
     el.removeEventListener('mousedown', registeredMouseFunction);
 };
 
-let registerMouseEvent = (element, holder) => {
+var registerMouseEvent = (element, holder) => {
     if (holder) {
         let ripple = holder.querySelector(':scope > .' + rippleParentClass + '> .' + rippleClass);
 
@@ -35,7 +35,7 @@ let registerMouseEvent = (element, holder) => {
     }
 };
 
-let createElement = (ripple, className, size) => {
+var createElement = (ripple, className, size) => {
     ripple = document.createElement('div');
     ripple.className = className;
 
@@ -47,13 +47,13 @@ let createElement = (ripple, className, size) => {
     return ripple;
 };
 
-let checkAvailablePositions = (element) => {
+var checkAvailablePositions = (element) => {
     let availablePositions = ['relative', 'absolute', 'fixed'];
 
     return availablePositions.indexOf(getComputedStyle(element).position) > -1;
 };
 
-let getClosestParent = (element) => {
+var getClosestParent = (element) => {
     let found = false;
     let parent = element;
 
@@ -80,7 +80,7 @@ let getClosestParent = (element) => {
     return found;
 };
 
-let createRipple = (element, currentRipple) => {
+var createRipple = (element, currentRipple) => {
     let holder = getClosestParent(element);
 
     if (holder) {
