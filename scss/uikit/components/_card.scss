@@ -1,0 +1,215 @@
+.card {
+  height: 350px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  position: relative;
+
+  &.card-add {
+    border: 1px dashed #c3c3c3;
+
+    h2 {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    h4 {
+      line-height: 34px;
+      font-weight: 300;
+      font-size: 18px;
+    }
+  }
+
+  &.card-default {
+    border: 1px solid #eef4f2;
+    background: #eef4f2;
+  }
+
+  .card-content {
+    margin-top: 26px;
+
+    .sub-name {
+      font-style: italic;
+      font-size: 1.1em;
+      font-family: 'PT serif';
+      color: #8d8d8d;
+      margin-bottom: 14px;
+    }
+
+    .name {
+      font-size: 1.19em;
+      margin-bottom: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      @media all and (-webkit-min-device-pixel-ratio: 0) {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      >.product-name {
+        &:after {
+          content: ', ';
+        }
+
+        &:last-child:after {
+          content: '';
+        }
+      }
+    }
+
+    .desc {
+      font-size: 1.19em;
+      color: #8d8d8d;
+      margin-bottom: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      @media all and (-webkit-min-device-pixel-ratio: 0) {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      >span {
+        &:after {
+          content: ', ';
+        }
+
+        &:last-child:after {
+          content: '';
+        }
+      }
+    }
+  }
+
+  .card-info {
+    display: inline-block;
+    position: absolute;
+    right: 22px;
+    top: 15px;
+
+    .info-text {
+      display: inline-block;
+      line-height: 24px;
+      color: #c8cac9;
+    }
+
+    .info-icon {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #c8cac9;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 11px;
+      margin-left: 10px;
+      transition: background 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+      position: relative;
+
+      &:hover, &.show-popup {
+        background: #1bc07b;
+        border-color: #1bc07b;
+        color: #fff;
+        cursor: pointer;
+
+        .info-popup {
+          cursor: auto;
+          display: block;
+          opacity: 1;
+          color: #000;
+        }
+      }
+
+      i {
+        line-height: 24px;
+      }
+
+      .info-popup {
+        display: none;
+        opacity: 0;
+        background: #fef7dd;
+        width: 250px;
+        padding: 20px;
+        border-radius: 3px;
+        position: absolute;
+        text-align: left;
+        font-size: 14px;
+        top: 30px;
+        right: -5px;
+        box-shadow: 0 13px 45px -10px rgba(0, 0, 0, .3);
+        transition: opacity .3s ease-in-out;
+
+        &:before {
+          content: "";
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 7px solid #fef7dd;
+          top: -7px;
+          right: 5px;
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  .controls {
+    width: calc(100% - 15px);
+    position: absolute;
+    bottom: 30px;
+
+    .btn {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #979797;
+      border-radius: 50%;
+      color: #979797;
+      text-align: center;
+      font-size: 1.2em;
+      margin-left: 30px;
+      transition: background 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:hover {
+        background: #1bc07b;
+        border-color: #1bc07b;
+        color: #fff;
+      }
+
+      .icon {
+        line-height: 40px;
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 575px) {
+  .card {
+    &.card-default {
+      text-align: center;
+    }
+
+    .controls {
+      width: calc(100% - 60px);
+      text-align: justify;
+
+      .btn:last-child {
+        float: right;
+        margin-left: 0;
+      }
+    }
+  }
+}
