@@ -54,13 +54,9 @@ export default {
         },
         prevLink: {
             type: [String, Boolean],
-            default: false,
-            required: true
+            default: false
         },
-        prevName: {
-            type: String,
-            required: true
-        },
+        prevName: type: String,
         step: {
             type: [String, Number],
             default: 0
