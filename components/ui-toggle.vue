@@ -33,8 +33,7 @@
         },
         data () {
             return {
-                id: '',
-                colorObject: {}
+                id: ''
             }
         },
         methods: {
