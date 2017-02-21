@@ -71,9 +71,12 @@ body.ui-normalize .ui-text,
   // Font weight
   //------------------------------------------------------------------------
   &--bold {
-    font-weight: bold
+    font-weight: bold;
+  }
+  &--light {
+    font-weight: 300;
   }
   &--lighter {
-    font-weight: lighter
+    font-weight: lighter;
   }
 }
