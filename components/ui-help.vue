@@ -83,11 +83,7 @@ export default {
     mounted() {
         this.isActive = this.active;
 
-        var elem = this.$refs.container;
-        var offset = elem.offsetTop;
-        do {
-            offset += elem.offsetParent.offsetTop;
-        } while (elem = elem.parent);
+        var offset = this.$refs.container.getBoundingClientRect().top + window.scrollY;
 
         this.autoContentOffset = offset < window.screen.height / 2 ? offset : 0;
     },
