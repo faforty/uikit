@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'ui-green';
-  src:  url('#{$icomoon-font-path}/ui-green.eot?kzkqnk');
-  src:  url('#{$icomoon-font-path}/ui-green.eot?kzkqnk#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/ui-green.ttf?kzkqnk') format('truetype'),
-    url('#{$icomoon-font-path}/ui-green.woff?kzkqnk') format('woff'),
-    url('#{$icomoon-font-path}/ui-green.svg?kzkqnk#ui-green') format('svg');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?vc122m');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?vc122m#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/ui-green.ttf?vc122m') format('truetype'),
+    url('#{$icomoon-font-path}/ui-green.woff?vc122m') format('woff'),
+    url('#{$icomoon-font-path}/ui-green.svg?vc122m#ui-green') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -34,6 +34,16 @@
 .uikit-cloud-send {
   &:before {
     content: $uikit-cloud-send;
+  }
+}
+.uikit-user-ln {
+  &:before {
+    content: $uikit-user-ln;
+  }
+}
+.uikit-clock-ln {
+  &:before {
+    content: $uikit-clock-ln;
   }
 }
 .uikit-bag-false {
