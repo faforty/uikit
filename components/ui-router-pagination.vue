@@ -56,7 +56,9 @@ export default {
             type: [String, Boolean],
             default: false
         },
-        prevName: type: String,
+        prevName: {
+            type: String
+        },
         step: {
             type: [String, Number],
             default: 0
