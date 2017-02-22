@@ -108,6 +108,13 @@
                     <ui-input value="1000" size=4 label-align=right-inline>Input + size</ui-input>
                 </div>
                 <div class="col-md-4">
+                    <ui-input-suggest
+                        :value="completeValue"
+                        :results="completeResults"
+                        :error="completeError"
+                        @input="complete"
+                        @select="completeSelect"
+                    >Input suggest</ui-input-suggest>
                     <ui-input placeholder="Плейсхолдер" icon="uikit-search" icon-align="left">Заголовок</ui-input>
                     <ui-input value="Введеный текст" label-align="left" group="кг" disabled>Заголовок</ui-input>
                     <ui-input value="Введеный текст" icon="uikit-search" label-align="right">Label</ui-input>
@@ -571,6 +578,8 @@
 
 
     <script>
+        Vue.devtools = true;
+
         new Vue({
             el: '#app',
             data: () => ({
@@ -599,7 +608,10 @@
                     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In illum natus, doloremque sapiente illo dolor, facilis maiores iusto quibusdam enim consequatur nemo eos facere, omnis eligendi vel voluptate cupiditate ea.',
                 ],
                 helpTextIndex: 0,
-                tabs: {}
+                tabs: {},
+                completeResults: [],
+                completeValue: '',
+                completeError: ''
             }),
             methods: {
                 // customRequest(data, success, ) {
@@ -641,6 +653,31 @@
                 changeRadio(val) {
                     this.radioValueA = val;
                     console.log( val );
+                },
+                complete(val) {
+                    this.completeValue = val;
+                    this.completeError = '';
+
+                    if (val === '')
+                        this.completeResults = [];
+                    else
+                        this.$http.get('https://wapi.agro24.ru/api/product', { params: {
+                            name: val
+                        } })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.items && data.items.length > 0)
+                                    this.completeResults = data.items;
+                                else
+                                    throw 'Нет совпадений';
+                            })
+                            .catch(e => {
+                                this.completeResults = [];
+                                this.completeError = e;
+                            })
+                },
+                completeSelect(item) {
+                    this.completeValue = item.name;
                 }
             },
             mounted() {

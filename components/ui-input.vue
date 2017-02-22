@@ -7,15 +7,18 @@
             <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
                 <i :class="['ico', icon]" v-show="icon"></i>
                 <input class="form-control" ref="input"
+                    :autocomplete="autocomplete"
                     :type="type"
                     :name="name"
                     :placeholder="placeholder"
                     :disabled="disabled"
                     :value="mValue"
                     :size="size"
-                    @input="updateValue($event.target.value)"
-                    @change="updateValue($event.target.value)"
+                    @input="updateValue"
+                    @change="updateValue"
+                    @keydown="onKeydown"
                     @blur="blurred"
+                    @focus="onFocus"
                 >
                 <div :class="['ui-input-group__btn', { 'ui-input-group__btn--right': groupAlign == 'right', 'ui-input-group__btn--left': groupAlign == 'left' }]" v-show="group"><div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div></div>
 
@@ -46,6 +49,10 @@
             uiPopover
         },
         props: {
+            autocomplete: {
+                type: String,
+                default: 'on'
+            },
             type: {
                 type:    String,
                 default: 'text'
@@ -92,10 +99,23 @@
             },
             size: {
                 type: [Number, String]
+            },
+            returnEvent: {
+                type: Boolean,
+                default: false
             }
         },
         methods: {
-            updateValue (value) {
+            updateValue (event) {
+                if (this.returnEvent) {
+                    this.$emit('input', event);
+                    this.$emit('change', event);
+
+                    return;
+                }
+
+                var value = event.target.value;
+
                 value = this.formatValue(value);
 
                 this.$emit('input', value)
@@ -104,6 +124,12 @@
 
                 this.validationError = ''
                 this.mValue          = value
+            },
+            onKeydown(e) {
+                this.$emit('keydown', e);
+            },
+            onFocus() {
+                this.$emit('focus');
             },
             blurred() {
                 this.$emit('blur');

@@ -2,6 +2,7 @@ import uiSelect           from './ui-select.vue';
 import uiButton           from './ui-button.vue';
 import uiToggle           from './ui-toggle.vue';
 import uiInput            from './ui-input.vue';
+import uiInputSuggest     from './ui-input-suggest.vue';
 import uiInputAjax        from './ui-input-ajax.vue';
 import uiInputSpin        from './ui-input-spinner.vue';
 import uiTextarea         from './ui-textarea.vue';
@@ -35,6 +36,7 @@ export default {
     'ui-button':            uiButton,
     'ui-toggle':            uiToggle,
     'ui-input':             uiInput,
+    'ui-input-suggest':     uiInputSuggest,
     'ui-input-ajax':        uiInputAjax,
     'ui-input-spinner':     uiInputSpin,
     'ui-textarea':          uiTextarea,
