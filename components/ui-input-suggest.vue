@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="drop-out">
+        <div class="drop-out" @mousemove="">
             <ui-input
                 ref="input"
                 return-event
@@ -15,7 +15,6 @@
                 :placeholder="placeholder"
                 :state="state"
                 :value="value"
-                @blur="hideDropdown"
                 @focus="showDropdown"
                 @input="inputValue"
                 @change="changeValue"
@@ -109,15 +108,19 @@ export default {
         },
 
         hideDropdown() {
-            this.focusList = 0;
+            if (this._lock) {
+                this._lock = false;
+            } else {
+                this.focusList = 0;
 
-            setTimeout(() => {
                 this.showList = false;
-            }, 100);
+            }
         },
 
         showDropdown() {
             this.focusList = 0;
+
+            this._lock = true;
             this.showList = true;
         },
 
@@ -158,6 +161,9 @@ export default {
     mounted() {
         let $input = this.$refs.input.$el,
             $dropResults = this.$refs.dropResults;
+
+
+        document.body.addEventListener('click', this.hideDropdown.bind(this));
 
 
         window.onscroll = () => {

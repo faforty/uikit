@@ -131,8 +131,8 @@
             onFocus() {
                 this.$emit('focus');
             },
-            blurred() {
-                this.$emit('blur');
+            blurred(e) {
+                this.$emit('blur', e);
                 this.$on('blurred');
 
 
