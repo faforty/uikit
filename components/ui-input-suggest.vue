@@ -14,7 +14,7 @@
                 :info="info"
                 :placeholder="placeholder"
                 :state="state"
-                v-model="value"
+                :value="value"
                 @blur="hideDropdown"
                 @focus="showDropdown"
                 @input="inputValue"
@@ -90,10 +90,16 @@ export default {
         },
 
         inputValue({ target }) {
+            if (target.value != '')
+                this.showList = true;
+
             this.$emit('input', target.value);
         },
 
         changeValue({ target }) {
+            if (target.value != '')
+                this.showList = true;
+
             this.$emit('change', target.value);
         },
 
@@ -104,7 +110,10 @@ export default {
 
         hideDropdown() {
             this.focusList = 0;
-            // this.showList = false;
+
+            setTimeout(() => {
+                this.showList = false;
+            }, 100);
         },
 
         showDropdown() {
