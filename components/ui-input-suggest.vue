@@ -163,7 +163,7 @@ export default {
             $dropResults = this.$refs.dropResults;
 
 
-        document.body.addEventListener('click', this.hideDropdown.bind(this));
+        document.body.addEventListener('click', this.hideDropdown);
 
 
         window.onscroll = () => {
