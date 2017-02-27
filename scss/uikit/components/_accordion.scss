@@ -1,15 +1,12 @@
 .ui {
   &-accordion {
     &__item {
-
-      &--active > &__content {
-        display: block;
-      }
-
       &__head {
-        display: flex;
+        display:     flex;
         align-items: center;
-        cursor: pointer;
+        cursor:      pointer;
+        position:    relative;
+        z-index:     1;
 
         &:after {
           display: block;
@@ -38,6 +35,12 @@
 
       &__content {
         display: none;
+        margin-bottom: 20px
+        // margin:  -20px 0 20px;
+      }
+
+      &--active > &__content {
+        display: block;
       }
     }
   }
