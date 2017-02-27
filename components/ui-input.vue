@@ -77,7 +77,6 @@
             state:       String,
             labelAlign:  String,
             keyup:       Boolean,
-            color:       String,
             name:        String,
             placeholder: String,
             hint:        String,
@@ -178,13 +177,6 @@
                 }
 
                 return hint
-            },
-            colorObject () {
-                var isColor = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this.color)
-                return {
-                    cls: isColor ? false : this.color,
-                    color: this.color
-                }
             },
             shrink () {
                 return (typeof this.flexShrink === 'number') ? { 'flex-shrink': this.flexShrink } : ''

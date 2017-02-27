@@ -2,7 +2,7 @@
     <div class="form-group">
         <input :id="id" class="ui-checkbox" type="checkbox" :name="name" v-model="isChecked" @change="update" :disabled="disabled">
         <label class="text" :for="id">
-        <slot></slot>
+            <slot></slot>
         </label>
     </div>
 </template>
@@ -13,9 +13,6 @@
             name: {
                 type: String
             },
-            color: {
-                type: String
-            },
             disabled: {
                 type: Boolean
             }
@@ -23,7 +20,6 @@
         data () {
             return {
                 id: '',
-                colorObject: {}
             }
         },
         methods: {
@@ -37,13 +33,6 @@
             }
         },
         computed: {
-            colorObject () {
-                var isColor  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this.color)
-                return {
-                    cls: isColor ? false : this.color,
-                    color: this.color
-                }
-            },
             isBoolean () {
                 return typeof(this.value) === 'boolean';
             },
