@@ -94,6 +94,10 @@
                         <ui-input value="Введеный текст" info="Absolute help (parent has .ui-input--info-absolute)">Заголовок</ui-input>
                     </div>
 
+                    <div class="form-group">
+                        <ui-input v-model="title_1" placeholder="Пример" label-align="left" group="$" hint="Hint text here">Заголовок</ui-input>
+                    </div>
+
                     <div class="ui-input--info-spacing">
                         <div class="form-group">
                             <ui-input-ajax ajax-url="https://wapi.agro24.ru/api/product" v-model="ajaxValue" info=".ui-input--info-spacing - добавляет пддинг слева для всех элементов input, select">Заголовок</ui-input-ajax>

@@ -3,36 +3,39 @@
 
         <template slot="label"><slot></slot></template>
 
-        <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
-            <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
-                <i :class="['ico', icon]" v-show="icon"></i>
-                <input class="form-control" ref="input"
-                    :autocomplete="autocomplete"
-                    :type="type"
-                    :name="name"
-                    :placeholder="placeholder"
-                    :disabled="disabled"
-                    :value="mValue"
-                    :size="size"
-                    @input="updateValue"
-                    @change="updateValue"
-                    @keydown="onKeydown"
-                    @blur="blurred"
-                    @focus="onFocus"
-                >
-                <div :class="['ui-input-group__btn', { 'ui-input-group__btn--right': groupAlign == 'right', 'ui-input-group__btn--left': groupAlign == 'left' }]" v-show="group"><div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div></div>
+        <div>
+            <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
+                <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
+                    <i :class="['ico', icon]" v-show="icon"></i>
+                    <input class="form-control" ref="input"
+                        :autocomplete="autocomplete"
+                        :type="type"
+                        :name="name"
+                        :placeholder="placeholder"
+                        :disabled="disabled"
+                        :value="mValue"
+                        :size="size"
+                        @input="updateValue"
+                        @change="updateValue"
+                        @keydown="onKeydown"
+                        @blur="blurred"
+                        @focus="onFocus"
+                    >
+                    <div :class="['ui-input-group__btn', { 'ui-input-group__btn--right': groupAlign == 'right', 'ui-input-group__btn--left': groupAlign == 'left' }]" v-show="group"><div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div></div>
 
-                <transition name="slide" mode="out-in">
-                    <div v-if="prompt" class="ui-hint" v-html="prompt"></div>
-                </transition>
+                </div>
+
+                <div class="ui-input__help" v-if="info">
+                    <ui-popover placement="right">
+                        <a class="ui-action ui-input__help__action uikit-info"></a>
+                        <div slot="content">{{info}}</div>
+                    </ui-popover>
+                </div>
             </div>
 
-            <div class="ui-input__help" v-if="info">
-                <ui-popover placement="right">
-                    <a class="ui-action ui-input__help__action uikit-info"></a>
-                    <div slot="content">{{info}}</div>
-                </ui-popover>
-            </div>
+            <transition name="slide" mode="out-in">
+                <div v-if="prompt" class="ui-hint" v-html="prompt"></div>
+            </transition>
         </div>
 
     </ui-label>
