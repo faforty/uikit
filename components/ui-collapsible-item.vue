@@ -13,6 +13,12 @@
 <script>
 var Velocity = require('velocity-animate');
 
+const VELOCITY_CONFIG = {
+    duration: 350,
+    easing:   'easeOutQuart',
+    queue:    false,
+};
+
 export default {
     props: {
         opened: {
@@ -25,12 +31,6 @@ export default {
         show: false
     }),
 
-    computed: {
-        id() {
-            return this._uid
-        }
-    },
-
     methods: {
         toggleContent() {
             this.show ? this.hideContent() : this.showContent();
@@ -41,7 +41,7 @@ export default {
             this.$parent.$emit('collapsible-item::show');
             this._lock = false;
             this.show  = true;
-            Velocity(this.$refs.body, 'slideDown', this.velocityConfig());
+            Velocity(this.$refs.body, 'slideDown', VELOCITY_CONFIG);
         },
 
         hideContent() {
@@ -49,16 +49,8 @@ export default {
                 return;
             }
             this.show = false;
-            Velocity(this.$refs.body, 'slideUp', this.velocityConfig());
+            Velocity(this.$refs.body, 'slideUp', VELOCITY_CONFIG);
         },
-
-        velocityConfig() {
-            return {
-                duration: 350,
-                easing:   'easeOutQuart',
-                queue:    false,
-            }
-        }
     },
 
     mounted() {
