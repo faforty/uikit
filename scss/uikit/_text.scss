@@ -67,6 +67,9 @@ body.ui-normalize .ui-text,
   &--gray {
     color: map-get($colors, gray)
   }
+  &--green {
+    color: map-get($colors, green)
+  }
 
   // Font weight
   //------------------------------------------------------------------------
