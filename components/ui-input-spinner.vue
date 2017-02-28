@@ -1,16 +1,12 @@
 <template>
     <div class="ui-input-group">
-        <span class="ui-input-group__btn ui-input-group__btn--left">
-            <a @click="down" v-on:mousedown="downLong('down')" v-on:mouseup="upLong()">
-                <i class="uikit-minus" style="font-weight: bold;font-size: 12px;"></i>
-            </a>
-        </span>
-        <input type="number" class="form-control ui-input-updown" v-model="number" :style="inputStyle">
-        <span class="ui-input-group__btn ui-input-group__btn--right">
-            <a @click="up" v-on:mousedown="downLong('up')" v-on:mouseup="upLong()">
-                <i class="uikit-plus" style="font-weight: bold;font-size: 12px;"></i>
-            </a>
-        </span>
+        <a class="ui-input-group__btn ui-input-group__btn--left" @click="down" @mousedown="push('down')" @mouseup="stopPush">
+            <i class="uikit-minus" style="font-weight: bold;font-size: 12px;"></i>
+        </a>
+        <input type="number" class="form-control ui-input-updown" v-model="value" :style="inputStyle">
+        <a class="ui-input-group__btn ui-input-group__btn--right" @click="up" @mousedown="push('up')" @mouseup="stopPush">
+            <i class="uikit-plus" style="font-weight: bold;font-size: 12px;"></i>
+        </a>
     </div>
 </template>
 <script>
@@ -41,42 +37,28 @@
             },
         },
         data: () => ({
-            number: 0,
             $interval: null
         }),
         methods: {
-            up () {
-                if (this.max === undefined || this.number < this.max) {
-                    this.number++
+            up() {
+                if (this.max === undefined || this.value < this.max) {
+                    this.$emit('input', this.value++);
                 }
             },
-            down () {
-                if (this.min === undefined || this.number > this.min) {
-                    this.number--
+            down() {
+                if (this.min === undefined || this.value > this.min) {
+                    this.$emit('input', this.value--);
                 }
             },
-            upLong () {
+            stopPush() {
                 clearInterval(this.$interval)
             },
-            downLong (direction) {
-                this.upLong()
+            push(direction) {
+                this.stopPush()
 
                 this.$interval = setInterval(() => {
                     this[direction]();
                 }, this.speed)
-            }
-        },
-        watch: {
-            number (value) {
-                this.$emit('input', value)
-            },
-            value (value) {
-                this.number = value
-            }
-        },
-        mounted () {
-            if (this.value) {
-                this.number = this.value
             }
         }
     }
