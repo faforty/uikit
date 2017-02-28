@@ -21,6 +21,7 @@
     "progressbar.js": "^1.0.1",
     "validatorjs": "^3.9.0",
     "velocity-animate": "^1.3.1",
+    "bootstrap": "^4.0.0-alpha.6",
     "vue-resource": "^1.0.3"
   },
   "devDependencies": {
@@ -28,7 +29,6 @@
     "babel-loader": "^6.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.13.2",
-    "bootstrap": "^4.0.0-alpha.6",
     "cross-env": "^1.0.6",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
