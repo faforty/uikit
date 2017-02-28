@@ -43,7 +43,7 @@ export default {
             }
 
             let data = {
-                value: this.mValue
+                value: this.value
             };
 
             let rules = {

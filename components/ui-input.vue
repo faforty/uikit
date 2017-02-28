@@ -13,7 +13,7 @@
                         :name="name"
                         :placeholder="placeholder"
                         :disabled="disabled"
-                        :value="mValue"
+                        :value="value"
                         :size="size"
                         @input="updateValue"
                         @change="updateValue"
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <transition name="slide" mode="out-in">
+            <transition name="fade" mode="out-in">
                 <div v-if="prompt" class="ui-hint" v-html="prompt"></div>
             </transition>
         </div>
@@ -120,19 +120,22 @@
 
                 value = this.formatValue(value);
 
-                this.$emit('input', value)
-                this.$emit('change', value)
+                this.value = value;
 
+                this.$emit('input', value);
+                this.$emit('change', value);
 
-                this.validationError = ''
-                this.mValue          = value
+                this.validationError = '';
             },
+
             onKeydown(e) {
                 this.$emit('keydown', e);
             },
+
             onFocus() {
                 this.$emit('focus');
             },
+
             blurred(e) {
                 this.$emit('blur', e);
                 this.$on('blurred');
@@ -142,31 +145,23 @@
                     this.validate()
                 }, 100)
             },
+
             focus() {
                 this.$nextTick(() => {
-                    this.$refs.input.focus()
-                })
-            }
-        },
-
-        data: () => ({
-            mValue:    '',
-            labelText: '',
-        }),
-
-        watch: {
-            value(val) {
-                this.mValue = val;
+                    this.$refs.input.focus();
+                });
             }
         },
 
         computed: {
             filled () {
-                return !!this.mValue
+                return !!this.value
             },
+
             fieldState () {
                 return this.validationError ? 'error' : this.state;
             },
+
             prompt () {
                 let hint = this.hint
 
@@ -178,23 +173,18 @@
 
                 return hint
             },
+
             shrink () {
                 return (typeof this.flexShrink === 'number') ? { 'flex-shrink': this.flexShrink } : ''
             },
         },
 
         mounted () {
-            if (this.value != this.mValue) {
-                this.mValue = this.value;
-            }
-
-            if (this.autofocus) {
+            if (this.autofocus)
                 this.focus();
-            }
 
-            if (this.mValue) {
+            if (this.value)
                 this.validate();
-            }
         },
         mixins: [
             ValidatesInput
