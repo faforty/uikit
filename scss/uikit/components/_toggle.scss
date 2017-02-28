@@ -1,0 +1,93 @@
+.ui-toggleBox {
+  position: relative;
+
+  @media (min-width: 768px) {
+    &:hover {
+      .ui-toggleBox__label::before {
+        border-color: map-get($colors, 'limeGreen');
+      }
+    }
+  }
+
+  &__label {
+    @extend        .ui-text--lg;
+    color:        rgba(0,0,0,0.85);
+    font-weight:  400;
+    line-height:  18px !important;
+    position:     relative;
+    padding-left: 69px;
+    cursor:       pointer;
+    color:        #000;
+    margin-left:  0 !important;
+    display:      block;
+    user-select:  none;
+
+    > div {
+      min-height: 1em;
+    }
+
+    body.ui-normalize & {
+      margin-bottom: 40px;
+    }
+
+    .ui-hint {
+      margin-top:    10px;
+      margin-bottom: -2px;
+    }
+
+    &::before {
+      content:       "";
+      position:      absolute;
+      left:          0;
+      top:           0;
+      width:         40px;
+      height:        20px;
+      border:        1px solid #dadada;
+      border-radius: 10px;
+      background:    #fff none;
+      margin:        0;
+      padding:       0;
+      display:       block;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      width: 12px;
+      height: 4px;
+      border-radius: 2px;
+      background: #989898 none;
+      margin: 0;
+      padding: 0;
+      display: block;
+      transition: background .3s ease,left .3s ease;
+    }
+
+    &--disabled {
+      color: #989898;
+    }
+    &--disabled:hover::before,
+    &--disabled::before {
+      border-color:     #e4e4e4 !important;
+      background-color: rgba(231,231,231,0.53);
+    }
+    &--disabled::after {
+      background-color: #989898 !important;
+      box-shadow: none !important;
+    }
+
+    &--active::after {
+      width:            10px;
+      height:           10px;
+      left:             24px;
+      top:              5px;
+      border-radius:    50%;
+      background-color: map-get($colors, 'limeGreen');
+      box-shadow:       0 2px 3px -1px rgba(45, 159, 110, .6);
+    }
+    &--default::after {
+      background: none;
+    }
+  }
+}
