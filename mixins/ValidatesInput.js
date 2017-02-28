@@ -2,14 +2,6 @@ import Validator from 'validatorjs';
 
 export default {
     props: {
-        // valid: {
-        //     type: Boolean,
-        //     default: true
-        // },
-        // dirty: {
-        //     type: Boolean,
-        //     default: false
-        // },
         hideValidationErrors: {
             type: Boolean,
             default: false
@@ -38,18 +30,18 @@ export default {
 
     methods: {
         validate() {
-            if (!this.validationRules/* || !this.dirty*/) {
+            if (!this.validationRules) {
                 return;
             }
 
-            let data = {
+            var data = {
                 value: this.value
             };
 
-            let rules = {
+            var rules = {
                 value: this.validationRules
             };
-            let validation = new Validator(data, rules, this.validationMessages);
+            var validation = new Validator(data, rules, this.validationMessages);
             validation.setAttributeNames({ value: '' });
 
             this.setValidity(validation.passes(), validation.errors.first('value'));

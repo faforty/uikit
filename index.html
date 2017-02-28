@@ -131,7 +131,7 @@
                     </ui-input>
 
                     <ui-input value="Введеный текст" icon="uikit-search" info="sdsdsd">Заголовок</ui-input>
-                    <ui-input value="" icon="uikit-search" info="sdsdsd" type="number" validation-rules="required|numeric|min:10|max:64">Валидация</ui-input>
+                    <ui-input v-model="validationValue" icon="uikit-search" info="sdsdsd" type="number" validation-rules="required|numeric|min:10|max:64">Валидация</ui-input>
                 </div>
                 <div class="col-md-4">
 
@@ -632,7 +632,8 @@
                 tabs: {},
                 completeResults: [],
                 completeValue: '',
-                completeError: ''
+                completeError: '',
+                validationValue: ''
             }),
             methods: {
                 // customRequest(data, success, ) {

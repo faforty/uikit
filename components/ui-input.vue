@@ -62,15 +62,15 @@
             },
             formGroup: {
                 type:      Boolean,
-                'default': true
+                default: true
             },
             label: {
                 type:      Boolean,
-                'default': true
+                default: true
             },
             hideField: {
                 type:      Boolean,
-                'default': null
+                default: null
             },
             adaptive:    Boolean,
             info:        String,
@@ -81,13 +81,13 @@
             placeholder: String,
             hint:        String,
             value:       {
-                default: ''
+                default: null
             },
             error: String,
             group: String,
             groupAlign: {
                 type:      String,
-                'default': 'right'
+                default: 'right'
             },
             icon:       String,
             iconAlign:  String,
@@ -110,20 +110,14 @@
         methods: {
             updateValue (event) {
                 if (this.returnEvent) {
-                    this.$emit('input', event);
-                    this.$emit('change', event);
+                    this.$emit(event.type, event);
 
                     return;
                 }
 
-                var value = event.target.value;
+                var value = this.formatValue(event.target.value);
 
-                value = this.formatValue(value);
-
-                this.value = value;
-
-                this.$emit('input', value);
-                this.$emit('change', value);
+                this.$emit(event.type, value);
 
                 this.validationError = '';
             },
@@ -142,7 +136,7 @@
 
 
                 setTimeout(() => {
-                    this.validate()
+                    this.validate();
                 }, 100)
             },
 
@@ -155,7 +149,7 @@
 
         computed: {
             filled () {
-                return !!this.value
+                return !!this.value;
             },
 
             fieldState () {
@@ -163,19 +157,18 @@
             },
 
             prompt () {
-                let hint = this.hint
+                var hint = this.hint;
 
-                if (this.validationError) {
-                    hint = this.validationError
-                } else if (typeof this.error == 'string') {
-                   hint = this.error
-                }
+                if (this.validationError)
+                    hint = this.validationError;
+                else if (typeof this.error == 'string')
+                   hint = this.error;
 
-                return hint
+                return hint;
             },
 
             shrink () {
-                return (typeof this.flexShrink === 'number') ? { 'flex-shrink': this.flexShrink } : ''
+                return (typeof this.flexShrink === 'number') ? { 'flex-shrink': this.flexShrink } : '';
             },
         },
 
