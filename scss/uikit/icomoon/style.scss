@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'ui-green';
-  src:  url('#{$icomoon-font-path}/ui-green.eot?vc122m');
-  src:  url('#{$icomoon-font-path}/ui-green.eot?vc122m#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/ui-green.ttf?vc122m') format('truetype'),
-    url('#{$icomoon-font-path}/ui-green.woff?vc122m') format('woff'),
-    url('#{$icomoon-font-path}/ui-green.svg?vc122m#ui-green') format('svg');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?fmnwmt');
+  src:  url('#{$icomoon-font-path}/ui-green.eot?fmnwmt#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/ui-green.ttf?fmnwmt') format('truetype'),
+    url('#{$icomoon-font-path}/ui-green.woff?fmnwmt') format('woff'),
+    url('#{$icomoon-font-path}/ui-green.svg?fmnwmt#ui-green') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,9 +26,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.uikit-logo {
+.uikit-lock-ln {
   &:before {
-    content: $uikit-logo;
+    content: $uikit-lock-ln;
+  }
+}
+.uikit-star-ln {
+  &:before {
+    content: $uikit-star-ln;
+  }
+}
+.uikit-location-ln {
+  &:before {
+    content: $uikit-location-ln;
   }
 }
 .uikit-cloud-send {
@@ -96,6 +106,16 @@
     content: $uikit-close-empty;
   }
 }
+.uikit-barcode {
+  &:before {
+    content: $uikit-barcode;
+  }
+}
+.uikit-logo {
+  &:before {
+    content: $uikit-logo;
+  }
+}
 .uikit-clock-45 {
   &:before {
     content: $uikit-clock-45;
@@ -131,79 +151,14 @@
     content: $uikit-arrow-back;
   }
 }
-.uikit-barcode {
-  &:before {
-    content: $uikit-barcode;
-  }
-}
 .uikit-phone {
   &:before {
     content: $uikit-phone;
   }
 }
-.uikit-facebook-official {
-  &:before {
-    content: $uikit-facebook-official;
-  }
-}
-.uikit-twitter {
-  &:before {
-    content: $uikit-twitter;
-  }
-}
-.uikit-google-plus {
-  &:before {
-    content: $uikit-google-plus;
-  }
-}
-.uikit-html5 {
-  &:before {
-    content: $uikit-html5;
-  }
-}
-.uikit-youtube-play {
-  &:before {
-    content: $uikit-youtube-play;
-  }
-}
-.uikit-instagram {
-  &:before {
-    content: $uikit-instagram;
-  }
-}
-.uikit-vk {
-  &:before {
-    content: $uikit-vk;
-  }
-}
-.uikit-yahoo {
-  &:before {
-    content: $uikit-yahoo;
-  }
-}
-.uikit-google {
-  &:before {
-    content: $uikit-google;
-  }
-}
 .uikit-share-alt {
   &:before {
     content: $uikit-share-alt;
-  }
-}
-.uikit-whatsapp {
-  &:before {
-    content: $uikit-whatsapp;
-  }
-}
-.uikit-odnoklassniki {
-  &:before {
-    content: $uikit-odnoklassniki;
-  }
-}
-.uikit-mail-ru {
-  &:before {
-    content: $uikit-mail-ru;
   }
 }
 .uikit-alert {
@@ -259,6 +214,66 @@
 .uikit-menu {
   &:before {
     content: $uikit-menu;
+  }
+}
+.uikit-facebook-official {
+  &:before {
+    content: $uikit-facebook-official;
+  }
+}
+.uikit-twitter {
+  &:before {
+    content: $uikit-twitter;
+  }
+}
+.uikit-google-plus {
+  &:before {
+    content: $uikit-google-plus;
+  }
+}
+.uikit-html5 {
+  &:before {
+    content: $uikit-html5;
+  }
+}
+.uikit-youtube-play {
+  &:before {
+    content: $uikit-youtube-play;
+  }
+}
+.uikit-instagram {
+  &:before {
+    content: $uikit-instagram;
+  }
+}
+.uikit-vk {
+  &:before {
+    content: $uikit-vk;
+  }
+}
+.uikit-yahoo {
+  &:before {
+    content: $uikit-yahoo;
+  }
+}
+.uikit-google {
+  &:before {
+    content: $uikit-google;
+  }
+}
+.uikit-whatsapp {
+  &:before {
+    content: $uikit-whatsapp;
+  }
+}
+.uikit-odnoklassniki {
+  &:before {
+    content: $uikit-odnoklassniki;
+  }
+}
+.uikit-mail-ru {
+  &:before {
+    content: $uikit-mail-ru;
   }
 }
 .uikit-clock-25 {
