@@ -109,7 +109,6 @@
         },
         methods: {
             updateValue (event) {
-                console.log(event.target.value);
                 if (this.returnEvent) {
                     this.$emit('input', event);
                     this.$emit('change', event);
@@ -126,15 +125,17 @@
                 this.$emit('input', value);
                 this.$emit('change', value);
 
-
                 this.validationError = '';
             },
+
             onKeydown(e) {
                 this.$emit('keydown', e);
             },
+
             onFocus() {
                 this.$emit('focus');
             },
+
             blurred(e) {
                 this.$emit('blur', e);
                 this.$on('blurred');
@@ -144,6 +145,7 @@
                     this.validate()
                 }, 100)
             },
+
             focus() {
                 this.$nextTick(() => {
                     this.$refs.input.focus();
@@ -155,9 +157,11 @@
             filled () {
                 return !!this.value
             },
+
             fieldState () {
                 return this.validationError ? 'error' : this.state;
             },
+
             prompt () {
                 let hint = this.hint
 
@@ -169,19 +173,18 @@
 
                 return hint
             },
+
             shrink () {
                 return (typeof this.flexShrink === 'number') ? { 'flex-shrink': this.flexShrink } : ''
             },
         },
 
         mounted () {
-            if (this.autofocus) {
+            if (this.autofocus)
                 this.focus();
-            }
 
-            if (this.value) {
+            if (this.value)
                 this.validate();
-            }
         },
         mixins: [
             ValidatesInput
