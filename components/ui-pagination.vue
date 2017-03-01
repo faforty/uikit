@@ -34,6 +34,8 @@
 import uiButton from './ui-button.vue';
 
 export default {
+    name: 'UiPagination',
+
     props: {
         nextLink: {
             type: [String, Boolean],
@@ -59,6 +61,7 @@ export default {
             default: false
         }
     },
+
     components: {
         uiButton
     }

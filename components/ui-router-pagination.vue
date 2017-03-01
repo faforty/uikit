@@ -15,6 +15,8 @@
 import uiPagination from './ui-pagination.vue';
 
 export default {
+    name: 'UiRouterPagination',
+
     props: {
         nextLink: {
             type: [String, Boolean],
@@ -62,7 +64,6 @@ export default {
 
             this.pushRoute(this.nextLink);
         }
-    },
-    name: 'UiRouterPagination'
+    }
 };
 </script>
