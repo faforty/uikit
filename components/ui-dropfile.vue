@@ -43,6 +43,10 @@ export default {
             type:     String,
             // required: true,
         },
+        requestOptions: {
+            type: Object,
+            default: {}
+        },
         name: {
             type:    String,
             default: 'file',
@@ -140,7 +144,7 @@ export default {
             if (this.customRequest) {
                 this.customRequest(formData);
             } else {
-                this.$http.post(this.url, formData).then(response => {
+                this.$http.post(this.url, formData, this.requestOptions).then(response => {
                     this.onResponse(response);
 
                     response.json().then(data => {
