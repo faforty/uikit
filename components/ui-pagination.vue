@@ -4,7 +4,7 @@
             <span class="ui-pagination__prev__link">
                 <ui-button
                     @click="event => $emit('prev-click', event)"
-                    :href="prevLink"
+                    :href="typeof prevLink === 'string' ? nextLink : null"
                     class="ui-btn--circle ui-pagination__prev__link"
                 >
                     <i class="uikit-arrow-back"></i>
@@ -20,7 +20,7 @@
             <span class="ui-pagination__next__link">
                 <ui-button
                     @click="event => $emit('next-click', event)"
-                    :href="nextLink"
+                    :href="typeof nextLink === 'string' ? nextLink : null"
                     :class="['ui-btn--circle', { 'ui-btn--green': nextLink, 'ui-btn--gray': !nextLink } ]"
                 >
                     <i class="uikit-arrow-forward"></i>
