@@ -108,7 +108,7 @@
             }
         },
         methods: {
-            updateValue (event) {
+            updateValue(event) {
                 if (this.returnEvent) {
                     this.$emit(event.type, event);
 
