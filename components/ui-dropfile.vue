@@ -41,7 +41,7 @@ export default {
         },
         url: {
             type:     String,
-            required: true,
+            // required: true,
         },
         name: {
             type:    String,
@@ -51,7 +51,6 @@ export default {
             type:    String,
             default: 'Выбрать файл',
         },
-
         customRequest: {
             type:    Function,
             default: null
@@ -132,6 +131,10 @@ export default {
                 // reader.onloadend = () => {
                 //     this.$refs.dropzone.style.background = 'url("'+reader.result+'")'
                 // }
+            }
+
+            if (!this.url && !this.customRequest) {
+                console.error('[uikit:ui-dropfile]: Missing required prop: "url" or "customRequest"');
             }
 
             if (this.customRequest) {
