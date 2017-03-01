@@ -1,93 +1,91 @@
-.ui-toggleBox {
-  position: relative;
+.ui-toggle {
+  @extend       .ui-text--lg;
+  color:        rgba(0,0,0,0.85);
+  font-weight:  400;
+  line-height:  18px !important;
+  position:     relative;
+  padding-left: 69px;
+  cursor:       pointer;
+  color:        #000;
+  display:      block;
+  user-select:  none;
 
-  @media (min-width: 768px) {
-    &:hover {
-      .ui-toggleBox__label::before {
-        border-color: map-get($colors, 'limeGreen');
-      }
-    }
+  > label {
+    min-height: 1em;
+    margin:     0;
   }
 
-  &__label {
-    @extend        .ui-text--lg;
-    color:        rgba(0,0,0,0.85);
-    font-weight:  400;
-    line-height:  18px !important;
-    position:     relative;
-    padding-left: 69px;
-    cursor:       pointer;
-    color:        #000;
-    margin-left:  0 !important;
-    display:      block;
-    user-select:  none;
+  body.ui-normalize & {
+    margin-bottom: 40px;
+  }
 
-    > div {
-      min-height: 1em;
-    }
+  .ui-hint {
+    margin-top:    10px;
+    margin-bottom: -2px;
+  }
 
-    body.ui-normalize & {
-      margin-bottom: 40px;
-    }
+  &::before {
+    display:       block;
+    content:       "";
+    position:      absolute;
+    left:          0;
+    top:           0;
+    width:         40px;
+    height:        20px;
+    border:        1px solid #dadada;
+    border-radius: 10px;
+    background:    #fff none;
+  }
 
-    .ui-hint {
-      margin-top:    10px;
-      margin-bottom: -2px;
-    }
+  &::after {
+    display:       block;
+    content:       "";
+    position:      absolute;
+    left:          7px;
+    top:           8px;
+    width:         12px;
+    height:        4px;
+    border-radius: 5px;
+    background:    #989898 none;
+    transition:    all .2s ease, left .2s ease, border-radius .2s;
+  }
 
-    &::before {
-      content:       "";
-      position:      absolute;
-      left:          0;
-      top:           0;
-      width:         40px;
-      height:        20px;
-      border:        1px solid #dadada;
-      border-radius: 10px;
-      background:    #fff none;
-      margin:        0;
-      padding:       0;
-      display:       block;
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      left: 7px;
-      top: 8px;
-      width: 12px;
-      height: 4px;
-      border-radius: 2px;
-      background: #989898 none;
-      margin: 0;
-      padding: 0;
-      display: block;
-      transition: background .3s ease,left .3s ease;
-    }
+  &--active::after {
+    width:            10px;
+    height:           10px;
+    left:             24px;
+    top:              5px;
+    background-color: map-get($colors, 'limeGreen');
+    box-shadow:       0 2px 3px -1px rgba(45, 159, 110, .6);
+  }
 
-    &--disabled {
-      color: #989898;
-    }
-    &--disabled:hover::before,
-    &--disabled::before {
-      border-color:     #e4e4e4 !important;
+  &--disabled {
+    color: #989898;
+
+    &:hover::before, &::before {
+      border-color:     #e4e4e4;
       background-color: rgba(231,231,231,0.53);
     }
-    &--disabled::after {
-      background-color: #989898 !important;
-      box-shadow: none !important;
-    }
 
-    &--active::after {
-      width:            10px;
-      height:           10px;
-      left:             24px;
-      top:              5px;
-      border-radius:    50%;
-      background-color: map-get($colors, 'limeGreen');
-      box-shadow:       0 2px 3px -1px rgba(45, 159, 110, .6);
-    }
-    &--default::after {
-      background: none;
+    &::after {
+      background-color: #989898;
+      box-shadow: none;
     }
   }
+
+  &--null::after {
+    left:          16px;
+    top:           5px;
+    width:         10px;
+    height:        10px;
+    box-shadow:    inset 0 0 0 1px #dadada;
+    background:    rgba(0,0,0,0.06);
+  }
+
+  @media (min-width: map-get($grid-breakpoints, 'md')) {
+    &:hover::before {
+      border-color: map-get($colors, 'limeGreen');
+    }
+  }
+
 }

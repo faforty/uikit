@@ -1,12 +1,9 @@
 <template>
-    <div class="ui-toggleBox">
-        <!-- <input :id="id" class="ui-toggleBox__field" :name="name" type="checkbox" v-model="isChecked" @change="update" :disabled="disabled"> -->
-        <label class="ui-toggleBox__label" :class="[statusClass, {'ui-toggleBox__label--disabled': disabled}]" @click="toggleValue">
-            <div><slot></slot></div>
-            <transition name="fade" mode="out-in">
-                <div v-if="hint" class="ui-hint" v-html="hint"></div>
-            </transition>
-        </label>
+    <div class="ui-toggle" :class="[statusClass, {'ui-toggle--disabled': disabled}]" @click="toggleValue">
+        <label><slot></slot></label>
+        <transition name="fade" mode="out-in">
+            <div v-if="hint" class="ui-hint" v-html="hint"></div>
+        </transition>
     </div>
 </template>
 
@@ -26,36 +23,49 @@
                 type: Boolean
             },
             hint: String,
+
+            // Разрешает третье положение "null"
             nullable: Boolean
         },
+
+
+        data: () => ({
+            isBoolean: false,
+        }),
+
         methods: {
             toggleValue (e) {
                 if (this.disabled) {
                     return;
                 }
-                var value = this.value;
 
-                if (this.nullable && value === null) {
-                    value = this.isBoolean ? false : 0;
-                } else if (value === true || value === 1 || value === '1') {
-                    value = this.nullable ? null : (this.isBoolean ? false : 0);
+                let value = this.value;
+
+                if (this.nullable) {
+                    value = value ? null : this.makeValue(value !== null);
                 } else {
-                    value = this.isBoolean ? true : 1;
+                    value = this.makeValue(!value);
                 }
 
                 this.$emit('input',  value)
                 this.$emit('change', value)
+            },
+
+            makeValue(value) {
+                if (this.isBoolean) {
+                    return value ? true : false;
+                }
+
+                return value ? 1 : 0;
             }
         },
-        data: () => ({
-            isBoolean: false,
-        }),
+
         computed: {
             isChecked () {
                 return this.value;
             },
             statusClass () {
-                return this.value ? 'ui-toggleBox__label--active' : (this.nullable && this.value === null ? 'ui-toggleBox__label--default' : '');
+                return this.value ? 'ui-toggle--active' : (this.nullable && this.value === null ? 'ui-toggle--null' : '');
             }
         },
 
