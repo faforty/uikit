@@ -17,7 +17,7 @@
             </div>
 
             <slot>
-                <img v-for="file in files" :src="file" width="50" height="50">
+                <!-- <img v-for="file in files" :src="file" width="50" height="50"> -->
                 <!-- <div class="ui-dropfile-overtext" style="display:flex">Перетяните изображение сюда</div> -->
             </slot>
         </div>
