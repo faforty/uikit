@@ -1,45 +1,18 @@
 <template>
-    <ul :class="['ui-pagination', 'b-platform-pagination', 'ui-pagination--between']">
-            <li :class="['ui-pagination__prev', { 'ui-pagination--hide': !prevLink }]">
-                <router-link
-                    class="ui-pagination__prev__link"
-                    tag="span"
-                    :to="{ path: prevLink }"
-                    :title="prevName"
-                >
-                    <ui-button
-                        @click="prevClick"
-                        class="ui-btn--circle"
-                    >
-                            <i class="uikit-arrow-back" />
-                    </ui-button>
-                </router-link>
-                <span class="b-platform-pagination__name">{{ prevName }}</span>
-            </li>
-            <li v-if="stepAll" class="ui-pagination__step">
-                Шаг {{ step }} из {{ stepAll }}
-            </li>
-            <li class="ui-pagination__next">
-                <span class="b-platform-pagination__name">{{ nextName }}</span>
-                <router-link
-                    class="ui-pagination__next__link"
-                    tag="span"
-                    :to="{ path: nextLink }"
-                    :title="nextName"
-                >
-                    <ui-button
-                        @click="nextClick"
-                        :class="['ui-btn--circle', { 'ui-btn--green': nextLink, 'ui-btn--gray': !nextLink } ]"
-                    >
-                            <i class="uikit-arrow-forward" />
-                    </ui-button>
-                </router-link>
-            </li>
-    </ul>
+    <ui-pagination
+        :prev-link="prevLink"
+        :next-link="nextLink"
+        :prev-name="prevName"
+        :next-name="nextName"
+        :step="step"
+        :step-all="stepAll"
+        @prev-click.prevent="onPrevClick"
+        @next-click.prevent="onNextClick"
+    />
 </template>
 
 <script>
-import uiButton from './ui-button.vue';
+import uiPagination from './ui-pagination.vue';
 
 export default {
     props: {
@@ -49,8 +22,7 @@ export default {
             required: true
         },
         nextName: {
-            type: String,
-            required: true
+            type: String
         },
         prevLink: {
             type: [String, Boolean],
@@ -68,15 +40,27 @@ export default {
             default: false
         }
     },
+
     components: {
-        uiButton
+        uiPagination
     },
+
     methods: {
-        prevClick() {
-            this.$emit('prev-click');
+        pushRoute(route) {
+            if (this.$router)
+                this.$router.push(route);
         },
-        nextClick() {
+
+        onPrevClick() {
+            this.$emit('prev-click');
+
+            this.pushRoute(this.prevLink);
+        },
+
+        onNextClick() {
             this.$emit('next-click');
+
+            this.pushRoute(this.nextLink);
         }
     },
     name: 'UiRouterPagination'

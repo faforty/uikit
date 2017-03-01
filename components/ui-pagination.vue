@@ -31,12 +31,36 @@
 </template>
 
 <script>
-    import uiButton from './ui-button.vue';
+import uiButton from './ui-button.vue';
 
-    export default {
-        components: {
-            uiButton
+export default {
+    props: {
+        nextLink: {
+            type: [String, Boolean],
+            default: false,
+            required: true
         },
-        props: ['prevLink', 'prevName', 'nextLink', 'nextName', 'step', 'stepAll']
+        nextName: {
+            type: String
+        },
+        prevLink: {
+            type: [String, Boolean],
+            default: false
+        },
+        prevName: {
+            type: String
+        },
+        step: {
+            type: [String, Number],
+            default: 0
+        },
+        stepAll: {
+            type: [String, Number, Boolean],
+            default: false
+        }
+    },
+    components: {
+        uiButton
     }
+}
 </script>
