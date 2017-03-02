@@ -461,17 +461,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <ui-dropfile style="width:162px" v-model="images" url="http://docs.agro24.dev/upload" name="files">
-
-                        <div v-if="images.length" style="border:1px solid #EEE">
-                            <div v-for="image in images"
-                                style="display:block; overflow: hidden; width:160px; height:160px; background:#EEE; text-align: center"
-                                @click="images=images.filter(img=>img!=image)">
-                                <img :src="image" style="max-width:160px; max-height: 160px">
-                            </div>
-                        </div>
-
-                    </ui-dropfile>
+                    <ui-dropfile url="http://docs.agro24.dev/upload" name="upload"></ui-dropfile>
                 </div>
 
                 <div class="col-md-4">

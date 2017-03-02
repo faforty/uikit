@@ -1,6 +1,6 @@
 <template>
 
-    <div class="ui-dropfile" :class="{'ui-dropfile--over':dropzoneOver, 'ui-dropfile--body-over':bodyOver, 'ui-dropfile--empty':isEmpty}">
+    <div class="ui-dropfile" :class="{'ui-dropfile--over':dropzoneOver, 'ui-dropfile--body-over':bodyOver}">
 
         <div ref="dropzone" class="ui-dropfile-dropzone">
             <div
@@ -16,10 +16,13 @@
                 </slot>
             </div>
 
-            <slot>
-                <!-- <img v-for="file in files" :src="file" width="50" height="50"> -->
-                <!-- <div class="ui-dropfile-overtext" style="display:flex">Перетяните изображение сюда</div> -->
-            </slot>
+
+            <div class="ui-dropfile-content">
+                <slot>
+                    <!-- <img v-for="file in files" :src="file" width="50" height="50"> -->
+                    <!-- <div class="ui-dropfile-overtext" style="display:flex">Перетяните изображение сюда</div> -->
+                </slot>
+            </div>
         </div>
 
         <label :for="inputId" class="ui-btn ui-btn--sm">
@@ -87,10 +90,10 @@ export default {
         inputId() {
             return 'dropfile' + this._uid;
         },
-        isEmpty() {
-            // return true;
-            return Array.isArray(this.value) ? this.value.length === 0 : !this.value;
-        }
+        // isEmpty() {
+        //     // return true;
+        //     return Array.isArray(this.value) ? this.value.length === 0 : !this.value;
+        // }
     },
 
     methods: {

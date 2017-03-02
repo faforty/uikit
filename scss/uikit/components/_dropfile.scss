@@ -3,24 +3,30 @@
 }
 
 .ui-dropfile-dropzone {
-  width:         100%;
-  min-height:    160px;
-  position:      relative;
-  z-index:       1;
-  margin-bottom: 20px;
-  // background: #F9F9F9;
+  width:          100%;
+  padding-bottom: 100%;
+  position:       relative;
+  z-index:        1;
+  margin-bottom:  20px;
+}
+.ui-dropfile-content {
+  position: absolute;
+  top:      0;
+  left:     0;
+  width:    100%;
+  height:   100%;
 }
 .ui-dropfile-overtext {
-  display:     none;
-  position:    absolute;
-  top:         0;
-  left:        0;
-  background:  rgba(255,255,255,.8);
-  border:      2px dashed rgba(0,0,0,.1);
-  color:       #999;
-  transition:  all .2s;
-  height:      100%;
-  width:       100%;
+  display:    none;
+  position:   absolute;
+  top:        0;
+  left:       0;
+  background: rgba(255,255,255,.8);
+  border:     2px dashed rgba(0,0,0,.1);
+  color:      #999;
+  transition: all .2s;
+  height:     100%;
+  width:      100%;
 
   flex-direction:  column;
   justify-content: center;
@@ -31,7 +37,7 @@
     color: #1ac17b;
   }
 }
-.ui-dropfile--empty,
+.ui-dropfile,
 .ui-dropfile--body-over {
   .ui-dropfile-overtext {
     display: flex;
@@ -39,8 +45,9 @@
 }
 .ui-dropfile--body-over {
   .ui-dropfile-overtext {
+    z-index:      999;
     border-color: #1ac17b;
-    text-shadow: 0 1px 5px #FFF;
+    text-shadow:  0 1px 5px #FFF;
   }
 }
 .ui-dropfile--over {
