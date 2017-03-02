@@ -20,11 +20,12 @@
                         ref="uiSelectSearch"
                         icon="uikit-search"
                         style="width:100%"
-                        v-model="searchText"
                         :form-group="false"
                         :label="false"
                         @click.native.stop
-                        @blur="hideDropdown"></ui-input>
+                        @blur="hideDropdown"
+                        v-model="searchText"
+                    />
                 </div>
             </div>
             <div class="ui-select__options drop-out__results" style="display: block;max-height: 400px;overflow-y: auto;" v-show="show">
@@ -100,6 +101,8 @@
         },
         watch: {
             searchText (value) {
+                this.$emit('input-value', value);
+
                 if (value && this.search) {
                     this.results = {};
 
@@ -214,9 +217,10 @@
             //     event.stopPropagation()
             // })
 
-            document.body.addEventListener('click', function(){
-                this.hideDropdown();
-            }.bind(this))
+            document.body.addEventListener('click', this.hideDropdown);
+        },
+        beforeDestroy() {
+            document.body.removeEventListener('click', this.hideDropdown);
         }
     }
 </script>
