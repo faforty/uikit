@@ -45,7 +45,6 @@ export default {
         },
         requestOptions: {
             type: Object,
-            default: {}
         },
         name: {
             type:    String,
@@ -144,7 +143,7 @@ export default {
             if (this.customRequest) {
                 this.customRequest(formData);
             } else {
-                this.$http.post(this.url, formData, this.requestOptions).then(response => {
+                this.$http.post(this.url, formData, this.requestOptions || {}).then(response => {
                     this.onResponse(response);
 
                     response.json().then(data => {
