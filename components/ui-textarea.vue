@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import uiLabel from 'uikit-agro24/components/ui-label';
+import uiLabel from './ui-label.vue';
 
 export default {
   components: {
