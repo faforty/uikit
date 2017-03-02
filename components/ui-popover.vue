@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="ui-popover-scroll">
-                    <div :class="custom ? 'ui-popover-custom' : 'ui-popover-content'">
+                    <div class='ui-popover-content'>
                         <slot name="content"></slot>
                     </div>
                 </div>
@@ -28,10 +28,10 @@ export default {
             type:    Boolean,
             default: false,
         },
-        custom: {
-            type:    Boolean,
-            default: false,
-        },
+        // custom: {
+        //     type:    Boolean,
+        //     default: false,
+        // },
         placement: {
             type:    String,
             default: 'top', // top, right, bottom, left

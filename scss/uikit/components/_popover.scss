@@ -94,12 +94,20 @@
   max-height: 200px;
   overflow:   auto;
   position: relative;
+  .ui-popover--custom & {
+    max-height: inherit;
+    overflow:   visible;
+  }
 }
 .ui-popover-content {
   padding:     20px;
   font-size:   .95em;
   line-height: 1.6em;
   position: relative;
+
+  .ui-popover--custom & {
+    padding: 0;
+  }
 }
 .ui-popover-title {
   padding:       10px 20px;
