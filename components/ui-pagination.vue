@@ -4,7 +4,7 @@
             <span class="ui-pagination__prev__link">
                 <ui-button
                     @click="event => $emit('prev-click', event)"
-                    :href="typeof prevLink === 'string' ? nextLink : null"
+                    :href="typeof prevLink === 'string' ? prevLink : null"
                     class="ui-btn--circle ui-pagination__prev__link"
                 >
                     <i class="uikit-arrow-back"></i>
