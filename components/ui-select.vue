@@ -121,7 +121,7 @@
             select: function (v) {
                 if (this.selectId.indexOf(v) === -1) {
                     if (this.multiple) {
-                        var m = this.value;
+                        var m = [].concat(this.value);
                         m.push(v);
                         this.$emit('input', m);
                         this.$emit('change', m)
