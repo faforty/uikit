@@ -117,7 +117,8 @@
 
                 var value = this.formatValue(event.target.value);
 
-                this.$emit(event.type, value);
+                this.$emit('input', value);
+                this.$emit('change', value);
 
                 this.validationError = '';
             },
