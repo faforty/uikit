@@ -6,7 +6,7 @@
     "zamarawka <somebody.told@mail.ru>",
     "zb3k"
   ],
-  "version": "3.0.6",
+  "version": "3.1.0",
   "scripts": {
     "dev": "webpack-dev-server --inline --content-base ./",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
