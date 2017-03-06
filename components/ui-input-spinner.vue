@@ -3,7 +3,11 @@
         <a class="ui-input-group__btn ui-input-group__btn--left" @click="down" @mousedown="push('down')" @mouseup="stopPush">
             <i class="uikit-minus" style="font-weight: bold;font-size: 12px;"></i>
         </a>
-        <input type="number" class="form-control ui-input-updown" v-model="value" :style="inputStyle">
+        <input type="number" class="form-control ui-input-updown"
+            :value="value"
+            :style="inputStyle"
+            @change="(e) => { this.$emit('input', e.target.value) }"
+        >
         <a class="ui-input-group__btn ui-input-group__btn--right" @click="up" @mousedown="push('up')" @mouseup="stopPush">
             <i class="uikit-plus" style="font-weight: bold;font-size: 12px;"></i>
         </a>
@@ -42,12 +46,18 @@
         methods: {
             up() {
                 if (this.max === undefined || this.value < this.max) {
-                    this.$emit('input', this.value++);
+                    var value = this.value;
+                    value++;
+
+                    this.$emit('input', value);
                 }
             },
             down() {
                 if (this.min === undefined || this.value > this.min) {
-                    this.$emit('input', this.value--);
+                    var value = this.value;
+                    value--;
+
+                    this.$emit('input', value);
                 }
             },
             stopPush() {
