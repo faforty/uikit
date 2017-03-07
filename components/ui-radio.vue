@@ -2,7 +2,7 @@
     <div class="form-group">
         <input :id="id" :name="name" :checked="isChecked" @change="update" :disabled="disabled" class="ui-radio" type="radio">
         <label :for="id" class="text">
-            <slot></slot>
+            <slot />
         </label>
     </div>
 </template>
@@ -29,8 +29,6 @@
             }
         },
 
-        data: () => ({}),
-
         methods: {
             update (e) {
                 this.$emit('input',  this.valueData)
@@ -45,10 +43,6 @@
             isChecked () {
                 return this.value == this.valueData
             },
-        },
-
-        mounted () {
-
         }
     }
 </script>
