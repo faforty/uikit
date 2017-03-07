@@ -4,7 +4,9 @@
             <div ref="progressbar" :style="style"></div>
         </div>
 
-        <label><slot></slot></label>
+        <label>
+            <slot />
+        </label>
     </div>
 </template>
 
