@@ -44,6 +44,10 @@
                     </div>
                 </a>
             </div>
+
+            <transition name="fade" mode="out-in">
+                <div v-if="hint" class="ui-hint" v-html="hint"></div>
+            </transition>
         </div>
     </ui-label>
 </template>
@@ -58,9 +62,11 @@
             uiInput
         },
         props: {
-            options: {},
+            options:      {},
             optionsRules: Object,
-            search: Boolean,
+            search:       Boolean,
+            hint:         String,
+
             value: {
                 type: Array,
                 default: []
