@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <label :for="inputId" class="ui-btn ui-btn--sm">
+        <label v-if="buttonLabel" :for="inputId" class="ui-btn ui-btn--sm">
             {{buttonLabel}}
         </label>
 
@@ -38,50 +38,60 @@
 export default {
     props: {
         value: {},
-        multiple: {
-            type:    Boolean,
-            default: false
-        },
-        url: {
-            type:     String,
-            // required: true,
-        },
-        requestOptions: {
-            type: Object,
-        },
-        name: {
-            type:    String,
-            default: 'file',
-        },
+
+        // Лэйбл кнопки выбора файла
         buttonLabel: {
             type:    String,
             default: 'Выбрать файл',
         },
-        customRequest: {
-            type:    Function,
-            default: null
+
+        // Множественная загрузка файлов
+        multiple: {
+            type:    Boolean,
+            default: false
         },
+
+        autoUpload: {
+            type:    Boolean,
+            default: false
+        },
+
+        // Адрес отправки файла
+        url: {
+            type:     String,
+            // required: true,
+        },
+        // Имя отправляемого поля
+        name: {
+            type:    String,
+            default: 'file',
+        },
+
+        // Deprecated: use @upload-success
         onResponse: {
             type:    Function,
             default: (response) => {}
         },
+        // Deprecated: use @upload-error
         onError: {
             type:    Function,
             default: (error) => {}
+        },
+
+        // Кастомный метод загрузки файла
+        customRequest: {
+            type:    Function,
+            default: null
         },
     },
 
     data: () => ({
         dropzoneOver: false,
         bodyOver:     false,
-        data:         null,
-    }),
 
-    watch: {
-        value(value) {
-            this.data = value;
-        }
-    },
+        formData: null,
+        // data:         null,
+    }),
 
     computed: {
         fieldName() {
@@ -90,10 +100,6 @@ export default {
         inputId() {
             return 'dropfile' + this._uid;
         },
-        // isEmpty() {
-        //     // return true;
-        //     return Array.isArray(this.value) ? this.value.length === 0 : !this.value;
-        // }
     },
 
     methods: {
@@ -127,50 +133,59 @@ export default {
 
             var files = e.target.files || e.dataTransfer.files;
 
-            var formData = new FormData();
-
-            for (var i = 0, file; file = files[i]; i++) {
-                formData.append(this.fieldName, file, file.name);
-
-                // var reader = new FileReader();
-                // reader.readAsDataURL(file);
-                // reader.onloadend = () => {
-                //     this.$refs.dropzone.style.background = 'url("'+reader.result+'")'
-                // }
+            if (!this.formData) {
+                this.formData = new FormData();
             }
 
+            for (var i = 0, file; file = files[i]; i++) {
+                this.formData.append(this.fieldName, file, file.name);
+
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onloadend = () => {
+                    this.$emit('select-file-ready', reader.result);
+                }
+            }
+
+            this.$emit('select-file', this.formData);
+
+            if (this.autoUpload) {
+                this.upload();
+            }
+        },
+
+        upload() {
             if (!this.url && !this.customRequest) {
-                console.error('[uikit:ui-dropfile]: Missing required prop: "url" or "customRequest"');
+                return console.error('[uikit:ui-dropfile]: Missing required prop: "url" or "customRequest"');
             }
 
             if (this.customRequest) {
-                this.customRequest(formData);
+                this.customRequest(this.formData);
             } else {
-                this.$http.post(this.url, formData, this.requestOptions || {}).then(response => {
+                this.$http.post(this.url, this.formData).then(response => {
+
                     this.onResponse(response);
+                    this.$emit('upload-success', response);
 
-                    response.json().then(data => {
-                        if (this.multiple) {
-                            if (!this.data) {
-                                this.data = [];
-                            }
-                            this.data = this.data.concat(data[this.name]);
-                        } else {
-                            this.data = data[this.name];
-                        }
-
-                        this.$emit('input', this.data);
+                    response.json().then(response => {
+                        var value = [].concat(this.value);
+                        value = this.multiple ? this.value.concat(response[this.name]) : response[this.name];
+                        this.$emit('input', value);
+                        this.$emit('change', value);
                     }),
                     error => {
                         this.onError(error);
+                        this.$emit('upload-error', error);
                     }
                 });
             }
-        },
+
+            this.formData = null;
+        }
     },
 
     mounted() {
-        this.data = this.value;
+        // this.data = this.value;
         document.body.addEventListener('dragover',  this.dragOver);
         document.body.addEventListener('dragleave', this.dragLeave);
     },
