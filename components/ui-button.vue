@@ -11,10 +11,10 @@ export default {
         disabled: Boolean
     },
     render(createElement) {
-        let isDisabled = Boolean(this.disabled);
-        let hasLink = Boolean(this.href);
-        let tag = 'button';
-        let options = {
+        var isDisabled = Boolean(this.disabled);
+        var hasLink = Boolean(this.href);
+        var tag = 'button';
+        var options = {
             staticClass: 'ui-btn',
             attrs: {
                 type: this.type || 'button',
@@ -26,11 +26,13 @@ export default {
                 }
             }
         };
-        let ripple = createElement('ui-ink-ripple', {
+
+        var ripple = createElement('ui-ink-ripple', {
             attrs: {
                 mdDisabled: isDisabled
             }
         });
+
         if (hasLink) {
             tag = 'a';
             options.attrs.href = this.href;
