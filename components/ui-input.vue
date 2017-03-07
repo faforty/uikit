@@ -127,8 +127,8 @@
                 this.$emit('keydown', e);
             },
 
-            onFocus() {
-                this.$emit('focus');
+            onFocus(e) {
+                this.$emit('focus', e);
             },
 
             blurred(e) {
