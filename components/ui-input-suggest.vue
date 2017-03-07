@@ -80,7 +80,7 @@ export default {
     },
     data: () => ({
         focusList: 0,
-        showList: true,
+        showList: false,
         dropResultsStyles: {},
     }),
     methods: {
