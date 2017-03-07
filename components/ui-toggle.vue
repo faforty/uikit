@@ -39,7 +39,7 @@
                     return;
                 }
 
-                let value = this.value;
+                var value = this.value;
 
                 if (this.nullable) {
                     value = value ? null : this.makeValue(value !== null);
