@@ -1,5 +1,5 @@
 <template>
-    <ul :class="[ 'ui-pagination', 'b-platform-pagination', 'ui-pagination--between' ]">
+    <ul class="ui-pagination ui-pagination--between">
         <li :class="[ 'ui-pagination__prev', { 'ui-pagination--hide': !prevLink }]">
             <span class="ui-pagination__prev__link">
                 <ui-button
@@ -10,13 +10,13 @@
                     <i class="uikit-arrow-back"></i>
                 </ui-button>
             </span>
-            <span class="b-platform-pagination__name">{{ prevName }}</span>
+            <span>{{ prevName }}</span>
         </li>
         <li class="ui-pagination__step">
             Шаг {{ step }} из {{ stepAll }}
         </li>
         <li class="ui-pagination__next">
-            <span class="b-platform-pagination__name">{{ nextName }}</span>
+            <span>{{ nextName }}</span>
             <span class="ui-pagination__next__link">
                 <ui-button
                     @click="event => $emit('next-click', event)"
