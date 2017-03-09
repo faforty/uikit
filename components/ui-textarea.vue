@@ -1,7 +1,7 @@
 <template>
   <ui-label :filled="filled" :label-show="true">
-  <template slot="label"><slot /></template>
-    <textarea class="form-control ui-comment-field" :style="style" :value="value" @input="handleChangeMessage" />
+    <template slot="label"><slot /></template>
+    <textarea ref="textarea" class="form-control ui-comment-field" :style="style" :value="value" @input="handleChangeMessage" />
   </ui-label>
 </template>
 
@@ -30,6 +30,10 @@ export default {
   },
 
   methods: {
+    focus() {
+        this.$refs.textarea.focus();
+    },
+
     handleChangeMessage(val) {
       this.$emit('input', val.target.value);
     }
