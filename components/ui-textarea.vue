@@ -1,7 +1,14 @@
 <template>
   <ui-label :filled="filled" :label-show="true">
     <template slot="label"><slot /></template>
-    <textarea ref="textarea" class="form-control ui-comment-field" :style="style" :value="value" @input="handleChangeMessage" />
+    <textarea
+        ref="textarea"
+        class="form-control ui-comment-field"
+        :autofocus="autofocus"
+        :style="style"
+        :value="value"
+        @input="handleChangeMessage"
+    />
   </ui-label>
 </template>
 
@@ -13,10 +20,11 @@ export default {
     uiLabel
   },
 
-  props: [
-    'height',
-    'value'
-  ],
+  props: {
+    height: [String],
+    value: [String],
+    autofocus: [Boolean]
+  },
 
   computed: {
     style() {
