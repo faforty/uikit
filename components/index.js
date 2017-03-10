@@ -1,4 +1,6 @@
 import uiSelect           from './ui-select.vue';
+import uiSelectDropdown   from './ui-select-dropdown.vue';
+import uiSelectOption     from './ui-select-option.vue';
 import uiButton           from './ui-button.vue';
 import uiToggle           from './ui-toggle.vue';
 import uiInput            from './ui-input.vue';
@@ -33,6 +35,8 @@ import uiCard             from './ui-card.vue';
 
 export default {
     'ui-select':            uiSelect,
+    'ui-select-dropdown':   uiSelectDropdown,
+    'ui-select-option':     uiSelectOption,
     'ui-button':            uiButton,
     'ui-toggle':            uiToggle,
     'ui-input':             uiInput,
