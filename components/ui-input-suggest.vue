@@ -30,7 +30,7 @@
                 >
                     <div class="drop-out__result__content">
                         <div class="drop-out__result__content__title">
-                            <div>{{ item.name }}<small>{{ item.description }}</small></div>
+                            <div v-html="item.name"><small v-html="item.description" /></div>
                         </div>
                     </div>
                 </a>
