@@ -1,3 +1,8 @@
+$minimized-width: 50px;
+
+body.ui-with-help {
+  padding-right: $minimized-width
+}
 .ui-help-container {
     transition: all .4s;
 }
@@ -11,12 +16,12 @@
     transition:   all .4s;
     width:        30%;
     margin-right: -30%;
-    right:        50px;
+    right:        $minimized-width;
 
     .ui-help-wrapper {
       position: relative;
       top:      80px;
-      padding:  50px;
+      padding:  $minimized-width;
     }
 
     .ui-help--shadow.ui-help--active & {
