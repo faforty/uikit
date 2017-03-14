@@ -10,13 +10,13 @@
                     <i class="uikit-arrow-back"></i>
                 </ui-button>
             </span>
-            <span>{{ prevName }}</span>
+            <span class="ui-pagination__name">{{ prevName }}</span>
         </li>
         <li class="ui-pagination__step">
             Шаг {{ step }} из {{ stepAll }}
         </li>
         <li class="ui-pagination__next">
-            <span>{{ nextName }}</span>
+            <span class="ui-pagination__name">{{ nextName }}</span>
             <span class="ui-pagination__next__link">
                 <ui-button
                     @click="event => $emit('next-click', event)"
