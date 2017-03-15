@@ -4,10 +4,10 @@
     padding-left:  40px;
 
     // reset child paddings
-    .container {
-      @include make-container();
-      // padding-right: 15px;
-      // padding-left:  15px;
-    }
+    // .container {
+    //   @include make-container();
+    //   // padding-right: 15px;
+    //   // padding-left:  15px;
+    // }
   }
 }
