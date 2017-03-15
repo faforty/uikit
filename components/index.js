@@ -32,6 +32,7 @@ import uiHelp             from './ui-help.vue';
 import uiDropfile         from './ui-dropfile.vue';
 import uiSlider           from './ui-slider.vue';
 import uiCard             from './ui-card.vue';
+import uiContentBox       from './ui-content-box.vue';
 
 export default {
     'ui-select':            uiSelect,
@@ -68,4 +69,5 @@ export default {
     'ui-dropfile':          uiDropfile,
     'ui-slider':            uiSlider,
     'ui-card':              uiCard,
+    'ui-content-box':       uiContentBox,
 }

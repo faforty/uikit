@@ -1,0 +1,20 @@
+.ui-content-box {
+  min-height: 670px;
+  display:    flex;
+  flex-flow:  row wrap;
+
+  &-wrapper,
+  &-actions {
+    flex: 1 100%;
+  }
+
+  &-actions {
+    align-self:    flex-end;
+    margin-bottom: 60px;
+
+    > * {
+      margin-top:    0;
+      margin-bottom: 0;
+    }
+  }
+}
