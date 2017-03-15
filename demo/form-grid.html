@@ -47,24 +47,32 @@
                             <ui-select v-model="selectValue" :multiple="true" :options="selectOptions">Заголовок</ui-select>
                         </div>
                         <div class="col-md-6">
-                            <ui-input value="Сказочно" info="Удивительно">Волшебно</ui-input>
+                            <ui-input v-model="inputMagicValue" info="Удивительно">Волшебно</ui-input>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            <ui-input value="Не критикуй">Вот и жуй</ui-input>
+                            <ui-input v-model="inputEatValue">Вот и жуй</ui-input>
                         </div>
                         <div class="col-md-6 pt-2">
-                            <ui-input value="Тритончик" label-align="left">Песчаный Дон Жуан</ui-input>
+                            <ui-input v-model="inputDonzhuanValue" label-align="left">Песчаный Дон Жуан</ui-input>
                         </div>
                     </div>
                 </div>
 
                 <template v-if="toggleA">
-                    <ui-input v-model="inputPriceValue" placeholder="1000" size="4" max-size="15" label-align="right-inline" group="$">
-                        <div class="ui-text--lg">раз и ты без глаз</div>
-                    </ui-input>
+
+                    <div class="row">
+                        <div class="col-md-6 pt-2">
+                            <ui-input v-model="inputPriceValue" placeholder="1000" size="4" max-size="10" label-align="right-inline" group="$">
+                                <div class="ui-text--lg">раз и ты без глаз</div>
+                            </ui-input>
+                        </div>
+                        <div class="col-md-6">
+                            <ui-input class="d-inline-block" v-model="inputPriceValue" placeholder="1000" size="4" max-size="15" group="$" >Label</ui-input>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValue">Вру как Иисус</ui-radio></div>
@@ -95,12 +103,15 @@
 new Vue({
     el: '#app',
     data: () => ({
-        toggleA: true,
-        toggleB: false,
-        radioValue: 2,
-        inputPriceValue: '',
-        selectValue: [],
-        selectOptions: {day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'},
+        toggleA:            true,
+        toggleB:            false,
+        inputMagicValue:    "Сказочно",
+        inputEatValue:      "Не критикуй",
+        inputDonzhuanValue: "Тритончик",
+        radioValue:         2,
+        inputPriceValue:    '',
+        selectValue:        [],
+        selectOptions:      {day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'},
     }),
 })
 </script>

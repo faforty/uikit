@@ -115,6 +115,7 @@
   background-clip:        padding-box;
   outline:                none;
 
+  // .ui-input-group > &[size],
   &[size] {
     width: auto;
   }
@@ -269,6 +270,7 @@
     }
     &__btn--right {
       border-left: 1px solid #e6e6e6;
+      margin-left: auto;
     }
 
     &__btn__hight {
