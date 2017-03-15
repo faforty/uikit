@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ukit</title>
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="/dist/css/uikit.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js" type="text/javascript"></script>
+    <script src="/dist/js/uikit.js" type="text/javascript"></script>
+    <style>
+        body {margin: 0;}
+        .footer, .header {background:#EEE; padding: 40px 0; color:#AAA;}
+    </style>
+</head>
+<body class="ui-normalize ui-with-help">
+
+<div class="header">
+    <div class="container">
+        Header header header header header header header header header header header
+    </div>
+</div>
+
+<div id="app" class="container">
+    <div class="row">
+        <div class="col-lg-8">
+
+            <ui-content-box>
+                <div class="ui-page-header mt-5">
+                    <ui-help>
+                        <h3 slot="page-header">Заголовок</h3>
+                        Онтогенез осмысляет конструктивный психоз. Переживание и его претворение важно преобразует опасный знак, хотя в официозе принято обратное. Диониссийское начало спонтанно принимает во внимание бихевиоризм. Предсознательное дискредитирует трансцендентальный структурализм. Концепция, на первый взгляд, начинает напряженный дуализм.
+                    </ui-help>
+                </div>
+
+
+                <ui-toggle v-model="toggleA" hint="И получает его так много, что от радости<br> начинает дергаться глаз">
+                    Тумблер хочет внимания
+                </ui-toggle>
+
+                <ui-toggle v-model="toggleB" hint="Прищеми хвост бобра">
+                    Тумблер добра
+                </ui-toggle>
+
+
+                <div v-if="toggleA" class="ui-column-spacing">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ui-select v-model="selectValue" :multiple="true" :options="selectOptions">Заголовок</ui-select>
+                        </div>
+                        <div class="col-md-6">
+                            <ui-input value="Сказочно" info="Удивительно">Волшебно</ui-input>
+                        </div>
+                    </div>
+
+                    <div class="row flex-items-bottom">
+                        <div class="col-md-6">
+                            <ui-input value="Не критикуй">Вот и жуй</ui-input>
+                        </div>
+                        <div class="col-md-6">
+                            <ui-input value="Тритончик" label-align="left">Песчаный Дон Жуан</ui-input>
+                        </div>
+                    </div>
+                </div>
+
+                <template v-if="toggleA">
+                <div class="row flex-items-middle m-0">
+                    <ui-input placeholder="1000" size="4" label-align="right-inline">
+                        <div class="ui-text--lg">раз и ты без глаз</div>
+                    </ui-input>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValue">Вру как Иисус</ui-radio></div>
+                    <div class="col-md-4"><ui-radio class="pr-2" value-data=2 v-model="radioValue">Отлично, работаем дальше</ui-radio></div>
+                    <div class="col-md-4"><ui-radio class="pr-2" value-data=3 v-model="radioValue">Сыр до дыр</ui-radio></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row flex-items-middle m-0">
+                        <div class='ui-text--lg mr-2'>Мир не без добрых гвоздей</div>
+                        <ui-range class='col-md-5' :value="[8, 15]" :max="30"></ui-range>
+                    </div>
+                </div>
+                </template>
+
+
+
+                <template slot="actions">
+                    <ui-pagination prev-link="/" prev-name="Туда" next-link="/" next-name="Сюда" step="0" step-all="3"></ui-pagination>
+                </template>
+
+            </ui-content-box>
+
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        Footer footer footer footer footer footer footer footer footer footer footer footer<br>
+    </div>
+</div>
+
+<script>
+new Vue({
+    el: '#app',
+    data: () => ({
+        toggleA: true,
+        toggleB: false,
+        radioValue: 2,
+        selectValue: [],
+        selectOptions: {day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'},
+    }),
+})
+</script>
+</body>
+</html>

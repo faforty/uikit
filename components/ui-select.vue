@@ -77,7 +77,7 @@
             },
             placeholder: {
                 type: String,
-                default: 'Nothing Selected'
+                default: 'Ничего не выбрано'
             },
             multiple: {
                 type: Boolean,

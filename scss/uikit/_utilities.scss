@@ -2,7 +2,11 @@
   position: relative;
   width: 100%;
 }
-
+.ui-column-spacing {
+    [class^="col-"], [class*=" col-"] {
+        padding-right: 65px;
+    }
+}
 /* style icon */
 .inner-addon .ico {
   display: flex;

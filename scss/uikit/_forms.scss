@@ -193,7 +193,8 @@
     &__help {
       margin: 16px 10px 16px 16px;
 
-      .ui-input--info-spacing &,
+      .ui-column-spacing &,
+      .ui-input--info-spacing &, // FIXME: Deprecated
       .ui-input--info-absolute & {
         position:         absolute;
         margin:           0;
