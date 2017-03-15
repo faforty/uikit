@@ -44,7 +44,7 @@
       justify-content: flex-start;
 
       // прижимаем input к правому краю
-      :last-child {
+      > :last-child {
         margin-left: auto;
       }
     }
