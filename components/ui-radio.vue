@@ -4,6 +4,9 @@
         <label :for="id" class="text">
             <slot />
         </label>
+        <transition name="fade" mode="out-in">
+            <div v-if="hint" class="ui-hint" v-html="hint"></div>
+        </transition>
     </div>
 </template>
 
@@ -26,7 +29,8 @@
             },
             disabled: {
                 type: Boolean
-            }
+            },
+            hint: String,
         },
 
         methods: {

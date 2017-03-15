@@ -276,9 +276,9 @@
       display:        block;
       padding-left:   50px;
       cursor:         pointer;
-      vertical-align: middle;
+      vertical-align: top;
       margin:         0 !important;
-      line-height:    20px !important;
+      line-height:    18px !important;
 
       &:hover:before {
         border-color: #1ac079;
@@ -289,8 +289,8 @@
         top:      0;
         left:     0;
         display:  inline-block;
-        width:    18px;
-        height:   18px;
+        width:    19px;
+        height:   19px;
         content:  '';
         border:   1px solid #c0c0c0;
       }
@@ -316,12 +316,13 @@
     }
 
     & + label:before {
-      border-color: #9e9e9e;
+      border-color:  #9e9e9e;
       border-radius: 3px;
+      // top:           1px;
     }
     & + label:after {
-      top:          3px;
-      left:         7px;
+      top:          4px;
+      left:         8px;
       box-sizing:   border-box;
       width:        4px;
       height:       9px;
@@ -341,12 +342,18 @@
     &:checked[disabled] + label:after {
       border-color: #989898;
     }
-    // &:checked[disabled] + label:before {
 
-    // }
+    & + label + .ui-hint {
+      margin-top:  10px;
+      margin-left: 28px;
+    }
   }
 
   &-radio {
+    & + label {
+      padding-top: 2px;
+    }
+
     & + label:before {
       width:         24px;
       height:        24px;
@@ -371,7 +378,10 @@
     &:checked[disabled] + label:after {
       background-color: #989898;
     }
-
+    & + label + .ui-hint {
+      margin-top:  10px;
+      margin-left: 50px;
+    }
   }
 
   &-select {

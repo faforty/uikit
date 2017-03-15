@@ -1,4 +1,4 @@
-body.ui-normalize .ui-text {
+body .ui-text {
 
   // Sizes
   //------------------------------------------------------------------------
@@ -28,10 +28,7 @@ body.ui-normalize .ui-text {
     letter-spacing: 0;
     // font-weight:    300;
   }
-}
 
-body.ui-normalize .ui-text,
-.ui-text {
   // Transform
   //------------------------------------------------------------------------
   &--uppercase {

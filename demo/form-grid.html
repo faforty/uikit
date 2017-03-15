@@ -31,14 +31,22 @@
                     </ui-help>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <ui-toggle v-model="toggleA" hint="И получает его так много, что от радости<br> начинает дергаться глаз">
+                            Тумблер хочет внимания
+                        </ui-toggle>
+                        <ui-toggle v-model="toggleB" hint="Прищеми хвост бобра">
+                            Тумблер добра
+                        </ui-toggle>
+                    </div>
+                    <div class="col-md-6">
+                        <ui-radio value-data="One" v-model="radioValueA" hint="И получает его так много, что от радости<br> начинает дергаться глаз">Тумблер хочет внимания</ui-radio>
+                        <ui-radio value-data="Two" v-model="radioValueA" hint="Hint text text text text text">Radio Two</ui-radio>
+                        <ui-checkbox v-model="checkboxA" hint="Hint text text text text text">Checkbox</ui-checkbox>
+                    </div>
+                </div>
 
-                <ui-toggle v-model="toggleA" hint="И получает его так много, что от радости<br> начинает дергаться глаз">
-                    Тумблер хочет внимания
-                </ui-toggle>
-
-                <ui-toggle v-model="toggleB" hint="Прищеми хвост бобра">
-                    Тумблер добра
-                </ui-toggle>
 
 
                 <div v-if="toggleA" class="ui-column-spacing">
@@ -75,9 +83,9 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValue">Вру как Иисус</ui-radio></div>
-                        <div class="col-md-4"><ui-radio class="pr-2" value-data=2 v-model="radioValue">Отлично, работаем дальше</ui-radio></div>
-                        <div class="col-md-4"><ui-radio class="pr-2" value-data=3 v-model="radioValue">Сыр до дыр</ui-radio></div>
+                        <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValueB">Вру как Иисус</ui-radio></div>
+                        <div class="col-md-4"><ui-radio class="pr-2" value-data=2 v-model="radioValueB">Отлично, работаем дальше</ui-radio></div>
+                        <div class="col-md-4"><ui-radio class="pr-2" value-data=3 v-model="radioValueB">Сыр до дыр</ui-radio></div>
                     </div>
                 </template>
 
@@ -105,10 +113,12 @@ new Vue({
     data: () => ({
         toggleA:            true,
         toggleB:            false,
+        checkboxA:          false,
         inputMagicValue:    "Сказочно",
         inputEatValue:      "Не критикуй",
         inputDonzhuanValue: "Тритончик",
-        radioValue:         2,
+        radioValueA:        'One',
+        radioValueB:        2,
         inputPriceValue:    '',
         selectValue:        [],
         selectOptions:      {day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'},
