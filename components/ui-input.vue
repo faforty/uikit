@@ -5,7 +5,7 @@
 
         <div>
             <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
-                <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="hideField === null || hideField === true">
+                <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="showField">
                     <i :class="['ico', icon]" v-show="icon"></i>
                     <input class="form-control" ref="input"
                         :autocomplete="autocomplete"
@@ -21,8 +21,9 @@
                         @blur="blurred"
                         @focus="onFocus"
                     >
-                    <div :class="['ui-input-group__btn', { 'ui-input-group__btn--right': groupAlign == 'right', 'ui-input-group__btn--left': groupAlign == 'left' }]" v-show="group"><div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div></div>
-
+                    <div :class="`ui-input-group__btn ui-input-group__btn--${groupAlign}`" v-show="group">
+                        <div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div>
+                    </div>
                 </div>
 
                 <div class="ui-input__help" v-if="info">
@@ -33,8 +34,9 @@
                 </div>
             </div>
 
+
             <transition name="fade" mode="out-in">
-                <div v-if="prompt" class="ui-hint" v-html="prompt"></div>
+                <div v-if="prompt && showField" class="ui-hint" v-html="prompt"></div>
             </transition>
         </div>
 
@@ -177,10 +179,14 @@
 
             inputSize() {
                 if (this.maxSize) {
-                    var valueLength = this.value ? this.value.length + 1 : 0;
+                    var valueLength = this.value ? String(this.value).length + 1 : 0;
                     return Math.min(Math.max(this.size, valueLength), this.maxSize);
                 }
                 return this.size;
+            },
+
+            showField() {
+                return this.hideField === null || this.hideField === true;
             }
         },
 
