@@ -157,16 +157,11 @@ export default {
            var listLength = this.results.length - 1;
            this.focusList = this.focusList > listLength ? 0 : this.focusList < 0 ? listLength : this.focusList;
          },
-    },
-    mounted() {
-        let $input = this.$refs.input.$el,
-            $dropResults = this.$refs.dropResults;
 
+         calculateDropdown() {
+            let $input = this.$refs.input.$el,
+                $dropResults = this.$refs.dropResults;
 
-        document.body.addEventListener('click', this.hideDropdown);
-
-
-        window.onscroll = () => {
             let offsetInput = $input.getBoundingClientRect().top - (window.innerHeight / 2) + ($input.clientHeight / 2)
 
 
@@ -189,7 +184,16 @@ export default {
             } else {
                 this.dropResultsStyles = {}
             }
-        }
+         }
+    },
+    mounted() {
+        document.body.addEventListener('click', this.hideDropdown);
+        document.body.addEventListener('scroll', this.calculateDropdown);
+    },
+
+    beforeDestroy() {
+        document.body.removeEventListener('click', this.hideDropdown);
+        document.body.removeEventListener('scroll', this.calculateDropdown);
     }
 }
 </script>
