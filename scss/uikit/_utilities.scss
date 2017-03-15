@@ -3,6 +3,7 @@
   width: 100%;
 }
 .ui-column-spacing {
+    &[class^="col-"], &[class*=" col-"],
     [class^="col-"], [class*=" col-"] {
         padding-right: 65px;
     }

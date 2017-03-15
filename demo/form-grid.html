@@ -51,35 +51,26 @@
                         </div>
                     </div>
 
-                    <div class="row flex-items-bottom">
+                    <div class="row">
                         <div class="col-md-6">
                             <ui-input value="Не критикуй">Вот и жуй</ui-input>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 pt-2">
                             <ui-input value="Тритончик" label-align="left">Песчаный Дон Жуан</ui-input>
                         </div>
                     </div>
                 </div>
 
                 <template v-if="toggleA">
-                <div class="row flex-items-middle m-0">
-                    <ui-input placeholder="1000" size="4" label-align="right-inline">
+                    <ui-input v-model="inputPriceValue" placeholder="1000" size="4" max-size="15" label-align="right-inline" group="$">
                         <div class="ui-text--lg">раз и ты без глаз</div>
                     </ui-input>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValue">Вру как Иисус</ui-radio></div>
-                    <div class="col-md-4"><ui-radio class="pr-2" value-data=2 v-model="radioValue">Отлично, работаем дальше</ui-radio></div>
-                    <div class="col-md-4"><ui-radio class="pr-2" value-data=3 v-model="radioValue">Сыр до дыр</ui-radio></div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row flex-items-middle m-0">
-                        <div class='ui-text--lg mr-2'>Мир не без добрых гвоздей</div>
-                        <ui-range class='col-md-5' :value="[8, 15]" :max="30"></ui-range>
+                    <div class="row">
+                        <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValue">Вру как Иисус</ui-radio></div>
+                        <div class="col-md-4"><ui-radio class="pr-2" value-data=2 v-model="radioValue">Отлично, работаем дальше</ui-radio></div>
+                        <div class="col-md-4"><ui-radio class="pr-2" value-data=3 v-model="radioValue">Сыр до дыр</ui-radio></div>
                     </div>
-                </div>
                 </template>
 
 
@@ -107,6 +98,7 @@ new Vue({
         toggleA: true,
         toggleB: false,
         radioValue: 2,
+        inputPriceValue: '',
         selectValue: [],
         selectOptions: {day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'},
     }),

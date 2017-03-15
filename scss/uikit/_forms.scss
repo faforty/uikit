@@ -48,6 +48,11 @@
 
     &--left {
       justify-content: flex-start;
+
+      // прижимаем input к правому краю
+      :last-child {
+        margin-left: auto;
+      }
     }
 
     &--right {

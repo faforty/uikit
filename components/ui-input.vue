@@ -14,7 +14,7 @@
                         :placeholder="placeholder"
                         :disabled="disabled"
                         :value="value"
-                        :size="size"
+                        :size="inputSize"
                         @input="updateValue"
                         @change="updateValue"
                         @keydown="onKeydown"
@@ -102,6 +102,9 @@
             size: {
                 type: [Number, String]
             },
+            maxSize: {
+                type: [Number, String]
+            },
             returnEvent: {
                 type: Boolean,
                 default: false
@@ -171,6 +174,14 @@
             shrink () {
                 return (typeof this.flexShrink === 'number') ? { 'flex-shrink': this.flexShrink } : '';
             },
+
+            inputSize() {
+                if (this.maxSize) {
+                    var valueLength = this.value ? this.value.length + 1 : 0;
+                    return Math.min(Math.max(this.size, valueLength), this.maxSize);
+                }
+                return this.size;
+            }
         },
 
         mounted () {
