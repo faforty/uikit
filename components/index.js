@@ -33,6 +33,7 @@ import uiDropfile         from './ui-dropfile.vue';
 import uiSlider           from './ui-slider.vue';
 import uiCard             from './ui-card.vue';
 import uiContentBox       from './ui-content-box.vue';
+import uiCalendar         from './ui-calendar.vue';
 
 export default {
     'ui-select':            uiSelect,
@@ -70,4 +71,5 @@ export default {
     'ui-slider':            uiSlider,
     'ui-card':              uiCard,
     'ui-content-box':       uiContentBox,
+    'ui-calendar':          uiCalendar,
 }
