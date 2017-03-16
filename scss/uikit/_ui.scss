@@ -350,18 +350,19 @@
   }
 
   &-radio {
-    & + label {
-      padding-top: 2px;
-    }
+    // & + label {
+    //   padding-top: 2px;
+    // }
 
     & + label:before {
       width:         24px;
       height:        24px;
       border-radius: 50%;
+      top:           -2px;
     }
 
     & + label:after {
-      top:              8px;
+      top:              (8px - 2);
       left:             8px;
       width:            8px;
       height:           8px;

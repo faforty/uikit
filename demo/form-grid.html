@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>ukit</title>
+    <title>UiKit - Form demo</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="/dist/css/uikit.css">
+    <link rel="stylesheet" href="demo.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js" type="text/javascript"></script>
     <script src="/dist/js/uikit.js" type="text/javascript"></script>
-    <style>
-        body {margin: 0;}
-        .footer, .header {background:#EEE; padding: 40px 0; color:#AAA;}
-    </style>
 </head>
 <body class="ui-with-help">
 
@@ -39,10 +41,15 @@
                         <ui-toggle v-model="toggleB" hint="Прищеми хвост бобра">
                             Тумблер добра
                         </ui-toggle>
+                        <ui-input-spinner v-model="inputSpinnerValue" label-align="left-inline" min=0 max=20>Label</ui-input-spinner>
                     </div>
                     <div class="col-md-6">
-                        <ui-radio value-data="One" v-model="radioValueA" hint="И получает его так много, что от радости<br> начинает дергаться глаз">Тумблер хочет внимания</ui-radio>
-                        <ui-radio value-data="Two" v-model="radioValueA" hint="Hint text text text text text">Radio Two</ui-radio>
+                        <ui-radio value-data="One" v-model="radioValueA" hint="И получает его так много, что от радости<br> начинает дергаться глаз">
+                            Тумблер хочет внимания
+                        </ui-radio>
+                        <ui-radio value-data="Two" v-model="radioValueA" hint="Прищеми хвост бобра">
+                            Тумблер добра
+                        </ui-radio>
                         <ui-checkbox v-model="checkboxA" hint="Hint text text text text text">Checkbox</ui-checkbox>
                     </div>
                 </div>
@@ -86,11 +93,12 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValueB">Вру как Иисус</ui-radio></div>
+                    <div class="row mb-2">
+                        <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValueB">Вот так вот</ui-radio></div>
                         <div class="col-md-4"><ui-radio class="pr-2" value-data=2 v-model="radioValueB">Отлично, работаем дальше</ui-radio></div>
                         <div class="col-md-4"><ui-radio class="pr-2" value-data=3 v-model="radioValueB">Сыр до дыр</ui-radio></div>
                     </div>
+                    <hr class='ui-hr mb-5'>
                 </template>
 
 
@@ -125,6 +133,7 @@ new Vue({
         isHideField:        false,
         inputPrice2Value:   1000,
         radioValueB:        2,
+        inputSpinnerValue:  3,
         inputPriceValue:    '',
         selectValue:        [],
         selectOptions:      {day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'},
