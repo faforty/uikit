@@ -78,25 +78,17 @@
 
                 <template v-if="toggleA">
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ui-input v-model="inputPriceValue" placeholder="1000" size="4" max-size="10" label-align="right-inline" group="$">
-                                раз и ты без глаз
-                            </ui-input>
-                        </div>
-                        <div class="col-md-6 ui-column-spacing">
-                            <ui-input :hide-field="isHideField" v-model="inputPrice2Value" group="$" size="4" max-size="10" label-align="left">
-                                <ui-toggle v-model="isHideField">До</ui-toggle>
-                            </ui-input>
-
-                            <!-- <ui-input class="d-inline-block" v-model="inputPriceValue" placeholder="1000" size="4" max-size="15" group="$" >Label</ui-input> -->
-                        </div>
+                    <div class='ui-form-inline'>
+                        <ui-input v-model="inputPriceValue" placeholder="1000" size="4" max-size="10" label-align="left-inline" group="$">От</ui-input>
+                        <ui-input :hide-field="isHideField" v-model="inputPrice2Value" group="$" size="4" max-size="10" label-align="left-inline">
+                            <ui-toggle v-model="isHideField">До</ui-toggle>
+                        </ui-input>
                     </div>
 
-                    <div class="row mb-2">
-                        <div class="col-md-4"><ui-radio class="pr-2" value-data=1 v-model="radioValueB">Вот так вот</ui-radio></div>
-                        <div class="col-md-4"><ui-radio class="pr-2" value-data=2 v-model="radioValueB">Отлично, работаем дальше</ui-radio></div>
-                        <div class="col-md-4"><ui-radio class="pr-2" value-data=3 v-model="radioValueB">Сыр до дыр</ui-radio></div>
+                    <div class='ui-form-inline'>
+                        <ui-radio value-data=1 v-model="radioValueB">Вот так вот</ui-radio>
+                        <ui-radio value-data=2 v-model="radioValueB">Отлично, работаем <br>дальше</ui-radio>
+                        <ui-radio value-data=3 v-model="radioValueB">Сыр до дыр</ui-radio>
                     </div>
                     <hr class='ui-hr mb-5'>
                 </template>

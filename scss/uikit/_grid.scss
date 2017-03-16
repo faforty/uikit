@@ -11,3 +11,17 @@
     // }
   }
 }
+@include media-breakpoint-up(md) {
+  .ui-form-inline {
+    @include clearfix()
+
+    > div {
+      float:        left;
+      margin-right: 80px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
