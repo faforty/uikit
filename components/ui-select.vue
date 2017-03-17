@@ -28,15 +28,15 @@
                     />
                 </div>
             </div>
-            <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show">
-                <a v-if="Object.keys(results).length == 0" class="drop-out__result" v-for="(option, key) in options" @click.stop="select(key)">
+            <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
+                <a v-if="Object.keys(results).length == 0" class="drop-out__result" v-for="(option, key) in options" @mousedown="select(key)">
                     <div class="drop-out__result__content">
                         <div class="drop-out__result__content__title">
                             <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
                         </div>
                     </div>
                 </a>
-                <a v-if="Object.keys(results).length" class="drop-out__result" v-for="(option, key) in results" @click.stop="select(key)">
+                <a v-if="Object.keys(results).length" class="drop-out__result" v-for="(option, key) in results" @mousedown="select(key)">
                     <div class="drop-out__result__content">
                         <div class="drop-out__result__content__title">
                             <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
@@ -149,7 +149,7 @@
                     }
                 }
 
-                if (this.closeonselect && this.multiple === false) {
+                if (this.closeonselect && !this.multiple) {
                     this.toggleDropdown();
                 }
             },
