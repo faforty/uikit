@@ -31,9 +31,27 @@
                     <h3 slot="page-header">Заголовок</h3>
                 </div>
 
-                <ui-calendar v-model="date">
-                    Дата: {{ date }}
-                </ui-calendar>
+
+                <div class="form-group">
+                    <ui-calendar ref="calendar" v-model="date" >
+                        <ui-button><i class="uikit-calendar"></i> {{ date }}</ui-button>
+                    </ui-calendar>
+                </div>
+
+                <div class="form-group">
+                    <ui-calendar v-model="dateUnixtime" format="X">
+                        <ui-button><i class="uikit-calendar"></i> Unixtime: {{ dateUnixtime }}</ui-button>
+                    </ui-calendar>
+                </div>
+
+                <div class="form-group">
+                    <ui-calendar v-model="dateMoment" format="">
+                        <ui-button><i class="uikit-calendar"></i> Moment: {{ dateMoment }}</ui-button>
+                    </ui-calendar>
+                </div>
+
+                <ui-input class="d-inline-block" v-model="dateInput" icon="uikit-calendar" @focus="$refs.inputCal.show()" @click.native.stop></ui-input>
+                <ui-calendar ref="inputCal" v-model="dateInput"></ui-calendar>
 
                 <template slot="actions">
                     <ui-pagination prev-link="/" prev-name="Туда" next-link="/" next-name="Сюда" step="0" step-all="3"></ui-pagination>
@@ -55,8 +73,16 @@
 new Vue({
     el: '#app',
     data: () => ({
-        date: null,
+        dateUnixtime: null,
+        date:         '',
+        dateInput:    '21.10.2017',
+        dateMoment:   null,
+        showCalendar: true,
     }),
+
+    mounted() {
+        // this.$refs.calendar.show();
+    }
 })
 </script>
 </body>

@@ -1,19 +1,25 @@
 <template>
-    <div>
-        <span @click.stop="toggleShow">
+    <div class="ui-calendar-wrapper">
+        <span @click.stop="toggle">
             <slot></slot>
         </span>
 
-        <div v-if="active" class="ui-calendar" @click.stop>
+        <div v-if="visible" class="ui-calendar" @click.native.stop>
+            <div class="ui-calendar-year-picker">
+                <div>
+                    <span v-for="year in years" :class="year.class" @click.stop="setYear(year.year)">
+                        {{ year.year }}
+                    </span>
+                </div>
+            </div>
             <div class="ui-calendar-month-picker">
-                <ui-button class="ui-calendar-prev ui-btn--circle ui-btn--xs" :disabled="false" @click.stop="offsetMonth(-1)">
+                <ui-button class="ui-calendar-prev ui-btn--circle ui-btn--xs" @click.stop="offsetMonth(-1)">
                     <i class="uikit-arrow-back"></i>
                 </ui-button>
-                <ui-button class="ui-calendar-next ui-btn--circle ui-btn--xs" :disabled="false" @click.stop="offsetMonth(1)">
+                <ui-button class="ui-calendar-next ui-btn--circle ui-btn--xs" @click.stop="offsetMonth(1)">
                     <i class="uikit-arrow-forward"></i>
                 </ui-button>
-
-                <span class='ui-calendar-current-month' @click.stop="showToday">{{currentMonthName}}</span>
+                {{currentMonthName}}
             </div>
 
             <table>
@@ -38,122 +44,147 @@ import moment from 'moment';
 
 moment.locale('ru');
 
+const normalizeDate = (date, format = '') => {
+    var date = moment(date, format).startOf('day').unix();
+    return date || !isNaN(date) ? date : moment().unix();
+}
+
 export default {
     props: {
         value: {},
         format: {
             type:    String,
             default: 'DD.MM.YYYY',
-        }
+        },
+        closeonselect: {
+            type:    Boolean,
+            default: true
+        },
     },
     data: () => ({
-        active:           false,
+        visible:          false,
         weekdays:         moment.weekdaysShort(),
-        current:          null,
-        calendar:         [],
-        currentMonth:     null,
-        currentMonthName: null,
-        dayInMonths:      null,
-        // currentYear:   null,
+        currentTimestamp: moment().unix(),
     }),
 
     watch: {
-        value() {
-            this.updateCalendar();
+        value(value) {
+            this.currentTimestamp = normalizeDate(this.value, this.format);
         },
     },
 
-    methods: {
-        toggleShow() {
-            this.active ? this.hide() : this.show();
-        },
-        show() {
-            this.active = true;
-            this.resetCurrent();
-            this.updateCalendar();
-        },
-        hide() {
-            this.active = false;
-        },
-
-        getValue() {
-            return moment(this.value, this.format);
-        },
-
-        select(day) {
-            var date = moment.unix(day.timestamp);
-            this.$emit('input', date.format(this.format));
-        },
-
-        resetCurrent(today = false) {
-            if (!today && this.value) {
-                this.current = this.getValue().startOf('month');
-            } else {
-                this.current = moment().startOf('month');
+    computed: {
+        timestamp() {
+            if (this.value) {
+                return normalizeDate(this.value, this.format);
             }
         },
 
-        showToday() {
-            this.resetCurrent(true);
-            this.updateCalendar();
-        },
-
-        offsetMonth(offset) {
-            this.current.add(offset, 'months');
-            this.updateCalendar();
-        },
-
-        updateCalendar() {
-            if (!this.active) {
-                return;
+        current: {
+            get() {
+                return moment.unix(this.currentTimestamp);
+            },
+            set(date) {
+                this.currentTimestamp = normalizeDate(date);
             }
-
-            var current = this.current;
-            this.currentMonth     = current.month();
-            this.currentYear      = current.year();
-            this.dayInMonths      = current.daysInMonth();
-            this.currentMonthName = current.format('MMMM');
-
-            this.generateDays();
+        },
+        years() {
+            var years  = [];
+            var offset = 2;
+            for (var y = this.currentYear-offset; y<=this.currentYear+offset; y++) {
+                years.push({
+                    year:  y,
+                    class: y == this.currentYear ? 'ui-calendar-current' : ''
+                });
+            }
+            return years;
         },
 
-        generateDays() {
+        currentYear() {
+            return this.current.year();
+        },
+        currentMonth() {
+            return this.current.month();
+        },
+        currentMonthName() {
+            return this.current.format('MMMM');
+        },
+
+        calendar() {
             var calendar = [];
+
             var date     = moment(this.current).startOf('month').startOf('week').startOf('day') ;
-            var today    = moment().startOf('day');
-            var current  = this.getValue().startOf('day');
+            var today    = normalizeDate(moment());
+            var value    = normalizeDate(this.value, this.format);
 
             for (var w = 0; w < 6; w++) {
                 calendar[w] = [];
                 for (var i = 0; i < 7; i++) {
+                    var timestamp = date.format('X');
                     var className = '';
                     if (date.month() != this.currentMonth) {
                         if (w > 0 && i === 0) break; // Dont draw next month week
                         className = 'ui-calendar-' + (w < 1 ? 'prev-month' : 'next-month');
                     }
-                    if (date.isSame(current)) {
+                    if (timestamp == value) {
                         className += ' ui-calendar-current';
                     }
-                    if (date.isSame(today)) {
+                    if (timestamp == today) {
                         className += ' ui-calendar-today';
                     }
-
                     calendar[w].push({
-                        date:      date.date(),
-                        timestamp: date.format('X'),
-                        class:     className,
+                        timestamp,
+                        date:  date.date(),
+                        class: className
                     });
                     date.add(1, 'day');
                 }
             }
 
-            this.calendar = calendar;
+            return calendar;
         }
     },
 
-    computed: {},
+    methods: {
+        toggle(state = null) {
+            this.visible ? this.hide() : this.show();
+        },
+        show() {
+            this.visible = true;
+            this._lock = true;
+            this.$root.$emit('ui-calendar:close');
+        },
+        hide() {
+            if (this._lock) {
+                this._lock = false;
+                return;
+            }
+            this.visible = false;
+        },
+
+        select(day) {
+            var value = moment.unix(day.timestamp).format(this.format);
+            this.$emit('input', value);
+            if (this.closeonselect) {
+                this.hide();
+            }
+        },
+
+        // resetCurrent() {
+        //     this.current = (this.timestamp ? moment.unix(this.timestamp) : moment()).startOf('month');
+        // },
+
+        offsetMonth(offset) {
+            this.current = this.current.add(offset, 'months');
+        },
+        setYear(year) {
+            this.current = this.current.set({year});
+        }
+    },
 
     mounted() {
+        this.currentTimestamp = normalizeDate(this.value, this.format);
+        this.$root.$on('ui-calendar:close', this.hide);
         document.body.addEventListener('click', this.hide);
     },
 
