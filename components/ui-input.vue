@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="ui-input-after">
+                <div v-if="$slots.past" class="ui-input-after">
                     <slot name="past" />
                 </div>
 
