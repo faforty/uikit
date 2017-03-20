@@ -144,8 +144,11 @@
                     }
                 } else {
                     if (this.multiple) {
-                        var _m = this.value;
+                        var _m = [ ...this.value];
                         _m.splice(_m.indexOf(v), 1);
+
+                        this.$emit('input', _m);
+                        this.$emit('change', _m);
                     }
                 }
 
