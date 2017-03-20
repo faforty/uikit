@@ -33,6 +33,7 @@ export default {
         min: {},
         max: {},
         size: {},
+        fieldState: {},
         speed: {
             default: 100
         },
