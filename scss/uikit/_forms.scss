@@ -197,6 +197,13 @@
       }
     }
 
+    &-after {
+      flex-shrink: 0;
+      margin-top: 20px;
+      margin-left: 20px;
+      font-size: 18px;
+    }
+
     &__help {
       margin: 16px 10px 16px 16px;
 

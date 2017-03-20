@@ -26,6 +26,10 @@
                     </div>
                 </div>
 
+                <div class="ui-input-after">
+                    <slot name="past" />
+                </div>
+
                 <div class="ui-input__help" v-if="info">
                     <ui-popover placement="right">
                         <a class="ui-action ui-input__help__action uikit-info"></a>
