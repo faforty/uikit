@@ -45,6 +45,13 @@
                 </a>
             </div>
 
+            <div class="ui-input__help" v-if="info">
+                <ui-popover placement="right">
+                    <a class="ui-action ui-input__help__action uikit-info"></a>
+                    <div slot="content">{{info}}</div>
+                </ui-popover>
+            </div>
+
             <transition name="fade" mode="out-in">
                 <div v-if="hint" class="ui-hint" v-html="hint"></div>
             </transition>
@@ -66,6 +73,7 @@
             optionsRules: Object,
             search:       Boolean,
             hint:         String,
+            info:         String,
 
             value: {
                 type: Array,

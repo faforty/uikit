@@ -59,7 +59,7 @@
                 <div v-if="toggleA" class="ui-column-spacing">
                     <div class="row">
                         <div class="col-md-6">
-                            <ui-select v-model="selectValue" :multiple="true" :options="selectOptions">Заголовок</ui-select>
+                            <ui-select v-model="selectValue" :multiple="true" :options="selectOptions" hint="Hint text" info="Info text">Заголовок</ui-select>
                         </div>
                         <div class="col-md-6">
                             <ui-input v-model="inputMagicValue" info="Удивительно">Волшебно</ui-input>
