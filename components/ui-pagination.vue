@@ -44,7 +44,7 @@ export default {
             required: true
         },
         nextName:  String,
-        nextError: String,
+        nextError: [String, Boolean],
 
         prevLink: {
             type: [String, Boolean],
@@ -81,9 +81,9 @@ export default {
         },
         nextClick(event) {
             this.$emit('next-click', event);
+            event.stopPropagation();
             if (this.nextError) {
                 event.preventDefault();
-                event.stopPropagation();
                 this.$refs.nextPopover.showPopover();
             }
         },

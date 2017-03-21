@@ -96,7 +96,7 @@
 
 
                 <template slot="actions">
-                    <ui-pagination :next-error="paginationNextError" prev-link="/" prev-name="Туда" next-link="/" next-name="Сюда" step="0" step-all="3"></ui-pagination>
+                    <ui-pagination :next-error="paginationNextError" prev-link="/" prev-name="Туда"  step="0" step-all="3"></ui-pagination>
                 </template>
 
             </ui-content-box>
@@ -129,7 +129,7 @@ new Vue({
         inputPriceValue:    '',
         selectValue:        [],
         selectOptions:      {day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'},
-        paginationNextError: '',
+        paginationNextError: false,
     }),
 
     mounted() {
