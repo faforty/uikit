@@ -14,7 +14,7 @@
         <li class="ui-pagination__next">
             <span class="ui-pagination__name">{{ nextName }}</span>
             <span class="ui-pagination__next__link">
-                <ui-popover ref="nextPopover" :active="!!nextError">
+                <ui-popover ref="nextPopover">
                     <tempalte slot="content">{{nextError}}</tempalte>
                     <ui-button @click="nextClick" :href="nextHref" class="ui-btn--circle" :class="nextClass">
                         <i class="uikit-arrow-forward"></i>
