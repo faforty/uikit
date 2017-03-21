@@ -4,7 +4,10 @@
             <slot></slot>
         </span>
 
-        <div v-if="visible" class="ui-calendar" @click.native.stop>
+        <div v-if="visible" class="ui-calendar" @click.stop>
+
+            <span class="ui-calendar-close ui-action ui-action--close ui-action--close--circle uikit-close-empty" @click="hide"></span>
+
             <div class="ui-calendar-year-picker">
                 <div>
                     <span v-for="year in years" :class="year.class" @click.stop="setYear(year.year)">
@@ -12,6 +15,7 @@
                     </span>
                 </div>
             </div>
+
             <div class="ui-calendar-month-picker">
                 <ui-button class="ui-calendar-prev ui-btn--circle ui-btn--xs" @click.stop="offsetMonth(-1)">
                     <i class="uikit-arrow-back"></i>
@@ -113,9 +117,9 @@ export default {
         calendar() {
             var calendar = [];
 
-            var date     = moment(this.current).startOf('month').startOf('week').startOf('day') ;
-            var today    = normalizeDate(moment());
-            var value    = normalizeDate(this.value, this.format);
+            var date  = moment(this.current).startOf('month').startOf('week').startOf('day') ;
+            var today = normalizeDate(moment());
+            var value = normalizeDate(this.value, this.format);
 
             for (var w = 0; w < 6; w++) {
                 calendar[w] = [];
