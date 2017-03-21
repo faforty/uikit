@@ -160,7 +160,9 @@
   }
 
   @include form-control-validation($brand-danger);
-
+  .ui-input-group {
+    border-color: $brand-danger;
+  }
   .form-control-danger {
     background-image: $form-icon-danger;
   }
@@ -172,7 +174,9 @@
   }
 
   @include form-control-validation( map_get($colors, mediumSeaGreen) );
-
+  .ui-input-group {
+    border-color: map_get($colors, mediumSeaGreen);
+  }
   .form-control-danger {
     background-image: $form-icon-success;
   }
