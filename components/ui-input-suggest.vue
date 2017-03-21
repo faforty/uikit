@@ -21,21 +21,23 @@
                 @keydown="keydown"
             >
                 <slot></slot>
-            </ui-input>
-            <div ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="(results.length > 0 || error) && showList">
-                <a :class="{'drop-out__result': true, 'drop-out__result--active': index === focusList}"
-                    v-for="(item, index) in results"
-                    @click.prevent="select(item)"
-                    @mousemove="onListMousemove(index)"
-                >
-                    <div class="drop-out__result__content">
-                        <div class="drop-out__result__content__title">
-                            <div v-html="item.name"><small v-html="item.description" /></div>
+
+                <div slot="dropdown" ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="(results.length > 0 || error) && showList">
+                    <a :class="{'drop-out__result': true, 'drop-out__result--active': index === focusList}"
+                        v-for="(item, index) in results"
+                        @click.prevent="select(item)"
+                        @mousemove="onListMousemove(index)"
+                    >
+                        <div class="drop-out__result__content">
+                            <div class="drop-out__result__content__title">
+                                <div v-html="item.name"><small v-html="item.description" /></div>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 <div v-if="results.length < 1 && value != '' && error != ''" style="text-align: center;color: rgba(0,0,0,.4);padding: 10px">{{ error }}</div>
             </div>
+            </ui-input>
+
         </div>
     </div>
 </template>

@@ -111,21 +111,22 @@
 
                     <ui-input value="1000" size=4 label-align=right-inline>Input + size</ui-input>
                 </div>
-                <div class="col-md-4">
-                    <div class="ui-input--info-spacing">
+                <div class="col-md-4 ui-column-spacing">
                         <ui-input-suggest
                             info="Info text here"
+                            hint="Hint text here"
                             :value="completeValue"
                             :results="completeResults"
                             :error="completeError"
                             @input="complete"
                             @select="completeSelect"
                         >Input suggest</ui-input-suggest>
-                        <ui-input placeholder="Плейсхолдер" icon="uikit-search" icon-align="left">Заголовок</ui-input>
-                        <ui-input value="Введеный текст" label-align="left" group="кг" disabled>Заголовок</ui-input>
-                        <ui-input value="Введеный текст" icon="uikit-search" label-align="right">Label</ui-input>
-                        <ui-input value="Введеный текст" icon="uikit-search" label-align="left" hint="Help text help text help text help text help text help text" info="sdsdsd">Заголовок</ui-input>
-                    </div>
+
+                    <ui-input placeholder="Плейсхолдер" icon="uikit-search" icon-align="left">Заголовок</ui-input>
+                    <ui-input value="Введеный текст" label-align="left" group="кг" disabled>Заголовок</ui-input>
+                    <ui-input value="Введеный текст" icon="uikit-search" label-align="right">Label</ui-input>
+                    <ui-input value="Введеный текст" icon="uikit-search" label-align="left" hint="Help text help text help text help text help text help text" info="sdsdsd">Заголовок</ui-input>
+
                     <ui-input value="Введеный текст" icon="uikit-search" label-align="right" >Заголовок</ui-input>
                     <ui-input value="Введеный текст" icon="uikit-search" label-align="left" error="sdfsdf" info="sdsdsd">Заголовок</ui-input>
                     <ui-input value="Введеный текст" icon="uikit-search" label-align="left" hint="sdfsdf" state="success" info="sdsdsd">Заголовок</ui-input>

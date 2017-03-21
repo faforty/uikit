@@ -38,10 +38,14 @@
                 </div>
             </div>
 
+            <div v-if="$slots.dropdown">
+                <slot name="dropdown" />
+            </div>
 
             <transition name="fade" mode="out-in">
                 <div v-if="prompt && showField" class="ui-hint" v-html="prompt"></div>
             </transition>
+
         </div>
 
     </ui-label>
