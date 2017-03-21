@@ -62,11 +62,13 @@
 <script>
     import uiLabel from './ui-label.vue';
     import uiInput from './ui-input.vue';
+    import uiPopover from './ui-popover.vue';
 
     export default {
         components: {
             uiLabel,
-            uiInput
+            uiInput,
+            uiPopover
         },
         props: {
             options:      {},
