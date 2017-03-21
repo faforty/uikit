@@ -101,9 +101,10 @@
 }
 .ui-popover-content {
   padding:     20px;
-  font-size:   .95em;
-  line-height: 1.6em;
-  position: relative;
+  font-size:   14px;
+  line-height: 22px;
+  position:    relative;
+  color:       #000;
 
   .ui-popover--custom & {
     padding: 0;

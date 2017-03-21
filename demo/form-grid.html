@@ -77,7 +77,6 @@
                 </div>
 
                 <template v-if="toggleA">
-
                     <div class='ui-form-inline'>
                         <ui-input v-model="inputPriceValue" placeholder="1000" size="4" max-size="10" label-align="left-inline" group="$">От</ui-input>
                         <ui-input :hide-field="isHideField" v-model="inputPrice2Value" group="$" size="4" max-size="10" label-align="left-inline">
@@ -85,18 +84,19 @@
                         </ui-input>
                     </div>
 
-                    <div class='ui-form-inline'>
+                    <div class='ui-form-inline mb-md-2'>
                         <ui-radio value-data=1 v-model="radioValueB">Вот так вот</ui-radio>
-                        <ui-radio value-data=2 v-model="radioValueB">Отлично, работаем <br>дальше</ui-radio>
+                        <ui-radio value-data=2 v-model="radioValueB">Отлично, работаем <br class='hidden-sm-down'>дальше</ui-radio>
                         <ui-radio value-data=3 v-model="radioValueB">Сыр до дыр</ui-radio>
                     </div>
+
                     <hr class='ui-hr mb-5'>
                 </template>
 
 
 
                 <template slot="actions">
-                    <ui-pagination prev-link="/" prev-name="Туда" next-link="/" next-name="Сюда" step="0" step-all="3"></ui-pagination>
+                    <ui-pagination :next-error="paginationNextError" prev-link="/" prev-name="Туда" next-link="/" next-name="Сюда" step="0" step-all="3"></ui-pagination>
                 </template>
 
             </ui-content-box>
@@ -129,7 +129,14 @@ new Vue({
         inputPriceValue:    '',
         selectValue:        [],
         selectOptions:      {day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'},
+        paginationNextError: '',
     }),
+
+    mounted() {
+        setTimeout(() => {
+            this.paginationNextError = 'Error message error message error message error message error message';
+        }, 1000);
+    }
 })
 </script>
 </body>

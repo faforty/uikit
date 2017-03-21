@@ -4,6 +4,7 @@
         :next-link="nextLink"
         :prev-name="prevName"
         :next-name="nextName"
+        :next-error="nextError"
         :step="step"
         :step-all="stepAll"
         @prev-click.prevent="onPrevClick"
@@ -23,9 +24,9 @@ export default {
             default: false,
             required: true
         },
-        nextName: {
-            type: String
-        },
+        nextName: String,
+        nextError: String,
+
         prevLink: {
             type: [String, Boolean],
             default: false

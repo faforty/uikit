@@ -8,6 +8,21 @@
         padding-right: 65px;
     }
 }
+@include media-breakpoint-up(md) {
+  .ui-label-absolute {
+    label.ui-label {
+      position: absolute;
+      bottom: 100%;
+    }
+  }
+  .ui-hint-absolute {
+    .ui-hint {
+      position: absolute;
+
+    }
+  }
+}
+
 /* style icon */
 .inner-addon .ico {
   display: flex;

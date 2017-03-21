@@ -63,6 +63,9 @@ export default {
             } else {
                 this.show = false;
             }
+        },
+        showPopover() {
+            this.show = true;
         }
     },
 
