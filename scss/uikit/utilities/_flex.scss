@@ -7,25 +7,25 @@
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
     // Flex column reordering
-    .flex#{$infix}-first     { order: -1; }
-    .flex#{$infix}-last      { order: 1; }
-    .flex#{$infix}-unordered { order: 0; }
+    .flex#{$infix}-first     { order: -1 !important; }
+    .flex#{$infix}-last      { order: 1 !important; }
+    .flex#{$infix}-unordered { order: 0 !important; }
 
     // Alignment for every item
-    .flex-items#{$infix}-top    { align-items: flex-start; }
-    .flex-items#{$infix}-middle { align-items: center; }
-    .flex-items#{$infix}-bottom { align-items: flex-end; }
+    .flex-items#{$infix}-top    { align-items: flex-start !important; }
+    .flex-items#{$infix}-middle { align-items: center !important; }
+    .flex-items#{$infix}-bottom { align-items: flex-end !important; }
 
     // Alignment per item
-    .flex#{$infix}-top    { align-self: flex-start; }
-    .flex#{$infix}-middle { align-self: center; }
-    .flex#{$infix}-bottom { align-self: flex-end; }
+    .flex#{$infix}-top    { align-self: flex-start !important; }
+    .flex#{$infix}-middle { align-self: center !important; }
+    .flex#{$infix}-bottom { align-self: flex-end !important; }
 
     // Horizontal alignment of item
-    .flex-items#{$infix}-left    { justify-content: flex-start; }
-    .flex-items#{$infix}-center  { justify-content: center; }
-    .flex-items#{$infix}-right   { justify-content: flex-end; }
-    .flex-items#{$infix}-around  { justify-content: space-around; }
-    .flex-items#{$infix}-between { justify-content: space-between; }
+    .flex-items#{$infix}-left    { justify-content: flex-start !important; }
+    .flex-items#{$infix}-center  { justify-content: center !important; }
+    .flex-items#{$infix}-right   { justify-content: flex-end !important; }
+    .flex-items#{$infix}-around  { justify-content: space-around !important; }
+    .flex-items#{$infix}-between { justify-content: space-between !important; }
   }
 }
