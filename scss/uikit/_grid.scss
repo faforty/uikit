@@ -1,3 +1,10 @@
+@include media-breakpoint-up(xl) {
+  .container {
+    width: 100%;
+    max-width: 1440px;
+  }
+}
+
 @include media-breakpoint-up(sm) {
   .container {
     padding-right: 40px;
@@ -11,6 +18,7 @@
     // }
   }
 }
+
 @include media-breakpoint-up(md) {
   .ui-form-inline {
     @include clearfix()
