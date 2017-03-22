@@ -4,6 +4,10 @@
   display:    flex;
   flex-flow:  row wrap;
 
+  &-wrapper {
+    width: 100%;
+  }
+
   &-wrapper,
   &-actions {
     flex: 1 100%;
