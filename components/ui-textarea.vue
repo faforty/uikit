@@ -3,9 +3,11 @@
     <template slot="label"><slot /></template>
     <textarea
         ref="textarea"
+        key="textarea"
         class="form-control ui-comment-field"
+        :placeholder="placeholder"
         :autofocus="autofocus"
-        :style="style"
+        :rows="rows"
         :value="value"
         @input="handleChangeMessage"
     />
@@ -21,19 +23,15 @@ export default {
   },
 
   props: {
-    height: [String],
-    value: [String],
-    autofocus: [Boolean]
+    rows:        String,
+    value:       String,
+    autofocus:   Boolean,
+    placeholder: String
   },
 
   computed: {
-    style() {
-      return {
-        height: this.height
-      };
-    },
     filled() {
-      return this.value != '';
+      return !!this.value;
     }
   },
 
@@ -45,6 +43,6 @@ export default {
     handleChangeMessage(val) {
       this.$emit('input', val.target.value);
     }
-  }
+  },
 }
 </script>

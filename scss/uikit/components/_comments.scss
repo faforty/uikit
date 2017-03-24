@@ -1,6 +1,8 @@
 .ui {
   &-comment-field {
-    border: 1px solid #e6e6e6;
+    border:     1px solid #e6e6e6;
     background: #fff;
+    resize:     vertical;
+    display:    block;
   }
 }

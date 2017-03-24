@@ -1,9 +1,17 @@
 <template>
     <div class="form-group">
+        <span v-if="info" class="float-right ui-radio-popover" @click.stop>
+            <ui-popover placement="right">
+                <a class="ui-action ui-input__help__action uikit-info"></a>
+                <div slot="content">{{info}}</div>
+            </ui-popover>
+        </span>
         <input :id="id" :name="name" :checked="isChecked" @change="update" :disabled="disabled" class="ui-radio" type="radio">
         <label :for="id" class="text">
             <slot />
         </label>
+
+
         <transition name="fade" mode="out-in">
             <div v-if="hint" class="ui-hint" v-html="hint"></div>
         </transition>
@@ -31,6 +39,7 @@
                 type: Boolean
             },
             hint: String,
+            info: String,
         },
 
         methods: {

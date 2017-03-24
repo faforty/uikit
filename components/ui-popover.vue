@@ -1,6 +1,6 @@
 <template>
     <div class="ui-popover-wrapper">
-        <span @click="togglePopover" ref="target" style="display:inline-block">
+        <span @click.stop="togglePopover" ref="target" style="display:inline-block">
             <slot></slot>
         </span>
         <transition leave-active-class="fade-leave-active">
@@ -56,6 +56,9 @@ export default {
             if (this.show) {
                 this._lock = true;
             }
+            if (this.show) {
+                this.$root.$emit('ui-popover:close');
+            }
         },
         hidePopover() {
             if (this._lock) {
@@ -71,6 +74,7 @@ export default {
 
     mounted() {
         this.show = this.active;
+        this.$root.$on('ui-popover:close', this.hidePopover);
         document.body.addEventListener('click', this.hidePopover);
     },
 

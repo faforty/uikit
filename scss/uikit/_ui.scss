@@ -384,6 +384,14 @@
       margin-left: 50px;
     }
   }
+  &-radio-popover {
+    transform:   translateY(-2px);
+    margin-left: 10px;
+    float:       right;
+    display:     block;
+    position:    relative;
+    z-index:     99;
+  }
 
   &-logo {
       @extend .icons !optional;
