@@ -44,7 +44,10 @@ export default {
             required: true
         },
         nextName:  String,
-        nextError: [String, Boolean],
+        nextError: {
+            type:    [String, Boolean],
+            default: false,
+        },
 
         prevLink: {
             type: [String, Boolean],
