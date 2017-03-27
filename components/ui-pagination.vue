@@ -14,12 +14,15 @@
         <li class="ui-pagination__next">
             <span class="ui-pagination__name">{{ nextName }}</span>
             <span class="ui-pagination__next__link">
-                <ui-popover ref="nextPopover">
+                <ui-popover v-if="nextError" ref="nextPopover">
                     <template slot="content">{{nextError}}</template>
                     <ui-button @click="nextClick" :href="nextHref" class="ui-btn--circle" :class="nextClass">
                         <i class="uikit-arrow-forward"></i>
                     </ui-button>
                 </ui-popover>
+                <ui-button v-else @click="nextClick" :href="nextHref" class="ui-btn--circle" :class="nextClass">
+                    <i class="uikit-arrow-forward"></i>
+                </ui-button>
             </span>
         </li>
     </ul>
@@ -48,7 +51,6 @@ export default {
             type:    [String, Boolean],
             default: false,
         },
-
         prevLink: {
             type: [String, Boolean],
             default: false

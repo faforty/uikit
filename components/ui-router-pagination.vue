@@ -25,8 +25,7 @@ export default {
             required: true
         },
         nextName: String,
-        nextError: String,
-
+        nextError: [String, Boolean],
         prevLink: {
             type: [String, Boolean],
             default: false
