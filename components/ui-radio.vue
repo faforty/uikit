@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import uiPopover from './components/ui-popover.vue';
+import uiPopover from './ui-popover.vue';
 
 export default {
     components: {
