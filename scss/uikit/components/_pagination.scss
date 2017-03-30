@@ -1,0 +1,61 @@
+.ui-pagination {
+  display: flex;
+  padding: 0;
+  margin:  0;
+
+  &--end {
+    justify-content: flex-end;
+  }
+
+  &--between {
+    justify-content: space-between;
+  }
+
+  &--hide {
+    opacity: 0;
+  }
+
+  & > li {
+    list-style: none;
+  }
+
+  &__next,
+  &__prev {
+    font-size: 14px;
+    color: map_get($colors, gray);
+
+    [class^="uikit-"],
+    & > &__link {
+      font-size: 18px;
+    }
+  }
+
+  &__next {
+    margin-left: 10px;
+
+    & > &__link {
+      margin-left: 20px;
+    }
+  }
+
+  &__prev {
+    margin-right: 10px;
+
+    & > &__link {
+      margin-right: 20px;
+    }
+  }
+
+  &__step {
+    display: none;
+    align-items: center;
+    color: #989898;
+  }
+
+
+  @include media-breakpoint-down(xs) {
+    &__name {
+      display: none
+    }
+  }
+}
