@@ -5,8 +5,8 @@
 
         <div>
             <div class="ui-input-pos" :style="[shrink, { width: inputWidth }]">
-                <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || icon, 'ui-input-group': group }]" v-show="showField">
-                    <i :class="['ico', icon]" v-show="icon"></i>
+                <div :class="['inner-addon', {'left-addon': iconAlign == 'left', 'right-addon': iconAlign == 'right' || iconClass, 'ui-input-group': group }]" v-show="showField">
+                    <i :class="['ico', iconClass]" v-show="iconClass"></i>
                     <input class="form-control" ref="input"
                         :autocomplete="autocomplete"
                         :type="type"
@@ -61,6 +61,11 @@
             uiLabel,
             uiPopover
         },
+
+        mixins: [
+            ValidatesInput
+        ],
+
         props: {
             autocomplete: {
                 type: String,
@@ -99,15 +104,16 @@
                 type:      String,
                 default: 'right'
             },
-            icon:       String,
-            iconAlign:  String,
-            inputWidth: String,
-            flexShrink: Number,
-            disabled:   Boolean,
-            autofocus:  Boolean,
+            loading:     [Boolean, Object], // Boolean or Promise
+            icon:        String,
+            iconAlign:   String,
+            inputWidth:  String,
+            flexShrink:  Number,
+            disabled:    Boolean,
+            autofocus:   Boolean,
             formatValue: {
                 type: Function,
-                default: value => value.trim()
+                default: value => value
             },
             size: {
                 type: [Number, String]
@@ -120,6 +126,11 @@
                 default: false
             }
         },
+
+        data: () => ({
+            loadingState: false
+        }),
+
         methods: {
             updateValue(event) {
                 if (this.returnEvent) {
@@ -158,6 +169,14 @@
                 this.$nextTick(() => {
                     this.$refs.input.focus();
                 });
+            },
+
+            loadingStart() {
+                this.loadingState = true;
+            },
+
+            loadingStop() {
+                this.loadingState = false;
             }
         },
 
@@ -195,6 +214,23 @@
 
             showField() {
                 return this.hideField === null || this.hideField === true;
+            },
+
+            iconClass() {
+                return this.loadingState ? 'loader-spinner' : this.icon;
+            }
+        },
+
+        watch: {
+            loading() {
+                if (typeof this.loading === 'boolean') {
+                    this.loadingState = this.loading;
+                } else {
+                    this.loadingStart();
+                    Promise.resolve(this.loading)
+                        .then(this.loadingStop)
+                        .catch(this.loadingStop);
+                }
             }
         },
 
@@ -204,9 +240,6 @@
 
             if (this.value)
                 this.validate();
-        },
-        mixins: [
-            ValidatesInput
-        ]
+        }
     }
 </script>

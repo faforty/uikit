@@ -11,6 +11,7 @@
                 :hint="hint"
                 :icon-align="iconAlign"
                 :icon="icon"
+                :loading="loading"
                 :info="info"
                 :placeholder="placeholder"
                 :state="state"
@@ -71,6 +72,7 @@ export default {
             default: 400
         },
         placeholder: String,
+        loading: [Boolean, Object],
         icon: {
             type: String,
             default: ''

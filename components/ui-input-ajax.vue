@@ -6,6 +6,7 @@
                 :hint="hint"
                 :icon="icon"
                 :state="state"
+                :loading="loading"
                 :placeholder="placeholder"
                 :color="color"
                 :icon-align="iconAlign"
@@ -15,17 +16,18 @@
                 v-model="searchValue"
             >
                 <slot></slot>
-            </ui-input>
-            <div ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="opened">
-                <a class="drop-out__result" v-for="(item, index) in items" @click="choiceItem(index)">
-                    <div class="drop-out__result__content">
-                        <div class="drop-out__result__content__title">
-                            <div>{{ item.name }}<small>{{ item.description }}</small></div>
+
+                <div slot="dropdown" ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="opened && items.length > 0 || error">
+                    <a class="drop-out__result" v-for="(item, index) in items" @click="choiceItem(index)">
+                        <div class="drop-out__result__content">
+                            <div class="drop-out__result__content__title">
+                                <div>{{ item.name }}<small>{{ item.description }}</small></div>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <div v-show="error" style="text-align: center;color: rgba(0,0,0,.4);padding: 10px">{{ error.name }}</div>
-            </div>
+                    </a>
+                    <div v-show="error" style="text-align: center;color: rgba(0,0,0,.4);padding: 10px">{{ error.name }}</div>
+                </div>
+            </ui-input>
         </div>
     </div>
 </template>
@@ -106,7 +108,7 @@
             items: [],
             dropResultsStyles: '',
             error: false,
-
+            loading: false,
             _maxHeight: 0
         }),
         methods: {
@@ -147,10 +149,10 @@
                     }
 
                     this.items = [];
-
-                    this.$http
+                    this.loading = this.$http
                         .get(this.ajaxUrl, { params: params })
-                        .then(response => response.json()).then(data => {
+                        .then(response => response.json())
+                        .then(data => {
                             let items = data.items.data ? data.items.data : data.items
 
                             // this.reset()
@@ -172,15 +174,15 @@
                                 }
                                 this.lastRequest = xhr
                             },
-                        }
-                    ).catch(error => {
-                        this.items = [];
+                        })
+                        .catch(error => {
+                            this.items = [];
 
-                        this.error = {
-                            name: 'Ошибка соединения',
-                            error: 'network'
-                        }
-                    })
+                            this.error = {
+                                name: 'Ошибка соединения',
+                                error: 'network'
+                            }
+                        })
                 }
             },
             ajaxLocal (value) {
@@ -241,7 +243,7 @@
             }
         },
         beforeMount () {
-            this.ajax = debounce(this.ajax.bind(this), 400);
+            this.ajax = debounce(this.ajax.bind(this), 200);
         },
         mounted () {
             let $input = this.$refs.input.$el,

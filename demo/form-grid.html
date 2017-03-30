@@ -84,12 +84,30 @@
                         </ui-input>
                     </div>
 
+
+                    <div class="row ui-column-spacing">
+                        <div class="col-md-6">
+                            <ui-input-suggest
+                                    :loading="loading"
+                                    info="Info text here"
+                                    hint="Hint text here"
+                                    :value="completeValue"
+                                    :results="completeResults"
+                                    :error="completeError"
+                                    @input="complete"
+                                    @select="completeSelect"
+                                >Input suggest</ui-input-suggest>
+                        </div>
+                        <div class="col-md-6">
+                            <ui-input-ajax hint="Hint text here" ajax-url="https://wapi.agro24.ru/api/product" v-model="ajaxValue">Input Ajax (Deprecated)</ui-input-ajax>
+                        </div>
+                    </div>
+
                     <div class='ui-form-inline mb-md-2'>
                         <ui-radio value-data=1 v-model="radioValueB">Вот так вот</ui-radio>
                         <ui-radio value-data=2 v-model="radioValueB">Отлично, работаем <br class='hidden-sm-down'>дальше</ui-radio>
                         <ui-radio value-data=3 v-model="radioValueB">Сыр до дыр</ui-radio>
                     </div>
-
                     <hr class='ui-hr mb-5'>
                 </template>
 
@@ -115,22 +133,56 @@
 new Vue({
     el: '#app',
     data: () => ({
-        toggleA:            true,
-        toggleB:            false,
-        checkboxA:          false,
-        inputMagicValue:    "Сказочно",
-        inputEatValue:      "Не критикуй",
-        inputDonzhuanValue: "Тритончик",
-        radioValueA:        'One',
-        isHideField:        false,
-        inputPrice2Value:   1000,
-        radioValueB:        2,
-        inputSpinnerValue:  3,
-        inputPriceValue:    '',
-        selectValue:        [],
-        selectOptions:      {day: 'Каждый день', week: 'Каждую неделю не позднее понедельника', month: 'Каждый месяц'},
+        toggleA:             true,
+        toggleB:             false,
+        checkboxA:           false,
+        inputMagicValue:     "Сказочно",
+        inputEatValue:       "Не критикуй",
+        inputDonzhuanValue:  "Тритончик",
+        radioValueA:         'One',
+        isHideField:         false,
+        inputPrice2Value:    1000,
+        radioValueB:         2,
+        inputSpinnerValue:   3,
+        inputPriceValue:     '',
+        selectValue:         [],
+        selectOptions:       {day: 'Каждый день', week: 'Каждую неделю не позднее понедельника', month: 'Каждый месяц'},
         paginationNextError: false,
+        completeResults:     [],
+        completeValue:       '',
+        completeError:       '',
+        loading:             false,
+        ajaxValue:           '',
+
     }),
+    methods: {
+        complete(val) {
+            this.completeValue = val;
+            this.completeError = '';
+
+            if (val === '') {
+                this.completeResults = [];
+            } else {
+                this.loading = this.$http.get('https://wapi.agro24.ru/api/product', { params: {
+                    name: val
+                } })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.items && data.items.length > 0)
+                            this.completeResults = data.items;
+                        else
+                            throw 'Нет совпадений';
+                    })
+                    .catch(e => {
+                        this.completeResults = [];
+                        this.completeError = e;
+                    })
+            }
+        },
+        completeSelect(item) {
+            this.completeValue = item.name;
+        },
+    },
 
     mounted() {
         setTimeout(() => {
