@@ -16,7 +16,7 @@ var Velocity = require('velocity-animate');
 const VELOCITY_CONFIG = {
     duration: 350,
     easing:   'easeOutQuart',
-    queue:    false,
+    // queue:    false,
 };
 
 export default {
@@ -38,8 +38,9 @@ export default {
 
         showContent() {
             this._lock = true;
-            this.$parent.$emit('collapsible-item::show');
+            this.$parent.$emit('collapsible-item::hide');
             this._lock = false;
+
             this.show  = true;
             Velocity(this.$refs.body, 'slideDown', VELOCITY_CONFIG);
         },
@@ -48,6 +49,7 @@ export default {
             if (this._lock) {
                 return;
             }
+
             this.show = false;
             Velocity(this.$refs.body, 'slideUp', VELOCITY_CONFIG);
         },
@@ -58,7 +60,7 @@ export default {
             this.showContent();
         }
 
-        this.$parent.$on('collapsible-item::show', this.hideContent);
+        this.$parent.$on('collapsible-item::hide', this.hideContent);
     }
 }
 </script>
