@@ -5,191 +5,216 @@ $padding:            $cell-width / 2;
 $popup-width:        $cell-width*7 + $padding*2;
 $year-picker-height: 70px;
 
+
 .ui-calendar-wrapper {
-    display: inline-block;
+  display: inline-block;
 }
 
 .ui-calendar {
-    background:    #FFF;
-    padding:       0 $padding $padding;
-    box-shadow:    0 15px 100px -10px rgba(#0f764a, 0.15);
-    position:      absolute;
-    position:      fixed;
-    left:          50%;
-    top:           50%;
-    transform:     translate(-50%, -210px);
-    font-weight:   300;
-    font-size:     16px;
-    z-index:       9999;
-    border-radius: 3px;
-    user-select:   none;
+  background:    #FFF;
+  padding:       0 $padding $padding;
+  box-shadow:    0 15px 100px -10px rgba(#0f764a, 0.15);
+  position:      absolute;
+  position:      fixed;
+  left:          50%;
+  top:           50%;
+  transform:     translate(-50%, -210px);
+  font-weight:   300;
+  font-size:     16px;
+  z-index:       9999;
+  border-radius: 3px;
+  user-select:   none;
 
-    .ui-calendar-close {
+  .ui-calendar-close {
+    position:   absolute;
+    right:      0;
+    top:        0;
+    box-shadow: 0 1px 1px rgba(#000,.1);
+    transform:  translate(50%, -50%);
+  }
+  .ui-calendar-year-picker {
+    background:  #eef4f2;
+    color:       #2d9e6e;
+    height:      $year-picker-height;
+    line-height: 30px;
+    margin:      0 (-$padding);
+    font-size:   14px;
+    font-weight: 400;
+    overflow:    hidden;
+    width:       $popup-width;
+    position:    relative;
+
+    > div {
+      cursor:      pointer;
+      position:    absolute;
+      left:        50%;
+      transform:   translate(-50%, 0);
+      height:      $year-picker-height;
+      top:         0;
+      white-space: nowrap;
+
+      &:before, &:after {
+        content:    '';
         position:   absolute;
-        right:      0;
+        width:      30px;
+        height:     100%;
         top:        0;
-        box-shadow: 0 1px 1px rgba(#000,.1);
-        transform:  translate(50%, -50%);
-    }
-    .ui-calendar-year-picker {
-        background:  #eef4f2;
-        color:       #2d9e6e;
-        height:      $year-picker-height;
-        line-height: 30px;
-        margin:      0 (-$padding);
-        font-size:   14px;
-        font-weight: 400;
-        overflow:    hidden;
-        width:       $popup-width;
-        position:    relative;
+      }
+      &:before {
+        border-left: 5px solid #eef4f2;
+        background:  linear-gradient(90deg, #eef4f2, rgba(#eef4f2, 0));
+        margin-left: -$popup-width/2-1;
+        left:        50%;
+      }
+      &:after {
+        border-right: 3px solid #eef4f2;
+        background:   linear-gradient(-90deg, #eef4f2, rgba(#eef4f2, 0));
+        margin-right: -$popup-width/2-1;
+        right:        50%;
+      }
 
-        > div {
-            cursor:      pointer;
-            position:    absolute;
-            left:        50%;
-            transform:   translate(-50%, 0);
-            height:      $year-picker-height;
-            top:         0;
-            white-space: nowrap;
-
-            &:before, &:after {
-                content:    '';
-                position:   absolute;
-                width:      30px;
-                height:     100%;
-                top:        0;
-            }
-            &:before {
-                border-left: 5px solid #eef4f2;
-                background:  linear-gradient(90deg, #eef4f2, rgba(#eef4f2, 0));
-                margin-left: -$popup-width/2-1;
-                left:        50%;
-            }
-            &:after {
-                border-right: 3px solid #eef4f2;
-                background:   linear-gradient(-90deg, #eef4f2, rgba(#eef4f2, 0));
-                margin-right: -$popup-width/2-1;
-                right:        50%;
-            }
-
-            > * {
-                padding:        0 22px;
-                height:         $year-picker-height;
-                line-height:    $year-picker-height;
-                display:        inline-block;
-                vertical-align: top;
-                transition:     all .2s ease;
-                border-bottom:  3px solid transparent;
-
-                &:first-child {
-                    padding-left: 0;
-                }
-                &:last-child {
-                    padding-right: 0;
-                }
-
-                &:hover {
-                    border-color: #2d9e6e;
-                }
-            }
-        }
-
-        .ui-calendar-current {
-            color:       #000;
-            font-size:   18px;
-        }
-    }
-
-    .ui-calendar-month-picker {
-        width:          100%;
-        text-align:     center;
-        text-transform: uppercase;
-        padding:        30px 10px;
-
-        .ui-calendar-current-month {
-            cursor: pointer;
-        }
-        .ui-calendar-prev {
-            float: left;
-        }
-        .ui-calendar-next {
-            float: right;
-        }
-    }
-
-    table {
-        width:           auto;
-        border-collapse: collapse;
-    }
-
-    tr > * {
-        text-align:     center;
+      > * {
+        padding:        0 22px;
+        height:         $year-picker-height;
+        line-height:    $year-picker-height;
+        display:        inline-block;
         vertical-align: top;
-        font-weight:    300;
-        font-size:      16px;
-        border:         none;
-        padding:        0;
-    }
+        transition:     all .2s ease;
+        border-bottom:  3px solid transparent;
 
-    th,
-    &-prev-month,
-    &-next-month {
-        color: lighten(#8d8d8d, 20);
-    }
-
-    th {
-        text-transform: capitalize;
-        vertical-align: top;
-        height:         40px;
-        width:          $cell-width;
-    }
-
-    td {
-        > * {
-            display:     block;
-            width:       $cell-width;
-            height:      $cell-height;
-            line-height: $cell-height;
-            position:    relative;
-            cursor:      pointer;
-
-            &:after {
-                content:       '';
-                display:       block;
-                position:      absolute;
-                border-radius: 50%;
-                width:         $cell-current-size;
-                height:        $cell-current-size;
-                top:           ($cell-height - $cell-current-size) / 2;
-                left:          ($cell-width - $cell-current-size) / 2;
-                transition:    all .2s ease;
-                border:        1px solid transparent;
-            }
-
-            > span {
-                position: relative;
-                z-index:  2;
-            }
+        &:first-child {
+          padding-left: 0;
         }
-        &.ui-calendar-today {
-            color: #1abf7a
+        &:last-child {
+          padding-right: 0;
         }
 
-        &:hover > * {
-            color: #000;
-
-            &:after {
-                z-index:    1;
-                background: #FFF;
-                border:     1px solid #1abf7a;
-            }
+        &:hover {
+          border-color: #2d9e6e;
         }
-        &.ui-calendar-current > * {
-            color: #FFF;
-            &:after {
-                z-index: 1;
-                background: #1abf7a;
-            }
-        }
+      }
     }
+
+    .ui-calendar-current {
+      color:       #000;
+      font-size:   18px;
+    }
+  }
+
+  .ui-calendar-month-picker {
+    width:          100%;
+    text-align:     center;
+    text-transform: uppercase;
+    padding:        25px 10px;
+
+    .ui-calendar-current-month {
+      cursor: pointer;
+    }
+    .ui-calendar-prev {
+      float: left;
+    }
+    .ui-calendar-next {
+      float: right;
+    }
+  }
+
+  table {
+    width:           auto;
+    border-collapse: collapse;
+  }
+
+  tr > * {
+    text-align:     center;
+    vertical-align: top;
+    font-weight:    300;
+    font-size:      16px;
+    border:         none;
+    padding:        0;
+  }
+
+  th,
+  &-prev-month,
+  &-next-month {
+    color: lighten(#8d8d8d, 20);
+  }
+
+  th {
+    text-transform: capitalize;
+    vertical-align: top;
+    height:         40px;
+    width:          $cell-width;
+  }
+
+  td {
+    > * {
+      display:     block;
+      width:       $cell-width;
+      height:      $cell-height;
+      line-height: $cell-height;
+      position:    relative;
+      cursor:      pointer;
+
+      &:after {
+        content:       '';
+        display:       block;
+        position:      absolute;
+        border-radius: 50%;
+        width:         $cell-current-size;
+        height:        $cell-current-size;
+        top:           ($cell-height - $cell-current-size) / 2;
+        left:          ($cell-width - $cell-current-size) / 2;
+        transition:    all .2s ease;
+        border:        1px solid transparent;
+      }
+
+      > span {
+        position: relative;
+        z-index:  2;
+      }
+    }
+    &.ui-calendar-today {
+      color: #1abf7a
+    }
+
+    &:hover > * {
+      color: #000;
+
+      &:after {
+        z-index:    1;
+        background: #FFF;
+        border:     1px solid #1abf7a;
+      }
+    }
+    &.ui-calendar-current > * {
+      color: #FFF;
+      &:after {
+        z-index: 1;
+        background: #1abf7a;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up('sm') {
+
+  .ui-slot-dropdown {
+    position: relative;
+
+    .ui-calendar {
+      position:         absolute;
+      top:              0;
+      left:             auto;
+      transform:        scale(.85);
+      transform-origin: 0 0;
+
+      &, & > *, tr > * {
+        font-size: 18px;
+      }
+
+      .ui-calendar-close {
+        display: none;
+      }
+    }
+  }
+
 }

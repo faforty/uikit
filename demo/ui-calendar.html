@@ -31,6 +31,19 @@
                     <h3 slot="page-header">Заголовок</h3>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <ui-input class="d-inline-block" size="10" v-model="dateInput" icon="uikit-calendar" @focus="$refs.inputCal.show()" @click.native.stop>
+                            <ui-calendar slot="dropdown" ref="inputCal" v-model="dateInput"></ui-calendar>
+                        </ui-input>
+                    </div>
+
+                    <div class="col-md-6">
+                        <ui-input class="d-inline-block" size="14" v-model="dateInput2" icon="uikit-calendar" @focus="$refs.inputCal2.show()" @click.native.stop>
+                            <ui-calendar slot="dropdown" ref="inputCal2" v-model="dateInput2" format="DD MMMM YYYY"></ui-calendar>
+                        </ui-input>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <ui-calendar ref="calendar" v-model="date" >
@@ -49,9 +62,6 @@
                         <ui-button><i class="uikit-calendar"></i> Moment: {{ dateMoment }}</ui-button>
                     </ui-calendar>
                 </div>
-
-                <ui-input class="d-inline-block" v-model="dateInput" icon="uikit-calendar" @focus="$refs.inputCal.show()" @click.native.stop></ui-input>
-                <ui-calendar ref="inputCal" v-model="dateInput"></ui-calendar>
 
                 <template slot="actions">
                     <ui-pagination prev-link="/" prev-name="Туда" next-link="/" next-name="Сюда" step="0" step-all="3"></ui-pagination>
@@ -76,6 +86,7 @@ new Vue({
         dateUnixtime: null,
         date:         '',
         dateInput:    '21.10.2017',
+        dateInput2:   '',
         dateMoment:   null,
         showCalendar: true,
     }),

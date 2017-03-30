@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div v-if="$slots.dropdown">
+            <div v-if="$slots.dropdown" class="ui-slot-dropdown">
                 <slot name="dropdown" />
             </div>
 
