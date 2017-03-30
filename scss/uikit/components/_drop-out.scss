@@ -3,38 +3,37 @@
   //box-shadow: 0 13px 31px -3px #cdcdcd;
 
   &__results {
-    margin-top: -2px;
-    border-radius: 0;
-    border: 1px solid #e6e6e6;
-    border-top: none;
-    border-bottom: none;
-    position: absolute;
-    // top: 100%;
-    left: 0;
-    -webkit-transform-origin: center top;
+    margin-top:       -2px;
+    border-radius:    0;
+    border:           1px solid #e6e6e6;
+    border-top:       none;
+    border-bottom:    none;
+    position:         absolute;
+    left:             0;
+    padding:          1px 0;
     transform-origin: center top;
-    white-space: normal;
-    background: #fff;
-    width: 100%;
-    overflow: hidden;
-    z-index: 9;
-    box-shadow: 0 13px 31px -3px #cdcdcd;
+    white-space:      normal;
+    background:       #fff;
+    width:            100%;
+    overflow:         hidden;
+    z-index:          9;
+    box-shadow:       0 13px 31px -3px #cdcdcd;
   }
 
   &__result {
-    display: block;
-    overflow: visible;
-    padding: 0;
-    color: rgba(0,0,0,.87);
-    line-height: 1.33;
-    font-size: 1em;
+    display:         block;
+    overflow:        visible;
+    padding:         0;
+    color:           rgba(0,0,0,.87);
+    line-height:     1.33;
+    font-size:       1em;
     text-decoration: none;
-    border-top: 1px solid #dbdbdb;
+    border-top:      1px solid #dbdbdb;
 
     &:hover, &--active {
       border-top: 1px solid #eef4f2;
       background: #f8f8f8;
-      color: #1ac079;
+      color:      #1ac079;
 
       .drop-out__result__content__title div {
         background: #f8f8f8;
