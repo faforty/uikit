@@ -15,7 +15,6 @@ import uiSpinner          from './ui-spinner.vue';
 import uiPopup            from './ui-popup.vue';
 import uiPopover          from './ui-popover.vue';
 import uiBoxFilter        from './ui-box-filter.vue';
-import uiDatepicker       from './ui-datepicker.vue';
 import uiProgressBar      from './ui-progress-bar.vue';
 import uiInkRipple        from './ui-ink-ripple/ui-Ink-ripple.vue';
 import uiChip             from './ui-chip.vue';
@@ -53,7 +52,6 @@ export default {
     'ui-popup':             uiPopup,
     'ui-popover':           uiPopover,
     'ui-dropdown':          uiDropdown,
-    'ui-datepicker':        uiDatepicker,
     'ui-progress-bar':      uiProgressBar,
     'ui-ink-ripple':        uiInkRipple,
     'ui-chip':              uiChip,
