@@ -96,7 +96,7 @@
 
 
                 <template slot="actions">
-                    <ui-pagination :next-error="paginationNextError" prev-link="/" prev-name="Туда"  step="0" step-all="3"></ui-pagination>
+                    <ui-pagination :next-error="paginationNextError" next-name="Сюда"  prev-link="/" prev-name="Туда"  step="0" step-all="3"></ui-pagination>
                 </template>
 
             </ui-content-box>
@@ -136,9 +136,6 @@ new Vue({
         setTimeout(() => {
             this.paginationNextError = 'Error message error message error message error message error message';
         }, 1000);
-        setTimeout(() => {
-            this.paginationNextError = false;
-        }, 5000);
     }
 })
 </script>

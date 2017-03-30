@@ -3,46 +3,49 @@
 
         <template slot="label"><slot></slot></template>
 
-        <div class="ui-select">
-            <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown($event, true)">
-                <template v-if="(search && !show) || !search">
-                    <span>
-                        {{ selectedItems }}
-                        <span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
-                    </span>
+        <div class="ui-select ui-input-pos">
+            <div class="inner-addon">
+                <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown($event, true)">
+                    <template v-if="(search && !show) || !search">
+                        <span>
+                            {{ selectedItems }}
+                            <span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
+                        </span>
 
-                    <span class="ui-select__selected__icon">
-                        <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
-                    </span>
-                </template>
-                <div v-show="search && show" style="width: 100%">
-                    <ui-input
-                        ref="uiSelectSearch"
-                        icon="uikit-search"
-                        style="width:100%"
-                        :form-group="false"
-                        :label="false"
-                        @click.native.stop
-                        @blur="hideDropdown"
-                        v-model="searchText"
-                    />
+                        <span class="ui-select__selected__icon">
+                            <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
+                        </span>
+                    </template>
+                    <div v-show="search && show" style="width: 100%">
+                        <ui-input
+                            ref="uiSelectSearch"
+                            icon="uikit-search"
+                            style="width:100%"
+                            :form-group="false"
+                            :label="false"
+                            @click.native.stop
+                            @blur="hideDropdown"
+                            v-model="searchText"
+                        />
+                    </div>
                 </div>
-            </div>
-            <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
-                <a v-if="Object.keys(results).length == 0" class="drop-out__result" v-for="(option, key) in options" @mousedown="select(key)">
-                    <div class="drop-out__result__content">
-                        <div class="drop-out__result__content__title">
-                            <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
+
+                <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
+                    <a v-if="Object.keys(results).length == 0" class="drop-out__result" v-for="(option, key) in options" @mousedown="select(key)">
+                        <div class="drop-out__result__content">
+                            <div class="drop-out__result__content__title">
+                                <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <a v-if="Object.keys(results).length" class="drop-out__result" v-for="(option, key) in results" @mousedown="select(key)">
-                    <div class="drop-out__result__content">
-                        <div class="drop-out__result__content__title">
-                            <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
+                    </a>
+                    <a v-if="Object.keys(results).length" class="drop-out__result" v-for="(option, key) in results" @mousedown="select(key)">
+                        <div class="drop-out__result__content">
+                            <div class="drop-out__result__content__title">
+                                <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
 
             <div class="ui-input__help" v-if="info">
@@ -52,10 +55,11 @@
                 </ui-popover>
             </div>
 
-            <transition name="fade" mode="out-in">
-                <div v-if="hint" class="ui-hint" v-html="hint"></div>
-            </transition>
         </div>
+
+        <transition name="fade" mode="out-in">
+            <div v-if="hint" class="ui-hint" v-html="hint"></div>
+        </transition>
     </ui-label>
 </template>
 

@@ -1,18 +1,30 @@
 .ui-select {
-  display:  inline-block;
+  // display:  inline-block;
   position: relative;
   width:    100%;
 
+  &.ui-select--with-info,
   .ui-input--info-spacing & {
     padding-right: 50px;
   }
+
   .ui-input-pos {
     margin: -18px -22px;
   }
+
   .form-control .form-control {
     border: 0;
     line-height: 16px;
   }
+  // .inner-addon {
+  //   width: 100%;
+  //   display: block;
+  // }
+  // .ui-input__help {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  // }
 
   &__disabled {
     background: rgba(231, 231, 231, .53);

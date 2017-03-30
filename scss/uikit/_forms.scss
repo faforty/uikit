@@ -212,7 +212,6 @@
     &__help {
       margin: 16px 10px 16px 16px;
 
-      .ui-column-spacing &,
       .ui-input--info-spacing &, // FIXME: Deprecated
       .ui-input--info-absolute & {
         position:         absolute;
@@ -220,6 +219,15 @@
         top:              18px;
         right:            -40px;
       }
+      @include media-breakpoint-up(sm) {
+        .ui-column-spacing & {
+          position: absolute;
+          margin:   0;
+          top:      18px;
+          right:    -40px;
+        }
+      }
+
       .ui-input--info-spacing & {
         right: 10px;
       }

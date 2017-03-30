@@ -2,12 +2,16 @@
   position: relative;
   width: 100%;
 }
-.ui-column-spacing {
-    &[class^="col-"], &[class*=" col-"],
-    [class^="col-"], [class*=" col-"] {
-        padding-right: 65px;
-    }
+
+@include media-breakpoint-up(md) {
+  .ui-column-spacing {
+      &[class^="col-"], &[class*=" col-"],
+      [class^="col-"], [class*=" col-"] {
+          padding-right: 65px;
+      }
+  }
 }
+
 @include media-breakpoint-up(md) {
   .ui-label-absolute {
     label.ui-label {
