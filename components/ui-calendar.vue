@@ -46,7 +46,7 @@
 <script>
 import moment from 'moment';
 
-import uiButton form './ui-button.vue';
+import uiButton from './ui-button.vue';
 
 moment.locale('ru');
 
