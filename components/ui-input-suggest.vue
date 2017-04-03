@@ -47,6 +47,7 @@
 import uiInput from './ui-input.vue';
 
 export default {
+    name: 'ui-input-suggest',
     components: {
         uiInput
     },

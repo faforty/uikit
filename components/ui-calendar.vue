@@ -46,6 +46,8 @@
 <script>
 import moment from 'moment';
 
+import uiButton form './ui-button.vue';
+
 moment.locale('ru');
 
 const normalizeDate = (date, format = '') => {
@@ -54,6 +56,10 @@ const normalizeDate = (date, format = '') => {
 }
 
 export default {
+    name: 'ui-calendar',
+    components: {
+        uiButton
+    },
     props: {
         value: {},
         format: {
