@@ -12,6 +12,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js" type="text/javascript"></script>
     <script src="../dist/js/uikit.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 </head>
 <body>
 
@@ -31,17 +32,35 @@
                     <h3 slot="page-header">Заголовок</h3>
                 </div>
 
-                <div>
-                    <ui-input class="d-inline-block" size="10" v-model="dateInput" icon="uikit-calendar" @focus="$refs.inputCal.show()" @click.native.stop>
-                        Pinned calendar
-                        <ui-calendar slot="dropdown" ref="inputCal" v-model="dateInput"></ui-calendar>
-                    </ui-input>
+                <div class="ui-form-inline">
+                    <div><ui-input class="d-inline-block" size="10" v-model="dateFrom" icon="uikit-calendar" @focus="$refs.inputCalFrom.show()" @click.native.stop>
+                        From date
+                        <ui-calendar slot="dropdown" ref="inputCalFrom" v-model="dateFrom" :max-date="dateTo"></ui-calendar>
+                    </ui-input></div>
+
+                    <div><ui-input class="d-inline-block" size="10" v-model="dateTo" icon="uikit-calendar" @focus="$refs.inputCalTo.show()" @click.native.stop>
+                        To date
+                        <ui-calendar slot="dropdown" ref="inputCalTo" v-model="dateTo" :min-date="dateFrom"></ui-calendar>
+                    </ui-input></div>
                 </div>
+
+                <div class="ui-form-inline">
+                    <div><ui-input class="d-inline-block" size="10" v-model="dateFrom2" icon="uikit-calendar" @focus="$refs.inputCalFrom2.show()" @click.native.stop>
+                        From date
+                        <ui-calendar slot="dropdown" ref="inputCalFrom2" format="" v-model="dateFrom2" :max-date="dateTo2 ? moment(dateTo2).add(-1, 'd') : dateTo2"></ui-calendar>
+                    </ui-input></div>
+
+                    <div><ui-input class="d-inline-block" size="10" v-model="dateTo2" icon="uikit-calendar" @focus="$refs.inputCalTo2.show()" @click.native.stop>
+                        To date
+                        <ui-calendar slot="dropdown" ref="inputCalTo2" format="" v-model="dateTo2" :min-date="dateFrom2 ? moment(dateFrom2).add(1, 'd') : dateFrom2"></ui-calendar>
+                    </ui-input></div>
+                </div>
+
                 <div>
                     <ui-input class="d-inline-block" size="14" v-model="dateInput2" icon="uikit-calendar" @focus="$refs.inputCal2.show()" @click.native.stop>
                         Popup calendar
                     </ui-input>
-                    <ui-calendar ref="inputCal2" v-model="dateInput2" format="DD MMMM YYYY"></ui-calendar>
+                    <ui-calendar ref="inputCal2" v-model="dateInput2" format="DD MMMM YYYY" :min-date="moment()"></ui-calendar>
                 </div>
 
                 <div class="form-group">
@@ -79,16 +98,24 @@
 </div>
 
 <script>
+
 new Vue({
     el: '#app',
     data: () => ({
         dateUnixtime: null,
         date:         '',
-        dateInput:    '21.10.2017',
+        dateFrom:     '',
+        dateTo:       '',
+        dateFrom2:    '',
+        dateTo2:      '',
         dateInput2:   '',
         dateMoment:   null,
         showCalendar: true,
     }),
+
+    mounted() {
+        this.$refs.inputCalTo.show();
+    }
 })
 </script>
 </body>

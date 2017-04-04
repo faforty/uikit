@@ -1,18 +1,70 @@
-$cell-width:         44px;
-$cell-height:        36px;
-$cell-current-size:  40px;
-$padding:            $cell-width / 2;
-$popup-width:        $cell-width*7 + $padding*2;
-$year-picker-height: 70px;
+@mixin _calendar($cell-width, $cell-height, $cell-current-size, $year-picker-height, $font-size) {
+  $padding:            $cell-width / 2;
+  $popup-width:        $cell-width*7 + $padding*2;
 
+  padding:   0 $padding $padding;
+  font-size: $font-size;
+
+  th {
+    height: $cell-height;
+    width:  $cell-width;
+  }
+  tr > * {
+    font-size: $font-size;
+  }
+  td {
+    > * {
+      width:       $cell-width;
+      height:      $cell-height;
+      line-height: $cell-height;
+
+      &:after {
+        width:  $cell-current-size;
+        height: $cell-current-size;
+        top:    ($cell-height - $cell-current-size) / 2;
+        left:   ($cell-width - $cell-current-size) / 2;
+      }
+    }
+  }
+  .ui-calendar-year-picker {
+    height: $year-picker-height;
+    margin: 0 (-$padding);
+    width:  $popup-width;
+
+    > div {
+      height: $year-picker-height;
+      > * {
+        height:      $year-picker-height;
+        line-height: $year-picker-height;
+      }
+      &:before {
+        margin-left: -$popup-width/2-1;
+      }
+      &:after {
+        margin-right: -$popup-width/2-1;
+      }
+    }
+  }
+  .ui-calendar-month-picker {
+    padding:     0 ($padding/2);
+    height:      $year-picker-height;
+    line-height: $year-picker-height
+  }
+}
 
 .ui-calendar-wrapper {
   display: inline-block;
 }
 
 .ui-calendar {
+  $cell-width:         44px;
+  $cell-height:        36px;
+  $cell-current-size:  40px;
+  $year-picker-height: 70px;
+  $font-size:          16px;
+  @include _calendar($cell-width, $cell-height, $cell-current-size, $year-picker-height, $font-size);
+
   background:    #FFF;
-  padding:       0 $padding $padding;
   box-shadow:    0 15px 100px -10px rgba(#0f764a, 0.15);
   position:      absolute;
   position:      fixed;
@@ -20,7 +72,6 @@ $year-picker-height: 70px;
   top:           50%;
   transform:     translate(-50%, -210px);
   font-weight:   300;
-  font-size:     16px;
   z-index:       9999;
   border-radius: 3px;
   user-select:   none;
@@ -35,13 +86,10 @@ $year-picker-height: 70px;
   .ui-calendar-year-picker {
     background:  #eef4f2;
     color:       #2d9e6e;
-    height:      $year-picker-height;
     line-height: 30px;
-    margin:      0 (-$padding);
-    font-size:   14px;
+    font-size:   0.85em;
     font-weight: 400;
     overflow:    hidden;
-    width:       $popup-width;
     position:    relative;
 
     > div {
@@ -49,7 +97,6 @@ $year-picker-height: 70px;
       position:    absolute;
       left:        50%;
       transform:   translate(-50%, 0);
-      height:      $year-picker-height;
       top:         0;
       white-space: nowrap;
 
@@ -63,20 +110,16 @@ $year-picker-height: 70px;
       &:before {
         border-left: 5px solid #eef4f2;
         background:  linear-gradient(90deg, #eef4f2, rgba(#eef4f2, 0));
-        margin-left: -$popup-width/2-1;
         left:        50%;
       }
       &:after {
         border-right: 3px solid #eef4f2;
         background:   linear-gradient(-90deg, #eef4f2, rgba(#eef4f2, 0));
-        margin-right: -$popup-width/2-1;
         right:        50%;
       }
 
       > * {
         padding:        0 22px;
-        height:         $year-picker-height;
-        line-height:    $year-picker-height;
         display:        inline-block;
         vertical-align: top;
         transition:     all .2s ease;
@@ -97,18 +140,28 @@ $year-picker-height: 70px;
 
     .ui-calendar-current {
       color:       #000;
-      font-size:   18px;
+      font-size:   1.35em;
     }
   }
 
   .ui-calendar-month-picker {
-    width:          100%;
-    text-align:     center;
-    text-transform: uppercase;
-    padding:        25px 10px;
+    width:           100%;
+    text-align:      center;
+    text-transform:  uppercase;
+    display:         flex;
+    justify-content: space-between;
+    align-items:     center;
+
+    > * {
+      display: inline-block
+    }
 
     .ui-calendar-current-month {
       cursor: pointer;
+    }
+    .ui-btn i {
+      margin-top: -1px;
+      display:    inline-block;
     }
     .ui-calendar-prev {
       float: left;
@@ -127,7 +180,6 @@ $year-picker-height: 70px;
     text-align:     center;
     vertical-align: top;
     font-weight:    300;
-    font-size:      16px;
     border:         none;
     padding:        0;
   }
@@ -141,28 +193,19 @@ $year-picker-height: 70px;
   th {
     text-transform: capitalize;
     vertical-align: top;
-    height:         40px;
-    width:          $cell-width;
   }
 
   td {
     > * {
-      display:     block;
-      width:       $cell-width;
-      height:      $cell-height;
-      line-height: $cell-height;
-      position:    relative;
-      cursor:      pointer;
+      display:  block;
+      position: relative;
+      cursor:   pointer;
 
       &:after {
         content:       '';
         display:       block;
         position:      absolute;
         border-radius: 50%;
-        width:         $cell-current-size;
-        height:        $cell-current-size;
-        top:           ($cell-height - $cell-current-size) / 2;
-        left:          ($cell-width - $cell-current-size) / 2;
         transition:    all .2s ease;
         border:        1px solid transparent;
       }
@@ -172,8 +215,9 @@ $year-picker-height: 70px;
         z-index:  2;
       }
     }
+
     &.ui-calendar-today {
-      color: #1abf7a
+      color: #1abf7a;
     }
 
     &:hover > * {
@@ -185,6 +229,7 @@ $year-picker-height: 70px;
         border:     1px solid #1abf7a;
       }
     }
+
     &.ui-calendar-current > * {
       color: #FFF;
       &:after {
@@ -192,6 +237,21 @@ $year-picker-height: 70px;
         background: #1abf7a;
       }
     }
+
+    &.ui-calendar-disabled {
+      color:      #CCC;
+      background: #F9F9F9;
+
+      &:hover > * {
+        color: #CCC;
+        cursor: default;
+      }
+
+      > *:after {
+        display: none !important
+      }
+    }
+
   }
 }
 
@@ -201,15 +261,18 @@ $year-picker-height: 70px;
     position: relative;
 
     .ui-calendar {
-      position:         absolute;
-      top:              0;
-      left:             auto;
-      transform:        scale(.85);
-      transform-origin: 0 0;
+      $cell-width:         36px;
+      $cell-height:        30px;
+      $cell-current-size:  36px;
+      $year-picker-height: 55px;
+      $font-size:          14px;
+      @include _calendar($cell-width, $cell-height, $cell-current-size, $year-picker-height, $font-size);
 
-      &, & > *, tr > * {
-        font-size: 18px;
-      }
+      position:  absolute;
+      top:       0;
+      left:      auto;
+      transform: none;
+
 
       .ui-calendar-close {
         display: none;

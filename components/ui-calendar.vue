@@ -4,6 +4,7 @@
             <slot></slot>
         </span>
 
+        <transition name="fade" mode="out-in">
         <div v-if="visible" class="ui-calendar" @click.stop>
 
             <span class="ui-calendar-close ui-action ui-action--close ui-action--close--circle uikit-close-empty" @click="hide"></span>
@@ -20,10 +21,10 @@
                 <ui-button class="ui-calendar-prev ui-btn--circle ui-btn--xs" @click.stop="offsetMonth(-1)">
                     <i class="uikit-arrow-back"></i>
                 </ui-button>
+                {{currentMonthName}}
                 <ui-button class="ui-calendar-next ui-btn--circle ui-btn--xs" @click.stop="offsetMonth(1)">
                     <i class="uikit-arrow-forward"></i>
                 </ui-button>
-                {{currentMonthName}}
             </div>
 
             <table>
@@ -39,6 +40,7 @@
                 </tr>
             </table>
         </div>
+        </transition>
 
     </div>
 </template>
@@ -48,10 +50,12 @@ import moment from 'moment';
 
 import uiButton from './ui-button.vue';
 
+// FIXME
 moment.locale('ru');
 
 const normalizeDate = (date, format = '') => {
-    var date = moment(date, format).startOf('day').unix();
+    var date = format ? moment(date, format) : moment(date);
+    date = date.startOf('day').unix();
     return date || !isNaN(date) ? date : moment().unix();
 }
 
@@ -70,10 +74,16 @@ export default {
             type:    Boolean,
             default: true
         },
+        disabledDate: {
+            type:    Function,
+            default: (date) => false
+        },
+        minDate: {},
+        maxDate: {}
     },
     data: () => ({
         visible:          false,
-        weekdays:         moment.weekdaysShort(),
+        weekdays:         moment.weekdaysShort(true),
         currentTimestamp: moment().unix(),
     }),
 
@@ -87,6 +97,18 @@ export default {
         timestamp() {
             if (this.value) {
                 return normalizeDate(this.value, this.format);
+            }
+        },
+
+        minDateTimestamp() {
+            if (this.minDate) {
+                return normalizeDate(this.minDate, this.format) - 1;
+            }
+        },
+
+        maxDateTimestamp() {
+            if (this.maxDate) {
+                return normalizeDate(this.maxDate, this.format) + 86400;
             }
         },
 
@@ -123,15 +145,17 @@ export default {
         calendar() {
             var calendar = [];
 
-            var date  = moment(this.current).startOf('month').startOf('week').startOf('day') ;
+            var date  = moment(this.current).startOf('month').startOf('week').startOf('day');
             var today = normalizeDate(moment());
             var value = normalizeDate(this.value, this.format);
 
             for (var w = 0; w < 6; w++) {
                 calendar[w] = [];
                 for (var i = 0; i < 7; i++) {
-                    var timestamp = date.format('X');
+                    var timestamp = date.unix();
                     var className = '';
+                    var disabled  = this.isDisabledDate(date, timestamp);
+
                     if (date.month() != this.currentMonth) {
                         if (w > 0 && i === 0) break; // Dont draw next month week
                         className = 'ui-calendar-' + (w < 1 ? 'prev-month' : 'next-month');
@@ -142,10 +166,14 @@ export default {
                     if (timestamp == today) {
                         className += ' ui-calendar-today';
                     }
+                    if (disabled) {
+                        className += ' ui-calendar-disabled';
+                    }
                     calendar[w].push({
                         timestamp,
+                        disabled,
                         date:  date.date(),
-                        class: className
+                        class: className,
                     });
                     date.add(1, 'day');
                 }
@@ -173,6 +201,10 @@ export default {
         },
 
         select(day) {
+            if (day.disabled) {
+                return;
+            }
+
             var value = moment.unix(day.timestamp).format(this.format);
             this.$emit('input', value);
             if (this.closeonselect) {
@@ -189,6 +221,12 @@ export default {
         },
         setYear(year) {
             this.current = this.current.set({year});
+        },
+
+        isDisabledDate(date, timestamp) {
+            return (this.minDateTimestamp && this.minDateTimestamp >= timestamp)
+                || (this.maxDateTimestamp && this.maxDateTimestamp <= timestamp)
+                || this.disabledDate(date);
         }
     },
 
