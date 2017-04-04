@@ -190,6 +190,10 @@
 // }
 
 .ui {
+  &-slot-dropdown {
+    display: block;
+    height:  0;
+  }
   &-input {
 
     &-pos {

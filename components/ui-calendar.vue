@@ -54,7 +54,7 @@ import uiButton from './ui-button.vue';
 moment.locale('ru');
 
 const normalizeDate = (date, format = '') => {
-    var date = format ? moment(date, format) : moment(date);
+    var date = format ? moment(date, format, true) : moment(date);
     date = date.startOf('day').unix();
     return date || !isNaN(date) ? date : moment().unix();
 }
@@ -205,7 +205,10 @@ export default {
                 return;
             }
 
-            var value = moment.unix(day.timestamp).format(this.format);
+            var value = moment.unix(day.timestamp);
+            if (this.format) {
+                value = value.format(this.format);
+            }
             this.$emit('input', value);
             if (this.closeonselect) {
                 this.hide();
@@ -219,6 +222,7 @@ export default {
         offsetMonth(offset) {
             this.current = this.current.add(offset, 'months');
         },
+
         setYear(year) {
             this.current = this.current.set({year});
         },

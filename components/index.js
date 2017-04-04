@@ -7,6 +7,7 @@ import uiInput            from './ui-input.vue';
 import uiInputSuggest     from './ui-input-suggest.vue';
 import uiInputAjax        from './ui-input-ajax.vue';
 import uiInputSpin        from './ui-input-spinner.vue';
+import uiInputDate        from './ui-input-date.vue';
 import uiTextarea         from './ui-textarea.vue';
 import uiTabs             from './ui-tabs.vue';
 import uiTab              from './ui-tab.vue';
@@ -44,6 +45,7 @@ export default {
     'ui-input-suggest':     uiInputSuggest,
     'ui-input-ajax':        uiInputAjax,
     'ui-input-spinner':     uiInputSpin,
+    'ui-input-date':        uiInputDate,
     'ui-textarea':          uiTextarea,
     'ui-tabs':              uiTabs,
     'ui-tab':               uiTab,

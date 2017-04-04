@@ -33,27 +33,21 @@
                 </div>
 
                 <div class="ui-form-inline">
-                    <div><ui-input class="d-inline-block" size="10" v-model="dateFrom" icon="uikit-calendar" @focus="$refs.inputCalFrom.show()" @click.native.stop>
-                        From date
-                        <ui-calendar slot="dropdown" ref="inputCalFrom" v-model="dateFrom" :max-date="dateTo"></ui-calendar>
-                    </ui-input></div>
+                    <ui-input-date class="d-inline-block" size="10" max-size="15" v-model="dateFrom2" input-format="DD MMMM YYYY" :max-date="dateTo2" :hint="dateFrom2 ? dateFrom2.format('D MMMM') : ''">From</ui-input-date>
 
-                    <div><ui-input class="d-inline-block" size="10" v-model="dateTo" icon="uikit-calendar" @focus="$refs.inputCalTo.show()" @click.native.stop>
-                        To date
-                        <ui-calendar slot="dropdown" ref="inputCalTo" v-model="dateTo" :min-date="dateFrom"></ui-calendar>
-                    </ui-input></div>
+                    <ui-input-date class="d-inline-block" size="10" max-size="15" v-model="dateTo2" input-format="DD MMMM YYYY" :min-date="dateFrom2" :hint="dateTo2 ? dateTo2.format('D MMMM') : ''">To</ui-input-date>
                 </div>
 
                 <div class="ui-form-inline">
-                    <div><ui-input class="d-inline-block" size="10" v-model="dateFrom2" icon="uikit-calendar" @focus="$refs.inputCalFrom2.show()" @click.native.stop>
+                    <ui-input class="d-inline-block" size="10" v-model="dateFrom" icon="uikit-calendar" @focus="$refs.inputCalFrom.show()" @click.native.stop>
                         From date
-                        <ui-calendar slot="dropdown" ref="inputCalFrom2" format="" v-model="dateFrom2" :max-date="dateTo2 ? moment(dateTo2).add(-1, 'd') : dateTo2"></ui-calendar>
-                    </ui-input></div>
+                        <ui-calendar slot="dropdown" ref="inputCalFrom" v-model="dateFrom" :max-date="dateTo"></ui-calendar>
+                    </ui-input>
 
-                    <div><ui-input class="d-inline-block" size="10" v-model="dateTo2" icon="uikit-calendar" @focus="$refs.inputCalTo2.show()" @click.native.stop>
+                    <ui-input class="d-inline-block" size="10" v-model="dateTo" icon="uikit-calendar" @focus="$refs.inputCalTo.show()" @click.native.stop>
                         To date
-                        <ui-calendar slot="dropdown" ref="inputCalTo2" format="" v-model="dateTo2" :min-date="dateFrom2 ? moment(dateFrom2).add(1, 'd') : dateFrom2"></ui-calendar>
-                    </ui-input></div>
+                        <ui-calendar slot="dropdown" ref="inputCalTo" v-model="dateTo" :min-date="dateFrom"></ui-calendar>
+                    </ui-input>
                 </div>
 
                 <div>
@@ -114,7 +108,7 @@ new Vue({
     }),
 
     mounted() {
-        this.$refs.inputCalTo.show();
+        // this.$refs.inputCalTo.show();
     }
 })
 </script>
