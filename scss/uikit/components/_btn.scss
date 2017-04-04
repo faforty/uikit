@@ -121,17 +121,6 @@
         margin-top: 1px;
       }
 
-      &[disabled] {
-        @include btn-style(grayMedium, grayMedium, map_get($colors, gray));
-
-        box-shadow: none !important;
-
-        &:hover {
-          border-color: map_get($colors, grayMedium);
-          box-shadow:   none !important;
-        }
-      }
-
       i {
         margin-right: auto;
         margin-left: auto;
@@ -212,6 +201,17 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
+    }
+
+    &[disabled] {
+      &.ui-btn--circle.ui-btn--green {
+        &, &:hover {
+          box-shadow:       none;
+          background-color: map_get($colors, grayMedium) !important;
+          border-color:     map_get($colors, grayMedium) !important;
+          color:            #FFF;
+        }
+      }
     }
   }
 }
