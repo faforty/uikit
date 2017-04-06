@@ -32,6 +32,10 @@
             <span class="ui-text--gray">Selected value:</span> {{typeof(string_value)}}: {{string_value}}
         </div>
         <div class="col-lg-4">
+            <ui-select v-model.number="number_value" :options="options" autoselect>Value as number</ui-select>
+            <span class="ui-text--gray">Selected value:</span> {{typeof(number_value)}}: {{number_value}}
+        </div>
+        <div class="col-lg-4">
             <ui-select v-model="array_value" :options="options" autoselect>Value as array</ui-select>
             <span class="ui-text--gray">Selected value:</span> {{typeof(array_value)}}: {{array_value}}
         </div>
@@ -57,6 +61,7 @@ new Vue({
         autoselect_value2: [],
         autoselect_value3: ['3'],
         string_value:      '4',
+        number_value:      3,
         array_value:       ['4'],
     }),
 
