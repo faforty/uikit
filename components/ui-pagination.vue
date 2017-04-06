@@ -3,7 +3,7 @@
         <li :class="[ 'ui-pagination__prev', { 'ui-pagination--hide': !prevLink }]">
             <span class="ui-pagination__prev__link">
                 <ui-button @click="prevClick" :href="prevHref" class="ui-btn--circle ui-pagination__prev__link">
-                    <i class="uikit-arrow-back"></i>
+                    <i :class="prevIcon"></i>
                 </ui-button>
             </span>
             <span class="ui-pagination__name">{{ prevName }}</span>
@@ -17,11 +17,12 @@
                 <ui-popover v-if="nextError" ref="nextPopover">
                     <div slot="content" v-html="nextError"></div>
                     <ui-button @click="nextClick" :href="nextHref" class="ui-btn--circle" :class="nextClass">
-                        <i class="uikit-arrow-forward"></i>
+                        <i :class="nextIcon"></i>
                     </ui-button>
                 </ui-popover>
+
                 <ui-button v-else @click="nextClick" :href="nextHref" class="ui-btn--circle" :class="nextClass">
-                    <i class="uikit-arrow-forward"></i>
+                    <i :class="nextIcon"></i>
                 </ui-button>
             </span>
         </li>
@@ -58,6 +59,8 @@ export default {
         prevName: {
             type: String
         },
+        prevIcon: {type: String, default: 'uikit-arrow-back'},
+        nextIcon: {type: String, default: 'uikit-arrow-forward'},
         step: {
             type: [String, Number],
             default: 0
