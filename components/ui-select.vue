@@ -60,6 +60,7 @@
         <transition name="fade" mode="out-in">
             <div v-if="hint" class="ui-hint" v-html="hint"></div>
         </transition>
+
     </ui-label>
 </template>
 
@@ -78,6 +79,7 @@
             options:      {},
             optionsRules: Object,
             search:       Boolean,
+            autoselect:   Boolean,
             hint:         String,
             info:         String,
 
@@ -120,6 +122,10 @@
             };
         },
         watch: {
+            options(options) {
+                this.tryAutoselect();
+            },
+
             searchText (value) {
                 this.$emit('input-value', value);
 
@@ -135,10 +141,10 @@
             }
         },
         methods: {
-            isSelected: function (v) {
+            isSelected (v) {
                 return this.selectId.indexOf(v) > -1;
             },
-            select: function (v) {
+            select (v) {
                 if (this.selectId.indexOf(v) === -1) {
                     if (this.multiple) {
                         var m = [].concat(this.value);
@@ -150,8 +156,8 @@
 
                         this.selectId = m;
                     } else {
-                        this.$emit('input', [v]);
-                        this.$emit('change', [v])
+                        this.$emit('input', this.resultAsArray ? [v] : v);
+                        this.$emit('change', this.resultAsArray ? [v] : v)
                         this.filled = true
 
                         this.selectId = [v];
@@ -167,10 +173,26 @@
                 }
 
                 if (this.closeonselect && !this.multiple) {
-                    this.toggleDropdown();
+                    this.hideDropdown();
                 }
             },
-            toggleDropdown: function(e, lock = false) {
+
+            selectFirstItem() {
+                if (this.options) {
+                    for (var k in this.options) {
+                        this.select(k);
+                        break;
+                    }
+                }
+            },
+
+            tryAutoselect() {
+                if (this.autoselect && this.selectId.length === 0) {
+                    this.selectFirstItem();
+                }
+            },
+
+            toggleDropdown(e, lock = false) {
                 var show = this.disabled ? false : !this.show;
 
                 if (show) {
@@ -183,16 +205,16 @@
                     this.$refs.uiSelectSearch.focus()
                 }
             },
-            hideDropdown: function() {
+            hideDropdown() {
                 if (this._lock) {
                     this._lock = false;
                 } else {
                     this.show = false;
                 }
-            }
+            },
         },
         computed: {
-            selectedItems: function () {
+            selectedItems() {
                 if ( ! this.selectId.length) {
                     return '';
                 }
@@ -213,11 +235,14 @@
 
                 return foundItems.join(', ');
             },
-            showPlaceholder: function () {
+            showPlaceholder() {
                 this.selectId   = this.value
                 this.searchText = this.selectedItems
 
                 return this.selectId.length === 0;
+            },
+            resultAsArray() {
+                return typeof this.value === 'object' || this.value === null;
             }
         },
         //beforeCreate () {
@@ -232,6 +257,8 @@
         mounted: function () {
             this.selectId = this.value
             this.searchText = this.selectedItems
+
+            this.tryAutoselect();
 
             // this.$refs.uiSelectSearch.$el.addEventListener('click', function (event) {
             //     event.stopPropagation()

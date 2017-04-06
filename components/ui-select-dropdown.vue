@@ -5,26 +5,38 @@
             <slot></slot>
         </template>
 
-        <div class="ui-select">
-            <div :class="optionRowClass" @click="toggleDropdown($event, true)">
-                <span>
-                    <slot v-if="value" name="selected">{{ selectedItems }}</slot>
-                    <span v-else class="ui-text--gray">{{placeholder}}</span>
-                </span>
+        <div class="ui-select ui-input-pos">
 
-                <span class="ui-select__selected__icon">
-                    <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
-                </span>
+            <div class="inner-addon">
+
+                <div :class="optionRowClass" @click="toggleDropdown($event, true)">
+                    <span>
+                        <slot v-if="value" name="selected">{{ selectedItems }}</slot>
+                        <span v-else class="ui-text--gray">{{placeholder}}</span>
+                    </span>
+
+                    <span class="ui-select__selected__icon">
+                        <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
+                    </span>
+                </div>
+
+                <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show">
+                    <slot name="options"></slot>
+                </div>
             </div>
 
-            <div class="ui-select__options drop-out__results" style="display: block;max-height: 400px;overflow-y: auto;" v-show="show">
-                <slot name="options"></slot>
+            <div class="ui-input__help" v-if="info">
+                <ui-popover placement="right">
+                    <a class="ui-action ui-input__help__action uikit-info"></a>
+                    <div slot="content">{{info}}</div>
+                </ui-popover>
             </div>
 
-            <transition name="fade" mode="out-in">
-                <div v-if="hint" class="ui-hint" v-html="hint"></div>
-            </transition>
         </div>
+
+        <transition name="fade" mode="out-in">
+            <div v-if="hint" class="ui-hint" v-html="hint"></div>
+        </transition>
     </ui-label>
 </template>
 
@@ -38,6 +50,7 @@
 
         props: {
             hint: String,
+            info: String,
 
             value: {
                 // required: true

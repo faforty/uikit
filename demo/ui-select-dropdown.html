@@ -10,21 +10,21 @@
 <body class="ui-normalize">
 
 <div id="app" class="container">
-    <div class="row py-5">
+    <div class="row py-5 ui-column-spacing">
 
-        <div class="col-4">
-            <ui-select-dropdown :value="value">
+        <div class="col-lg-4">
+            <ui-select-dropdown :value="value" info="ok" hint="Hint text here">
                 Base dropdown
-                <template slot="selected">{{selectedValue}}</template>
+                <template slot="selected">{{value ? value.label : ''}}</template>
                 <ui-select-option slot="options" v-for="item in options" :label="item.label" :value="item" @select="selectItem"></ui-select-option>
             </ui-select-dropdown>
         </div>
 
-        <div class="col-4">
+        <div class="col-lg-4">
             <ui-select-dropdown :value="value">
                 Custom dropdown
                 <template slot="selected">
-                    {{selectedValue}}
+                    {{value ? value.label : ''}}
                     <span class="ui-text--gray">- Item description</span>
                 </template>
                 <ui-select-option slot="options" v-for="item in options" :label="item.label" :value="item" @select="selectItem">
@@ -34,11 +34,10 @@
             </ui-select-dropdown>
         </div>
 
-        <div class="col-4">
+        <div class="col-lg-4">
             <ui-select-dropdown :value="value" hint="Hint text text text text text text" disabled>
                 Disabled dropdown
-                <template slot="selected">{{selectedValue}}</template>
-                <!-- <ui-select-option slot="options" v-for="item in options" :label="item.label" :value="item" @select="selectItem"></ui-select-option> -->
+                <template slot="selected">{{value ? value.label : ''}}</template>
             </ui-select-dropdown>
         </div>
 
@@ -58,13 +57,11 @@ new Vue({
             {label: 'Option 4', id: 4},
             {label: 'Option 5', id: 5},
         ],
-        value:         null,
-        selectedValue: '',
+        value: null,
     }),
     methods: {
         selectItem(value) {
-            this.selectedValue = value.label;
-            this.value         = value;
+            this.value = value;
         }
     },
 })

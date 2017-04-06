@@ -17,7 +17,7 @@
         :label-align="labelAlign"
 
         @input="updateInputValue"
-        @blur="$forceUpdate()"
+        @blur="inputBlur"
         @keydown.tab="$refs.calendar.hide()"
         @focus="$refs.calendar.show()"
         @click.native.stop
@@ -95,6 +95,11 @@ export default {
             }
             this.updateValue(value);
         },
+        inputBlur() {
+            // В inputValue попадет текущая выбранная дата (value).
+            // Если была введена некорректная дата
+            this.$forceUpdate();
+        }
     },
 
     computed: {
