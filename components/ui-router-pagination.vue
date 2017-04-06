@@ -11,7 +11,7 @@
         :step-all="stepAll"
         @prev-click.prevent="onPrevClick"
         @next-click.prevent="onNextClick"
-    >
+    />
 </template>
 
 <script>
