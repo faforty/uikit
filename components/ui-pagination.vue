@@ -8,7 +8,7 @@
             </span>
             <span class="ui-pagination__name">{{ prevName }}</span>
         </li>
-        <li class="ui-pagination__step">
+        <li class="ui-pagination__step" v-if="stepAll">
             Шаг {{ step }} из {{ stepAll }}
         </li>
         <li class="ui-pagination__next">
