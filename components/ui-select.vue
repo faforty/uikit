@@ -115,10 +115,10 @@
         data: function () {
             return {
                 show: false,
-                selectId: [],
                 searchText: '',
                 results: {},
-                filled: false
+                // selectId: [],
+                // filled: false
             };
         },
         watch: {
@@ -144,6 +144,7 @@
             isSelected (v) {
                 return this.selectId.indexOf(v) > -1;
             },
+
             select (v) {
                 if (this.selectId.indexOf(v) === -1) {
                     if (this.multiple) {
@@ -151,16 +152,11 @@
                         m.push(v);
                         this.$emit('input', m);
                         this.$emit('change', m)
-
-                        this.filled = true
-
-                        this.selectId = m;
+                        // this.filled = true
                     } else {
                         this.$emit('input', this.resultAsArray ? [v] : v);
                         this.$emit('change', this.resultAsArray ? [v] : v)
-                        this.filled = true
-
-                        this.selectId = [v];
+                        // this.filled = true
                     }
                 } else {
                     if (this.multiple) {
@@ -214,6 +210,12 @@
             },
         },
         computed: {
+            filled() {
+                return this.selectId.length > 0;
+            },
+            selectId() {
+                return typeof this.value === 'object' ? this.value : [this.value];
+            },
             selectedItems() {
                 if ( ! this.selectId.length) {
                     return '';
@@ -229,43 +231,20 @@
                     }
                 }
 
-                if (foundItems.length) {
-                    this.filled = true
-                }
-
                 return foundItems.join(', ');
             },
             showPlaceholder() {
-                this.selectId   = this.value
                 this.searchText = this.selectedItems
-
                 return this.selectId.length === 0;
             },
             resultAsArray() {
                 return Array.isArray(this.value) || this.value === null;
             }
         },
-        //beforeCreate () {
-        //    if (this.optionsRules) {
-        //        let options = {};
-        //        [].forEach.call(this.options, item => {
-        //            options[item[this.optionsRules.id]] = item[this.optionsRules.value]
-        //        })
-        //        this.options = options;
-        //    }
-        //},
+
         mounted: function () {
-            this.selectId = this.value
             this.searchText = this.selectedItems
-
             this.tryAutoselect();
-
-            // this.$refs.uiSelectSearch.$el.addEventListener('click', function (event) {
-            //     event.stopPropagation()
-            // })
-            // this.$el.addEventListener('click', function (event) {
-            //     event.stopPropagation()
-            // })
 
             document.body.addEventListener('click', this.hideDropdown);
         },

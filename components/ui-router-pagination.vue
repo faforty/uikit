@@ -5,6 +5,8 @@
         :prev-name="prevName"
         :next-name="nextName"
         :next-error="nextError"
+        :next-icon="nextIcon"
+        :prev-icon="prevIcon"
         :step="step"
         :step-all="stepAll"
         @prev-click.prevent="onPrevClick"
@@ -30,9 +32,9 @@ export default {
             type: [String, Boolean],
             default: false
         },
-        prevName: {
-            type: String
-        },
+        prevName: String,
+        prevIcon: {type: String, default: 'uikit-arrow-back'},
+        nextIcon: {type: String, default: 'uikit-arrow-forward'},
         step: {
             type: [String, Number],
             default: 0

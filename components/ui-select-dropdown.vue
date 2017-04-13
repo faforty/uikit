@@ -42,10 +42,12 @@
 
 <script>
     import uiLabel from './ui-label.vue';
+    import uiPopover from './ui-popover.vue';
 
     export default {
         components: {
-            uiLabel
+            uiLabel,
+            uiPopover
         },
 
         props: {

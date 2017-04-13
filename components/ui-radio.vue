@@ -3,7 +3,7 @@
         <span v-if="info" class="float-right ui-radio-popover" @click.stop>
             <ui-popover placement="right">
                 <a class="ui-action ui-input__help__action uikit-info"></a>
-                <div slot="content">{{info}}</div>
+                <div slot="content" v-html="info"></div>
             </ui-popover>
         </span>
         <input :id="id" :name="name" :checked="isChecked" @change="update" :disabled="disabled" class="ui-radio" type="radio">
