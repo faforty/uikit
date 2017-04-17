@@ -84,7 +84,7 @@
             info:         String,
 
             value: {
-                type: Array,
+                type: [Array, String, Number],
                 default: []
             },
             label: {
@@ -238,7 +238,7 @@
                 return this.selectId.length === 0;
             },
             resultAsArray() {
-                return typeof this.value === 'object' || this.value === null;
+                return Array.isArray(this.value) || this.value === null;
             }
         },
 
