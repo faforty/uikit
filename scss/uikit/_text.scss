@@ -67,6 +67,9 @@ body .ui-text {
   &--green {
     color: map-get($colors, green) !important
   }
+  &--red {
+    color: $brand-danger !important
+  }
 
   // Font weight
   //------------------------------------------------------------------------

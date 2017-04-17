@@ -1,0 +1,47 @@
+.ui-modal {
+    background:    #fff;
+    box-shadow:    0 0 68px 0 rgba(#0f764a, 0.2);
+    border-radius: 5px;
+    padding:       62px 42px;
+    margin:        50px auto;
+    margin-bottom: 50px;
+    position:      relative;
+    z-index:       11;
+
+    &:not([class*=' col-']) {
+        max-width: 550px;
+    }
+
+    // &.enter {
+    //     transition:         all 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+    //     animation-duration: 0.3s;
+    //     animation-duration: mdp-animation-bounce;
+    // }
+
+    &--close {
+        background:    #f3f3f3;
+        width:         28px;
+        height:        28px;
+        line-height:   28px;
+        text-align:    center;
+        color:         #000;
+        font-size:     14px;
+        border-radius: 50%;
+        cursor:        pointer;
+        position:      absolute;
+        top:           -14px;
+        right:         calc(42px - 14px);
+        z-index:       12;
+    }
+
+    &--body {
+        width: 100%;
+
+        &--title {
+            display:     block;
+            line-height: 50px;
+            font-size:   36px;
+            font-weight: 100;
+        }
+    }
+}

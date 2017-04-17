@@ -14,6 +14,7 @@ import uiTab              from './ui-tab.vue';
 import uiDropdown         from './ui-dropdown.vue';
 import uiSpinner          from './ui-spinner.vue';
 import uiPopup            from './ui-popup.vue';
+import uiModal            from './ui-modal.vue';
 import uiPopover          from './ui-popover.vue';
 import uiBoxFilter        from './ui-box-filter.vue';
 import uiProgressBar      from './ui-progress-bar.vue';
@@ -34,6 +35,7 @@ import uiSlider           from './ui-slider.vue';
 import uiCard             from './ui-card.vue';
 import uiContentBox       from './ui-content-box.vue';
 import uiCalendar         from './ui-calendar.vue';
+import uiOverlay          from './ui-overlay.vue';
 
 export default {
     'ui-select':            uiSelect,
@@ -52,6 +54,7 @@ export default {
     'ui-spinner':           uiSpinner,
     'ui-box-filter':        uiBoxFilter,
     'ui-popup':             uiPopup,
+    'ui-modal':             uiModal,
     'ui-popover':           uiPopover,
     'ui-dropdown':          uiDropdown,
     'ui-progress-bar':      uiProgressBar,
@@ -72,4 +75,5 @@ export default {
     'ui-card':              uiCard,
     'ui-content-box':       uiContentBox,
     'ui-calendar':          uiCalendar,
+    'ui-overlay':           uiOverlay,
 }
