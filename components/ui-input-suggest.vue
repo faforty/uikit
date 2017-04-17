@@ -163,7 +163,7 @@ export default {
            this.focusList = this.focusList > listLength ? 0 : this.focusList < 0 ? listLength : this.focusList;
          },
 
-         calculateDropdown() {
+        calculateDropdown() {
             let $input = this.$refs.input.$el,
                 $dropResults = this.$refs.dropResults;
 
@@ -189,7 +189,15 @@ export default {
             } else {
                 this.dropResultsStyles = {}
             }
-         }
+         },
+
+        loadingStart() {
+            this.$refs.input.loadingState();
+        },
+
+        loadingStop() {
+            this.$refs.input.loadingStop();
+        }
     },
     mounted() {
         document.body.addEventListener('click', this.hideDropdown);
