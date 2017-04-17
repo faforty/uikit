@@ -31,7 +31,7 @@
                     >
                         <div class="drop-out__result__content">
                             <div class="drop-out__result__content__title">
-                                <div v-html="item.name"><small v-html="item.description" /></div>
+                                <div v-html="item[itemAttribute]"><small v-html="item.description" /></div>
                             </div>
                         </div>
                     </a>
@@ -52,6 +52,10 @@ export default {
         uiInput
     },
     props: {
+        itemAttribute: {
+            type: String,
+            default: 'name'
+        },
         autofocus: {
             type: Boolean,
             default: false
