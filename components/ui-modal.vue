@@ -1,18 +1,20 @@
 <template>
-    <ui-overlay class="ui-animation-zoom enter container" :show="show" @click="close">
-        <div class="ui-modal" :class="modalClass" @click.stop>
-            <div class="ui-modal--close" @click="close">
-                <i class="uikit-cross"></i>
-            </div>
-
-            <div class="ui-modal--body">
-
-                <div class="ui-modal--body--title" v-if="title || $slots.title">
-                    <slot name='title'></slot>
-                    {{ title }}
+    <ui-overlay class="ui-animation-zoom enter" :show="show" @click="close">
+        <div class="container">
+            <div class="ui-modal" :class="modalClass" @click.stop>
+                <div class="ui-modal--close" @click="close">
+                    <i class="uikit-cross"></i>
                 </div>
 
-                <slot></slot>
+                <div class="ui-modal--body">
+
+                    <div class="ui-modal--body--title" v-if="title || $slots.title">
+                        <slot name='title'></slot>
+                        {{ title }}
+                    </div>
+
+                    <slot></slot>
+                </div>
             </div>
         </div>
     </ui-overlay>
