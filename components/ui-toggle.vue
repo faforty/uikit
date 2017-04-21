@@ -1,15 +1,16 @@
 <template>
     <div class="ui-toggle" :class="[statusClass, {'ui-toggle--disabled': disabled}]" @click="toggleValue">
-        <span v-if="info" class="float-right ui-radio-popover" @click.stop>
-            <ui-popover placement="right">
-                <a class="ui-action ui-input__help__action uikit-info"></a>
-                <div slot="content" v-html="info"></div>
-            </ui-popover>
-        </span>
 
         <label>
+            <span v-if="info" class="float-right ui-radio-popover" @click.stop>
+                <ui-popover placement="right">
+                    <a class="ui-action ui-input__help__action uikit-info"></a>
+                    <div slot="content" v-html="info"></div>
+                </ui-popover>
+            </span>
             <slot></slot>
         </label>
+
         <transition name="fade" mode="out-in">
             <div v-if="hint" class="ui-hint" v-html="hint"></div>
         </transition>
