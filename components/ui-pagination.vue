@@ -42,6 +42,10 @@ export default {
     },
 
     props: {
+        sameButtons: {
+            type: Boolean,
+            default: false
+        },
         nextLink: {
             type: [String, Boolean],
             default: false,
@@ -79,7 +83,7 @@ export default {
             return typeof this.nextLink === 'string' ? this.nextLink : null
         },
         nextClass() {
-            return [this.nextLink && !this.nextError ? 'ui-btn--green' : 'ui-btn--gray'];
+            return [this.nextLink && !this.nextError ? !this.sameButtons && 'ui-btn--green' : 'ui-btn--gray'];
         }
     },
 
