@@ -41,6 +41,22 @@
         </div>
     </div>
 
+    <h2 class='mb-5'>Select with empty value</h2>
+    <div class="row mb-5 ui-column-spacing">
+        <div class="col-lg-4">
+            <ui-select v-model="string_value" :options="options" optional>Value as string</ui-select>
+            <span class="ui-text--gray">Selected value:</span> {{typeof(string_value)}}: {{string_value}}
+        </div>
+        <div class="col-lg-4">
+            <ui-select v-model.number="number_value" :options="options" optional="RESET">Value as number</ui-select>
+            <span class="ui-text--gray">Selected value:</span> {{typeof(number_value)}}: {{number_value}}
+        </div>
+        <div class="col-lg-4">
+            <ui-select v-model="array_value" :options="options" optional>Value as array</ui-select>
+            <span class="ui-text--gray">Selected value:</span> {{typeof(array_value)}}: {{array_value}}
+        </div>
+    </div>
+
     <h2 class='mb-5'>Select state</h2>
     <div class="row mb-5 ui-column-spacing">
         <div class="col-lg-4">

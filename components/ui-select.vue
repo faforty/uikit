@@ -31,14 +31,10 @@
                 </div>
 
                 <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
-                    <a v-if="Object.keys(results).length == 0" class="drop-out__result" v-for="(option, key) in options" @mousedown="select(key)">
-                        <div class="drop-out__result__content">
-                            <div class="drop-out__result__content__title">
-                                <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a v-if="Object.keys(results).length" class="drop-out__result" v-for="(option, key) in results" @mousedown="select(key)">
+
+                    <ui-select-option v-if="optional && !multiple" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
+
+                    <a class="drop-out__result" v-for="(option, key) in filteredOptions" @mousedown="select(key)">
                         <div class="drop-out__result__content">
                             <div class="drop-out__result__content__title">
                                 <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
@@ -68,12 +64,14 @@
     import uiLabel from './ui-label.vue';
     import uiInput from './ui-input.vue';
     import uiPopover from './ui-popover.vue';
+    import uiSelectOption from './ui-select-option.vue';
 
     export default {
         components: {
             uiLabel,
             uiInput,
-            uiPopover
+            uiPopover,
+            uiSelectOption
         },
         props: {
             options:      {},
@@ -83,14 +81,17 @@
             hint:         String,
             info:         String,
             state:        String,
-
             value: {
                 type: [Array, String, Number],
                 default: []
             },
+            optional: {
+                type:    [Boolean, String],
+                default: false
+            },
             label: {
-                type:      Boolean,
-                'default': true
+                type:    Boolean,
+                default: true
             },
             placeholder: {
                 type: String,
@@ -174,6 +175,12 @@
                 }
             },
 
+            resetValue() {
+                this.$emit('input',  this.resultAsArray ? [] : null);
+                this.$emit('change', this.resultAsArray ? [] : null);
+                this.hideDropdown();
+            },
+
             selectFirstItem() {
                 if (this.options) {
                     for (var k in this.options) {
@@ -211,11 +218,14 @@
             },
         },
         computed: {
+            filteredOptions() {
+                return Object.keys(this.results).length ? this.results : this.options;
+            },
             filled() {
                 return this.selectId.length > 0;
             },
             selectId() {
-                return typeof this.value === 'object' ? this.value : [this.value];
+                return typeof this.value === 'object' ? (this.value ? this.value : '') : [this.value];
             },
             selectedItems() {
                 if ( ! this.selectId.length) {
@@ -239,7 +249,10 @@
                 return this.selectId.length === 0;
             },
             resultAsArray() {
-                return Array.isArray(this.value) || this.value === null;
+                return Array.isArray(this.value);
+            },
+            optionalLabel() {
+                return typeof(this.optional) === 'boolean' ? this.placeholder : this.optional;
             }
         },
 
