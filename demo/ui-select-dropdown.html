@@ -16,7 +16,7 @@
             <ui-select-dropdown :value="value" info="ok" hint="Hint text here">
                 Base dropdown
                 <template slot="selected">{{value ? value.label : ''}}</template>
-                <ui-select-option slot="options" v-for="item in options" :label="item.label" :value="item" @select="selectItem"></ui-select-option>
+                <ui-select-option slot="options" v-for="item in options" :label="item.label" :value="item" :active="item === value" :disabled="item.disabled" @select="selectItem"></ui-select-option>
             </ui-select-dropdown>
         </div>
 
@@ -27,7 +27,7 @@
                     {{value ? value.label : ''}}
                     <span class="ui-text--gray">- Item description</span>
                 </template>
-                <ui-select-option slot="options" v-for="item in options" :label="item.label" :value="item" @select="selectItem">
+                <ui-select-option slot="options" v-for="item in options" :label="item.label" :value="item" :active="item === value" :disabled="item.disabled" @select="selectItem">
                     Custom {{item.label}}
                     <p class="m-0 ui-text--gray ui-text--sm">Item description for {{item.label}}</p>
                 </ui-select-option>
@@ -52,7 +52,7 @@ new Vue({
     data: () => ({
         options: [
             {label: 'Option 1', id: 1},
-            {label: 'Option 2', id: 2},
+            {label: 'Option 2', id: 2, disabled:true},
             {label: 'Option 3', id: 3},
             {label: 'Option 4', id: 4},
             {label: 'Option 5', id: 5},

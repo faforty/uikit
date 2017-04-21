@@ -1,5 +1,5 @@
 <template>
-    <div class="drop-out__result" @mousedown.prevent="select">
+    <div class="drop-out__result" :class="{'drop-out__result--active':active}" :disabled=disabled @mousedown.prevent="select" @click="stopForDisabled">
         <div class="drop-out__result__content">
             <div class="drop-out__result__content__title">
                 <div class='option' :class="{сhecked: true}">
@@ -16,12 +16,22 @@ export default {
         value: {
             required: true
         },
-        label: {},
+        label:    {},
+        active:   Boolean,
+        disabled: Boolean,
     },
 
     methods: {
-        select() {
-            this.$emit('select', this.value);
+        select(e) {
+            if (!this.disabled) {
+                this.$emit('select', this.value);
+            }
+        },
+
+        stopForDisabled(e) {
+            if (this.disabled) {
+                e.stopPropagation();
+            }
         }
     }
 }

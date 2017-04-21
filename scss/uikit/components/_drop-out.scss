@@ -30,7 +30,8 @@
     text-decoration: none;
     border-top:      1px solid #dbdbdb;
 
-    &:hover, &--active {
+
+    &:hover:not([disabled]), &--active {
       border-top: 1px solid #eef4f2;
       background: #f8f8f8;
       color:      #1ac079;
@@ -40,10 +41,24 @@
       }
     }
 
+    &[disabled] {
+      position: relative;
+      &:after {
+        position:   absolute;
+        content:    '';
+        background: rgba(#FFF, .6);
+        top:        0;
+        bottom:     1px;
+        left:       0;
+        right:      0;
+        z-index:    2;
+      }
+    }
+
     &__content {
       position: relative;
-      width: 100%;
-      padding: 0 15px;
+      width:    100%;
+      padding:  0 15px;
 
       &__title {
         margin: -0.14285em 0em 0em;
