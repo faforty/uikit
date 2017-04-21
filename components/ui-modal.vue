@@ -1,7 +1,7 @@
 <template>
     <ui-overlay class="ui-animation-zoom enter" :show="show" @click="close">
         <div class="container">
-            <div class="ui-modal" :class="modalClass" @click.stop>
+            <div class="ui-modal" :class="modalClass" @click="lock">
                 <div class="ui-modal--close" @click="close">
                     <i class="uikit-cross"></i>
                 </div>
@@ -43,8 +43,16 @@
         },
 
         methods: {
+            lock() {
+                this._lock = true;
+            },
+
             close() {
-                this.$emit('toggle');
+                if (!this._lock) {
+                    this.$emit('toggle');
+                } else {
+                    this._lock = false;
+                }
             }
         },
     }

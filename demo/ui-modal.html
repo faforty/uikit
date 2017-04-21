@@ -14,7 +14,8 @@
     <h2 class='mb-5'>Autoselect first option</h2>
 
     <ui-modal title="Modal title" :show=show @toggle="show=false">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium vero exercitationem ratione, similique ipsum, illo aut ex temporibus culpa maiores praesentium et blanditiis, ab aperiam magnam rerum dolorem officiis eligendi!
+        <ui-select v-model="autoselect_value" :options="options" autoselect>Autoselect</ui-select>
+        <ui-select v-model="autoselect_value" :options="options" autoselect>Autoselect</ui-select>
     </ui-modal>
     <ui-button @click="show=true">Popup</ui-button>
 
@@ -43,7 +44,15 @@ new Vue({
     el: '#app',
     data: () => ({
         show:  false,
-        show2: false
+        show2: false,
+        options: {
+            '1': 'Option 1',
+            '2': 'Option 2',
+            '3': 'Option 3',
+            '4': 'Option 4',
+            '5': 'Option 5',
+        },
+        autoselect_value: [],
     }),
 
     mounted() {
