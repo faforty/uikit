@@ -1,5 +1,6 @@
 <template>
     <ui-pagination
+        :same-buttons="sameButtons"
         :prev-link="prevLink"
         :next-link="nextLink"
         :prev-name="prevName"
@@ -21,6 +22,10 @@ export default {
     name: 'UiRouterPagination',
 
     props: {
+        sameButtons: {
+            type: Boolean,
+            default: false
+        },
         nextLink: {
             type: [String, Boolean],
             default: false,
