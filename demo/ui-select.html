@@ -41,6 +41,16 @@
         </div>
     </div>
 
+    <h2 class='mb-5'>Select state</h2>
+    <div class="row mb-5 ui-column-spacing">
+        <div class="col-lg-4">
+            <ui-select v-model="string_value" :options="options" state="error">Error</ui-select>
+        </div>
+        <div class="col-lg-4">
+            <ui-select v-model="string_value" :options="options" state="success">Success</ui-select>
+        </div>
+    </div>
+
 </div>
 
 

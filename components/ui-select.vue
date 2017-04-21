@@ -1,5 +1,5 @@
 <template id="ui-select">
-    <ui-label :filled="filled" :label-show="label">
+    <ui-label :filled="filled" :label-show="label" :state="state">
 
         <template slot="label"><slot></slot></template>
 
@@ -82,6 +82,7 @@
             autoselect:   Boolean,
             hint:         String,
             info:         String,
+            state:        String,
 
             value: {
                 type: [Array, String, Number],
@@ -110,7 +111,7 @@
             limit: {
                 type: Number,
                 default: 1024
-            }
+            },
         },
         data: function () {
             return {
