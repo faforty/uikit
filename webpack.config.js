@@ -1,69 +1,74 @@
-const webpack = require('webpack'),
-    path = require('path'),
-    progressBarPlugin = require('progress-bar-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin')
-    WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 const uikitVersion = require("./package.json").version;
 const devMode      = process.env.NODE_ENV !== 'production';
 const nodeEnv      = process.env.NODE_ENV || 'development';
 
-const FgYellow = '\x1b[33m'
+const FgYellow = '\x1b[33m';
+
 console.log(FgYellow, 'Run build uiKit...', uikitVersion)
 
-var extractCSS = new ExtractTextPlugin('/css/uikit.css');
+const extractCSS = new ExtractTextPlugin('../css/uikit.css');
 
 module.exports = {
   entry: [
     './index.js',
     './scss/main.scss'
   ],
+
   output: {
-    path: path.resolve(__dirname, './dist/'),
+    path: __dirname + '/dist/js/',
     publicPath: devMode ? '/dist/' : '../',
-    filename: '/js/uikit.js',
+    filename: 'uikit.js',
   },
+
   resolve: {
-      extensions: ['', '.js', '.vue'],
-      fallback: [ path.join(__dirname, '../node_modules') ],
+      extensions: ['.js', '.vue']
   },
+
   resolveLoader: {
-    root: path.join(__dirname, 'node_modules'),
+    modules: ["node_modules"]
   },
+
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
         test: /\.(woff|woff2|eot|ttf)$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
-          name: 'fonts/[name].[ext]?[hash]'
+          name: '../fonts/[name].[ext]?[hash]'
         }
       },
       {
         test: /\.(png|svg)$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
-          name: 'images/[name].[ext]?[hash]'
+          name: '../images/[name].[ext]?[hash]'
         }
       },
       {
         test: /\.scss$/i,
-        loader: extractCSS.extract("css-loader?sourceMap!sass-loader?sourceMap")
+        use: extractCSS.extract(['css-loader', 'sass-loader']),
       }
     ]
   },
-  // devtool: '#eval-source-map',
+
   plugins: [
-    // new webpack.HotModuleReplacementPlugin(),
+    extractCSS,
+
     new WebpackBuildNotifierPlugin({
       sound: false,
       suppressSuccess: true
@@ -78,10 +83,11 @@ module.exports = {
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/),
     new webpack.ContextReplacementPlugin(/validatorjs[\/\\]src[\/\\]lang$/, /en|ru/),
 
-    extractCSS,
-
-    new progressBarPlugin()
+    new ProgressBarPlugin()
   ],
+
+  devtool: devMode ? '#source-map' : false,
+
   devServer: {
     inline: true,
     port:   4040,
@@ -89,55 +95,29 @@ module.exports = {
 }
 
 if (nodeEnv === 'production') {
-  module.exports.devtool = '#source-map';
-
   module.exports.plugins.push(
-    new webpack.optimize.DedupePlugin(),
     new webpack.LoaderOptionsPlugin({
         minimize: true,
         debug: false,
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+
+    new UglifyJsPlugin({
       compress: {
-        sequences: true,
-        booleans : true,
-        loops : true,
-        unused: true,
+        screw_ie8: true,
         dead_code: true,
         warnings: false,
         drop_console: true,
-        unsafe: true
+        unsafe: true,
+        sequences : true,
+        booleans : true,
+        loops : true,
+        unused: true
+      },
+      mangle: {
+        screw_ie8: true,
       },
       comments: false,
       beautify: false,
     })
-  );
-}
-
-if (nodeEnv === 'package') {
-  module.exports.devtool = false;
-
-  module.exports.entry = [
-    './index.js'
-  ];
-
-  module.exports.target = 'node';
-
-  module.exports.output = {
-    path: path.resolve(__dirname, './lib/'),
-    filename: './index.js',
-    library: 'uikit-agro24',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  };
-
-  module.exports.plugins.push(
-    new webpack.optimize.DedupePlugin(),
-    new webpack.LoaderOptionsPlugin({
-        minimize: true,
-        debug: false,
-    }),
-    new webpack.optimize.UglifyJsPlugin()
   );
 }
