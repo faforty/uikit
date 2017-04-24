@@ -34,11 +34,11 @@
 
                 <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
 
-                    <ui-select-option v-if="optional && !multiple" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
+                    <ui-select-option key="ui-optional" v-if="optional && !multiple" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
 
-                    <ui-select-option v-if="isNotFound" :label="notFoundMessage" @click.stop disabled></ui-select-option>
+                    <ui-select-option key="ui-notFound" v-if="isNotFound" :label="notFoundMessage" @click.stop disabled></ui-select-option>
 
-                    <ui-select-option v-for="(option, key) in filteredOptions" :label="option" :checked="isSelected(key)" :active="isActive(key)" @select="select(key)"></ui-select-option>
+                    <ui-select-option :key="key" v-for="(option, key) in filteredOptions" :label="option" :checked="isSelected(key)" :active="isActive(key)" @select="select(key)"></ui-select-option>
 
                 </div>
             </div>
