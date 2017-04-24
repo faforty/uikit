@@ -44,6 +44,8 @@
 
     &[disabled] {
       position: relative;
+      cursor:   default;
+
       &:after {
         position:   absolute;
         content:    '';

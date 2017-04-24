@@ -14,7 +14,7 @@
     <h2 class='mb-5'>Autoselect first option</h2>
     <div class="row mb-5 ui-column-spacing">
         <div class="col-lg-4">
-            <ui-select v-model="autoselect_value" :options="options" search autoselect>Autoselect</ui-select>
+            <ui-select v-model="autoselect_value" :options="options" info="Info text" hint="Hint text" search autoselect>Autoselect</ui-select>
         </div>
         <div class="col-lg-4">
             <ui-select v-model="autoselect_value2" :options="options_async" search autoselect multiple>Autoselect (async options + multiple)</ui-select>
@@ -81,6 +81,9 @@ new Vue({
             '3': 'Option 3',
             '4': 'Option 4',
             '5': 'Option 5',
+            '13': 'Option 13',
+            '14': 'Option 14',
+            '15': 'Option 15',
         },
         options_async:     {},
         autoselect_value:  [],

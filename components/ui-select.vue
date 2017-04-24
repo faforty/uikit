@@ -24,10 +24,11 @@
                         icon="uikit-search"
                         :form-group="false"
                         :label="false"
+                        v-model="searchText"
                         @click.native.stop
                         @blur="hideDropdown"
                         @input="inputSearch"
-                        v-model="searchText"
+                        @keydown="keydown"
                     />
                 </div>
 
@@ -35,7 +36,9 @@
 
                     <ui-select-option v-if="optional && !multiple" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
 
-                    <ui-select-option v-for="(option, key) in filteredOptions" :label="option" :checked="isSelected(key)" @select="select(key)"></ui-select-option>
+                    <ui-select-option v-if="isNotFound" :label="notFoundMessage" @click.stop disabled></ui-select-option>
+
+                    <ui-select-option v-for="(option, key) in filteredOptions" :label="option" :checked="isSelected(key)" :active="isActive(key)" @select="select(key)"></ui-select-option>
 
                 </div>
             </div>
@@ -109,11 +112,16 @@
                 type: Number,
                 default: 1024
             },
+            notFoundMessage: {
+                type:    String,
+                default: 'Ничего не найдено'
+            },
         },
 
         data: () => ({
             show:       false,
             searchText: '',
+            activeKey:  '',
         }),
 
         watch: {
@@ -123,26 +131,30 @@
         },
 
         methods: {
-            isSelected (v) {
-                return this.selectId.indexOf(v) > -1;
+            isSelected(key) {
+                return this.selectId.indexOf(key) > -1;
             },
 
-            select (v) {
-                if (this.selectId.indexOf(v) === -1) {
+            isActive(key) {
+                return this.activeKey === key;
+            },
+
+            select(key) {
+                if (!this.isSelected(key)) {
                     if (this.multiple) {
                         var m = [].concat(this.value);
-                        m.push(v);
+                        m.push(key);
                         this.$emit('input', m);
                         this.$emit('change', m)
                     } else {
-                        var value = this.makeValue(v);
+                        var value = this.makeValue(key);
                         this.$emit('input', value);
                         this.$emit('change', value)
                     }
                 } else {
                     if (this.multiple) {
                         var _m = [ ...this.value];
-                        _m.splice(_m.indexOf(v), 1);
+                        _m.splice(_m.indexOf(key), 1);
 
                         this.$emit('input', _m);
                         this.$emit('change', _m);
@@ -154,7 +166,7 @@
                 }
             },
 
-            resetValue () {
+            resetValue() {
                 var emptyValue = this.makeValue();
                 this.$emit('input',  emptyValue);
                 this.$emit('change', emptyValue);
@@ -199,6 +211,8 @@
 
             hideDropdown() {
                 this.searchText = '';
+                this.activeKey  = '';
+
                 if (this._lock) {
                     this._lock = false;
                 } else {
@@ -207,8 +221,45 @@
             },
 
             inputSearch(value) {
+                this.activeKey = '';
                 this.$emit('input-value', value);
             },
+
+            keydown(e) {
+                var {keyCode} = e;
+
+                var filteredKeys = Object.keys(this.filteredOptions);
+                if (filteredKeys.length === 0) {
+                    return;
+                }
+
+                var activateByOffset = (offset) => {
+                    var index = filteredKeys.indexOf(this.activeKey) + offset;
+                    var listLength = filteredKeys.length - 1;
+                    index = index > listLength ? 0 : index < 0 ? listLength : index;
+                    this.activeKey = filteredKeys[index];
+                }
+
+                switch (keyCode) {
+                    case 40: //down
+                        activateByOffset(+1);
+                        e.preventDefault();
+                        break;
+                    case 38: //up
+                        activateByOffset(-1);
+                        e.preventDefault();
+                        break;
+                    case 13: //enter
+                        if (this.activeKey) {
+                            this.select(this.activeKey);
+                            e.preventDefault();
+                        }
+                        break;
+                    case 27: //esc
+                        this.hideDropdown();
+                        break;
+                }
+             },
         },
         computed: {
             filteredOptions() {
@@ -228,6 +279,11 @@
 
                 return result;
             },
+
+            isNotFound() {
+                return this.searchText && Object.keys(this.foundOptions).length === 0;
+            },
+
             filled() {
                 return this.selectId.length > 0;
             },

@@ -12,9 +12,7 @@
 <script>
 export default {
     props: {
-        value: {
-            required: true
-        },
+        value:    {},
         label:    {},
         active:   Boolean,
         checked:  Boolean,
