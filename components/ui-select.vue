@@ -16,19 +16,19 @@
                             <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
                         </span>
                     </template>
-                    <div v-show="search && show" style="width:100%">
-                        <ui-input
-                            ref="uiSelectSearch"
-                            icon="uikit-search"
-                            style="width:100%"
-                            :form-group="false"
-                            :label="false"
-                            @click.native.stop
-                            @blur="hideDropdown"
-                            @input="inputSearch"
-                            v-model="searchText"
-                        />
-                    </div>
+
+                    <ui-input
+                        v-show="search && show"
+                        class='ui-select__search'
+                        ref="uiSelectSearch"
+                        icon="uikit-search"
+                        :form-group="false"
+                        :label="false"
+                        @click.native.stop
+                        @blur="hideDropdown"
+                        @input="inputSearch"
+                        v-model="searchText"
+                    />
                 </div>
 
                 <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>

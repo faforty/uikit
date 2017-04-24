@@ -8,8 +8,16 @@
     padding-right: 50px;
   }
 
-  .ui-input-pos {
-    margin: -18px -22px;
+
+  .ui-select__search {
+    width:      100%;
+
+    .ui-input-pos {
+      margin: -18px -22px -20px;
+    }
+    input {
+      margin: 0;
+    }
   }
 
   .form-control .form-control {

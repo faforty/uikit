@@ -7,7 +7,7 @@
     border-radius:    0;
     border:           1px solid #e6e6e6;
     border-top:       none;
-    border-bottom:    none;
+    // border-bottom:    none;
     position:         absolute;
     left:             0;
     padding:          1px 0;
@@ -17,7 +17,7 @@
     width:            100%;
     overflow:         hidden;
     z-index:          9;
-    box-shadow:       0 13px 31px -3px #cdcdcd;
+    box-shadow:       0 16px 31px -3px rgba(200, 200, 200, .5);
     cursor:           pointer;
   }
 
