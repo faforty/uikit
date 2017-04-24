@@ -9,14 +9,14 @@
                     <template v-if="(search && !show) || !search">
                         <span>
                             {{ selectedItems }}
-                            <span style="color: #808080" v-show="showPlaceholder">{{placeholder}}</span>
+                            <span style="color:#808080" v-show="showPlaceholder">{{placeholder}}</span>
                         </span>
 
                         <span class="ui-select__selected__icon">
                             <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
                         </span>
                     </template>
-                    <div v-show="search && show" style="width: 100%">
+                    <div v-show="search && show" style="width:100%">
                         <ui-input
                             ref="uiSelectSearch"
                             icon="uikit-search"
@@ -25,6 +25,7 @@
                             :label="false"
                             @click.native.stop
                             @blur="hideDropdown"
+                            @input="inputSearch"
                             v-model="searchText"
                         />
                     </div>
@@ -34,13 +35,8 @@
 
                     <ui-select-option v-if="optional && !multiple" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
 
-                    <a class="drop-out__result" v-for="(option, key) in filteredOptions" @mousedown="select(key)">
-                        <div class="drop-out__result__content">
-                            <div class="drop-out__result__content__title">
-                                <div :class="{option: true, checked: isSelected(key)}" :id="key">{{ option }}</div>
-                            </div>
-                        </div>
-                    </a>
+                    <ui-select-option v-for="(option, key) in filteredOptions" :label="option" :checked="isSelected(key)" @select="select(key)"></ui-select-option>
+
                 </div>
             </div>
 
@@ -114,34 +110,18 @@
                 default: 1024
             },
         },
-        data: function () {
-            return {
-                show: false,
-                searchText: '',
-                results: {},
-                // selectId: [],
-                // filled: false
-            };
-        },
+
+        data: () => ({
+            show:       false,
+            searchText: '',
+        }),
+
         watch: {
             options(options) {
                 this.tryAutoselect();
             },
-
-            searchText (value) {
-                this.$emit('input-value', value);
-
-                if (value && this.search) {
-                    this.results = {};
-
-                    for (var item in this.options) {
-                        if (this.options[item].toString().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                            this.results[item] = this.options[item]
-                        }
-                    }
-                }
-            }
         },
+
         methods: {
             isSelected (v) {
                 return this.selectId.indexOf(v) > -1;
@@ -154,11 +134,10 @@
                         m.push(v);
                         this.$emit('input', m);
                         this.$emit('change', m)
-                        // this.filled = true
                     } else {
-                        this.$emit('input', this.resultAsArray ? [v] : v);
-                        this.$emit('change', this.resultAsArray ? [v] : v)
-                        // this.filled = true
+                        var value = this.makeValue(v);
+                        this.$emit('input', value);
+                        this.$emit('change', value)
                     }
                 } else {
                     if (this.multiple) {
@@ -175,10 +154,18 @@
                 }
             },
 
-            resetValue() {
-                this.$emit('input',  this.resultAsArray ? [] : null);
-                this.$emit('change', this.resultAsArray ? [] : null);
+            resetValue () {
+                var emptyValue = this.makeValue();
+                this.$emit('input',  emptyValue);
+                this.$emit('change', emptyValue);
                 this.hideDropdown();
+            },
+
+            makeValue(value) {
+                if (value === null) {
+                    return this.resultAsArray ? [] : null;
+                }
+                return this.resultAsArray ? [value] : value;
             },
 
             selectFirstItem() {
@@ -209,17 +196,37 @@
                     this.$refs.uiSelectSearch.focus()
                 }
             },
+
             hideDropdown() {
+                this.searchText = '';
                 if (this._lock) {
                     this._lock = false;
                 } else {
                     this.show = false;
                 }
             },
+
+            inputSearch(value) {
+                this.$emit('input-value', value);
+            },
         },
         computed: {
             filteredOptions() {
-                return Object.keys(this.results).length ? this.results : this.options;
+                return this.searchText ? this.foundOptions : this.options;
+            },
+            foundOptions() {
+                var result = {};
+
+                if (this.searchText && this.search) {
+                    var searchTextLower = this.searchText.toLowerCase();
+                    for (var item in this.options) {
+                        if (this.options[item].toString().toLowerCase().indexOf(searchTextLower) >= 0) {
+                            result[item] = this.options[item]
+                        }
+                    }
+                }
+
+                return result;
             },
             filled() {
                 return this.selectId.length > 0;
@@ -245,19 +252,19 @@
                 return foundItems.join(', ');
             },
             showPlaceholder() {
-                this.searchText = this.selectedItems
                 return this.selectId.length === 0;
             },
             resultAsArray() {
                 return Array.isArray(this.value);
             },
             optionalLabel() {
-                return typeof(this.optional) === 'boolean' ? this.placeholder : this.optional;
+                return typeof(this.optional) === 'boolean' || !this.optional
+                    ? this.placeholder
+                    : this.optional;
             }
         },
 
         mounted: function () {
-            this.searchText = this.selectedItems
             this.tryAutoselect();
 
             document.body.addEventListener('click', this.hideDropdown);

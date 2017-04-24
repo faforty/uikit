@@ -14,10 +14,10 @@
     <h2 class='mb-5'>Autoselect first option</h2>
     <div class="row mb-5 ui-column-spacing">
         <div class="col-lg-4">
-            <ui-select v-model="autoselect_value" :options="options" autoselect>Autoselect</ui-select>
+            <ui-select v-model="autoselect_value" :options="options" search autoselect>Autoselect</ui-select>
         </div>
         <div class="col-lg-4">
-            <ui-select v-model="autoselect_value2" :options="options_async" autoselect multiple>Autoselect (async options + multiple)</ui-select>
+            <ui-select v-model="autoselect_value2" :options="options_async" search autoselect multiple>Autoselect (async options + multiple)</ui-select>
         </div>
         <div class="col-lg-4">
             <ui-select v-model="autoselect_value3" :options="options" autoselect>Autoselect (value alredy set)</ui-select>
@@ -52,7 +52,7 @@
             <span class="ui-text--gray">Selected value:</span> {{typeof(number_value)}}: {{number_value}}
         </div>
         <div class="col-lg-4">
-            <ui-select v-model="array_value" :options="options" optional>Value as array</ui-select>
+            <ui-select v-model="array_value" :options="options" optional="">Value as array</ui-select>
             <span class="ui-text--gray">Selected value:</span> {{typeof(array_value)}}: {{array_value}}
         </div>
     </div>
