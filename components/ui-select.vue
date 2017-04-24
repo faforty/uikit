@@ -167,7 +167,7 @@
             },
 
             resetValue() {
-                var emptyValue = this.makeValue();
+                var emptyValue = this.makeValue(null);
                 this.$emit('input',  emptyValue);
                 this.$emit('change', emptyValue);
                 this.hideDropdown();
