@@ -12,18 +12,16 @@ const FgYellow = '\x1b[33m';
 
 console.log(FgYellow, 'Run build uiKit...', uikitVersion)
 
-const extractCSS = new ExtractTextPlugin('../css/uikit.css');
-
 module.exports = {
-  entry: [
-    './index.js',
-    './scss/main.scss'
-  ],
+  entry: {
+    '/js/uikit': './index.js',
+    '/css/uikit': './scss/main.scss'
+  },
 
   output: {
-    path: __dirname + '/dist/js/',
+    path: __dirname + '/dist/',
     publicPath: devMode ? '/dist/' : '../',
-    filename: 'uikit.js',
+    filename: '[name].js',
   },
 
   resolve: {
@@ -49,30 +47,35 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf)$/,
         loader: 'file-loader',
         query: {
-          name: '../fonts/[name].[ext]?[hash]'
+          name: '/fonts/[name].[ext]?[hash]'
         }
       },
       {
         test: /\.(png|svg)$/,
         loader: 'file-loader',
         query: {
-          name: '../images/[name].[ext]?[hash]'
+          name: '/images/[name].[ext]?[hash]'
         }
       },
       {
-        test: /\.scss$/i,
-        use: extractCSS.extract(['css-loader', 'sass-loader']),
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader', 'sass-loader']
+        })
       }
     ]
   },
 
   plugins: [
-    extractCSS,
+    new ExtractTextPlugin({
+      filename: '[name].css'
+    }),
 
     new WebpackBuildNotifierPlugin({
       sound: false,
       suppressSuccess: true
     }),
+
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
