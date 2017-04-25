@@ -34,7 +34,7 @@
 
                 <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
 
-                    <ui-select-option key="ui-optional" v-if="optional && !multiple" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
+                    <ui-select-option key="ui-optional" v-if="optionalLabel && !multiple" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
 
                     <ui-select-option key="ui-notFound" v-if="isNotFound" :label="notFoundMessage" @click.stop disabled></ui-select-option>
 
