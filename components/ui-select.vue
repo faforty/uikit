@@ -34,11 +34,14 @@
 
                 <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
 
-                    <ui-select-option key="ui-optional" v-if="showOptional" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
+                    <ui-select-option class='ui-select--optional' key="ui-optional" v-if="showOptional" @select="resetValue" @click.stop>
+                        <i class="uikit-cross float-right"></i>
+                        {{optionalLabel}}
+                    </ui-select-option>
 
                     <ui-select-option key="ui-notFound" v-if="isNotFound" :label="notFoundMessage" @click.stop disabled></ui-select-option>
 
-                    <ui-select-option :key="key" v-for="(option, key) in filteredOptions" :label="option" :checked="isSelected(key)" :active="isActive(key)" @select="select(key)"></ui-select-option>
+                    <ui-select-option :key="optionId(option)" v-for="(option, index) in filteredOptions" :label="optionLabel(option)" :checked="isSelected(option)" :active="isActive(index)" @select="select(option)"></ui-select-option>
 
                 </div>
             </div>
@@ -82,7 +85,7 @@
             state:        String,
             value: {
                 type: [Array, String, Number],
-                default: []
+                default: () => []
             },
             optional: {
                 type:    [Boolean, String],
@@ -116,12 +119,20 @@
                 type:    String,
                 default: 'Ничего не найдено'
             },
+            optionsIdKey: {
+                type:    String,
+                default: 'id'
+            },
+            optionsLabelKey: {
+                type:    String,
+                default: 'name'
+            }
         },
 
         data: () => ({
             show:       false,
             searchText: '',
-            activeKey:  '',
+            activeIndex:  -1,
         }),
 
         watch: {
@@ -131,34 +142,32 @@
         },
 
         methods: {
-            isSelected(key) {
-                return this.selectId.indexOf(key) > -1;
+            isSelected(option) {
+                return this.selectId.indexOf( this.optionId(option) ) > -1;
             },
 
-            isActive(key) {
-                return this.activeKey === key;
+            isActive(index) {
+                return this.activeIndex === index;
             },
 
-            select(key) {
-                if (!this.isSelected(key)) {
-                    if (this.multiple) {
-                        var m = [].concat(this.value);
-                        m.push(key);
-                        this.$emit('input', m);
-                        this.$emit('change', m)
-                    } else {
-                        var value = this.makeValue(key);
-                        this.$emit('input', value);
-                        this.$emit('change', value)
-                    }
+            select(option) {
+
+                var value;
+                var key        = this.optionId(option);
+                var isSelected = this.isSelected(option);
+
+                if (this.multiple) {
+                    value = [...this.value];
+                    isSelected ? value.splice(value.indexOf(key), 1) : value.push(key);
                 } else {
-                    if (this.multiple) {
-                        var _m = [ ...this.value];
-                        _m.splice(_m.indexOf(key), 1);
-
-                        this.$emit('input', _m);
-                        this.$emit('change', _m);
+                    if (!isSelected) {
+                        value = this.makeValue(key);
                     }
+                }
+
+                if (value !== undefined) {
+                    this.$emit('input', value);
+                    this.$emit('change', value);
                 }
 
                 if (this.closeonselect && !this.multiple) {
@@ -181,11 +190,8 @@
             },
 
             selectFirstItem() {
-                if (this.options) {
-                    for (var k in this.options) {
-                        this.select(k);
-                        break;
-                    }
+                if (this.optionsArray.length) {
+                    this.select(this.optionsArray[0]);
                 }
             },
 
@@ -210,8 +216,8 @@
             },
 
             hideDropdown() {
-                this.searchText = '';
-                this.activeKey  = '';
+                this.searchText  = '';
+                this.activeIndex = -1;
 
                 if (this._lock) {
                     this._lock = false;
@@ -221,23 +227,21 @@
             },
 
             inputSearch(value) {
-                this.activeKey = '';
+                this.activeIndex = -1;
                 this.$emit('input-value', value);
             },
 
             keydown(e) {
                 var {keyCode} = e;
 
-                var filteredKeys = Object.keys(this.filteredOptions);
-                if (filteredKeys.length === 0) {
+                if (this.filteredOptions.length === 0) {
                     return;
                 }
 
                 var activateByOffset = (offset) => {
-                    var index = filteredKeys.indexOf(this.activeKey) + offset;
-                    var listLength = filteredKeys.length - 1;
-                    index = index > listLength ? 0 : index < 0 ? listLength : index;
-                    this.activeKey = filteredKeys[index];
+                    var index        = this.activeIndex + offset;
+                    var listLength   = this.filteredOptions.length - 1;
+                    this.activeIndex = index > listLength ? 0 : index < 0 ? listLength : index;
                 }
 
                 switch (keyCode) {
@@ -250,8 +254,8 @@
                         e.preventDefault();
                         break;
                     case 13: //enter
-                        if (this.activeKey) {
-                            this.select(this.activeKey);
+                        if (this.activeIndex > -1) {
+                            this.select( this.filteredOptions[this.activeIndex] );
                             e.preventDefault();
                         }
                         break;
@@ -259,21 +263,43 @@
                         this.hideDropdown();
                         break;
                 }
-             },
+            },
+
+            optionLabel(option) {
+                return option[this.optionsLabelKey];
+            },
+
+            optionId(option) {
+                return option[this.optionsIdKey];
+            }
         },
         computed: {
             filteredOptions() {
-                return this.searchText ? this.foundOptions : this.options;
+                return this.searchText ? this.foundOptions : this.optionsArray;
+            },
+
+            optionsArray() {
+                if (Array.isArray(this.options)) {
+                    return [...this.options];
+                }
+
+                var options = [];
+                for (var key in this.options) {
+                    options.push({id: key, name: this.options[key]});
+                }
+                return options;
             },
 
             foundOptions() {
-                var result = {};
+                var result = [];
 
                 if (this.searchText && this.search) {
                     var searchTextLower = this.searchText.toLowerCase();
-                    for (var item in this.options) {
-                        if (this.options[item].toString().toLowerCase().indexOf(searchTextLower) >= 0) {
-                            result[item] = this.options[item]
+                    for (var i = 0; i < this.optionsArray.length; i++) {
+                        var option = this.optionsArray[i]
+
+                        if (this.optionLabel(option).toLowerCase().indexOf(searchTextLower) >= 0) {
+                            result.push(option)
                         }
                     }
                 }
@@ -299,12 +325,15 @@
                 }
 
                 var foundItems = [];
-                for (var i=0; i<this.selectId.length; i++) {
-                    var selectId = this.selectId[i];
-                    if (this.options[selectId]) {
-                        foundItems.push(this.options[selectId]);
-                    } else {
-                        console.warn('ui-select: element "' + selectId + '" not found in options');
+                for (var j = this.optionsArray.length - 1; j >= 0; j--) {
+                    var option   = this.optionsArray[j]
+                    var optionId = this.optionId(option);
+
+                    for (var i=0; i<this.selectId.length; i++) {
+                        if (optionId == this.selectId[i]) {
+                            foundItems.push( this.optionLabel(option) );
+                            break;
+                        }
                     }
                 }
 

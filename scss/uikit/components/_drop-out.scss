@@ -58,6 +58,10 @@
       }
     }
 
+    &.ui-select--optional {
+      color: #808080;
+    }
+
     &__content {
       position: relative;
       width:    100%;
