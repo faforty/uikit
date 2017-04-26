@@ -28,10 +28,12 @@
 
 <script>
 import uiSlider from './ui-slider.vue';
+import uiButton from './ui-button.vue';
 
 export default {
     components: {
-        uiSlider
+        uiSlider,
+        uiButton
     },
 
     props: {

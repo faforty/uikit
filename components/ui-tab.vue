@@ -59,7 +59,7 @@
                 return this.$parent.$children.indexOf(this)
             },
             selected () {
-                return this.$parent.isSelected(this)
+                return this.$parent.isSelected ? this.$parent.isSelected(this) : false;
             },
             classes () {
                 return this.disabled ? 'ui-tabs-material__bar__tab--disabled' : ''
