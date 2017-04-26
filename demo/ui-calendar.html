@@ -58,6 +58,13 @@
                 </div>
 
                 <div class="form-group">
+                    <ui-calendar v-model="dates" multiple>
+                        <ui-button><i class="uikit-calendar"></i> Multiple</ui-button>
+                    </ui-calendar>
+                    <ui-chip v-for="date in dates">{{ date }}</ui-chip>
+                </div>
+
+                <div class="form-group">
                     <ui-calendar ref="calendar" v-model="date" >
                         <ui-button><i class="uikit-calendar"></i> {{ date }}</ui-button>
                     </ui-calendar>
@@ -97,6 +104,7 @@ new Vue({
     el: '#app',
     data: () => ({
         dateUnixtime: null,
+        dates:        [],
         date:         '',
         dateFrom:     '',
         dateTo:       '',

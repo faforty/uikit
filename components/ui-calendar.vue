@@ -79,7 +79,11 @@ export default {
             default: (date) => false
         },
         minDate: {},
-        maxDate: {}
+        maxDate: {},
+        multiple: {
+            type:    Boolean,
+            default: false
+        }
     },
     data: () => ({
         visible:          false,
@@ -89,7 +93,9 @@ export default {
 
     watch: {
         value(value) {
-            this.currentTimestamp = normalizeDate(this.value, this.format);
+            if (!this.multiple) {
+                this.currentTimestamp = normalizeDate(this.value, this.format);
+            }
         },
     },
 
@@ -145,9 +151,13 @@ export default {
         calendar() {
             var calendar = [];
 
-            var date  = moment(this.current).startOf('month').startOf('week').startOf('day');
-            var today = normalizeDate(moment());
-            var value = normalizeDate(this.value, this.format);
+            var date   = moment(this.current).startOf('month').startOf('week').startOf('day');
+            var today  = normalizeDate(moment());
+            var values = this.multiple ? (this.value ? [...this.value] : []) : [this.value];
+
+            for (var i = values.length - 1; i >= 0; i--) {
+                values[i] = normalizeDate(values[i], this.format);
+            }
 
             for (var w = 0; w < 6; w++) {
                 calendar[w] = [];
@@ -160,7 +170,7 @@ export default {
                         if (w > 0 && i === 0) break; // Dont draw next month week
                         className = 'ui-calendar-' + (w < 1 ? 'prev-month' : 'next-month');
                     }
-                    if (timestamp == value) {
+                    if (values.indexOf(timestamp) > -1) {
                         className += ' ui-calendar-current';
                     }
                     if (timestamp == today) {
@@ -187,11 +197,13 @@ export default {
         toggle(state = null) {
             this.visible ? this.hide() : this.show();
         },
+
         show() {
             this.visible = true;
             this._lock = true;
             this.$root.$emit('ui-calendar:close');
         },
+
         hide() {
             if (this._lock) {
                 this._lock = false;
@@ -206,11 +218,18 @@ export default {
             }
 
             var value = moment.unix(day.timestamp);
+
             if (this.format) {
                 value = value.format(this.format);
             }
+
+            if (this.multiple) {
+                value = this.makeMultipleValue(value);
+            }
+
             this.$emit('input', value);
-            if (this.closeonselect) {
+
+            if (this.closeonselect && !this.multiple) {
                 this.hide();
             }
         },
@@ -231,6 +250,19 @@ export default {
             return (this.minDateTimestamp && this.minDateTimestamp >= timestamp)
                 || (this.maxDateTimestamp && this.maxDateTimestamp <= timestamp)
                 || this.disabledDate(date);
+        },
+
+        makeMultipleValue(value) {
+            var vModel = this.value ? [...this.value] : [];
+
+            var index  = vModel.indexOf(value);
+            if (index > -1) {
+                vModel.splice(index, 1);
+            } else {
+                vModel.push(value);
+            }
+
+            return vModel; //.sort();
         }
     },
 
