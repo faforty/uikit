@@ -13,15 +13,15 @@ const FgYellow = '\x1b[33m';
 console.log(FgYellow, 'Run build uiKit...', uikitVersion)
 
 module.exports = {
-  entry: {
-    '/js/uikit': './index.js',
-    '/css/uikit': './scss/main.scss'
-  },
+  entry: [
+    './index.js',
+    './scss/main.scss'
+  ],
 
   output: {
-    path: __dirname + '/dist/',
+    path:       __dirname + '/dist/',
     publicPath: devMode ? '/dist/' : '../',
-    filename: '[name].js',
+    filename:   './js/uikit.js',
   },
 
   resolve: {
@@ -68,7 +68,7 @@ module.exports = {
 
   plugins: [
     new ExtractTextPlugin({
-      filename: '[name].css'
+      filename: './css/uikit.css'
     }),
 
     new WebpackBuildNotifierPlugin({
@@ -94,7 +94,14 @@ module.exports = {
   devServer: {
     inline: true,
     port:   4040,
+    hot:    true,
   }
+}
+
+if (devMode) {
+  module.exports.plugins.push(
+    new webpack.HotModuleReplacementPlugin()
+  );
 }
 
 if (nodeEnv === 'production') {
