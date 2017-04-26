@@ -34,7 +34,7 @@
 
                 <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
 
-                    <ui-select-option key="ui-optional" v-if="optionalLabel && !multiple" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
+                    <ui-select-option key="ui-optional" v-if="showOptional" :label="optionalLabel" @select="resetValue" @click.stop></ui-select-option>
 
                     <ui-select-option key="ui-notFound" v-if="isNotFound" :label="notFoundMessage" @click.stop disabled></ui-select-option>
 
@@ -265,6 +265,7 @@
             filteredOptions() {
                 return this.searchText ? this.foundOptions : this.options;
             },
+
             foundOptions() {
                 var result = {};
 
@@ -287,9 +288,11 @@
             filled() {
                 return this.selectId.length > 0;
             },
+
             selectId() {
                 return typeof this.value === 'object' ? (this.value ? this.value : '') : [this.value];
             },
+
             selectedItems() {
                 if ( ! this.selectId.length) {
                     return '';
@@ -307,17 +310,24 @@
 
                 return foundItems.join(', ');
             },
+
             showPlaceholder() {
                 return this.selectId.length === 0;
             },
+
             resultAsArray() {
                 return Array.isArray(this.value);
             },
+
             optionalLabel() {
                 return typeof(this.optional) === 'boolean' || !this.optional
                     ? this.placeholder
                     : this.optional;
-            }
+            },
+
+            showOptional() {
+                return !this.multiple && (this.optional || this.optional === "");
+            },
         },
 
         mounted: function () {
@@ -325,6 +335,7 @@
 
             document.body.addEventListener('click', this.hideDropdown);
         },
+
         beforeDestroy() {
             document.body.removeEventListener('click', this.hideDropdown);
         }
