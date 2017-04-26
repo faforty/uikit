@@ -39,9 +39,9 @@
                     </td>
                 </tr>
             </table>
+            <slot name="footer"></slot>
         </div>
         </transition>
-
     </div>
 </template>
 
