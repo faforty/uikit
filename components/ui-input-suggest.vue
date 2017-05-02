@@ -16,7 +16,8 @@
                 :placeholder="placeholder"
                 :state="state"
                 :value="value"
-                @focus="showDropdown"
+                @focus="onFocus"
+                @blur="onBlur"
                 @input="inputValue"
                 @change="changeValue"
                 @keydown="keydown"
@@ -131,6 +132,15 @@ export default {
 
             this._lock = true;
             this.showList = true;
+        },
+
+        onFocus() {
+            this.showDropdown();
+            this.$emit('focus');
+        },
+
+        onBlur() {
+            this.$emit('blur');
         },
 
         onListMousemove(index) {
