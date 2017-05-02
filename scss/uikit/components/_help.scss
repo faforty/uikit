@@ -16,7 +16,7 @@ $minimized-width: 50px;
     top:          0;
     height:       100%;
     z-index:      999;
-    transition:   all .4s;
+    transition:   padding .4s, margin .4s;
     width:        30%;
     margin-right: -30%;
     right:        $minimized-width;
@@ -88,7 +88,7 @@ $minimized-width: 50px;
     margin-right: -40%;
   }
 }
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
 // @media (max-width: 768px) {
   .ui-help-container {
     position: relative;
