@@ -150,27 +150,33 @@ export default {
         keydown(e) {
             var { keyCode } = e;
 
-           // Disable when list isn't showing up
-           if(!this.showList) return;
+            // Disable when list isn't showing up
+            if(!this.showList) return;
 
-           switch (keyCode) {
-             case 40: //down
-               this.focusList++;
-               e.preventDefault();
-             break;
-             case 38: //up
-               this.focusList--;
-               e.preventDefault();
-             break;
-             case 13: //enter
-                this.select(this.results[this.focusList]);
-                e.preventDefault();
-             break;
-             case 27: //esc
-               this.showList = false;
-               e.preventDefault();
-             break;
-           }
+            switch (keyCode) {
+                case 40: // down
+                    this.focusList++;
+                    e.preventDefault();
+                    break;
+
+                case 38: // up
+                    this.focusList--;
+                    e.preventDefault();
+                    break;
+
+                case 13: // enter
+                    var focusedItem = this.results ? this.results[this.focusList] : null;
+                    if (focusedItem) {
+                        this.select(focusedItem);
+                    }
+                    e.preventDefault();
+                    break;
+
+                case 27: // esc
+                    this.showList = false;
+                    e.preventDefault();
+                    break;
+            }
 
            // When cursor out of range
            var listLength = this.results.length - 1;
