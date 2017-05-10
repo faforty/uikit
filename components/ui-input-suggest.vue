@@ -181,6 +181,8 @@ export default {
            // When cursor out of range
            var listLength = this.results.length - 1;
            this.focusList = this.focusList > listLength ? 0 : this.focusList < 0 ? listLength : this.focusList;
+
+            this.$emit('keydown', e);
          },
 
         calculateDropdown() {

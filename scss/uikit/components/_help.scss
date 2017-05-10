@@ -7,7 +7,7 @@ $minimized-width: 50px;
 }
 
 .ui-help-container {
-    transition: all .4s;
+    transition: all .4s ease;
 }
 .ui-help {
     background:   #fff7dd;
@@ -16,7 +16,7 @@ $minimized-width: 50px;
     top:          0;
     height:       100%;
     z-index:      999;
-    transition:   padding .4s, margin .4s;
+    transition:   padding .4s ease, margin .4s ease;
     width:        30%;
     margin-right: -30%;
     right:        $minimized-width;
@@ -51,7 +51,7 @@ $minimized-width: 50px;
         left:        0;
         top:         0;
         margin-left: -20px;
-        transition:  all .4s;
+        transition:  all .4s ease;
     }
 
     .ui-help-label {
@@ -65,7 +65,7 @@ $minimized-width: 50px;
         white-space:      nowrap;
         font-size:        18px;
         letter-spacing:   1.6px;
-        transition:       all .4s;
+        transition:       all .4s ease;
         margin:           5px -15px 0 0;
         opacity:          1;
     }
@@ -76,7 +76,7 @@ $minimized-width: 50px;
         line-height: 28px;
         font-weight: 300;
         color:       #333;
-        transition:  all .4s;
+        transition:  all .4s ease;
         opacity:     0;
     }
 
@@ -93,8 +93,12 @@ $minimized-width: 50px;
   .ui-help-container {
     position: relative;
 
-    > h1, > h2, > h3{
-      transition: all .4s;
+    > h1,
+    > h2,
+    > h3 {
+      transition:   all .4s ease;
+      padding-top:  0;
+      margin-right: 40px;
     }
 
     &.ui-help--active {
@@ -107,10 +111,6 @@ $minimized-width: 50px;
           top:   -20px;
           // top:   20px;
       }
-    }
-
-    > h1, > h2, > h3 {
-      padding-top: 0;
     }
   }
   .ui-help {
