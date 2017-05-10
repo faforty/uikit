@@ -22,6 +22,14 @@
   position: relative;
   margin-bottom: 40px;
 
+  // Fix иконка выезжала за пределы поля при длинном лэйбле
+  &.d-inline-block,
+  .ui-inline-block & {
+    .inner-addon {
+      width: auto;
+    }
+  }
+
   &--align {
     display:         flex;
     align-items:     flex-start;
