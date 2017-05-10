@@ -71,7 +71,8 @@
                             <ui-input v-model="inputEatValue">Вот и жуй</ui-input>
                         </div>
                         <div class="col-md-6 pt-2">
-                            <ui-input v-model="inputDonzhuanValue" label-align="left">Песчаный Дон Жуан</ui-input>
+                            <ui-input v-model.number="inputDonzhuanValue" size="8" label-align="left" group="см">Песчаный Дон Жуан с очень длинным лэйблом</ui-input>
+                            <ui-input v-model.number="inputDonzhuanValue" class='d-inline-block' size="4" max-size="10" group="см">Песчаный</ui-input>
                         </div>
                     </div>
                 </div>
@@ -114,7 +115,7 @@
 
 
                 <template slot="actions">
-                    <ui-router-pagination :next-error="paginationNextError" next-name="Сюда"  prev-link="/" prev-name="Туда"  step="0" step-all="3" next-icon="uikit-check" />
+                    <ui-router-pagination next-link='' prev-link='' :next-error="paginationNextError" next-name="Сюда"  prev-link="/" prev-name="Туда"  step="0" step-all="3" next-icon="uikit-check" />
                 </template>
 
             </ui-content-box>
@@ -138,7 +139,7 @@ new Vue({
         checkboxA:           false,
         inputMagicValue:     "Сказочно",
         inputEatValue:       "Не критикуй",
-        inputDonzhuanValue:  "Тритончик",
+        inputDonzhuanValue:  9000,
         radioValueA:         'One',
         isHideField:         false,
         inputPrice2Value:    1000,

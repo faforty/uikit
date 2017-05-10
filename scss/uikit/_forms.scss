@@ -117,7 +117,7 @@
   background-clip:        padding-box;
   outline:                none;
 
-  // .ui-input-group > &[size],
+  .ui-input-group > &[size],
   &[size] {
     width: auto;
   }

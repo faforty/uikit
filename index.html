@@ -109,7 +109,7 @@
 
                     <ui-select hint="Hint hint hint hint hint hint!" info="asdasd" v-model="dd3" :multiple="true" :options="{day: 'Каждый день', week: 'Каждую неделю', month: 'Каждый месяц'}" name="sdfs">Заголовок</ui-select>
 
-                    <ui-input value="1000" size=4 label-align=right-inline>Input + size</ui-input>
+                    <ui-input v-model="inputWithSize" size="4" max-size="16" label-align=right-inline>Input + size + max-size</ui-input>
 
                     <ui-textarea v-model="textareaValue" placeholder="Input text here...">Textarea</ui-textarea>
                     <ui-textarea v-model="textareaValue" rows=5 placeholder="Input text here...">Textarea</ui-textarea>
@@ -653,6 +653,7 @@
         new Vue({
             el: '#app',
             data: () => ({
+                inputWithSize:    '1000',
                 textareaValue:    '',
                 dropfileImage:    '',
                 ajaxValue:        '633',
