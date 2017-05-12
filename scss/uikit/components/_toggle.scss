@@ -58,10 +58,11 @@
   }
 
   &--disabled {
-    color: #989898;
+    color:  #989898;
+    cursor: default !important;
 
     &:hover::before, &::before {
-      border-color:     #e4e4e4;
+      border-color:     #e4e4e4 !important;
       background-color: rgba(231,231,231,0.53);
     }
 
