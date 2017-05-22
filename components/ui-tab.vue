@@ -66,6 +66,8 @@
             }
         },
         mounted () {
+            console.log(this);
+
             this.parentTabs = getClosestVueParent(this.$parent, 'ui-tabs')
 
             if (!this.parentTabs) {

@@ -152,6 +152,8 @@ export default {
             if (this.autoUpload) {
                 this.upload();
             }
+
+            this.$refs.fileInput.value = null;
         },
 
         upload() {
