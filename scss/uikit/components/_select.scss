@@ -8,6 +8,17 @@
     padding-right: 50px;
   }
 
+  .inner-addon > select {
+    position:           absolute;
+    top:                0;
+    width:              100%;
+    border:             none;
+    background:         none;
+    -webkit-appearance: none;
+    height:             60px;
+    color:              transparent;
+    opacity:            0;
+  }
 
   .ui-select__search {
     width:      100%;

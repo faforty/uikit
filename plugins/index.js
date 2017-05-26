@@ -2,7 +2,7 @@ import VueResource from 'vue-resource';
 import Validator from 'validatorjs';
 
 import VueEvents from './vue-events';
-import untilDeclOfNum from '../until/declOfNum';
+import untilDeclOfNum from '../utils/declOfNum';
 
 function helpers () {
     let untils = {

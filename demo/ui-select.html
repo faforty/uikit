@@ -14,12 +14,12 @@
     <h2 class='mb-5'>Array options</h2>
     <div class="row mb-5 ui-column-spacing">
         <div class="col-lg-4">
-            {{arr_opt_value}}
             <ui-select v-model="arr_opt_value" :options="options_array" search optional autoselect>Array options</ui-select>
+            <span class="ui-text--gray">Selected value:</span> {{typeof(arr_opt_value)}}: {{arr_opt_value}}
         </div>
         <div class="col-lg-4">
-            {{arr_opt_value2}}
             <ui-select v-model="arr_opt_value2" :options="options_array" search autoselect multiple>Array options (multiple)</ui-select>
+            <span class="ui-text--gray">Selected value:</span> {{typeof(arr_opt_value2)}}: {{arr_opt_value2}}
         </div>
     </div>
 

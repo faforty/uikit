@@ -9,17 +9,17 @@
                     <i :class="['ico', iconClass]" v-show="iconClass"></i>
                     <input class="form-control" ref="input"
                         :autocomplete="autocomplete"
-                        :type="type"
+                        :disabled="disabled"
                         :name="name"
                         :placeholder="placeholder"
-                        :disabled="disabled"
-                        :value="value"
                         :size="inputSize"
-                        @input="updateValue"
-                        @change="updateValue"
-                        @keydown="onKeydown"
+                        :type="type"
+                        :value="value"
                         @blur="blurred"
+                        @change="updateValue"
                         @focus="onFocus"
+                        @input="updateValue"
+                        @keydown="onKeydown"
                     >
                     <div :class="`ui-input-group__btn ui-input-group__btn--${groupAlign}`" v-show="group">
                         <div class="text-color--gray ui-input-group__btn__hight">{{ group }}</div>
