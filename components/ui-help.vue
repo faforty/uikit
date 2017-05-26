@@ -1,6 +1,7 @@
 <template>
-    <div ref="container" class="ui-help-container" :class="{'ui-help--active':isActive, 'ui-help--shadow':shadow}">
-
+    <div ref="container" class="ui-help-container"
+        :class="{'ui-help--active':isActive, 'ui-help--fixed':fixed, 'ui-help--shadow':shadow}"
+    >
         <slot name="page-header"></slot>
 
         <div class="ui-help">
@@ -51,9 +52,11 @@ export default {
             type:    Boolean,
             default: false,
         },
+        fixed: {
+            type:    Boolean,
+            default: false,
+        },
         contentOffset: [Number, String],
-        // Deprecated
-        text: {type: [String, Array]},
     },
     data: () => ({
         isActive:          false,
@@ -72,7 +75,8 @@ export default {
             return Array.isArray(this.content);
         },
         wrapperStyle() {
-            var top = this.contentOffset ? this.contentOffset : this.autoContentOffset;
+            // var top = this.contentOffset ? this.contentOffset : autoContentOffset;
+            var top = this.contentOffset ? this.contentOffset : null;
             return top ? {top: top+'px'} : {};
         }
     },
@@ -85,9 +89,8 @@ export default {
     mounted() {
         this.isActive = this.active;
 
-        var offset = this.$refs.container.getBoundingClientRect().top + window.scrollY;
-
-        this.autoContentOffset = offset < window.screen.height / 2 ? offset : 0;
+        // var offset = this.$refs.container.getBoundingClientRect().top + window.scrollY;
+        // this.autoContentOffset = offset < window.screen.height / 2 ? offset : 0;
     },
 };
 </script>
