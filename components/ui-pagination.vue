@@ -14,7 +14,7 @@
         <li class="ui-pagination__next">
             <span class="ui-pagination__name">{{ nextName }}</span>
             <span class="ui-pagination__next__link">
-                <ui-popover v-if="nextError" ref="nextPopover">
+                <ui-popover v-if="nextError" ref="nextPopover" placement="top-left">
                     <div slot="content" v-html="nextError"></div>
                     <ui-button @click="nextClick" :href="nextHref" class="ui-btn--circle" :class="nextClass">
                         <i :class="nextIcon"></i>
