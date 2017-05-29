@@ -45,7 +45,12 @@ $minimized-width: 50px;
     .ui-help-wrapper {
       position: relative;
       top:      80px;
-      padding:  $minimized-width;
+      padding:  0;
+    }
+
+    .ui-help-text {
+      width:    0;
+      overflow: hidden;
     }
 
     .ui-help--shadow.ui-help--active & {
@@ -63,12 +68,17 @@ $minimized-width: 50px;
         }
 
         .ui-help-text {
-            opacity:    1;
-            // margin-left: -300px;
-            // transition: all .5s cubic-bezier(1, 0, 1, 0);
-            animation-name: ui_help_text;
+            opacity:            1;
+            // margin-left:     -300px;
+            // transition:      all .5s cubic-bezier(1, 0, 1, 0);
+            animation-name:     ui_help_text;
             // animation-delay: 1s;
             animation-duration: .6s;
+            width:              auto;
+            overflow:           visible;
+        }
+        .ui-help-wrapper {
+          padding: $minimized-width
         }
     }
 
@@ -86,6 +96,7 @@ $minimized-width: 50px;
 
     .ui-help-label {
         position:         absolute;
+        top:              $minimized-width;
         right:            100%;
         font-weight:      300;
         color:            mix(#fff7dd, #000, 70);
