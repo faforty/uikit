@@ -9,7 +9,8 @@
   "version": "3.1.0",
   "scripts": {
     "dev": "webpack-dev-server --inline --content-base ./",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,12 +29,15 @@
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "cross-env": "^1.0.6",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "i": "^0.3.5",
+    "jest": "^20.0.4",
+    "jest-vue-preprocessor": "^0.2.0",
     "node-sass": "^4.5.2",
     "progress-bar-webpack-plugin": "^1.9.0",
     "sass-loader": "^6.0.3",
@@ -42,8 +46,23 @@
     "vue": "2.1.6",
     "vue-loader": "^11.3.4",
     "vue-template-compiler": "2.1.6",
+    "vue-test-utils": "^0.5.0",
     "webpack": "^2.4.1",
     "webpack-build-notifier": "^0.1.13",
     "webpack-dev-server": "^2.4.4"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^vue$": "vue/dist/vue.common.js",
+      "components/(.*)$": "<rootDir>/components/$1.vue"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".*\\.(vue)$": "jest-vue-preprocessor"
+    }
   }
 }

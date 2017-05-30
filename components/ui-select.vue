@@ -8,10 +8,8 @@
 
                 <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown($event, true)">
                     <template v-if="(search && !show) || !search">
-                        <span>
-                            {{ selectedItems }}
-                            <span style="color:#808080" v-show="showPlaceholder">{{placeholder}}</span>
-                        </span>
+                        <span style="color:#808080" v-if="showPlaceholder">{{ placeholder }}</span>
+                        <span v-else>{{ selectedItems }}</span>
 
                         <span class="ui-select__selected__icon">
                             <i :class="{'uikit-chevron-down': true, rotate: show}"></i>
@@ -351,7 +349,7 @@
                 }
 
                 var foundItems = [];
-                for (var j = this.optionsArray.length - 1; j >= 0; j--) {
+                for (var j = 0; j < this.optionsArray.length; j++) {
                     var option   = this.optionsArray[j]
                     var optionId = this.optionId(option);
 
