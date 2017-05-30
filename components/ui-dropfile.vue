@@ -10,8 +10,17 @@
             >
                 <slot name="on-drop">
                     <div class="ui-dropfile-overtext">
-                        <div class="ui-dropfile-icon"><i class="uikit-cloud-send"></i></div>
-                        Перетяните изображение сюда
+                        <div class="ui-dropfile-icon">
+                            <i class="uikit-cloud-send"></i>
+                        </div>
+
+                        <span :class="{'mr-1': info !== false}">Перетяните изображение сюда</span>
+
+                        <ui-popover v-if="info" placement="right">
+                            <span class="ui-action ui-input__help__action uikit-info"></span>
+
+                            <div slot="content">{{ info }}</div>
+                        </ui-popover>
                     </div>
                 </slot>
             </div>
@@ -35,7 +44,12 @@
 </template>
 
 <script>
+import uiPopover from './ui-popover.vue';
+
 export default {
+    components: {
+        uiPopover
+    },
     props: {
         value: {},
 
@@ -43,6 +57,11 @@ export default {
         buttonLabel: {
             type:    String,
             default: 'Выбрать файл',
+        },
+
+        info: {
+            type:    [Boolean, String],
+            default: false
         },
 
         // Множественная загрузка файлов
