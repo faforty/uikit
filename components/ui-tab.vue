@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import getClosestVueParent from '../until/getClosestVueParent';
+    import getClosestVueParent from '../utils/getClosestVueParent';
 
     export default {
         props: {

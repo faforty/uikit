@@ -1,10 +1,11 @@
 <template id="ui-select">
-    <ui-label :filled="filled" :label-show="label" :state="state">
 
+    <ui-label :filled="filled" :label-show="label" :state="state">
         <template slot="label"><slot></slot></template>
 
         <div class="ui-select ui-input-pos">
             <div class="inner-addon">
+
                 <div :class="{'ui-select__selected': true, 'form-control': true, 'ui-select__multi': multiple, 'ui-select__disabled': disabled }" @click="toggleDropdown($event, true)">
                     <template v-if="(search && !show) || !search">
                         <span>
@@ -17,6 +18,7 @@
                         </span>
                     </template>
 
+                    <!-- Search field -->
                     <ui-input
                         v-show="search && show"
                         class='ui-select__search'
@@ -32,20 +34,29 @@
                     />
                 </div>
 
-                <div class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
-
+                <!-- Html select -->
+                <div v-if="!isMobile" class="ui-select__options drop-out__results" style="display:block; max-height:400px; overflow-y:auto;" v-show="show" @click.stop>
                     <ui-select-option class='ui-select--optional' key="ui-optional" v-if="showOptional" @select="resetValue" @click.stop>
                         <i class="uikit-cross float-right"></i>
                         {{optionalLabel}}
                     </ui-select-option>
-
                     <ui-select-option key="ui-notFound" v-if="isNotFound" :label="notFoundMessage" @click.stop disabled></ui-select-option>
-
                     <ui-select-option :key="optionId(option)" v-for="(option, index) in filteredOptions" :label="optionLabel(option)" :checked="isSelected(option)" :active="isActive(index)" @select="select(option)"></ui-select-option>
-
                 </div>
+
+                <!-- Native (mobile) select -->
+                <template v-if="isMobile">
+                    <select v-if="multiple" v-model="nativeValue" :disabled="disabled" multiple>
+                        <option v-for="(option, index) in filteredOptions" :key="index" :value="optionId(option)" >{{ optionLabel(option) }}</option>
+                    </select>
+                    <select v-else v-model="nativeValue" :disabled="disabled">
+                        <option v-if="showOptional" :value="null">{{optionalLabel}}</option>
+                        <option v-for="(option, index) in filteredOptions" :key="index" :value="optionId(option)" >{{ optionLabel(option) }}</option>
+                    </select>
+                </template>
             </div>
 
+            <!-- Help button (i) -->
             <div class="ui-input__help" v-if="info">
                 <ui-popover placement="right">
                     <a class="ui-action ui-input__help__action uikit-info"></a>
@@ -55,6 +66,7 @@
 
         </div>
 
+        <!-- Hint text -->
         <transition name="fade" mode="out-in">
             <div v-if="hint" class="ui-hint" v-html="hint"></div>
         </transition>
@@ -63,6 +75,7 @@
 </template>
 
 <script>
+    import isMobile from '../utils/isMobile.js';
     import uiLabel from './ui-label.vue';
     import uiInput from './ui-input.vue';
     import uiPopover from './ui-popover.vue';
@@ -103,7 +116,11 @@
                 type: Boolean,
                 default: false
             },
-            closeonselect: { // only works when multiple==false
+            /**
+             * Close after select option
+             * only works when multiple is false
+             */
+            closeonselect: {
                 type: Boolean,
                 default: true
             },
@@ -130,18 +147,26 @@
         },
 
         data: () => ({
-            show:       false,
-            searchText: '',
-            activeIndex:  -1,
+            show:        false,
+            searchText:  '',
+            activeIndex: -1,
+            isMobile:    isMobile(),
         }),
 
         watch: {
+            /**
+             * Trying autoselect when options loading after mounted
+             */
             options(options) {
                 this.tryAutoselect();
             },
         },
 
         methods: {
+            nativeChange(e) {
+                console.log('e => ', e);
+            },
+
             isSelected(option) {
                 return this.selectId.indexOf( this.optionId(option) ) > -1;
             },
@@ -151,7 +176,6 @@
             },
 
             select(option) {
-
                 var value;
                 var key        = this.optionId(option);
                 var isSelected = this.isSelected(option);
@@ -165,20 +189,23 @@
                     }
                 }
 
-                if (value !== undefined) {
-                    this.$emit('input', value);
-                    this.$emit('change', value);
-                }
+                this.emitValue(value);
 
                 if (this.closeonselect && !this.multiple) {
                     this.hideDropdown();
                 }
             },
 
+            emitValue(value) {
+                if (value !== undefined) {
+                    this.$emit('input', value);
+                    this.$emit('change', value);
+                }
+            },
+
             resetValue() {
                 var emptyValue = this.makeValue(null);
-                this.$emit('input',  emptyValue);
-                this.$emit('change', emptyValue);
+                this.emitValue(emptyValue);
                 this.hideDropdown();
             },
 
@@ -189,15 +216,9 @@
                 return this.resultAsArray ? [value] : value;
             },
 
-            selectFirstItem() {
-                if (this.optionsArray.length) {
-                    this.select(this.optionsArray[0]);
-                }
-            },
-
             tryAutoselect() {
-                if (this.autoselect && this.selectId.length === 0) {
-                    this.selectFirstItem();
+                if (this.autoselect && this.selectId.length === 0 && this.optionsArray.length) {
+                    this.select(this.optionsArray[0]);
                 }
             },
 
@@ -273,20 +294,25 @@
                 return option[this.optionsIdKey];
             }
         },
+
         computed: {
             filteredOptions() {
                 return this.searchText ? this.foundOptions : this.optionsArray;
             },
 
+            /**
+             * Опции всегда хранятся как массив
+             * @return {Array}
+             */
             optionsArray() {
                 if (Array.isArray(this.options)) {
                     return [...this.options];
                 }
-
                 var options = [];
                 for (var key in this.options) {
                     options.push({id: key, name: this.options[key]});
                 }
+
                 return options;
             },
 
@@ -356,6 +382,22 @@
 
             showOptional() {
                 return !this.multiple && (this.optional || this.optional === "");
+            },
+
+            withNative() {
+                return !this.search;
+            },
+
+            nativeValue: {
+                get() {
+                    return this.selectId;
+                },
+                set(value) {
+                    if (!this.multiple && value) {
+                        value = this.makeValue(value);
+                    }
+                    this.emitValue(value);
+                }
             },
         },
 

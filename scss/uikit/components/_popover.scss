@@ -53,8 +53,18 @@
     top:  100%;
   }
   &--left:before {
-    left:  100%;
-    top:   50%;
+    left: 100%;
+    top:  50%;
+  }
+  &--top-left:before {
+    right: 5px;
+    left:  auto;
+    top:   100%;
+  }
+  &--bottom-left:before {
+    left: auto;
+    right: 5px;
+    top:  0;
   }
   &--right:before {
     left: auto;
@@ -73,6 +83,18 @@
     top:            50%;
     right:          100%;
     left:           auto;
+  }
+  &--top-left {
+    transform:  translate(-100%, -100%);
+    margin-left: 20px;
+  }
+  &--bottom-left {
+    animation-name: ui-popover-animation-bottom;
+    transform:      translate(-100%, 0);
+    margin-top:     20px;
+    margin-left:    20px;
+    top:            100%;
+    left:           50%;
   }
   &--bottom {
     animation-name: ui-popover-animation-bottom;

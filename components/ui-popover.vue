@@ -1,10 +1,11 @@
 <template>
     <div class="ui-popover-wrapper">
-        <span @click.stop="togglePopover" ref="target" style="display:inline-block">
+        <span ref="target" class="d-inline-block" @click.stop="togglePopover">
             <slot></slot>
         </span>
+
         <transition leave-active-class="fade-leave-active">
-            <div ref="popover" v-show="show" class="ui-popover" :class="'ui-popover--' + placement" :style="style" @click.stop>
+            <div v-if="show" ref="popover" class="ui-popover" :class="positionClass" :style="style" @click.stop>
                 <div class="ui-popover-triangle"></div>
 
                 <div v-if="title" class="ui-popover-title">
@@ -28,31 +29,61 @@ export default {
             type:    Boolean,
             default: false,
         },
-        // custom: {
-        //     type:    Boolean,
-        //     default: false,
-        // },
         placement: {
             type:    String,
             default: 'top', // top, right, bottom, left
+        },
+        width: {
+            type:    Number,
+            default: 280
         },
         title: String
     },
 
     data: () => ({
-        show: false,
-        style: {}
+        show:          false,
+        autoPlacement: false,
     }),
+
+    computed: {
+        positionClass() {
+            return 'ui-popover--' + (this.autoPlacement ? this.autoPlacement : this.placement);
+        },
+        style() {
+            return {
+                width: this.width + 'px',
+            };
+        },
+        originPlacement() {
+            var horizontal = false;
+            var vertical   = false;
+
+            if (this.placement) {
+                var placements = this.placement.split('-');
+                if (placements.length == 1) {
+                    if (placements[0] === 'left' || placements[0] === 'right') {
+                        horizontal = placements[0];
+                    } else {
+                        vertical = placements[0];
+                    }
+                } else {
+                    vertical   = placements[0];
+                    horizontal = placements[1];
+                }
+            }
+            return {vertical, horizontal};
+        },
+    },
 
     watch: {
         active(active) {
-            this.show = active;
+            active ? this.showPopover() : this.hidePopover();
         },
     },
 
     methods: {
         togglePopover() {
-            this.show = !this.show;
+            this.show ? this.hidePopover() : this.showPopover();
             if (this.show) {
                 this._lock = true;
             }
@@ -64,11 +95,27 @@ export default {
             if (this._lock) {
                 this._lock = false;
             } else {
+                window.removeEventListener('scroll', this.calculatePosition);
+                window.removeEventListener('resize', this.calculatePosition);
                 this.show = false;
             }
         },
         showPopover() {
+            window.addEventListener('scroll', this.calculatePosition);
+            window.addEventListener('resize', this.calculatePosition);
+            this.calculatePosition();
             this.show = true;
+        },
+        calculatePosition() {
+            var boundingRect = this.$refs.target.getBoundingClientRect();
+            var vPlacement = boundingRect.top > window.innerHeight - boundingRect.bottom ? 'top' : 'bottom';
+            if (window.innerWidth - boundingRect.right < this.width) {
+                this.autoPlacement = vPlacement + '-left';
+            } else if (this.originPlacement.vertical) {
+                this.autoPlacement = vPlacement + (this.originPlacement.horizontal ? '-' + this.originPlacement.horizontal : '');
+            } else {
+                this.autoPlacement = false;
+            }
         }
     },
 

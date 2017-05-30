@@ -11,7 +11,7 @@
 
                 <div :class="optionRowClass" @click="toggleDropdown($event, true)">
                     <span>
-                        <slot v-if="value" name="selected">{{ selectedItems }}</slot>
+                        <slot v-if="value" name="selected"></slot>
                         <span v-else class="ui-text--gray">{{placeholder}}</span>
                     </span>
 
