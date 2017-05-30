@@ -1,7 +1,5 @@
 <template>
-
-    <div class="ui-dropfile" :class="{'ui-dropfile--over':dropzoneOver, 'ui-dropfile--body-over':bodyOver}">
-
+    <div :class="['ui-dropfile', {'ui-dropfile--over': dropzoneOver, 'ui-dropfile--body-over': bodyOver}]">
         <div ref="dropzone" class="ui-dropfile-dropzone">
             <div
                 @dragover.stop.prevent="dragOver($event, true)"
@@ -13,18 +11,10 @@
                         <div class="ui-dropfile-icon">
                             <i class="uikit-cloud-send"></i>
                         </div>
-
-                        <span :class="{'mr-1': info !== false}">Перетяните изображение сюда</span>
-
-                        <ui-popover v-if="info" placement="right">
-                            <span class="ui-action ui-input__help__action uikit-info"></span>
-
-                            <div slot="content">{{ info }}</div>
-                        </ui-popover>
+                        Перетяните изображение сюда
                     </div>
                 </slot>
             </div>
-
 
             <div class="ui-dropfile-content">
                 <slot>
@@ -34,12 +24,21 @@
             </div>
         </div>
 
-        <label v-if="buttonLabel" :for="inputId" class="ui-btn ui-btn--sm">
-            {{buttonLabel}}
+        <label
+            v-if="buttonLabel"
+            :for="inputId"
+            :class="['ui-btn', 'ui-btn--sm', {'mr-1': info !== false}]"
+        >
+            {{ buttonLabel }}
         </label>
 
-        <input class="ui-dropfile-input" :id="inputId" @change="fileSelect" ref="fileInput" type="file" :multiple="multiple" />
+        <ui-popover v-if="info" placement="right">
+            <span class="ui-action ui-input__help__action uikit-info"></span>
 
+            <div slot="content">{{ info }}</div>
+        </ui-popover>
+
+        <input class="ui-dropfile-input" :id="inputId" @change="fileSelect" ref="fileInput" type="file" :multiple="multiple" />
     </div>
 </template>
 
