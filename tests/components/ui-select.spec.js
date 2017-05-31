@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueTestUtils from 'vue-test-utils';
 import uiSelect from 'components/ui-select';
+import {setUserAgent} from '../helpers';
 
 Vue.use(VueTestUtils);
 
@@ -23,11 +24,13 @@ const DATA = {
 }
 
 const SELECTOR = {
-    label:         '.ui-label',
-    hint:          '.ui-hint',
-    selectedLabel: '.ui-select__selected > span:first-child',
-    dropdown:      '.ui-select__options',
-    options:       '.drop-out__result',
+    label:               '.ui-label',
+    hint:                '.ui-hint',
+    selectedLabel:       '.ui-select__selected > span:first-child',
+    dropdown:            '.ui-select__options',
+    options:             '.drop-out__result',
+    nativeSelect:        'select',
+    nativeSelectOptions: 'select > option',
 };
 
 const makeVm = (template, opt = {}) => {
@@ -40,7 +43,6 @@ const makeVm = (template, opt = {}) => {
 
 
 describe('ui-select', () => {
-
     it('Label, hint, placeholder', () => {
         const vm = makeVm('<ui-select hint="Hint text" placeholder="Empty value">Label text</ui-select>');
 
@@ -154,4 +156,29 @@ describe('ui-select', () => {
         expect(vm.value).toBe(1);
     });
 
+    it('Native', () => {
+        setUserAgent('iphone');
+
+        const vm = makeVm('<ui-select v-model="value" :options="options"></ui-select>', {
+            data:{
+                options: DATA.optionsArray,
+                value:   null,
+            }
+        });
+        expect(vm.$(SELECTOR.nativeSelect).multiple).toBeFalsy();
+        expect(vm.$$(SELECTOR.nativeSelectOptions)).toHaveLength(DATA.optionsArray.length);
+    });
+
+    it('Native: multiple', () => {
+        setUserAgent('iphone');
+
+        const vm = makeVm('<ui-select multiple v-model="value" :options="options"></ui-select>', {
+            data:{
+                options: DATA.optionsArray,
+                value:   [],
+            }
+        });
+
+        expect(vm.$(SELECTOR.nativeSelect).multiple).toBeTruthy();
+    });
 });
