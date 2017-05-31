@@ -52,10 +52,18 @@
     "webpack-dev-server": "^2.4.4"
   },
   "jest": {
+    "notify": false,
+    "mapCoverage": true,
+    "collectCoverage": true,
+    "coverageReporters": ["text"],
+    "coveragePathIgnorePatterns": ["webpack.config.js", "/node_modules/", "tests/helpers.js"],
     "moduleNameMapper": {
       "^vue$": "vue/dist/vue.common.js",
       "components/(.*)$": "<rootDir>/components/$1.vue"
     },
+    "testMatch": [
+      "**/?(*.)spec.js"
+    ],
     "moduleFileExtensions": [
       "js",
       "vue"
