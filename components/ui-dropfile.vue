@@ -35,7 +35,9 @@
         <ui-popover v-if="info" placement="right">
             <span class="ui-action ui-input__help__action uikit-info"></span>
 
-            <div slot="content">{{ info }}</div>
+            <div slot="content">
+                <span v-html="info"></span>
+            </div>
         </ui-popover>
 
         <input class="ui-dropfile-input" :id="inputId" @change="fileSelect" ref="fileInput" type="file" :multiple="multiple" />

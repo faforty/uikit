@@ -9,7 +9,7 @@
                 <div class="ui-popover-triangle"></div>
 
                 <div v-if="title" class="ui-popover-title">
-                    {{title}}
+                    {{ title }}
                 </div>
 
                 <div class="ui-popover-scroll">
