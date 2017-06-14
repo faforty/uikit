@@ -43,7 +43,9 @@
             </div>
 
             <transition name="fade" mode="out-in">
-                <div v-if="prompt && showField" class="ui-hint" v-html="prompt"></div>
+                <slot name="hint">
+                    <div v-if="prompt && showField" class="ui-hint" v-html="prompt"></div>
+                </slot>
             </transition>
 
         </div>
