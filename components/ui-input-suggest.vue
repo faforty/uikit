@@ -24,6 +24,12 @@
             >
                 <slot></slot>
 
+                <transition name="fade" mode="out-in">
+                    <slot name="hint">
+                        <div class="ui-hint" v-html="hint"></div>
+                    </slot>
+                </transition>
+
                 <div slot="dropdown" ref="dropResults" class="drop-out__results" :style="[{ 'max-height': maxHeight + 'px', 'overflow-y': 'scroll'}, dropResultsStyles]" v-show="(results.length > 0 || error) && showList">
                     <slot name="dropdown">
                         <a :class="{'drop-out__result': true, 'drop-out__result--active': index === focusList}"
