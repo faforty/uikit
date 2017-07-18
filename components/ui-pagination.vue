@@ -9,7 +9,12 @@
             <span class="ui-pagination__name">{{ prevName }}</span>
         </li>
         <li class="ui-pagination__step" v-if="stepAll">
-            Шаг {{ step }} из {{ stepAll }}
+            <template v-if="mainStep">
+                Шаг {{ mainStep }}. Подшаг {{ step }} из {{ stepAll }}.
+            </template>
+            <template v-else>
+                Шаг {{ step }} из {{ stepAll }}
+            </template>
         </li>
         <li class="ui-pagination__next">
             <span class="ui-pagination__name">{{ nextName }}</span>
@@ -65,6 +70,10 @@ export default {
         },
         prevIcon: {type: String, default: 'uikit-arrow-back'},
         nextIcon: {type: String, default: 'uikit-arrow-forward'},
+        mainStep: {
+            type: [String, Number, Boolean],
+            default: false
+        },
         step: {
             type: [String, Number],
             default: 0
