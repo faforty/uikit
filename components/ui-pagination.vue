@@ -10,7 +10,7 @@
         </li>
         <li class="ui-pagination__step" v-if="stepAll">
             <template v-if="mainStep">
-                Шаг {{ mainStep }}. Подшаг {{ step }} из {{ stepAll }}.
+                Шаг {{ mainStep }}<br />Подшаг {{ step }} из {{ stepAll }}
             </template>
             <template v-else>
                 Шаг {{ step }} из {{ stepAll }}
